@@ -1,0 +1,25 @@
+name: dp_string
+title: Sottosequenza comune
+description1: Trovare la piu' lunga sottosequenza comune tra le stringhe _s_ = ACAGCGTAATAACTCAA
+  e _t_ = CGTAGCGTCTAGCGTGC
+description2: Fare lo stesso con alcuni suffissi di _s_ e _t_.
+tasks:
+- tot_points: 10
+  ver_points: 10
+  description1: Dire qual e' la piu' lunga sottosequenza comune tra _s_ e _t_
+- tot_points: 10
+  ver_points: 10
+  description1: Dire qual e' la piu' lunga sottosequenza comune tra _s_ e _t_ che
+    incomincia con 'C'
+- tot_points: 10
+  ver_points: 10
+  description1: Dire qual e' la piu' lunga sottosequenza comune tra _s_ e _t_ che
+    incomincia con 'G'
+- tot_points: 10
+  ver_points: 10
+  description1: Dire qual e' la piu' lunga sottosequenza comune tra _s_ e il suffisso
+    _t7_ = AGCGTGC di _t_
+- tot_points: 10
+  ver_points: 10
+  description1: Dire qual e' la piu' lunga sottosequenza comune tra _t_ e il prefisso
+    _s5_ = ACAGC di _s_

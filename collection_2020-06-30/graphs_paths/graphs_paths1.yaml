@@ -1,0 +1,36 @@
+---
+name: graphs_paths
+title: Cammini in un grafo
+description1: Si consideri il grafo $G$, con pesi sugli archi, riportato in figura:<br><img src='img_2020-06-30/grafo_plan5_pesi.png' width=800>
+tasks:
+- {
+    tot_points: 10,
+    ver_points: 0,
+    description1: "Calcolare la distanza di $x$ da $s$"
+  }
+- {
+    tot_points: 10,
+    ver_points: 0,
+    description1: "Fornire le distanze di ciascun nodo da $s$"
+  }
+- {
+    tot_points: 10,
+    ver_points: 0,
+    description1: "Fornire un cammino minimo da $s$ a $x$"
+  }
+- {
+    tot_points: 10,
+    ver_points: 0,
+    description1: "Fornire un albero dei cammini minimi dal nodo $s$ a tutti gli altri nodi del grafo"
+  }
+- {
+    tot_points: 20,
+    ver_points: 0,
+    description1: "Specificare quanti siano i possibili alberi dei cammini minimi dal nodo $s$ a tutti gli altri nodi del grafo"
+  }
+- {
+    tot_points: 30,
+    ver_points: 0,
+    description1: "Descrivere in modo chiaro e conciso la struttura della famiglia degli alberi dei cammini minimi"
+  }
+...
