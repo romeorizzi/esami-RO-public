@@ -222,6 +222,7 @@ def create_exercise(exam_date, num, path_ex_folder, path_yaml):
     os.rename(os.getcwd()+ '/' + note_name, path_mode_free + '/' + note_name)
     os.system("jupyter trust " + path_mode_free + note_name) # signing the notebook in order to make it trusted
     insert_suppl_folders(path_mode_free) # inserting the supplementary folders (i.e., 'allegati', 'img')
+    print(exer)
     return exer['title']
 
 if __name__ == "__main__":

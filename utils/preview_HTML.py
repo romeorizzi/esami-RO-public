@@ -25,7 +25,7 @@ def show_w(w):
 def are_you_sure():
     show_w(alert_buttons)
 
-label = widgets.Label(value="Sovrascrivere il file?")
+label = widgets.Label(value="Un tuo elaborato era gia stato precedentmente prodotto. Vuoi rimpiazzarlo con il presente?")
 yes = widgets.Button(description="Si", tooltip="Sovrascrive la precedente sottomissione")
 no = widgets.Button(description="No")
 
@@ -72,4 +72,6 @@ output = widgets.Output()
 button.on_click(generate_preview_HTML)
 yes.on_click(yes_clicked)
 no.on_click(no_clicked)
-display(widgets.HBox([button,label,yes,no]))
+h_box1 = widgets.HBox([button])
+h_box2 = widgets.HBox([label,yes,no])
+display(widgets.VBox([h_box1,h_box2]))

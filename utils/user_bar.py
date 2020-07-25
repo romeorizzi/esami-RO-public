@@ -71,7 +71,8 @@ def add_attachment():
         all_buttons = [update, chosen_attach_wid, confirm, delete]
         display(widgets.HBox(all_buttons))
     else:
-        print("ATTENZIONE: non sono presenti file nella cartella allegati")
+        #print("ATTENZIONE: non sono presenti file nella cartella allegati")
+        print("ATTENZIONE: non sono presenti file nella cartella allegati. Ti ricordiamo che la cartella utile per gli allegati da te prodotti per questo esercizio in modo_libero di svolgimento è la cartella EXAM_PATH/esame_RO-YYYY-MM-DD_idxxxxxx/esercizio_0x/modo_libero/allegati/")
         update.on_click(on_button_update)
         delete.on_click(on_button_delete)
         all_buttons = [update, delete]
