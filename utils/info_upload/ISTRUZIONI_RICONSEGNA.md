@@ -2,9 +2,7 @@
 
 La mappa ti avrà guidato nel comporre le tue risposte alle varie domande, assicurandosi che ogni materiale prodotto sia stato correttamente collocato entro la cartella del tuo esame in cui hai lavorato e che avevi scaricato ad inizio dell'esame.
 
-Ora vuoi consegnare. Ecco in breve i due passi che devi compiere; entrambi saranno poi espansi meglio in sezioni successive, dovessero servirti:
-
-1. Crea un unico file compresso (formati ed estensioni ammesse: `.7z`, `.zip`, `.tgz`, `.tar.gz`, `.tar`) della cartella esame. Ad esempio:
+Ora vuoi consegnare. Crea un unico file compresso (formati ed estensioni ammesse: `.7z`, `.zip`, `.tgz`, `.tar.gz`, `.tar`) della cartella esame. Ad esempio:
     ```
     zip -r esameRO-2020.06.30-VR?????
     ```
@@ -12,10 +10,17 @@ Ora vuoi consegnare. Ecco in breve i due passi che devi compiere; entrambi saran
 
     Dei formati sopra, il `.tar` è quello meno conveniente, non offrendo esso compressione alcuna ma limitandosi a raccogliere in un singolo file un intero folder.
 
-2. Inviaci il file zip `esameRO-2020.06.30-VR?????.zip` così ottenuto tramite il servizio [Filesender GARR](https://wayf.idem.garr.it/WAYF?entityID=https%3A%2F%2Ffilesender.garr.it%2Fshibboleth&return=https%3A%2F%2Ffilesender.garr.it%2FShibboleth.sso%2FLogin%3FSAMLDS%3D1%26return%3Dhttps%253A%252F%252Ffilesender.garr.it%252F%253Fs%253Dupload%26target%3Dss%253Amem%253Aed4a8d42c54374b7e053e6c5b4dfa282c6052c1a622db2729ea7f08592780514) chiedendo di recapitarlo alla sequenza di indirizzi mail:
+Come puoi farci avere questo file?
+1. Potete usare __FileSender__ (http://filesender.garr.it), chiedendo di recapitarlo alla sequenza di indirizzi mail
 ```
    romeo.rizzi@univr.it, alice.raffaele@univr.it
 ```
+2. Altrimenti potete provare a mandare in allegato un'__email__ a romeo.rizzi@univr.it, alice.raffaele@univr.it;
+3. Se non riuscite via e-mail, potete provare un qualsiasi servizio online di file sharing come per esempio https://www.mediafire.com;
+4. Potete fare una firma SHA1 del file .zip come indicato qui:
+https://www.spaceclick.com/it/come-calcolare-gli-hash-md5-sha1-sha-256-crc32-in-windows-linux-mac-e-online/
+e per il momento mandarci la stringa che ottieni (via email o anche solo su Telegram); poi potrai mandarci il file .zip con calma.
+
 
 Le due rimanenti sezioni del presente documento approfondiscono come attrezzarsi per poter portare a termine questi due passi.
 
@@ -57,7 +62,6 @@ Ma la cosa importante a questo punto è che tu abbia cura di inserire nel campo 
 ```
    romeo.rizzi@univr.it, alice.raffaele@univr.it
 ```
-
 
 Devi inoltre avere cura di allegare i file che desideri inviare (a noi basta il compresso della cartella esameRO-data-matricola entro la quale avrai lavorato).
 

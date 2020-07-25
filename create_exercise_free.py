@@ -109,10 +109,18 @@ def insert_description1(note, exer_descr1, exam_date):
     Parameters:
     note (Jupyter nb.v4): the notebook
     exer_descr1 (str): the content to add"""
+    download_button_lib = open(PATH_UTILS + 'download_button.py', 'r', encoding='utf-8').read()
+    img_check = False
     if look_for_img(exer_descr1) == 1:
         exer_descr1 = exer_descr1.replace("img_" + exam_date, "img")
+        download_button_lib = download_button_lib.replace('@img_name@',images_to_add[-1])
+        img_check = True
+    #print(exer_descr1)
     note['cells'] += [nb.v4.new_markdown_cell(exer_descr1)]
-    note.cells[-1].metadata = {"init_cell": True, "editable": False, "deletable": False} 
+    note.cells[-1].metadata = {"init_cell": True, "editable": False, "deletable": False}
+    if img_check: #adding download button
+        note['cells'] += [nb.v4.new_code_cell(download_button_lib)]
+        note.cells[-1].metadata = {"init_cell": True, "editable": False, "deletable": False}	
     return
 
 def insert_description2(note, exer_descr2):
