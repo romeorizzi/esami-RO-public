@@ -40,6 +40,7 @@ Ed andrà ricercato come meglio mettere gli elementi a fattore comune per ottene
 - __create\_exercise\_verifier.py__: esercizi con verificatori (2020-07-06: non ancora implementato);
 - __create\_exercise\_applet.py__: esercizi con applet (2020-07-06: non ancora implementato);
 - __generate\_all\_instances\_given\_date.py__: script per generare, in un'unica cartella, tutti gli esercizi di una certa collezione relativa alla data passata come parametro.
+- ___map\_generator.py__: funzione per generare la mappa (utilizza  i template html contenuti in /template)
 
 ## Per generare tutti i temi d'esame di una certa data:
 `python generate_all_exams_given_list.py YYYY-MM-DD path_to_students_list.csv`
@@ -49,3 +50,4 @@ Check `python generate_all_exams_given_list.py -h` per informazioni più dettagl
 ### Altre cartelle presenti:
 - __script\_instances__: contiene script per generare automaticamente nuove istanze (2020-07-06: al momento ci sono solo _dp\_poldo_ e _dp\_string_ (LCS)); ricevono come parametro la data dell'esame in formato YYYY-MM-DD, in modo da aggiungere i nuovi file alla cartella _collection\_YYYY-MM-DD_ corrispondente;
 - __other\_exercises__: istanze di esercizi da controllare e/o sistemare.
+- __map__: contiene i file necessari al funzionamento della mappa html che viene generata. Tali file verranno copiati in ogni esame.

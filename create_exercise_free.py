@@ -115,6 +115,7 @@ def insert_description1(note, exer_descr1, exam_date, path_ex_folder):
     img_check = False
     if look_for_img(exer_descr1) == 1:
         exer_descr1 = exer_descr1.replace("img_" + exam_date, "img")
+
         pattern = re.compile("^esame_RO-[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]_id")
         absolute_path_dirs_array = path_ex_folder.split('/')
         pos = None
@@ -123,6 +124,7 @@ def insert_description1(note, exer_descr1, exam_date, path_ex_folder):
                 pos = i
         assert pos != None
         download_button_lib = download_button_lib.replace('@img_name@',images_to_add[-1]).replace('@path_ex_folder@',".../" + '/'.join(absolute_path_dirs_array[pos:]))
+
         img_check = True
     #print(exer_descr1)
     note['cells'] += [nb.v4.new_markdown_cell(exer_descr1)]
@@ -147,6 +149,7 @@ def insert_user_bar_lib(note, path_ex_folder):
     note (Jupyter nb.v4): the notebook
     path_ex_folder (str): the path of the current exercise where the mode has to be added"""
     user_bar_lib = open(PATH_UTILS + 'user_bar.py', 'r', encoding='utf-8').read()
+
     pattern = re.compile("^esame_RO-[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]_id")
     absolute_path_dirs_array = path_ex_folder.split('/')
     pos = None
@@ -155,6 +158,7 @@ def insert_user_bar_lib(note, path_ex_folder):
             pos = i
     assert pos != None
     note['cells'] += [nb.v4.new_code_cell(user_bar_lib.replace('@path_ex_folder@',".../" + '/'.join(absolute_path_dirs_array[pos:])))]
+
     note.cells[-1].metadata = {"init_cell": True, "editable": False, "deletable": False, "tags": ['run_start']}
     return
 
@@ -194,7 +198,6 @@ def insert_suppl_folders(path_mode):
             shutil.copy2(path_img_src, path_ex_images)
             os.chmod(path_ex_images+"/"+img, S_IREAD)
 
-
 def insert_rendition(note, note_name):
     """It inserts the button to save and export the notebook as an embed_HTML
     Parameters:
@@ -204,7 +207,7 @@ def insert_rendition(note, note_name):
     note['cells'] += [nb.v4.new_code_cell(button_rend.replace('?FILENAME?', note_name))]
     note.cells[-1].metadata = {"init_cell": True, "tags": ['run_start'], "editable": False, "deletable": False, "tags": ['run_start']}
     return
-        
+	
 def create_exercise(exam_date, num, path_ex_folder, path_yaml):
     """It creates the new folder with 'free mode' ('modo_libero')
     Parameters:
@@ -234,14 +237,20 @@ def create_exercise(exam_date, num, path_ex_folder, path_yaml):
 
     if int(num) >= 10: # writing the notebook and saving it in the correct folder
         note_name = 'Esercizio_' + num + '.ipynb'
+        prev_folder = 'esercizio_' + num
     else:
         note_name = 'Esercizio_0' + num + '.ipynb'
+        prev_folder = 'esercizio_0' + num
     insert_rendition(notebook, note_name)
     nb.write(notebook, note_name)
     os.rename(os.getcwd()+ '/' + note_name, path_mode_free + '/' + note_name)
     os.system("jupyter trust " + path_mode_free + note_name) # signing the notebook in order to make it trusted
     insert_suppl_folders(path_mode_free) # inserting the supplementary folders (i.e., 'allegati', 'img')
-    return exer['title']
+    if 'tags' in exer:
+        e_dict = {'title':exer['title'],'tags':exer['tags'],'tot_points':0,'link':'http://127.0.0.1:8888/notebooks/'+prev_folder+'/modo_libero/' + note_name, 'tasks':exer['tasks']}
+    else:
+	    e_dict = {'title':exer['title'],'tags':[],'tot_points':0,'link':'http://127.0.0.1:8888/notebooks/'+prev_folder+'/modo_libero/' + note_name, 'tasks':exer['tasks']}
+    return e_dict
 
 if __name__ == "__main__":
     parser=argparse.ArgumentParser(
