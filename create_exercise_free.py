@@ -11,6 +11,7 @@ import argparse
 import json
 import nbformat as nb
 import os
+from stat import S_IREAD, S_IRGRP, S_IROTH
 import re
 import shutil
 import sys
@@ -186,11 +187,13 @@ def insert_suppl_folders(path_mode):
     global REL_PATH_IMAGES
     os.mkdir(path_mode + '/allegati')
     if len(images_to_add) > 0:
-        path_ex_images = path_mode + '/img'
+        path_ex_images = path_mode + 'img'
         os.mkdir(path_ex_images)
         for img in images_to_add:
             path_img_src = os.getcwd() + '/' + REL_PATH_IMAGES + img
             shutil.copy2(path_img_src, path_ex_images)
+            os.chmod(path_ex_images+"/"+img, S_IREAD)
+
 
 def insert_rendition(note, note_name):
     """It inserts the button to save and export the notebook as an embed_HTML
