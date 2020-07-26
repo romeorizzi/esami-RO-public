@@ -127,7 +127,7 @@ def add_info():
     shutil.copy(info_upload_src, absolute_path_student)
     shutil.copy(info_troubleshooting_src, absolute_path_student)
 
-def create_archives(student_anchored_folder, student_local_folder):
+def create_archives(student_anchored_folder, student_local_folder, also_uncompressed):
     """It creates .tgz and .zip files of the students's folder
     Parameters:
     student_anchored_folder (str): the name to be give to the folder for the download from the student
@@ -146,12 +146,18 @@ def create_archives(student_anchored_folder, student_local_folder):
     print("Zip created ({student_local_folder + '.zip'})")
     risp = os.system(command_tar)
     print("Tar created ({student_local_folder + '.tgz'})")
-    shutil.move(student_local_folder, student_anchored_folder + '/')
     shutil.move(student_local_folder + '.zip', student_anchored_folder + '/')
     shutil.move(student_local_folder + '.tgz', student_anchored_folder + '/')
+    if also_uncompressed:
+        shutil.move(student_local_folder, student_anchored_folder + '/')
+    else:
+        try:
+            shutil.rmtree(student_local_folder)
+        except Exception as e:
+            print('Failed to delete %s. Reason: %s' % (file_path, e))
     os.chdir(current)
 
-def gen_exam(exam_date, anchor, student_ID, badge_nb, name, surname):
+def gen_exam(exam_date, anchor, student_ID, badge_nb, name, surname, also_uncompressed = False):
     """Main procedure that generate the exam for the given student.
     It can also be called by generate_all_exams_given_list.py
     Parameters:
@@ -181,7 +187,7 @@ def gen_exam(exam_date, anchor, student_ID, badge_nb, name, surname):
         add_map(exam_date, badge_nb, info_exer_map, name, surname) # from the exercises created, it generates the map
         print("\nAdding the map...")
         #add_info()
-        create_archives(student_anchored_folder, student_local_folder)
+        create_archives(student_anchored_folder, student_local_folder, also_uncompressed)
         print("\nGeneration of the exam (" + exam_date + ', ' + student_ID + ") completed")
     return ex_list[:NB_EXERCISES]
     
@@ -198,12 +204,18 @@ if __name__ == "__main__":
     parser.add_argument('badge_nb', type=str, default='VR123456', help='badge number associated to a student')
     parser.add_argument('name', type=str, default='Pinco', help='student''s name')
     parser.add_argument('surname', type=str, default='Pallino', help='student''s surname')
-    args=parser.parse_args()
-    assert len(sys.argv) == 7
+    parser.add_argument("--with_uncompressed_folder", help="the generated anchored folder will contain also the uncompressed folder",
+                    action="store_true")
+    args = parser.parse_args()
+    if args.with_uncompressed_folder:
+        assert len(sys.argv) == 8
+        print("The generated anchored folder will contain also the uncompressed folder.")
+    else:
+        assert len(sys.argv) == 7
     exam_date = str(sys.argv[1])
     anchor = str(sys.argv[2])
     student_ID = str(sys.argv[3])
     badge_nb = str(sys.argv[4])
     name = str(sys.argv[5])
     surname = str(sys.argv[6])
-    gen_exam(exam_date, anchor, student_ID, badge_nb, name, surname)
+    gen_exam(exam_date, anchor, student_ID, badge_nb, name, surname, args.with_uncompressed_folder)

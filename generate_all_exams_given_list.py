@@ -23,12 +23,17 @@ if __name__ == "__main__":
     description='''Script to generate all exams for a given date and a given list of students''',
     epilog="""-------------------""")
     parser.add_argument('exam_date', type=str, default='2020-06-30', help='exam date in the format YYYY-MM-DD')
-    parser.add_argument('students_list_csv', type=str, default=os.getcwd()+'/students_list_2020-06-30/lista_studenti_iscritti_con_chiavi.csv/', help='csv file with students'' data')
-    args=parser.parse_args()
-
-    assert len(sys.argv) == 3
+#    parser.add_argument('students_list_csv', type=str, default=os.getcwd()+'/students_list_2020-06-30/lista_studenti_iscritti_con_chiavi.csv/', help='csv file with students'' data')
+    parser.add_argument("--with_uncompressed_folder", help="the generated anchored folder will contain also the uncompressed folder",
+                    action="store_true")
+    args = parser.parse_args()
+    if args.with_uncompressed_folder:
+        assert len(sys.argv) == 3
+        print("The generated anchored folders will contain also the respective uncompressed folder.")
+    else:
+        assert len(sys.argv) == 2
     exam_date = str(sys.argv[1])
-    FILE_STUDENTS_LIST = str(sys.argv[2])
+    FILE_STUDENTS_LIST = "students_list_"+exam_date+"/lista_studenti_iscritti_con_chiavi.csv"
 
     start_time = time.time()
     Path(REL_PATH_SHUTTLE).mkdir(parents=True, exist_ok=True) # it creates the shuttle folder if it does not exist
@@ -47,7 +52,7 @@ if __name__ == "__main__":
             surname = row[6]
             print('\nGenerating the exam for ' + name + ' ' + surname + ' (' + matricola + ')...')
             e_list = matricola + ',' + name + ',' + surname + ','
-            chosen_exer = g.gen_exam(exam_date, anchor, student_ID, matricola, name, surname)
+            chosen_exer = g.gen_exam(exam_date, anchor, student_ID, matricola, name, surname, args.with_uncompressed_folder)
             for e in chosen_exer:
                 e_list += str(e) + ','
             e_list += '\n'
