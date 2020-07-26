@@ -2,40 +2,34 @@
 
 La mappa ti avrà guidato nel comporre le tue risposte alle varie domande, assicurandosi che ogni materiale prodotto sia stato correttamente collocato entro la cartella del tuo esame in cui hai lavorato e che avevi scaricato ad inizio dell'esame.
 
-Ora vuoi consegnare. Crea un unico file compresso (formati ed estensioni ammesse: `.7z`, `.zip`, `.tgz`, `.tar.gz`, `.tar`) della cartella esame. Ad esempio:
-    ```
-    zip -r esameRO-2020.06.30-VR?????
-    ```
-    dove `VR?????` è la tua matricola, e abbiamo assunto che ti sei collocato nella cartella principale per produrre da terminale lo .zip del folder di tuo interesse.
+Ora vuoi consegnare: in fondo alla mappa trovi il pulsante `Genera Archivio da consegnare`:
 
-    Dei formati sopra, il `.tar` è quello meno conveniente, non offrendo esso compressione alcuna ma limitandosi a raccogliere in un singolo file un intero folder.
+![Figura: GeneraArchivio](img/GeneraArchivio.png)
 
-Come puoi farci avere questo file?
-1. Potete usare __FileSender__ (http://filesender.garr.it), chiedendo di recapitarlo alla sequenza di indirizzi mail
+Cliccando, saranno generati due file nella cartella del tuo esame: un archivio `.zip` e il file `firma_anticipata.txt`:
+
+![Figura: FileGenerati](img/FileGenerati.png)
+
+Il file `firma_anticipata.txt` conterrà le seguenti informazioni:
+
+![Figura: FirmaAnticipata](img/FirmaAnticipata.png)
+
+
+## Come puoi farci avere questi file?
+
+1. Puoi usare __FileSender__ (http://filesender.garr.it), chiedendo di recapitarlo alla sequenza di indirizzi mail
 ```
    romeo.rizzi@univr.it, alice.raffaele@univr.it
 ```
-2. Altrimenti potete provare a mandare in allegato un'__email__ a romeo.rizzi@univr.it, alice.raffaele@univr.it;
-3. Se non riuscite via e-mail, potete provare un qualsiasi servizio online di file sharing come per esempio https://www.mediafire.com;
-4. Potete fare una firma SHA1 del file .zip come indicato qui:
-https://www.spaceclick.com/it/come-calcolare-gli-hash-md5-sha1-sha-256-crc32-in-windows-linux-mac-e-online/
-e per il momento mandarci la stringa che ottieni (via email o anche solo su Telegram); poi potrai mandarci il file .zip con calma.
+2. Oppure puoi provare a mandare in allegato un'__email__ a `romeo.rizzi@univr.it, alice.raffaele@univr.it`;
+3. Se non riesci via e-mail, puoi provare un qualsiasi servizio online di __file sharing__ come per esempio https://www.mediafire.com e condividerci il link per scaricare i file;
+4. Al limite, puoi mandarci __solo il file__ `firma_anticipata.txt` via e-mail o anche solo su Telegram, e farci avere poi con calma l'archivio `.zip` relativo.
 
 
-Le due rimanenti sezioni del presente documento approfondiscono come attrezzarsi per poter portare a termine questi due passi.
 
-## 1. Creazione di file compressi in uno dei formati da noi ammessi
+La rimanente sezione del presente documento approfondisce come attrezzarsi per poter sfruttare FileSender.
 
-Il software gratuito [B1 Free Archiver](https://b1.org/) ti consente di gestire in semplicità, e da qualsiasi piattaforma (Windows, Mac, Linux), tutti i formati compressi ammessi.
-
-Se usi Windows e già hai installato [il software gratuito ed open source <b>7-Zip</b>](https://www.7-zip.org/) puoi continuare ad utilizzare quello, andrà benissimo.
-
-Lo stesso consiglio vale se sei già organizzato a tuo modo su Mac o Linux, dove per altro è presente nativamente il comando `tar` col quale puoi creare dei file `.tgz` o `.tar.gz` (sconsigliamo i semplici `.tar` poiché è sempre meglio inviare file compressi: oltre ai tempi, si riducono anche i rischi di errore). Da Mac potresti preferire utilizzare semplicemente `Finder` ma assicurati di rimanere entro i formati da noi ammessi.
-
-Se invece vuoi una compressione di tipo zip (o appunto 7z) e devi decidere cosa installarti, aggiungiamo un'ultima alternativa che merita considerazione:
-se preferisci operare da linea di comando e/o installarti solo quanto utile allo scopo allora visiona da cima a fondo la breve pagina [Open/Extract 7z File with Freeware on Windows/Mac/Linux](http://www.e7z.org/open-7z.htm).
-
-## 2. Invio di grossi file tramite il servizio GARR Filesender
+## Invio di grossi file tramite il servizio GARR Filesender
 
 Accedi a [Filesender GARR](https://wayf.idem.garr.it/WAYF?entityID=https%3A%2F%2Ffilesender.garr.it%2Fshibboleth&return=https%3A%2F%2Ffilesender.garr.it%2FShibboleth.sso%2FLogin%3FSAMLDS%3D1%26return%3Dhttps%253A%252F%252Ffilesender.garr.it%252F%253Fs%253Dupload%26target%3Dss%253Amem%253Aed4a8d42c54374b7e053e6c5b4dfa282c6052c1a622db2729ea7f08592780514) e, selezionata l'Università di Verona come il tuo ente di appartenenza, carica il file compresso `esameRO-2020.06.30-VR?????.7z` (o di altro formato ed estensione) per recapitarlo agli indirizzi mail:
 ```

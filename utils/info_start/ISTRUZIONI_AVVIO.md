@@ -8,14 +8,22 @@
 
 ![Figura: CheckROexam](img/CheckROexam.png)
 
-3. Avviare il server Jupyter con il comando `jupyter-notebook` e controllare le seguenti NbExtensions:
+3. Avviare l'esame digitando `python avvia_esame.py`:
 
-![Figura: JupyterNotebook](img/Jupyter-nbextensions.png)
+![Figura: AvviaEsame](img/AvviaEsame.png)
 
-4. Posizionarsi sulla cartella del tema d'esame:
+4. Verificare che si apra la mappa dell'esame analoga a quella rappresentata qui di seguito:
 
-![Figura: cartella home esame](img/HomeEsame.png)
+![Figura: MappaEsame](img/MappaEsame.png)
 
-5. Aprire il file _mappa_esameRO.html_ per avere informazioni sulle tipologie di esercizi:
+5. Per ogni esercizio, puoi aprire il foglio Jupyter corrispondente selezionando la modalità di sottoposizione e poi cliccando sul link `Apri in Jupyter`:
 
-![Figura: mappa](img/MappaEsame.png)
+![Figura: ApriJupyter](img/ApriFoglioJupyter.png)
+
+6. Per ogni richiesta, puoi scrivere alcune note personali utili sia a te durante lo svolgimento dell'esame sia a noi per la correzione:
+
+![Figura: NotePersonali](img/InserisciNotePersonali.png)
+
+e puoi auto-valutarti, indicando quanti punti supponi di aver guadagnato:
+
+![Figura: Autovalutazione](img/Autovalutazione.png)
