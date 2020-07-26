@@ -40,14 +40,14 @@ if __name__ == "__main__":
         csv_reader = csv.reader(csv_file, delimiter=',')
         line_count = 0
         for row in csv_reader:
-            badge_nb = row[1]
-            s = row[3]
-            student_ID = row[5].split('@')[0]
-            name = row[6]
-            surname = row[7]
-            print('\nGenerating the exam for ' + name + ' ' + surname + ' (' + badge_nb + ')...')
-            e_list = badge_nb + ',' + name + ',' + surname + ','
-            chosen_exer = g.gen_exam(exam_date, s, student_ID, badge_nb, name, surname)
+            matricola = row[0]
+            anchor = row[2]
+            student_ID = row[4]
+            name = row[5]
+            surname = row[6]
+            print('\nGenerating the exam for ' + name + ' ' + surname + ' (' + matricola + ')...')
+            e_list = matricola + ',' + name + ',' + surname + ','
+            chosen_exer = g.gen_exam(exam_date, anchor, student_ID, matricola, name, surname)
             for e in chosen_exer:
                 e_list += str(e) + ','
             e_list += '\n'
