@@ -6,11 +6,19 @@ Ora vuoi consegnare: in fondo alla mappa trovi il pulsante `Genera Archivio da c
 
 ![Figura: GeneraArchivio](img/GeneraArchivio.png)
 
-Cliccando, saranno generati due file nella cartella del tuo esame: un archivio `.zip` e il file `firma_anticipata.txt`:
+Cliccando, apparirà il seguente messaggio di avviso:
 
-![Figura: FileGenerati](img/FileGenerati.png)
+![Figura: AvvisoGenera](img/AvvisoGenera.png)
 
-Il file `firma_anticipata.txt` conterrà le seguenti informazioni:
+il quale ti informerà che è stata generata la cartella `consegna`:
+
+![Figura: Consegna](img/Consegna.png)
+
+La cartella conterrà due file, un archivio `.zip` e il file `firma_anticipata.txt`:
+
+![Figura: FileCartellaConsegna](img/FileCartellaConsegna.png)
+
+In particolare, `firma_anticipata.txt` riporterà le seguenti indicazioni:
 
 ![Figura: FirmaAnticipata](img/FirmaAnticipata.png)
 
