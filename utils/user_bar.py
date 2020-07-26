@@ -71,8 +71,7 @@ def add_attachment():
         all_buttons = [update, chosen_attach_wid, confirm, delete]
         display(widgets.HBox(all_buttons))
     else:
-        #print("ATTENZIONE: non sono presenti file nella cartella allegati")
-        print("ATTENZIONE: non sono presenti file nella cartella allegati. Ti ricordiamo che la cartella utile per gli allegati da te prodotti per questo esercizio in modo_libero di svolgimento è la cartella EXAM_PATH/esame_RO-YYYY-MM-DD_idxxxxxx/esercizio_0x/modo_libero/allegati/")
+        print(f"ATTENZIONE: non sono presenti file nella cartella allegati. Ti ricordiamo che la cartella utile per gli allegati da te prodotti per questo esercizio in modo_libero di svolgimento è la cartella REPLACE_HERE_path_ex_folder/modo_libero/allegati/")
         update.on_click(on_button_update)
         delete.on_click(on_button_delete)
         all_buttons = [update, delete]
@@ -202,7 +201,7 @@ def loader_main():
     button_raw_attach = widgets.Button(description="Rispondi (Allegato)", tooltip="Collega un file dalla cartella attachments")
     button_md = widgets.Button(description="Rispondi (Markdown)", abstooltip="Aggiungi una cella per scrivere del testo in Markdown")
     button_code = widgets.Button(description="Rispondi (Code)", tooltip="Aggiungi una cella per scrivere del codice in Python")
-    button_raw = widgets.Button(description="Rispondi (Raw)", tooltip="Aggiungi una cella per scrivere del testo libero (SCONSIGLIATA)")
+    button_raw = widgets.Button(description="Rispondi (Raw)", tooltip="Aggiungi una cella per scrivere del testo libero (SCONSIGLIATA: righe troppo lunghe potrebbero fuoriuscire nella rendition, usala solo se non riesci a controllare il Markdown)")
     button_raw_attach.on_click(on_button_raw_attach)
     button_md.on_click(on_button_md)
     button_code.on_click(on_button_code)

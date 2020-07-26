@@ -104,16 +104,17 @@ def look_for_img(txt):
     else:
         return 0
 
-def insert_description1(note, exer_descr1, exam_date):
+def insert_description1(note, exer_descr1, exam_date, path_ex_folder):
     """It adds the description1 to the notebook
     Parameters:
     note (Jupyter nb.v4): the notebook
-    exer_descr1 (str): the content to add"""
+    exer_descr1 (str): the content to add
+    path_ex_folder (str): the path of the current exercise where the mode has to be added"""
     download_button_lib = open(PATH_UTILS + 'download_button.py', 'r', encoding='utf-8').read()
     img_check = False
     if look_for_img(exer_descr1) == 1:
         exer_descr1 = exer_descr1.replace("img_" + exam_date, "img")
-        download_button_lib = download_button_lib.replace('@img_name@',images_to_add[-1])
+        download_button_lib = download_button_lib.replace('@img_name@',images_to_add[-1]).replace(REPLACE_HERE_path_ex_folder,path_ex_folder)
         img_check = True
     #print(exer_descr1)
     note['cells'] += [nb.v4.new_markdown_cell(exer_descr1)]
@@ -132,12 +133,13 @@ def insert_description2(note, exer_descr2):
     note.cells[-1].metadata = {"init_cell": True, "editable": False, "deletable": False}
     return
 
-def insert_user_bar_lib(note):
+def insert_user_bar_lib(note, path_ex_folder):
     """It inserts the Python code to add the user bar needed to answer to each task
     Parameters:
-    note (Jupyter nb.v4): the notebook"""
+    note (Jupyter nb.v4): the notebook
+    path_ex_folder (str): the path of the current exercise where the mode has to be added"""
     user_bar_lib = open(PATH_UTILS + 'user_bar.py', 'r', encoding='utf-8').read()
-    note['cells'] += [nb.v4.new_code_cell(user_bar_lib)]
+    note['cells'] += [nb.v4.new_code_cell(user_bar_lib.replace(REPLACE_HERE_path_ex_folder,path_ex_folder))]
     note.cells[-1].metadata = {"init_cell": True, "editable": False, "deletable": False, "tags": ['run_start']}
     return
 
@@ -204,9 +206,9 @@ def create_exercise(exam_date, num, path_ex_folder, path_yaml):
     insert_import_mode_free(notebook) # required import
     insert_start_button(notebook) # start button to run cells with tag 'run_start'
     insert_hide_code(notebook) # hide all code cells
-    insert_user_bar_lib(notebook) # insert user_bar.py in a code cell
+    insert_user_bar_lib(notebook,path_ex_folder) # insert user_bar.py in a code cell
     insert_heading(notebook, exer['title']) # heading with title
-    insert_description1(notebook, exer['description1'], exam_date) # description 1
+    insert_description1(notebook, exer['description1'], exam_date, path_ex_folder) # description 1
     if 'description2' in exer:
         insert_description2(notebook, exer['description2']) # description 2
     insert_tasks(notebook, exer['tasks']) # inserting the several tasks
