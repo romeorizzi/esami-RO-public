@@ -25,8 +25,8 @@ def show_w(w):
 def are_you_sure():
     show_w(alert_buttons)
 
-label = widgets.Label(value="Un tuo elaborato era gia stato precedentmente prodotto. Vuoi rimpiazzarlo con il presente?")
-yes = widgets.Button(description="Si", tooltip="Sovrascrive la precedente sottomissione")
+label = widgets.Label(value="Un tuo elaborato era già stato precedentemente prodotto. Vuoi rimpiazzarlo con il presente?")
+yes = widgets.Button(description="Si", tooltip="Produce il nuovo elaborato. Esso diviene la versione attuale prendendo il posto del precedente")
 no = widgets.Button(description="No")
 
 alert_buttons = [label,yes,no]
