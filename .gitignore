@@ -18,6 +18,7 @@
 
 # Byte-compiled / optimized / DLL files
 a.out
+shuttle/
 __pycache__/
 *.py[cod]
 *$py.class

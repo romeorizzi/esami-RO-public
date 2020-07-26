@@ -79,6 +79,17 @@ h1{
   font-weight:normal;
 }
 
+.certpoints{ 
+  width:45px;
+  display:inline-block;
+  text-align:center;
+  border:1px solid #aaa;
+  background-color: #efefef;
+  padding:2px;
+  border-radius:4px;
+  font-weight:normal;
+}
+
 .maxpoints{
   width:45px;
   display:inline-block;

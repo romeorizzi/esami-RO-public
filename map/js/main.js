@@ -217,10 +217,10 @@ function saveMapWithServer(content) {
             //basic download in case of error
             if(client.statusText != "done"){
                 download(out_string,"mappa_esportata.yaml", "text/plain;charset=utf-8");
-                alert("Mappa scaricata, ricordati di inviarla insieme all'esame")
+                alert("Mappa scaricata, ricordati di inviarla insieme all'esame.")
             }
             else
-                alert("Mappa esportata!")
+                alert("Archivio dell'esame generato correttamente. Procedi subito alla tua sottomissione e chiusura dell'esame")
         }
     }
 }

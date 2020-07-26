@@ -662,7 +662,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                 return False
 
             response = server_commands.handle_message(params) 
-            print(response)
+            print( "message handled")
             self.send_response(HTTPStatus.OK, response)
             self.send_header('Access-Control-Allow-Origin', "*")  
             self.end_headers()

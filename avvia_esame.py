@@ -43,7 +43,7 @@ print("> " + command)
 p2 = subprocess.Popen(command, shell=True)
 
 # start jupyter notebook
-command = activate_environment +  pythonPath + " -m notebook --NotebookApp.token='' --port " + jupyterPort
+command = activate_environment +  pythonPath + " -m notebook --NotebookApp.token=''  --no-browser --port " + jupyterPort
 print("> " + command)
 p3 = subprocess.Popen(command, shell=True) 
 
