@@ -213,14 +213,28 @@ function saveMapWithServer(content) {
     client.open("GET", "http://127.0.0.1:8080/server_command_?type=save&data=" + encodeURI(content), true);
     client.send();
     client.onreadystatechange = function() {
-        if(this.readyState == this.HEADERS_RECEIVED) {
+        if(this.readyState == this.HEADERS_RECEIVED) { 
             //basic download in case of error
-            if(client.statusText != "done"){
-                download(out_string,"mappa_esportata.yaml", "text/plain;charset=utf-8");
-                alert("Mappa scaricata, ricordati di inviarla insieme all'esame.")
+            var idx = client.statusText.indexOf(' ');
+            if(idx != -1)
+            {
+                var cmd = client.statusText.substr(0, idx); // "72"
+                var message = client.statusText.substr(idx+1); // "tocirah sneab"
+
+                if(cmd == "done"){
+                    alert("Archivio dell'esame generato correttamente (lo trovi nella cartella 'consegna_esameRO-2020-07-27', sorella del folder entro il quale hai svolto il tuo esame. Se vuoi riprodurre una nuova consegna devi prima rimuovere o spostare questa cartella.)\n\nProcedi subito alla tua sottomissione e chiusura dell'esame (istruzion nel file 'firma_anticipata.txt' che trovi nella cartella 'consegna_esameRO-2020-07-27')")
+                }
+                else if(cmd == "directory_error"){
+                    alert(message);
+                }
+                else{
+                    download(content,"mappa_esportata.yaml", "text/plain;charset=utf-8");
+                    alert("Mappa scaricata sul browser, ricordati di inviarla insieme all'esame.")
+                }
             }
-            else
-                alert("Archivio dell'esame generato correttamente (lo trovi nella cartella 'consegna_esameRO-2020-07-27', sorella del folder entro il quale hai svolto il tuo esame. Se vuoi riprodurre una nuova consegna devi prima rimuovere o spostare questa cartella.)\n\nProcedi subito alla tua sottomissione e chiusura dell'esame (istruzion nel file 'firma_anticipata.txt' che trovi nella cartella 'consegna_esameRO-2020-07-27')")
+            else{
+                alert(client.statusText);
+            }
         }
     }
 }
