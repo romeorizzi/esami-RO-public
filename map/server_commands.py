@@ -6,6 +6,7 @@
 import hashlib
 import zipfile
 import os
+import os.path
 
 
 def sha1_file(filename):
@@ -41,16 +42,20 @@ def handler_save_map(params):
     with open(map_save_path, "w") as f:
         f.write(data)
         
-    #dirname = ottenere nome cartella
+    # generare nome della cartella dove collocare la consegna
+    if os.path.exists('../consegna_esameRO-2020-07-27'):
+        return "directory_error la cartella consegna_esameRO-2020-07-27 esiste già. Se vuoi procedere con nuova consegna rimuovila o spostala altrove."
+        return "directory_consegna_esameRO-2020-07-27_already_exists_error"
+    os.mkdir("../consegna_esameRO-2020-07-27")
     fname_base = os.path.basename(os.getcwd()) + ".zip"
-    fname = "../" + fname_base
+    fname = "../consegna_esameRO-2020-07-27/" + fname_base
     print(fname)
     zipf = zipfile.ZipFile(fname, 'w', zipfile.ZIP_DEFLATED)
     zipdir('.', zipf)
     zipf.close()
     
     sha1_str = sha1_file(fname)
-    with open("../firma_anticipata.txt", "w") as f:
+    with open("../consegna_esameRO-2020-07-27/firma_anticipata.txt", "w") as f:
         f.write(
 """
 Invia la seguente firma digitale del file '{filename}'  
@@ -64,13 +69,12 @@ se non ti è pratico allora puoi mandare una mail a ENTRAMBI i seguenti indirizz
     romeo.rizzi@univr.it
     alice.raffaele@univr.it
 
-Nel caso non avessi una connessione internet puoi inviare la firma digitale tramite SMS
-al seguente numero:
+Se non hai o perdi la connessione internet puoi inviare la firma digitale tramite SMS al seguente numero:
 cel:+39.3518684000
 
 
 ATTENZIONE: Non apportare modifiche allo zip altrimenti la firma digitale del file non corrisponderà piu' a quella calcolata.
-E non potremo accettarlo (a meno che lo zip non venga inviato subito nonostante le sue grosse dimensioni)
+(E non potremo accettarlo se non ci perviene esso stesso entro i tempi concordati per la consegna nonostante le sue grosse dimensioni.)
 """.format(
     filename = fname_base,
     sha1 = sha1_str
