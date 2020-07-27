@@ -221,8 +221,9 @@ function saveMapWithServer(content) {
                 var cmd = client.statusText.substr(0, idx); // "72"
                 var message = client.statusText.substr(idx+1); // "tocirah sneab"
 
-                if(cmd == "done"){
-                    alert("Archivio dell'esame generato correttamente (lo trovi nella cartella 'consegna_esameRO-2020-07-27', sorella del folder entro il quale hai svolto il tuo esame. Se vuoi riprodurre una nuova consegna devi prima rimuovere o spostare questa cartella.)\n\nProcedi subito alla tua sottomissione e chiusura dell'esame (istruzion nel file 'firma_anticipata.txt' che trovi nella cartella 'consegna_esameRO-2020-07-27')")
+                if(cmd == "done"){ 
+                    alert(message);
+                    //alert("Archivio dell'esame generato correttamente (lo trovi nella cartella 'consegna_esameRO-2020-07-27', sorella del folder entro il quale hai svolto il tuo esame. Se vuoi riprodurre una nuova consegna devi prima rimuovere o spostare questa cartella.)\n\nProcedi subito alla tua sottomissione e chiusura dell'esame (istruzion nel file 'firma_anticipata.txt' che trovi nella cartella 'consegna_esameRO-2020-07-27')")
                 }
                 else if(cmd == "directory_error"){
                     alert(message);
