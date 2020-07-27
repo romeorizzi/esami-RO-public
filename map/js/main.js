@@ -23,7 +23,22 @@ window.addEventListener("load", function(){
             a.push(0);
         all_scores.push(a);
     }
+
+    //get port from the window url
+    const urlParams = new URLSearchParams(window.location.search);
+    var port = urlParams.get("port");
     
+    //replace all urls     
+    if((port && port.match(/^-{0,1}\d+$/)))
+    {
+        console.log("port", port)
+        var links = document.querySelectorAll(".link");
+        links.forEach(function(link){
+            if(link.href.indexOf("127.0.0.1:8888") != -1)
+                link.href = link.href.replace("8888", port + "")
+        });
+    }
+
     //add event listeners for textareas
     var areas = document.querySelectorAll(".notes");
     var i = 0; 
@@ -203,14 +218,15 @@ function exportMap()
 
 
     var out_string = JSON.stringify(out_exercises, null, 2);
-    console.log(out_string, encodeURI(out_string));
+    //console.log(out_string, encodeURI(out_string));
     saveMapWithServer(out_string);
 
 }
 
 function saveMapWithServer(content) {
     var client = new XMLHttpRequest();
-    client.open("GET", "http://127.0.0.1:8080/server_command_?type=save&data=" + encodeURI(content), true);
+    console.log(window.location.href)
+    client.open("GET", "../server_command?type=save&data=" + encodeURI(content), true);
     client.send();
     client.onreadystatechange = function() {
         if(this.readyState == this.HEADERS_RECEIVED) { 
@@ -230,7 +246,7 @@ function saveMapWithServer(content) {
                 }
                 else{
                     download(content,"mappa_esportata.yaml", "text/plain;charset=utf-8");
-                    alert("Mappa scaricata sul browser, ricordati di inviarla insieme all'esame.")
+                    alert(client.statusText + " Mappa scaricata sul browser, ricordati di inviarla insieme all'esame.")
                 }
             }
             else{
