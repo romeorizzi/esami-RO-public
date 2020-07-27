@@ -45,7 +45,6 @@ def handler_save_map(params):
     # generare nome della cartella dove collocare la consegna
     if os.path.exists('../consegna_esameRO-2020-07-27'):
         return "directory_error la cartella consegna_esameRO-2020-07-27 esiste già. Se vuoi procedere con nuova consegna rimuovila o spostala altrove."
-        return "directory_consegna_esameRO-2020-07-27_already_exists_error"
     os.mkdir("../consegna_esameRO-2020-07-27")
     fname_base = os.path.basename(os.getcwd()) + ".zip"
     fname = "../consegna_esameRO-2020-07-27/" + fname_base
