@@ -220,7 +220,7 @@ function saveMapWithServer(content) {
                 alert("Mappa scaricata, ricordati di inviarla insieme all'esame.")
             }
             else
-                alert("Archivio dell'esame generato correttamente. Procedi subito alla tua sottomissione e chiusura dell'esame")
+                alert("Archivio dell'esame generato correttamente (lo trovi nella cartella 'consegna_esameRO-2020-07-27', sorella del folder entro il quale hai svolto il tuo esame. Se vuoi riprodurre una nuova consegna devi prima rimuovere o spostare questa cartella.)\n\nProcedi subito alla tua sottomissione e chiusura dell'esame (istruzion nel file 'firma_anticipata.txt' che trovi nella cartella 'consegna_esameRO-2020-07-27')")
         }
     }
 }
