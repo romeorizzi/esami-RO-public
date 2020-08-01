@@ -1,0 +1,32 @@
+---
+name: graphs_min_spanning_trees
+title: Alberi ricoprenti di peso minimo
+tags:
+- "grafi"
+- "buone caratterizzazioni"
+- "cicli e tagli"
+- "algoritmi classici su reti"
+
+description1: Si consideri il grafo $G$, con pesi sugli archi, riportato in figura:<br><img src='img_2020-07-27/grafo3_pesi.png' width=800>
+tasks:
+- {
+    tot_points: 5,
+    ver_points: 0,
+    description1: "Fornire un albero ricoprente di peso minimo"
+  }
+- {
+    tot_points: 5,
+    ver_points: 0,
+    description1: "Specificare quanti siano gli alberi ricoprenti di peso minimo"
+  }
+- {
+    tot_points: 10,
+    ver_points: 0,
+    description1: "Descrivere in modo chiaro e conciso la struttura della famiglia degli alberi ricoprenti di peso minimo"
+  }
+- {
+    tot_points: 20,
+    ver_points: 0,
+    description1: "Per ciascuno dei seguenti archi dire, certificandolo, se esso appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli alberi ricoprenti di peso minimo: $fg$, $mo$, $np$"
+  }
+...

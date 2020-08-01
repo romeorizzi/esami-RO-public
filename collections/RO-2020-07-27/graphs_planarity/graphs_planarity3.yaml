@@ -1,0 +1,37 @@
+---
+name: graphs_planarity
+title: Planarità di un grafo
+tags:
+- "grafi"
+- "buone caratterizzazioni"
+- "forbidden topological minors"
+- "embeddings"
+
+description1: Si consideri il grafo $G$ riportato in figura:<br><img src='img_2020-07-27/grafo3_planarita.png' width=800>
+tasks:
+- {
+    tot_points: 6,
+    ver_points: 0,
+    description1: "Fornire un planar embedding di $G$"
+  }
+- {
+    tot_points: 3,
+    ver_points: 0,
+    description1: "Dire quali dei seguenti grafi siano planari:\n 1. il grafo $G_1$ ottenuto da $G$ aggiungendo l'arco $vn$\n 2. il grafo $G_2$ ottenuto da $G$ aggiungendo gli archi $vu$, $cf$ e $sy$\n 3. il grafo $G_3$ ottenuto da $G$ aggiungendo l'arco $st$"
+  }
+- {
+    tot_points: 7,
+    ver_points: 0,
+    description1: "Fornire certificato di planarità o non-planarità per $G_1$."
+  }
+- {
+    tot_points: 7,
+    ver_points: 0,
+    description1: "Fornire certificato di planarità o non-planarità per $G_2$."
+  }
+- {
+    tot_points: 7,
+    ver_points: 0,
+    description1: "Fornire certificato di planarità o non-planarità per $G_3$."
+  }
+...

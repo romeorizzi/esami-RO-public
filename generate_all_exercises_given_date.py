@@ -16,7 +16,7 @@ import sys
 
 ALL_EXER_PREFIX = 'esame_RO_' 
 ALL_EXER_SUFFIX = '_tutti_gli_es'
-COLLECTION_FOLDER = 'collection_'
+COLLECTION_FOLDER = 'collections/'
 
 def add_all_exercises(exam_date, path_all, path_collection):
     """ It creates a folder for each type of exercises and inside it adds a subfolder for each instance
@@ -57,5 +57,5 @@ if __name__ == "__main__":
     
     os.mkdir(os.getcwd() + '/' + ALL_EXER_PREFIX + exam_date + ALL_EXER_SUFFIX)
     path_all = os.getcwd() + '/' + ALL_EXER_PREFIX + exam_date + ALL_EXER_SUFFIX
-    path_collection = os.getcwd() + '/' + COLLECTION_FOLDER + exam_date
+    path_collection = os.getcwd() + '/' + COLLECTION_FOLDER + "RO-" + exam_date
     add_all_exercises(exam_date, path_all, path_collection)

@@ -29,7 +29,7 @@ REL_UTILS_FOLDER = '/utils/'
 UPLOAD_INSTRUCTIONS = '/info_upload/ISTRUZIONI_RICONSEGNA.pdf'
 START_INSTRUCTIONS = '/info_start/ISTRUZIONI_AVVIO.pdf'
 TROUBLESHOOTING = 'troubleshooting/TROUBLESHOOTING.pdf'
-COLLECTION_FOLDER = '/collection_'
+COLLECTION_FOLDER = '/collections/'
 
 def extract_ex(exam_date, stud):
     """It computes an hash starting from the string stud+exam_date, keeping only digits
@@ -99,11 +99,11 @@ def add_exercises(exam_date, path_exercises, ex_list):
         print('Exercise ' + str(i+1) + ' added')
     return info_exer_map
 
-def add_map(date, badge_nb, info_map, name, surname): ############to_do
+def add_map(date, matricola, info_map, name, surname): ############to_do
     """It creates the index map
     Parameters:
     date (str): YYYY-MM-DD
-    badge_nb (str): e.g., VR123456
+    matricola (str): e.g., VR123456
     info_map (list of str): for each exercises, its proper title to insert in the map
     name (str): students''s name
     surname (str): students''s surname"""
@@ -134,9 +134,6 @@ def create_archives(student_anchored_folder, student_local_folder, also_uncompre
     student_local_folder (str): the name of the student's local exam folder
     """
     global absolute_path_student
-    print(f"absolute_path_student = {absolute_path_student}")
-    print(f"student_local_folder = {student_local_folder}")
-    print(f"student_anchored_folder = {student_anchored_folder}")
     current = os.getcwd()
     os.chdir(current + REL_SHUTTLE_FOLDER)
     os.mkdir(student_anchored_folder)
@@ -157,14 +154,14 @@ def create_archives(student_anchored_folder, student_local_folder, also_uncompre
             print('Failed to delete %s. Reason: %s' % (file_path, e))
     os.chdir(current)
 
-def gen_exam(exam_date, anchor, student_ID, badge_nb, name, surname, also_uncompressed = False):
+def gen_exam(exam_date, anchor, student_ID, matricola, name, surname, also_uncompressed = False):
     """Main procedure that generate the exam for the given student.
     It can also be called by generate_all_exams_given_list.py
     Parameters:
     exam_date (str): exam date according to the format YYYY-MM-DD
     anchor (str): random string to use in the student's folder name
     student_ID (str): unique ID associated to a student
-    badge_nb (str): badge number associated to a student
+    matricola (str): badge number associated to a student
     name (str): student's name
     surname (str): student's surname
     Returns:
@@ -176,15 +173,15 @@ def gen_exam(exam_date, anchor, student_ID, badge_nb, name, surname, also_uncomp
     if os.path.exists(os.getcwd() + REL_SHUTTLE_FOLDER) == False:
         os.mkdir(os.getcwd() + REL_SHUTTLE_FOLDER)
     absolute_path_student = os.getcwd() + REL_SHUTTLE_FOLDER + student_local_folder # path folder to create
-    ex_list = extract_ex(exam_date, badge_nb) # list of exercises to extract from collection
+    ex_list = extract_ex(exam_date, matricola) # list of exercises to extract from collection
     keep_going = add_main_folder(student_anchored_folder) # if absolute_path_student already exists, ask if re-generating it or not
     if keep_going == 0:
         print("The exam (" + exam_date + ', ' + student_ID + ") has been already generated")
     else:
         print("\nNew generation of the exam (" + exam_date + ', ' + student_ID + ") started\nAdding exercises...")
-        path_exercises = os.getcwd() + COLLECTION_FOLDER + exam_date
+        path_exercises = os.getcwd() + COLLECTION_FOLDER + "RO-" + exam_date
         info_exer_map = add_exercises(exam_date, path_exercises, ex_list)
-        add_map(exam_date, badge_nb, info_exer_map, name, surname) # from the exercises created, it generates the map
+        add_map(exam_date, matricola, info_exer_map, name, surname) # from the exercises created, it generates the map
         print("\nAdding the map...")
         #add_info()
         create_archives(student_anchored_folder, student_local_folder, also_uncompressed)
@@ -201,7 +198,7 @@ if __name__ == "__main__":
     parser.add_argument('exam_date', type=str, default='2020-06-30', help='exam date according to the format YYYY-MM-DD')
     parser.add_argument('s', type=str, default='kdjbvbile', help='random string to use in the students''s folder name')
     parser.add_argument('student_ID', type=str, default='id123456', help='unique ID associated to a student')
-    parser.add_argument('badge_nb', type=str, default='VR123456', help='badge number associated to a student')
+    parser.add_argument('matricola', type=str, default='VR123456', help='badge number associated to a student')
     parser.add_argument('name', type=str, default='Pinco', help='student''s name')
     parser.add_argument('surname', type=str, default='Pallino', help='student''s surname')
     parser.add_argument("--with_uncompressed_folder", help="the generated anchored folder will contain also the uncompressed folder",
@@ -215,7 +212,7 @@ if __name__ == "__main__":
     exam_date = str(sys.argv[1])
     anchor = str(sys.argv[2])
     student_ID = str(sys.argv[3])
-    badge_nb = str(sys.argv[4])
+    matricola = str(sys.argv[4])
     name = str(sys.argv[5])
     surname = str(sys.argv[6])
-    gen_exam(exam_date, anchor, student_ID, badge_nb, name, surname, args.with_uncompressed_folder)
+    gen_exam(exam_date, anchor, student_ID, matricola, name, surname, args.with_uncompressed_folder)

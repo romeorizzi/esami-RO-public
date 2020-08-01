@@ -1,0 +1,27 @@
+---
+name: graphs_flows_and_cuts
+title: Flussi massimi e tagli minimi in una rete
+tags:
+- "grafi"
+- "buone caratterizzazioni"
+- "flussi e tagli"
+- "algoritmi classici su reti"
+
+description1: Si consideri il grafo $G$, con pesi sugli archi, riportato in figura:<br><img src='img_2020-07-27/grafo0_pesi_archi.png' width=800>
+tasks:
+- {
+    tot_points: 20,
+    ver_points: 0,
+    description1: "Fornire un massimo flusso dal nodo $s$ al nodo $t$"
+  }
+- {
+    tot_points: 15,
+    ver_points: 0,
+    description1: "Certificare l'ottimalità del flusso massimo dal nodo $s$ al nodo $t$"
+  }
+- {
+    tot_points: 15,
+    ver_points: 0,
+    description1: "Per ciascuno dei seguenti tre archi dire, certificandolo, se esso appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli $s,t$-tagli di capacità minima: $hi$, $mo$, $wx$"
+  }
+...

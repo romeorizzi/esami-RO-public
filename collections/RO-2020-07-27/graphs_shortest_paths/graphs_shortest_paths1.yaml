@@ -1,0 +1,58 @@
+---
+name: graphs_shortest_paths
+title: Cammini di lunghezza minima in un grafo
+tags:
+- "grafi"
+- "cammini minimi"
+- "alberi dei cammini minimi"
+- "algoritmi classici su reti"
+
+description1: Si consideri il grafo $G$, con pesi sugli archi, riportato in figura:<br><img src='img_2020-07-27/grafo1_pesi_archi.png' width=800>
+tasks:
+- {
+    tot_points: 3,
+    ver_points: 0,
+    description1: "Calcolare e fornire la distanza del nodo $x$ dal nodo $s$"
+  }
+- {
+    tot_points: 7,
+    ver_points: 0,
+    description1: "Fornire le distanze di ciascun nodo da $s$"
+  }
+- {
+    tot_points: 3,
+    ver_points: 0,
+    description1: "Fornire un cammino minimo da $s$ a $x$"
+  }
+- {
+    tot_points: 7,
+    ver_points: 0,
+    description1: "Fornire un albero dei cammini minimi dal nodo $s$ a tutti gli altri nodi del grafo"
+  }
+- {
+    tot_points: 5,
+    ver_points: 0,
+    description1: "Specificare quanti siano i possibili alberi dei cammini minimi dal nodo $s$ a tutti gli altri nodi del grafo"
+  }
+- {
+    tot_points: 5,
+    ver_points: 0,
+    description1: "Descrivere in modo chiaro e conciso la struttura della famiglia degli alberi dei cammini minimi"
+  }
+- {
+    tot_points: 3,
+    ver_points: 0,
+    description1: "Quale è il più grande numero naturale $W<6$ tale che se il peso dell'arco $ef$ viene cambiato in $W$ la famiglia degli alberi dei cammini minimi cambia?"
+  }
+- {
+    tot_points: 3,
+    ver_points: 0,
+    description1: "Come cambia la famiglia degli alberi dei cammini minimi se il peso dell'arco $ef$ viene cambiato in $W$?"
+  }
+- {
+    tot_points: 4,
+    ver_points: 0,
+    description1: "Se il peso dell'arco $ef$ viene cambiato in $W-1$,
+di quali nodi la distanza da $s$ risulta ridotta e di quanto?"
+  }
+...

@@ -1,0 +1,147 @@
+---
+name: lp_modelling
+title: Programmazione lineare - Modellizzazione
+tags:
+- "programmazione lineare intera"
+- "modeling di un problema di ottimizzazione"
+- "gestione di risorse"
+- "utilizzo di software e solvers"
+
+description1: "L’azienda SuperAmazingMarket possiede sei filiali sparse nel territorio, corrispondenti a sei supermercati, elencati nella tabella seguente assieme alle loro relative distanze (in chilometri):
+  <table>
+    <tr>
+        <td></td>
+        <td><b>Chiari</b></td>
+        <td><b>Coccaglio</b></td>
+        <td><b>Rovato</b></td>
+        <td><b>Iseo</b></td>
+        <td><b>Brescia 1</b></td>
+        <td><b>Brescia 2</b></td>
+    </tr>
+    <tr>
+        <td><b>Chiari</b></td>
+        <td>-</td>
+        <td>4</td>
+        <td>5</td>
+        <td>19</td>
+        <td>25</td>
+        <td>27</td>
+    </tr>
+    <tr>
+        <td><b>Coccaglio</b></td>
+        <td>4</td>
+        <td>-</td>
+        <td>1</td>
+        <td>17</td>
+        <td>22</td>
+        <td>24</td>
+    </tr>
+    <tr>
+        <td><b>Rovato</b></td>
+        <td>5</td>
+        <td>1</td>
+        <td>-</td>
+        <td>14</td>
+        <td>20</td>
+        <td>22</td>
+    </tr>
+    <tr>
+        <td><b>Iseo</b></td>
+        <td>19</td>
+        <td>17</td>
+        <td>14</td>
+        <td>-</td>
+        <td>27</td>
+        <td>29</td>
+    </tr>
+    <tr>
+        <td><b>Brescia 1</b></td>
+        <td>25</td>
+        <td>22</td>
+        <td>20</td>
+        <td>27</td>
+        <td>-</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td><b>Brescia 2</b></td>
+        <td>27</td>
+        <td>24</td>
+        <td>22</td>
+        <td>29</td>
+        <td>2</td>
+        <td>-</td>
+    </tr>
+</table>
+<br>
+Per esempio, il supermercato situato a Chiari dista 5 km da quello a Rovato, mentre il supermercato a Iseo dista 27 da quello a Brescia 1. Il manager di SuperAmazingMarket vuole riorganizzare gli orari di apertura, decidendo per ogni supermercato se aprirlo al mattino e/o al pomeriggio, in modo tale che, nel raggio di 20 chilometri da ogni supermercato, ce ne sia almeno un altro aperto.
+Non è detto che tutti i supermercati possano sempre aprire: nella tabella successiva sono infatti indicate le possibilità di apertura e i relativi costi di attivazione.
+
+<table>
+    <tr>
+        <td></td>
+        <td><b>Mattina</b></td>
+        <td><b>Costo Mattina</b></td>
+        <td><b>Pomeriggio</b></td>
+        <td><b>Costo Pomeriggio</b></td>
+    </tr>
+    <tr>
+        <td><b>Chiari</b></td>
+        <td>Sì</td>
+        <td>20.000</td>
+        <td>Sì</td>
+        <td>25.000</td>
+    </tr>
+    <tr>
+        <td><b>Coccaglio</b></td>
+        <td>Sì</td>
+        <td>15.000</td>
+        <td>No</td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <td><b>Rovato</b></td>
+        <td>Sì</td>
+        <td>23.000</td>
+        <td>Sì</td>
+        <td>23.000</td>
+    </tr>
+    <tr>
+        <td><b>Iseo</b></td>
+        <td>No</td>
+        <td>-</td>
+        <td>Sì</td>
+        <td>17.000</td>
+    </tr>
+    <tr>
+        <td><b>Brescia 1</b></td>
+        <td>Sì</td>
+        <td>30.000</td>
+        <td>Sì</td>
+        <td>40.000</td>
+    </tr>
+    <tr>
+        <td><b>Brescia 2</b></td>
+        <td>Sì</td>
+        <td>35.000</td>
+        <td>Sì</td>
+        <td>42.000</td>
+    </tr>
+</table>
+
+Per esempio, il supermercato di Iseo non può essere aperto la mattina ma solo il pomeriggio; attivare l’apertura in tale fascia oraria costerebbe all’azienda 17.000 euro."
+
+description2: "Determinare per ogni supermercato quali aperture attivare in modo tale da rispettare le condizioni indicate e soprattutto che i costi di attivazioni totali siano minimi. Sono presenti supermercati superflui nella fascia oraria della mattina o del pomeriggio?"
+
+tasks:
+- {
+    tot_points: 20,
+    ver_points: 0,
+    description1: "Formulare il problema come problema di Programmazione Lineare Intera, motivando le scelte compiute"
+  }
+- {
+    tot_points: 20,
+    ver_points: 0,
+    description1: "Risolvere il problema sfruttando la libreria Pulp"
+  }
+...

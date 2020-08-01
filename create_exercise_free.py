@@ -261,7 +261,7 @@ if __name__ == "__main__":
     parser.add_argument('exam_date', type=str, default='2020-06-30', help='exam date in the format YYYY-MM-DD')
     parser.add_argument('num', type=str, default=1, help='progressive number of the exercise in the exam')
     parser.add_argument('path', type=str, default=os.getcwd()+'/shuttle/esame_RO-2020-06-30_VR123456/esercizio_1/', help='path to the exercise folder where to add the subfolder ''modo_libero'' ')
-    parser.add_argument('yaml_instance', type=str, default=os.getcwd()+'/collection_2020-06-30/graphs_trees/graphs_trees0.yaml', help='path to the yaml instance to code as exercise')
+    parser.add_argument('yaml_instance', type=str, default=os.getcwd()+'/collections/RO-2020-06-30/graphs_trees/graphs_trees0.yaml', help='path to the yaml instance to code as exercise')
     args=parser.parse_args()
 
     assert len(sys.argv) == 5

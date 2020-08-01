@@ -1,0 +1,25 @@
+name: dp_common_subsequences
+title: Sottosequenza comune
+tags:
+- "programmazione dinamica"
+- "sottoproblemi e ricorrenze"
+- "algoritmi classici su stringhe"
+
+description1: Trovare la piu' lunga sottosequenza comune tra le stringhe _s_ = TAGAATCTGCCACTGCG
+  e _t_ = CTCGAAGCTTAGCAACT
+description2: Fare lo stesso con alcuni suffissi di _s_ e _t_.
+tasks:
+- tot_points: 10
+  ver_points: 1
+  description1: Fornire una sottosequenza comune tra _s_ e _t_ di massima lunghezza
+- tot_points: 8
+  ver_points: 1
+  description1: Fornire una sottosequenza comune di massima lunghezza tra _s_ e il suffisso
+    _t5_ = AGCTTAGCAACT di _t_
+- tot_points: 8
+  ver_points: 1
+  description1: Fornire una sottosequenza comune di massima lunghezza tra _t_ e il suffisso
+    _s3_ = AATCTGCCACTGCG di _s_
+- tot_points: 10
+  ver_points: 1
+  description1: Fornire una sequenza di massima lunghezza che inizi per AA e che sia sottosequenza comune tra _s_ e _t_ 

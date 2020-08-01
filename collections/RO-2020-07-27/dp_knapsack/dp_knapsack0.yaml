@@ -1,0 +1,28 @@
+name: dp_knapsack
+title: Problema dello zaino
+tags:
+- "programmazione dinamica"
+- "sottoproblemi e ricorrenze"
+- "problema dello zaino in versione classica"
+
+description1: 'Si considerino uno zaino di capienza $B = 30$ e i seguenti oggetti, con
+  i loro rispettivi pesi e valori (p, v):<br>1: (29, 15)<br>2: (6, 12)<br>3: (15,
+  9)<br>4: (16, 9)<br>5: (26, 20)<br>6: (33, 12)<br>7: (8, 5)<br>8: (25, 3)<br>9:
+  (35, 6)<br>10: (30, 14)<br>11: (26, 4)<br>12: (7, 4)<br>'
+tasks:
+- tot_points: 9
+  ver_points: 1
+  description1: Tra i sottoinsiemi di oggetti con peso complessivo non eccedente $B = 30$ fornirne uno in cui sia massima la somma dei valori
+- tot_points: 8
+  ver_points: 1
+  description1: Tra i sottoinsiemi di oggetti con peso complessivo non eccedente $B' = 25$ fornirne uno in cui sia massima la somma dei valori
+- tot_points: 9
+  ver_points: 1
+  description1: Come nella prima domanda ($B=30$ è la capienza dello zaino) ma assumendo che l'oggetto 5 non sia piu' disponibile
+- tot_points: 8
+  ver_points: 1
+  description1: Come nella seconda domanda ($B'=25$ è la capienza dello zaino) ma assumendo che gli oggetti 5 e 2 non siano piu' disponibili
+- tot_points: 5
+  ver_points: 5
+  description1: Indicare e descrivere brevemente una possibile applicazione del problema
+    dello zaino nella vita quotidiana
