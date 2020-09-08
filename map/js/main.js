@@ -10,6 +10,12 @@ var tot_num_subprob;
 var textarea_notes = [];
 var documentHash;
 
+window.addEventListener("focus", function(ev)
+{
+    console.log(ev);
+    get_scores();
+});
+
 window.addEventListener("load", function(){
 
     documentHash = hashString(document.documentElement.outerHTML);
@@ -39,6 +45,7 @@ window.addEventListener("load", function(){
         });
     }
 
+
     //add event listeners for textareas
     var areas = document.querySelectorAll(".notes");
     var i = 0; 
@@ -51,6 +58,27 @@ window.addEventListener("load", function(){
         i++;
     })
     
+    //add event listeners for checkbox
+    var checkboxes = document.querySelectorAll(".confirm-checkbox");
+    checkboxes.forEach(function(checkbox){
+        checkbox.addEventListener("change", function(){ 
+            if(checkbox.checked) 
+            {
+                checkbox.previousElementSibling.classList.add("green"); 
+                checkbox.parentElement.parentElement.querySelector(".submit_mode").disabled = true;
+            }
+            else
+            {
+                checkbox.previousElementSibling.classList.remove("green");
+                checkbox.parentElement.parentElement.querySelector(".submit_mode").disabled = false;
+            }
+
+            //attiva il messaggio di errore se non sono state confermate tutte le checkbox 
+            var vis = checkAllConfirm() ? "none" : "block"; 
+            document.getElementById("submit-label").style.display = vis;
+        });
+    });
+
     //add event listeners for points selection
     var sel = document.querySelectorAll(".select_points")
     var i = 0; 
@@ -89,6 +117,7 @@ window.addEventListener("load", function(){
 
              //prevent click on select nodes
              if(event.target.tagName.toLowerCase() == "select" ||
+                event.target.classList.contains("confirm-checkbox") ||
                 event.target.parentNode.tagName.toLowerCase() == "option")
                 return;
                 
@@ -144,6 +173,17 @@ function setIconOpen(element, open)
   }
 }
 
+// controlla se tutte le checkbox sono checked
+function checkAllConfirm(){
+    var checkboxes = document.querySelectorAll(".confirm-checkbox");
+    var success = true;
+    checkboxes.forEach(function(checkbox){
+         if(!checkbox.checked) 
+            success = false;  
+    });
+    return success;
+}
+
 function readTextFile(file, func)
 {
     var rawFile = new XMLHttpRequest();
@@ -167,17 +207,37 @@ function updateTotalScoreAll(){
     exercises.forEach(function(exercise)
     {
         var panel = exercise.nextElementSibling;
+
+        //update selected points (autostimati)
         var sel = panel.querySelectorAll(".select_points");
         var sum=0;
         sel.forEach(function(sel){
-            sum+=parseInt(sel.value);
-        }) 
+            sum += parseInt(sel.value);
+        })
         exercise.querySelector(".maxpoints").innerHTML = sum; 
+
+        //update punti certi (verificatore)
+        var cert = panel.querySelectorAll(".certpoints");
+        var sum = 0;
+        cert.forEach(function(cert){
+            sum += parseInt(cert.innerHTML);
+        })
+        exercise.querySelector(".certpoints").innerHTML = sum; 
+
     });
 }
 
 function exportMap()
 {
+    //attiva il messaggio di errore se non sono state confermate tutte le checkbox 
+    if(!checkAllConfirm())
+    {
+        var vis = checkAllConfirm() ? "none" : "block";  
+        document.getElementById("submit-label").style.display = vis;
+        alert("Conferma gli esercizi prima di esportare")
+        return;
+    }
+
     console.log("exporting map");
     var exercises = document.querySelectorAll(".main_exercise");
     var out_exercises = [];
@@ -252,6 +312,46 @@ function saveMapWithServer(content) {
             else{
                 alert(client.statusText);
             }
+        }
+    }
+}
+
+///chiede al server i punteggi dei verificatori
+function get_scores(content) {
+    var client = new XMLHttpRequest();
+    console.log(window.location.href)
+    client.open("GET", "../server_command?type=get_scores&data=0", true);
+    client.send();
+    client.onreadystatechange = function() {
+        if(this.readyState == this.HEADERS_RECEIVED) { 
+            
+            var points = JSON.parse(client.statusText);
+            console.log(points);
+            var exercises = document.querySelectorAll(".main_exercise")
+            i = 0;
+            exercises.forEach(function(exercise)
+            {
+                ex_points = points[i]; //punteggi dei subtask dell'esercizio i
+                console.log("ex_points: ",ex_points)
+                if(ex_points != null)
+                {
+                    var panel = exercise.nextElementSibling;
+    
+                    //update punti certi (verificatore)
+                    var j = 0;
+                    var cert = panel.querySelectorAll(".certpoints"); 
+                    cert.forEach(function(cert) {
+                        if(ex_points[j] != -1)
+                            cert.innerHTML = ex_points[j]; 
+                        j++
+                    })
+
+                }
+                
+                i++;
+            });
+
+            updateTotalScoreAll();
         }
     }
 }

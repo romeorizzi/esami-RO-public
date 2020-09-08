@@ -215,3 +215,25 @@ button::-moz-focus-inner {
 .right { 
   float:right;
 }
+
+.confirm-mode{
+  color:#ad3a26;
+  vertical-align: middle;
+  font-size: 16pt;
+}
+
+.confirm-checkbox {
+  width:25px;
+  height:25px;
+  margin-right:50px;
+  vertical-align: middle
+} 
+
+.green{
+  color:#26ad69;
+}
+
+#submit-label{ 
+  color:#ad3a26;
+  font-size:16pt;
+}

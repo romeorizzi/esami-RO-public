@@ -1,12 +1,18 @@
 # -*- coding: utf-8 -*-
 """
-@authors: Adriano Tumminelli
+@authors: Adriano Tumminelli, Rosario Di Matteo, Marco Emporio
 """
+
+# Si può cambiare sotto-cartella dove prendere i punti dei verificatori
+subdir = "modo_libero"
+
 
 import hashlib
 import zipfile
 import os
 import os.path
+import re
+import json 
 
 
 def sha1_file(filename):
@@ -24,6 +30,13 @@ def sha1_file(filename):
     return sha1.hexdigest()
 
 
+def read_points(filename):
+    if os.path.exists(filename):
+        with open(filename) as json_file:
+            return json.load(json_file)
+    return None
+
+
 map_save_path = "map_export.txt"
 
 def zipdir(path, ziph):
@@ -31,6 +44,18 @@ def zipdir(path, ziph):
     for root, dirs, files in os.walk(path):
         for file in files:
             ziph.write(os.path.join(root, file))
+
+#TODO: METTERE IL PATH CORRETTO
+def handler_get_all_points(params):  
+    total_points = []
+
+    directories = [d for d in os.listdir(os.getcwd()) if os.path.isdir(d)]
+
+    for dir in directories:
+        if dir.startswith("esercizio_"):
+            total_points.append(read_points(dir + "/"+subdir+"/points.txt"))
+
+    return json.dumps(total_points) 
 
 def handler_save_map(params): 
     
@@ -80,14 +105,11 @@ ATTENZIONE: Non apportare modifiche allo zip altrimenti la firma digitale del fi
 )
         )
 
-    return "done Archivio dell'esame generato correttamente (lo trovi nella cartella 'consegna_esameRO-2020-07-27', sorella del folder entro il quale hai svolto il tuo esame. Se vuoi riprodurre una nuova consegna devi prima rimuovere o spostare questa cartella.)\n\nProcedi subito alla tua sottomissione e chiusura dell'esame (istruzion nel file 'firma_anticipata.txt' che trovi nella cartella consegna)"
-
-def handler_test(params):
-    return "ciao " + str(params)
-
+    return "done Archivio dell'esame generato correttamente (lo trovi nella cartella 'consegna_esameRO-2020-07-27', sorella della cartella in cui hai svolto il tuo esame. Se vuoi riprodurre una nuova consegna devi prima rimuovere o spostare questa cartella.)\n\nProcedi subito alla tua sottomissione e chiusura dell'esame (istruzion nel file 'firma_anticipata.txt' che trovi nella cartella consegna)"
+ 
 handlers = {
     "save" : handler_save_map,
-    "test": handler_test
+    "get_scores": handler_get_all_points 
 }
 
 def handle_message(params):
@@ -95,5 +117,3 @@ def handle_message(params):
     if cmd_type in handlers:
         return handlers[cmd_type](params)
     return "error"
-    
-    

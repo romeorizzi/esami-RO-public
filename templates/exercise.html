@@ -10,16 +10,18 @@
     </div>
     <div class="score">
         <div class="box">
-            <h3 class="section">Modalità di sottoposizione: </h3> 
+            <label class="confirm-mode">Conferma consegna</label> <input type="checkbox"  class="confirm-checkbox" />
+        </div>
+        <div class="box">
+            <h3 class="section">Modalità di sottoposizione</h3> 
             <select name="submit_mode" class="submit_mode">
                 <option value="1">Libera</option>
             </select>
         </div> 
-        <!--certi:<span class="certpoints">0</span> / -->
-        autostimati:<span class="maxpoints">0</span> / 
-        tot:<span class="maxpoints">{ex_tot_points}pts</span>
+        <div class="box"> <h3 class="section">Certi</h3><span class="certpoints">0</span> </div>
+        <div class="box"> <h3 class="section">Autostimati</h3> <span class="maxpoints">0</span> </div>
+        <div class="box"> <h3 class="section">Totali</h3><span class="maxpoints">{ex_tot_points}pts</span></div>
     </div>
-
 </button>
 <div class="panel">
 {ex_tasks}
