@@ -12,6 +12,7 @@ webserverIp = "127.0.0.1"
 start_port = 8888
 pythonPath = sys.executable
 
+
 #########################
 #  Create the logger
 #########################
@@ -36,10 +37,27 @@ if not os.path.exists("log"):
 sys.stdout = Logger("log/out.log", sys.stdout)
 sys.stderr = Logger("log/errors.log", sys.stderr)
 
+
+print(
+    "=================================\n" +
+    "Python version " + str(sys.version_info[0]) + "." + str(sys.version_info[1]) + "\n" + 
+    "Python path: " + str(sys.exec_prefix) + "\n" + 
+    "Sistema Operativo: " + str(sys.platform) + "\n" + 
+    "=================================\n"
+)
+
+
 #Blocca python versioni di python inferiori a 2
 if sys.version_info[0] <= 2:
     print("Questo script richiede python 3 installato in un Conda Environment")
     exit()
+
+
+# Check conda environment
+if conda_environment not in sys.exec_prefix:
+    print("ATTENZIONE:\nEsegui questo script dal giusto conda environment: " + conda_environment)
+    exit()
+
 
 import subprocess
 import webbrowser
@@ -49,19 +67,6 @@ import importlib
 if sys.version_info[1] > 4:
     from importlib import util
  
-print(
-    "=================================\n" +
-    "Python version " + str(sys.version_info[0]) + "." + str(sys.version_info[1]) + "\n" + 
-    "Python path: " + str(sys.exec_prefix) + "\n" + 
-    "Sistema Operativo: " + str(sys.platform) + "\n" + 
-    "=================================\n"
-)
-
-# Check conda environment
-if conda_environment not in sys.exec_prefix:
-    print("ATTENZIONE:\nEsegui questo script dal giusto conda environment: " + conda_environment)
-    exit()
-
 def module_exists(name):
     if sys.version_info[0] == 3:
         if sys.version_info[1] <= 4:
