@@ -54,7 +54,7 @@ def add_all_exercises(exam_date, path_all, path_collection):
             else: # mode_free o mode_applet
                 mode_free.create_exercise(exam_date, str(j+1), path_ex, path_full_yaml)
             print('Exercise ' + str(j+1) + ' added')
-        if type_list[i] in ['graphs_flow', 'graphs_planarity', 'graphs_paths', 'graphs_trees']:
+        if type_list[i] in ['graphs_flows_and_cuts', 'graphs_planarity', 'graphs_shortest_paths', 'graphs_min_spanning_trees']:
             add_graph_utils(path_all + '/' + type_list[i])
     return
 

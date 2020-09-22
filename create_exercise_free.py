@@ -132,7 +132,7 @@ def insert_description1(note, exer_descr1, exam_date, path_ex_folder):
     note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False}
     if img_check: #adding download button
         note['cells'] += [nb.v4.new_code_cell(download_button_lib)]
-        note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False}	
+        note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False}
     return
 
 def insert_description2(note, exer_descr2):
@@ -198,7 +198,7 @@ def insert_single_graph_task(note,task,i):
     note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ['noexport']}
     insert_user_bar_cell(note)
     return
-	
+
 def insert_tasks(note, exer_tasks):
     """It inserts all tasks in the notebook
     Parameters:
@@ -239,7 +239,7 @@ def insert_suppl_folders(path_mode):
             path_img_src = os.getcwd() + '/' + REL_PATH_IMAGES + img
             shutil.copy2(path_img_src, path_ex_images)
             os.chmod(path_ex_images+"/"+img, S_IREAD)
-            
+
 def insert_graph_folder(path_mode):
     """It inserts check-points folder for graph exercise
     Parameters:
@@ -276,7 +276,7 @@ def create_exercise(exam_date, num, path_ex_folder, path_yaml):
     REL_PATH_IMAGES = 'img_' + exam_date
     images_to_add = []
     exer = read_exercise_yaml(path_yaml) # reading the given yaml
-    if exer['name'] in ('graphs_flow', 'graphs_trees', 'graphs_paths', 'graphs_planarity'):
+    if exer['name'] in ('graphs_flows_and_cuts', 'graphs_min_spanning_trees', 'graphs_shortest_paths', 'graphs_planarity'):
         mode_subpath = '/modo_applet/'
         mode = 'Applet'
     else:
@@ -289,9 +289,9 @@ def create_exercise(exam_date, num, path_ex_folder, path_yaml):
     if mode == 'Applet':
         insert_graph_import(notebook) #required graph import
         insert_no_scroll(notebook) #no scroll of output div
-    else:	
+    else:
         insert_import_mode_free(notebook) # required import
-    
+
     insert_user_bar_lib(notebook)#path_ex_folder) # insert user_bar.py in a code cell
     insert_heading(notebook, exer['title']) # heading with title
     insert_description1(notebook, exer['description1'], exam_date, path_ex_folder) # description 1
