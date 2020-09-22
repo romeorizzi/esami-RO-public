@@ -16,7 +16,7 @@ old = 'preview_old/' #path of prevous submissions
 def hide_w(w):
     for e in w:
         e.layout.visibility = 'hidden'
-        
+
 #show alert buttons
 def show_w(w):
     for e in w:
@@ -45,7 +45,7 @@ def yes_clicked(b):
     now = datetime.now() # current date and time
     date_time = now.strftime("%Y-%m-%d-%H-%M-%S")
     hname = '?FILENAME?'[:-6] + '_' + date_time
-    ! jupyter nbconvert ?FILENAME? --to html_embed --output=$hname --output-dir=./preview_last/ --no-input
+    ! jupyter nbconvert ?FILENAME? --to html_embed --output=$hname --output-dir=./preview_last/ --TagRemovePreprocessor.remove_cell_tags='["noexport"]'
     display(Javascript('window.open("./preview_last/' + hname + '.html")'))
     hide_w(alert_buttons)
 def no_clicked(b):
@@ -61,11 +61,11 @@ def generate_preview_HTML(_):
         now = datetime.now() # current date and time
         date_time = now.strftime("%Y-%m-%d-%H-%M-%S")
         hname = '?FILENAME?'[:-6] + '_' + date_time
-        ! jupyter nbconvert ?FILENAME? --to html_embed --output=$hname --output-dir=./preview_last/ --no-input
+        ! jupyter nbconvert ?FILENAME? --to html_embed --output=$hname --output-dir=./preview_last/ --TagRemovePreprocessor.remove_cell_tags='["noexport"]'
         display(Javascript('window.open("./preview_last/' + hname + '.html")'))
     else:
         are_you_sure()
-    
+
 
 button = widgets.Button(description="Salva & Esporta", tooltip="Esporta il foglio Jupyter in HTML nella cartella preview")
 output = widgets.Output()

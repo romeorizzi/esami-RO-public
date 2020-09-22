@@ -14,7 +14,7 @@ def on_button_update(_):
     clear_output()
     #display(Javascript('''var c = IPython.notebook.get_selected_index();
                        #IPython.notebook.execute_cells([c])'''))
-    add_attachment()
+    allegato()
 
 def open_attachment(attach_name):
     path_attachments = "allegati"
@@ -48,12 +48,14 @@ def on_button_confirm(_):
     print('Allegato: ' + str(attach))
     open_attachment(attach)
 
-def add_attachment():
+def allegato():
     path_attachments = "allegati"
     global attach # allegato attuale scelto
     update = widgets.Button(description='Aggiorna') #bottone visualizzato in ogni caso
     delete = widgets.Button(description='Rimuovi allegato')
     attach_list = os.listdir(path_attachments)
+    if 'ck_points' in attach_list:
+        attach_list.remove('ck_points')
 
     if(attach_list): #si attiva se c'è almeno un elemento in lista quindi nella cartella allegati
         confirm = widgets.Button(description='Conferma')
@@ -71,7 +73,7 @@ def add_attachment():
         all_buttons = [update, chosen_attach_wid, confirm, delete]
         display(widgets.HBox(all_buttons))
     else:
-        print(f"ATTENZIONE: non sono presenti file nella cartella allegati. Ti ricordiamo che la cartella utile per gli allegati da te prodotti per questo esercizio in modo_libero di svolgimento è la cartella @path_ex_folder@/modo_libero/allegati/")
+        print(f"ATTENZIONE: non sono presenti file nella cartella allegati.") #Ti ricordiamo che la cartella utile per gli allegati da te prodotti per questo esercizio in modo_libero di svolgimento è la cartella @path_ex_folder@/modo_libero/allegati/")
         update.on_click(on_button_update)
         delete.on_click(on_button_delete)
         all_buttons = [update, delete]
@@ -93,7 +95,7 @@ def delete_this_cell():
                                 IPython.notebook.delete_cell([c]);'''))
 
 def on_button_raw_attach(_):
-    add_attach_cell_din('add_attachment()')
+    add_attach_cell_din('allegato()')
 
 def on_button_md(_):
     add_md_cell_din()

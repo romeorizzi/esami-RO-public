@@ -8,13 +8,13 @@ Created on Tue Jun 16 10:45:29 2020
 """
 
 import argparse
-import create_exercise_free as mode1
-import create_exercise_verifier as mode2
-import create_exercise_applet as mode3
+import create_exercise_free as mode_free
+import create_exercise_verifier as mode_ver
 import map_generator
 from distutils.dir_util import copy_tree
 import csv
 import errno
+import glob
 import hashlib
 import os
 import shutil
@@ -68,10 +68,10 @@ def add_main_folder(archives_name):
             elif answer == "n":
                 return 0
             else:
-                print("Please enter 'yes' or 'no'")     
+                print("Please enter 'yes' or 'no'")
     os.mkdir(absolute_path_student)
     return 1
-    
+
 def add_exercises(exam_date, path_exercises, ex_list):
     """It adds the exercises extracted to the student folder
     Parameters:
@@ -82,24 +82,33 @@ def add_exercises(exam_date, path_exercises, ex_list):
     info_exer_map (list of str): for each exercise, its proper title to insert in the map"""
     global absolute_path_student
     info_exer_map = []
-    type_list = [x for x in os.listdir(path_exercises) if '.DS_Store' not in x]
+    type_list = [x for x in sorted(os.listdir(path_exercises)) if '.DS_Store' not in x]
     for i in range(len(type_list)):
         path_type = path_exercises + '/' + type_list[i]
-        nb_ex_type = len(os.listdir(path_type)) # there must be at least one exercise for each type
-        ex_list[i] = ex_list[i] % nb_ex_type
-        chosen_type_yaml = path_type + '/' + type_list[i] + str(ex_list[i] % nb_ex_type) + '.yaml'
+        print(path_type)
+        nb_ex_type = len(glob.glob(os.path.join(path_type, '*'))) # there must be at least one exercise for each type
+        assert nb_ex_type > 0
+        chosen = ex_list[i]
+        if nb_ex_type == 1:
+            chosen = 0
+        else:
+            chosen = ex_list[i] % nb_ex_type
+        path_full_yaml = path_type + '/' + type_list[i] + str(chosen) + '.yaml'
+        path_almost_yaml = path_type + '/' + type_list[i] + str(chosen) # (misses '.yaml')
         if i>=9:
             path_ex = absolute_path_student + '/esercizio_' + str(i+1)
         else:
             path_ex = absolute_path_student + '/esercizio_0' + str(i+1)
         os.mkdir(path_ex)
-        info_exer_map += [mode1.create_exercise(exam_date, str(i+1), path_ex, chosen_type_yaml)] # it calls the script that actually creates the exercise folder and notebook
-        #mode2.create_exercise(exam_date, str(i+1), path_ex, chosen_type_yaml)
-        #mode3.create_exercise(exam_date, str(i+1), path_ex, chosen_type_yaml)
+        if type_list[i] in ['dp_poldo', 'dp_lcs', 'dp_robot_no_gemme']: # mode_ver
+            info_exer_map += [mode_ver.create_exercise(exam_date, str(i+1), path_ex, type_list[i], path_full_yaml, path_almost_yaml)]
+        else: # mode_free o mode_applet
+            info_exer_map += [mode_free.create_exercise(exam_date, str(i+1), path_ex, path_full_yaml)] # it calls the script that actually creates the exercise folder and notebook
+
         print('Exercise ' + str(i+1) + ' added')
     return info_exer_map
 
-def add_map(date, matricola, info_map, name, surname): ############to_do
+def add_map(exam_date, matricola, info_map, name, surname):
     """It creates the index map
     Parameters:
     date (str): YYYY-MM-DD
@@ -107,14 +116,20 @@ def add_map(date, matricola, info_map, name, surname): ############to_do
     info_map (list of str): for each exercises, its proper title to insert in the map
     name (str): students''s name
     surname (str): students''s surname"""
-    
     global absolute_path_student
-    shutil.copy('./avvia_esame.py', absolute_path_student) #to do: activate conda env in avvia_esame.py 
-    to_render = map_generator.generate(info_map)
+    shutil.copy('./avvia_esame.py', absolute_path_student) #to do: activate conda env in avvia_esame.py
+    to_render = map_generator.generate(exam_date, info_map)
     copy_tree('./map',absolute_path_student+'/map')
     f = open(absolute_path_student + '/map/' + 'index.html','w')
     f.write(to_render)
     f.close()
+
+def add_graph_utils():
+    """It adds graph utils
+    Parameters:"""
+    global absolute_path_student
+    copy_tree('./utils/graph_utils/js',absolute_path_student+'/graph_utils/js')
+    copy_tree('./utils/graph_utils/css',absolute_path_student+'/graph_utils/css')
 
 def add_info():
     """It adds three useful files to the folder, copying them from utils folder"""
@@ -151,7 +166,7 @@ def create_archives(student_anchored_folder, student_local_folder, also_uncompre
         try:
             shutil.rmtree(student_local_folder)
         except Exception as e:
-            print('Failed to delete %s. Reason: %s' % (file_path, e))
+            print('Failed to delete %s. Reason: %s' % (student_local_folder, e))
     os.chdir(current)
 
 def gen_exam(exam_date, anchor, student_ID, matricola, name, surname, also_uncompressed = False):
@@ -181,13 +196,17 @@ def gen_exam(exam_date, anchor, student_ID, matricola, name, surname, also_uncom
         print("\nNew generation of the exam (" + exam_date + ', ' + student_ID + ") started\nAdding exercises...")
         path_exercises = os.getcwd() + COLLECTION_FOLDER + "RO-" + exam_date
         info_exer_map = add_exercises(exam_date, path_exercises, ex_list)
+        add_graph_utils()
         add_map(exam_date, matricola, info_exer_map, name, surname) # from the exercises created, it generates the map
+
         print("\nAdding the map...")
         #add_info()
+        add_graph_utils()
+        print("\n Adding graph utils")
         create_archives(student_anchored_folder, student_local_folder, also_uncompressed)
         print("\nGeneration of the exam (" + exam_date + ', ' + student_ID + ") completed")
     return ex_list[:NB_EXERCISES]
-    
+
 if __name__ == "__main__":
     parser=argparse.ArgumentParser(
         description='''Script to generate a new exam for the course of Ricerca Operativa (UniVR).

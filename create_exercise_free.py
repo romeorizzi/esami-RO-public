@@ -15,10 +15,12 @@ from stat import S_IREAD, S_IRGRP, S_IROTH
 import re
 import shutil
 import sys
+from graph_utils import parser
 import yaml
 
 PATH_UTILS = os.getcwd() + '/utils/'
-global REL_PATH_IMAGES # img_YYYY-MM-DD
+PATH_GRAPH_UTILS = os.getcwd() + '/utils/graph_utils/'
+global REL_PATH_IMAGES # img-YYYY-MM-DD
 global images_to_add # if there are images to add in the related folder, store here their filenames
 
 def insert_import_mode_free(note):
@@ -27,15 +29,16 @@ def insert_import_mode_free(note):
     note (Jupyter nb.v4): the notebook"""
     txt_import = open(PATH_UTILS + 'import_mode_free.md', 'r', encoding='utf-8').read()
     note['cells'] += [nb.v4.new_code_cell(txt_import)]
-    note.cells[-1].metadata = {"jupyter": {"source_hidden": True}, "init_cell": True, "editable": False, "deletable": False, "tags": ['run_start']}
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags":['noexport']}
 
-def insert_start_button(note):
-    """It inserts the start button
+def insert_task_buttons(note,i):
+    """It inserts 'Avvia task', 'Carica ultima configurazione' e 'Reset task'
     Parameters:
-    note (Jupyter nb.v4): the notebook"""
-    txt_start_button = open(PATH_UTILS + 'run_selected_cells.py', 'r', encoding='utf-8').read()
-    note['cells'] += [nb.v4.new_code_cell(txt_start_button)]
-    note.cells[-1].metadata = {"init_cell": True}
+    note (Jupyter nb.v4): the notebook
+    i: index of task"""
+    txt_start_button = open(PATH_GRAPH_UTILS + 'init_buttons.py', 'r', encoding='utf-8').read()
+    note['cells'] += [nb.v4.new_code_cell(txt_start_button.replace('$i$',i))]
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "tags":['noexport']}
 
 def insert_needed_import(note, exer_name):
     """It inserts other necessaries modules and libraries needed for specific types of exercises
@@ -45,24 +48,23 @@ def insert_needed_import(note, exer_name):
     if exer_name in ('lp_duality', 'lp_interactive', 'lp_two_phases'):
         txt_interactive = open(PATH_UTILS + 'interactive_simplex_note.md', 'r', encoding='utf-8').read()
         note['cells'] += [nb.v4.new_markdown_cell(txt_interactive)]
-        note.cells[-1].metadata = {"init_cell": True, "editable": False, "deletable": False}
+        note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags":['noexport']}
         txt_import = open(PATH_UTILS + 'interactive_simplex.py', 'r', encoding='utf-8').read()
     else:
         txt_pulp = open(PATH_UTILS + 'pulp_note.md', 'r', encoding='utf-8').read()
         note['cells'] += [nb.v4.new_markdown_cell(txt_pulp)]
-        note.cells[-1].metadata = {"init_cell": True, "editable": False, "deletable": False, "tags": ['run_start']}
+        note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags":['noexport']}
         txt_import = open(PATH_UTILS + 'import_pulp.md', 'r', encoding='utf-8').read()
     note['cells'] += [nb.v4.new_code_cell(txt_import)]
-    note.cells[-1].metadata = {"init_cell": True, "editable": False, "deletable": False, "tags": ['run_start']}
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags":['noexport']}
 
-def insert_hide_code(note):
-    """It inserts the HTML script to hide the input of code cells
+def insert_graph_import(note):
+    """It inserts all necessaries modules and libraries needed for graph exercises
     Parameters:
     note (Jupyter nb.v4): the notebook"""
-    txt = open(PATH_UTILS + 'hide_code.py', 'r', encoding='utf-8').read()
-    note['cells'] += [nb.v4.new_code_cell(txt)]
-    note.cells[-1].metadata = {"editable": False, "deletable": False, "tags": ['run_start']}
-    return
+    txt_import = open(PATH_GRAPH_UTILS + 'graph_applet_import.py', 'r', encoding='utf-8').read()
+    note['cells'] += [nb.v4.new_code_cell(txt_import)]
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ['noexport']}
 
 def read_exercise_yaml(path_yaml):
     """It reads a yaml file and save its content in a dictionary
@@ -83,7 +85,7 @@ def insert_heading(note, exer_title):
     txt = open(PATH_UTILS + 'heading.md', 'r', encoding='utf-8').read()
     content_title = txt.replace('?title?', exer_title)
     note['cells'] += [nb.v4.new_markdown_cell(content_title)]
-    note.cells[-1].metadata = {"init_cell": True, "editable": False, "deletable": False, "tags": ['run_start']}
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False}
     return
 
 def look_for_img(txt):
@@ -114,7 +116,7 @@ def insert_description1(note, exer_descr1, exam_date, path_ex_folder):
     download_button_lib = open(PATH_UTILS + 'download_button.py', 'r', encoding='utf-8').read()
     img_check = False
     if look_for_img(exer_descr1) == 1:
-        exer_descr1 = exer_descr1.replace("img_" + exam_date, "img")
+        exer_descr1 = exer_descr1.replace("img-" + exam_date, "img")
 
         pattern = re.compile("^esame_RO-[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]_id")
         absolute_path_dirs_array = path_ex_folder.split('/')
@@ -124,14 +126,13 @@ def insert_description1(note, exer_descr1, exam_date, path_ex_folder):
                 pos = i
         assert pos != None
         download_button_lib = download_button_lib.replace('@img_name@',images_to_add[-1]).replace('@path_ex_folder@',".../" + '/'.join(absolute_path_dirs_array[pos:]))
-
         img_check = True
     #print(exer_descr1)
     note['cells'] += [nb.v4.new_markdown_cell(exer_descr1)]
-    note.cells[-1].metadata = {"init_cell": True, "editable": False, "deletable": False}
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False}
     if img_check: #adding download button
         note['cells'] += [nb.v4.new_code_cell(download_button_lib)]
-        note.cells[-1].metadata = {"init_cell": True, "editable": False, "deletable": False}	
+        note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False}	
     return
 
 def insert_description2(note, exer_descr2):
@@ -140,26 +141,17 @@ def insert_description2(note, exer_descr2):
     note (Jupyter nb.v4): the notebook
     exer_descr2 (str): the content to add"""
     note['cells'] += [nb.v4.new_markdown_cell(exer_descr2)]
-    note.cells[-1].metadata = {"init_cell": True, "editable": False, "deletable": False}
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False}
     return
 
-def insert_user_bar_lib(note, path_ex_folder):
+def insert_user_bar_lib(note):#, path_ex_folder):
     """It inserts the Python code to add the user bar needed to answer to each task
     Parameters:
     note (Jupyter nb.v4): the notebook
     path_ex_folder (str): the path of the current exercise where the mode has to be added"""
     user_bar_lib = open(PATH_UTILS + 'user_bar.py', 'r', encoding='utf-8').read()
-
-    pattern = re.compile("^esame_RO-[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]_id")
-    absolute_path_dirs_array = path_ex_folder.split('/')
-    pos = None
-    for i,dir in zip(range(len(absolute_path_dirs_array)), absolute_path_dirs_array):
-        if pattern.match(absolute_path_dirs_array[i]):
-            pos = i
-    assert pos != None
-    note['cells'] += [nb.v4.new_code_cell(user_bar_lib.replace('@path_ex_folder@',".../" + '/'.join(absolute_path_dirs_array[pos:])))]
-
-    note.cells[-1].metadata = {"init_cell": True, "editable": False, "deletable": False, "tags": ['run_start']}
+    note['cells'] += [nb.v4.new_code_cell(user_bar_lib)]
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ['noexport']}
     return
 
 def insert_user_bar_cell(note):
@@ -168,21 +160,71 @@ def insert_user_bar_cell(note):
     note (Jupyter nb.v4): the notebook"""
     user_bar_call = open(PATH_UTILS + 'user_bar_call.md').read()
     note['cells'] += [nb.v4.new_code_cell(user_bar_call)]
-    note.cells[-1].metadata = {"init_cell": True, "editable": False, "deletable": False, "tags": ['run_start']}
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ['noexport']}
     return
 
+def insert_single_task(note,task,i):
+    """It inserts single task in the notebook
+    Parameters:
+    note (Jupyter nb.v4): the notebook
+    task (dict): the dictionary of task
+	i (int): index of task"""
+    task_txt = '__Richiesta ' + str(i+1) + ' \[' + str(task['tot_points']) + ' punti\]__: '
+    task_txt += task['description1']
+    note['cells'] += [nb.v4.new_markdown_cell(task_txt)]
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False}
+    insert_user_bar_cell(note)
+    return
+
+def insert_single_graph_task(note,task,i):
+    """It inserts single graph task in the notebook
+    Parameters:
+    note (Jupyter nb.v4): the notebook
+    task (dict): the dictionary of task
+	i (int): index of task"""
+    task_txt = '__Richiesta ' + str(i+1) + ' \[' + str(task['tot_points']) + ' punti\]__: '
+    task_txt += task['description1']
+    note['cells'] += [nb.v4.new_markdown_cell(task_txt)]
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False}
+    insert_task_buttons(note,str(i+1))
+    task_graph = get_graph_data(task['graphml'],str(i+1))
+    note['cells'] += [nb.v4.new_code_cell(task_graph)]
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ['noexport']}
+    config_check = open(PATH_GRAPH_UTILS + 'config_check.py').read()
+    note['cells'] += [nb.v4.new_code_cell(config_check.replace('$i$',str(i+1)))]
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ['noexport']}
+    display_graph = open(PATH_GRAPH_UTILS + 'display.py').read().replace('$i$',str(i+1))
+    note['cells'] += [nb.v4.new_code_cell(display_graph)]
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ['noexport']}
+    insert_user_bar_cell(note)
+    return
+	
 def insert_tasks(note, exer_tasks):
     """It inserts all tasks in the notebook
     Parameters:
     note (Jupyter nb.v4): the notebook
     exer_tasks (dict): the dictionary of tasks"""
     for i in range(len(exer_tasks)):
-        task_txt = '__Richiesta ' + str(i+1) + ' \[' + str(exer_tasks[i]['tot_points']) + ' punti\]__: '
-        task_txt += exer_tasks[i]['description1']
-        note['cells'] += [nb.v4.new_markdown_cell(task_txt)]
-        note.cells[-1].metadata = {"init_cell": True, "editable": False, "deletable": False, "tags": ['run_start']}
-        insert_user_bar_cell(note)
+        if 'graphml' in exer_tasks[i]:
+            insert_single_graph_task(note,exer_tasks[i],i)
+        else:
+            insert_single_task(note,exer_tasks[i],i)
     return
+
+def get_graph_data(graphml,i):
+    """It inserts graph dictionary (after calling the graphml parser) in the notebook
+    Parameters:
+    graphml: path of graphml
+    i: index of task"""
+    html_button = open(PATH_GRAPH_UTILS + 'buttons.html').read()
+    g = parser(graphml)
+    return f"""
+    graph_data{i} = {g[0]}
+    friends_e{i} = {g[1]}
+    friends_n{i} = {g[2]}
+    center{i} = {g[3]}
+    html_text{i} = '''{html_button.replace('$n$', i)}'''
+    """
 
 def insert_suppl_folders(path_mode):
     """It inserts all supplementary folders, such as 'allegati' and 'img' if needed
@@ -197,6 +239,12 @@ def insert_suppl_folders(path_mode):
             path_img_src = os.getcwd() + '/' + REL_PATH_IMAGES + img
             shutil.copy2(path_img_src, path_ex_images)
             os.chmod(path_ex_images+"/"+img, S_IREAD)
+            
+def insert_graph_folder(path_mode):
+    """It inserts check-points folder for graph exercise
+    Parameters:
+    path_mode (str): the path to the current folder where to add the needed subfolders"""
+    os.mkdir(path_mode + 'allegati/ck_points')
 
 def insert_rendition(note, note_name):
     """It inserts the button to save and export the notebook as an embed_HTML
@@ -205,9 +253,17 @@ def insert_rendition(note, note_name):
     note_name (str): the notebook name"""
     button_rend = open(PATH_UTILS + 'preview_HTML.py').read()
     note['cells'] += [nb.v4.new_code_cell(button_rend.replace('?FILENAME?', note_name))]
-    note.cells[-1].metadata = {"init_cell": True, "tags": ['run_start'], "editable": False, "deletable": False, "tags": ['run_start']}
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ['noexport']}
     return
-	
+
+def insert_no_scroll(note):
+    """It inserts javascript code to avoid scroll down of output div (for graph)
+    Parameters:
+    note (Jupyter nb.v4): the notebook"""
+    no_scroll = open(PATH_GRAPH_UTILS + 'no_scroll.py').read()
+    note['cells'] += [nb.v4.new_code_cell(no_scroll)]
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ['noexport']}
+
 def create_exercise(exam_date, num, path_ex_folder, path_yaml):
     """It creates the new folder with 'free mode' ('modo_libero')
     Parameters:
@@ -219,14 +275,24 @@ def create_exercise(exam_date, num, path_ex_folder, path_yaml):
     global REL_PATH_IMAGES
     REL_PATH_IMAGES = 'img_' + exam_date
     images_to_add = []
-    path_mode_free = path_ex_folder + '/modo_libero/' # new folder for the considered submission mode
-    os.mkdir(path_mode_free)
     exer = read_exercise_yaml(path_yaml) # reading the given yaml
+    if exer['name'] in ('graphs_flow', 'graphs_trees', 'graphs_paths', 'graphs_planarity'):
+        mode_subpath = '/modo_applet/'
+        mode = 'Applet'
+    else:
+        mode_subpath = '/modo_libero/'
+        mode = 'Libera'
+    PATH_MODE_FULL = path_ex_folder + mode_subpath # new folder for the considered submission mode
+    os.mkdir(PATH_MODE_FULL)
     notebook = nb.v4.new_notebook() # creating the new notebook
-    insert_import_mode_free(notebook) # required import
-    insert_start_button(notebook) # start button to run cells with tag 'run_start'
-    insert_hide_code(notebook) # hide all code cells
-    insert_user_bar_lib(notebook,path_ex_folder) # insert user_bar.py in a code cell
+    #print(exer['name'])
+    if mode == 'Applet':
+        insert_graph_import(notebook) #required graph import
+        insert_no_scroll(notebook) #no scroll of output div
+    else:	
+        insert_import_mode_free(notebook) # required import
+    
+    insert_user_bar_lib(notebook)#path_ex_folder) # insert user_bar.py in a code cell
     insert_heading(notebook, exer['title']) # heading with title
     insert_description1(notebook, exer['description1'], exam_date, path_ex_folder) # description 1
     if 'description2' in exer:
@@ -234,7 +300,6 @@ def create_exercise(exam_date, num, path_ex_folder, path_yaml):
     insert_tasks(notebook, exer['tasks']) # inserting the several tasks
     if exer['name'] in ('lp_duality', 'lp_interactive', 'lp_modelling', 'lp_two_phases'): # other libraries needed for some types of exercises
         insert_needed_import(notebook, exer['name'])
-
     if int(num) >= 10: # writing the notebook and saving it in the correct folder
         note_name = 'Esercizio_' + num + '.ipynb'
         prev_folder = 'esercizio_' + num
@@ -243,13 +308,15 @@ def create_exercise(exam_date, num, path_ex_folder, path_yaml):
         prev_folder = 'esercizio_0' + num
     insert_rendition(notebook, note_name)
     nb.write(notebook, note_name)
-    os.rename(os.getcwd()+ '/' + note_name, path_mode_free + '/' + note_name)
-    os.system("jupyter trust " + path_mode_free + note_name) # signing the notebook in order to make it trusted
-    insert_suppl_folders(path_mode_free) # inserting the supplementary folders (i.e., 'allegati', 'img')
+    os.rename(os.getcwd()+ '/' + note_name, PATH_MODE_FULL + '/' + note_name)
+    os.system("jupyter trust " + PATH_MODE_FULL + note_name) # signing the notebook in order to make it trusted
+    insert_suppl_folders(PATH_MODE_FULL) # inserting the supplementary folders (i.e., 'allegati', 'img')
+    if mode == 'Applet':
+        insert_graph_folder(PATH_MODE_FULL)
     if 'tags' in exer:
-        e_dict = {'title':exer['title'],'tags':exer['tags'],'tot_points':0,'link':'http://127.0.0.1:8888/notebooks/'+prev_folder+'/modo_libero/' + note_name, 'tasks':exer['tasks']}
+        e_dict = {'title':exer['title'],'tags':exer['tags'],'tot_points':0,'link':'http://127.0.0.1:8888/notebooks/'+prev_folder + mode_subpath + note_name, 'tasks':exer['tasks'], 'mode':mode}
     else:
-	    e_dict = {'title':exer['title'],'tags':[],'tot_points':0,'link':'http://127.0.0.1:8888/notebooks/'+prev_folder+'/modo_libero/' + note_name, 'tasks':exer['tasks']}
+        e_dict = {'title':exer['title'],'tags':[],'tot_points':0,'link':'http://127.0.0.1:8888/notebooks/'+prev_folder + mode_subpath + note_name, 'tasks':exer['tasks'], 'mode':mode}
     return e_dict
 
 if __name__ == "__main__":

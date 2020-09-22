@@ -10,6 +10,12 @@ var tot_num_subprob;
 var textarea_notes = [];
 var documentHash;
 
+window.addEventListener("focus", function(ev)
+{
+    console.log(ev);
+    get_scores();
+});
+
 window.addEventListener("load", function(){
 
     documentHash = hashString(document.documentElement.outerHTML);
@@ -27,8 +33,8 @@ window.addEventListener("load", function(){
     //get port from the window url
     const urlParams = new URLSearchParams(window.location.search);
     var port = urlParams.get("port");
-    
-    //replace all urls     
+
+    //replace all urls
     if((port && port.match(/^-{0,1}\d+$/)))
     {
         console.log("port", port)
@@ -39,43 +45,65 @@ window.addEventListener("load", function(){
         });
     }
 
+
     //add event listeners for textareas
     var areas = document.querySelectorAll(".notes");
-    var i = 0; 
+    var i = 0;
     areas.forEach(function(element){
         var exercise_index = i;
-        element.addEventListener("input", function(){ 
+        element.addEventListener("input", function(){
             textarea_notes[exercise_index] = element.value;
             localStorage.setItem(documentHash + "notes", JSON.stringify(textarea_notes));
         }, false)
         i++;
     })
-    
+
+    //add event listeners for checkbox
+    var checkboxes = document.querySelectorAll(".confirm-checkbox");
+    checkboxes.forEach(function(checkbox){
+        checkbox.addEventListener("change", function(){
+            if(checkbox.checked)
+            {
+                checkbox.previousElementSibling.classList.add("green");
+                checkbox.parentElement.parentElement.querySelector(".submit_mode").disabled = true;
+            }
+            else
+            {
+                checkbox.previousElementSibling.classList.remove("green");
+                checkbox.parentElement.parentElement.querySelector(".submit_mode").disabled = false;
+            }
+
+            //attiva il messaggio di errore se non sono state confermate tutte le checkbox
+            var vis = checkAllConfirm() ? "none" : "block";
+            document.getElementById("submit-label").style.display = vis;
+        });
+    });
+
     //add event listeners for points selection
     var sel = document.querySelectorAll(".select_points")
-    var i = 0; 
+    var i = 0;
     sel.forEach(function(element){
-        var exercise_index = i;  
+        var exercise_index = i;
         var parentAccordion = findSibling(element.parentNode.parentNode.parentNode, "accordion");
         var panel = parentAccordion.nextElementSibling;
         var submit_mode = parentAccordion.querySelector(".submit_mode");
-        element.addEventListener("change", function(){ 
+        element.addEventListener("change", function(){
             var current_index_mode = submit_mode.selectedIndex;
             saveScores(exercise_index, current_index_mode, element.selectedIndex);
             updateTotalScoreAll();
         })
         i++;
     })
-    
+
     //add event listeners for submit-mode selection
     var sel = document.querySelectorAll(".submit_mode");
-    var i = 0; 
-    sel.forEach(function(element){ 
+    var i = 0;
+    sel.forEach(function(element){
         element.addEventListener("change", function(){
-            
+
             updateScores();
             saveSubmitModes();
-            
+
             updateTotalScoreAll();
         });
         i++;
@@ -89,9 +117,10 @@ window.addEventListener("load", function(){
 
              //prevent click on select nodes
              if(event.target.tagName.toLowerCase() == "select" ||
+                event.target.classList.contains("confirm-checkbox") ||
                 event.target.parentNode.tagName.toLowerCase() == "option")
                 return;
-                
+
 
             //event.preventDefault();
             this.classList.toggle("active");
@@ -104,22 +133,22 @@ window.addEventListener("load", function(){
             else
             {
                 setIconOpen(this, false);
-                panel.style.maxHeight = panel.scrollHeight + "px";  
+                panel.style.maxHeight = panel.scrollHeight + "px";
             }
-                
+
             //expand parent
-            this.parentElement.style.maxHeight = this.parentElement.scrollHeight + "px"; 
+            this.parentElement.style.maxHeight = this.parentElement.scrollHeight + "px";
         });
     }
 
     //numeric inputs
-    var numberInputs = document.getElementsByClassName("number"); 
+    var numberInputs = document.getElementsByClassName("number");
     for (i = 0; i < numberInputs.length; i++) {
         setInputFilter(numberInputs[i], function(value){
             return /^\d*$/.test(value);
         });
     }
-  
+
     load();
 }, false);
 
@@ -135,13 +164,24 @@ function setIconOpen(element, open)
     classAdd = 'fa-chevron-up';
     classRemove = 'fa-chevron-down';
   }
-  
+
   var child = element.querySelector("." + classRemove);
   if(child)
-  { 
+  {
     child.classList.remove(classRemove);
     child.classList.add(classAdd);
   }
+}
+
+// controlla se tutte le checkbox sono checked
+function checkAllConfirm(){
+    var checkboxes = document.querySelectorAll(".confirm-checkbox");
+    var success = true;
+    checkboxes.forEach(function(checkbox){
+         if(!checkbox.checked)
+            success = false;
+    });
+    return success;
 }
 
 function readTextFile(file, func)
@@ -167,17 +207,37 @@ function updateTotalScoreAll(){
     exercises.forEach(function(exercise)
     {
         var panel = exercise.nextElementSibling;
+
+        //update selected points (autostimati)
         var sel = panel.querySelectorAll(".select_points");
         var sum=0;
         sel.forEach(function(sel){
-            sum+=parseInt(sel.value);
-        }) 
-        exercise.querySelector(".maxpoints").innerHTML = sum; 
+            sum += parseInt(sel.value);
+        })
+        exercise.querySelector(".maxpoints").innerHTML = sum;
+
+        //update punti certi (verificatore)
+        var cert = panel.querySelectorAll(".certpoints");
+        var sum = 0;
+        cert.forEach(function(cert){
+            sum += parseInt(cert.innerHTML);
+        })
+        exercise.querySelector(".certpoints").innerHTML = sum;
+
     });
 }
 
 function exportMap()
 {
+    //attiva il messaggio di errore se non sono state confermate tutte le checkbox
+    if(!checkAllConfirm())
+    {
+        var vis = checkAllConfirm() ? "none" : "block";
+        document.getElementById("submit-label").style.display = vis;
+        alert("Conferma gli esercizi prima di esportare")
+        return;
+    }
+
     console.log("exporting map");
     var exercises = document.querySelectorAll(".main_exercise");
     var out_exercises = [];
@@ -188,15 +248,15 @@ function exportMap()
         var submit_mode_idx = ex.querySelector(".submit_mode").selectedIndex;
         var submit_mode = ex.querySelector(".submit_mode").options[submit_mode_idx].innerHTML;
         //console.log("total_score" + total_score+"/"+total_score_max, submit_mode, submit_mode_idx);
-        
+
         var panel = ex.nextElementSibling;
         var tasksAccordions = panel.querySelectorAll(".accordion");
         out_tasks = []
         tasksAccordions.forEach(function(taskAccordion){
-            
+
             var task_score = parseInt(taskAccordion.querySelector(".select_points").value)
             var task_max_score = parseInt(taskAccordion.querySelector(".maxpoints").innerHTML)
-            
+
             var task_panel = taskAccordion.nextElementSibling;
             var task_notes = task_panel.querySelector(".notes").value
             out_tasks.push({
@@ -229,7 +289,7 @@ function saveMapWithServer(content) {
     client.open("GET", "../server_command?type=save&data=" + encodeURI(content), true);
     client.send();
     client.onreadystatechange = function() {
-        if(this.readyState == this.HEADERS_RECEIVED) { 
+        if(this.readyState == this.HEADERS_RECEIVED) {
             //basic download in case of error
             var idx = client.statusText.indexOf(' ');
             if(idx != -1)
@@ -237,7 +297,7 @@ function saveMapWithServer(content) {
                 var cmd = client.statusText.substr(0, idx); // "72"
                 var message = client.statusText.substr(idx+1); // "tocirah sneab"
 
-                if(cmd == "done"){ 
+                if(cmd == "done"){
                     alert(message);
                     //alert("Archivio dell'esame generato correttamente (lo trovi nella cartella 'consegna_esameRO-2020-07-27', sorella del folder entro il quale hai svolto il tuo esame. Se vuoi riprodurre una nuova consegna devi prima rimuovere o spostare questa cartella.)\n\nProcedi subito alla tua sottomissione e chiusura dell'esame (istruzion nel file 'firma_anticipata.txt' che trovi nella cartella 'consegna_esameRO-2020-07-27')")
                 }
@@ -256,6 +316,46 @@ function saveMapWithServer(content) {
     }
 }
 
+///chiede al server i punteggi dei verificatori
+function get_scores(content) {
+    var client = new XMLHttpRequest();
+    console.log(window.location.href)
+    client.open("GET", "../server_command?type=get_scores&data=0", true);
+    client.send();
+    client.onreadystatechange = function() {
+        if(this.readyState == this.HEADERS_RECEIVED) {
+
+            var points = JSON.parse(client.statusText);
+            console.log(points);
+            var exercises = document.querySelectorAll(".main_exercise")
+            i = 0;
+            exercises.forEach(function(exercise)
+            {
+                ex_points = points[i]; //punteggi dei subtask dell'esercizio i
+                console.log("ex_points: ",ex_points)
+                if(ex_points != null)
+                {
+                    var panel = exercise.nextElementSibling;
+
+                    //update punti certi (verificatore)
+                    var j = 0;
+                    var cert = panel.querySelectorAll(".certpoints");
+                    cert.forEach(function(cert) {
+                        if(ex_points[j] != -1)
+                            cert.innerHTML = ex_points[j];
+                        j++
+                    })
+
+                }
+
+                i++;
+            });
+
+            updateTotalScoreAll();
+        }
+    }
+}
+
 function download(content, fileName, contentType) {
     var a = document.createElement("a");
     var file = new Blob([content], {type: contentType});
@@ -268,7 +368,7 @@ function findParent(element, className)
 {
     element = element.parentNode;
     while(element)
-    {  
+    {
         if(element.classList && element.classList.contains(className))
             break;
 
@@ -282,7 +382,7 @@ function findSibling(element, className)
 {
     element = element.previousSibling;
     while(element)
-    {  
+    {
         if(element.classList && element.classList.contains(className))
             break;
 
@@ -303,7 +403,7 @@ function load()
             selected_modes.forEach(function(element){
             element.selectedIndex = loaded_submit_modes[i];
             i++;
-        }); 
+        });
     }
 
     //load all scores
@@ -319,7 +419,7 @@ function load()
         textarea_notes = JSON.parse(notes);
         //add event listeners for textareas
         var areas = document.querySelectorAll(".notes");
-        var i = 0; 
+        var i = 0;
         areas.forEach(function(element){
             var exercise_index = i;
             if(textarea_notes[exercise_index])

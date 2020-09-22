@@ -1,0 +1,15 @@
+VR,id,anno,identificato,elaborato_ricevuto_entro_consegna,firma_ricevuta,ritirato,cognome,nome,NOTE
+VR089316,id089316,2008/2009,X,X,-,-,FIAZZA,MARIA-CAMILLA,
+VR382153,id076596,2015/2016,-,X,-,-,ZANETTI,SILVIA,scaricato il tablet e poi senza Zoom + problemi di connessione + problemi con nella mail Unsupported File Types Alert.txt
+VR407333,id375ifn,2019/2020,X,X,-,-,RIOLFI,GIULIA,
+VR421526,id716dav,2019/2020,-,-,-,-,COLOMBARI,FABIANO,
+VR421632,id123kgr,2019/2020,X,X,-,-,BELLÈ,LAURA,
+VR421664,id166ovz,2019/2020,X,X,-,-,IERVASI,SIMONE,pareva sospetto;usava il cel come webcam e testiera bassa;su Linux del fratello senza pwd non ha mandato registrazione;ha fatto file di log con mè
+VR421695,id626bnu,2019/2020,X,X,-,-,XHAHYSA,SARA
+VR421734,id763vct,2019/2020,X,+,X,-,PREZIOSO,DAVIDE,consegna risolta tramite SHA1 (nella prima mail Unsupported File Types Alert.txt)
+VR421895,id504ykq,2019/2020,X,X,-,-,BRESCIANI,ALESSIO
+VR421928,id754czn,2019/2020,X,X,-,-,MINOZZI,MATILDE
+VR422014,id797exy,2019/2020,-,-,-,X,ZANDOMENEGHI,CHIARA
+VR422147,id703mbo,2019/2020,X,X,X,-,CALVI,DAVIDE,consegna risolta tramite OneDrive (nella mail Unsupported File Types Alert.txt)
+VR422388,id241dei,2019/2020,X,X,-,-,CASTAGNA,FRANCESCA, consegna autonomamente risolta da Francesca tramite https://univr-my.sharepoint.com/personal/francesca_castagna_02_studenti_univr_it/_layouts/15/onedrive.aspx
+VR422502,id872umd,2019/2020,X,X,-,-,MARTARI,GIADA

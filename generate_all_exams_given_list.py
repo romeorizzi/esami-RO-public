@@ -36,31 +36,52 @@ if __name__ == "__main__":
     FILE_STUDENTS_LIST = "students_lists/"+exam_date+"/lista_studenti_iscritti_con_chiavi.csv"
 
     start_time = time.time()
-    Path(REL_PATH_SHUTTLE).mkdir(parents=True, exist_ok=True) # it creates the shuttle folder if it does not exist
-    if os.path.isfile(ALL_EXER_PER_STUD + exam_date + '.csv'): # it deletes the csv file with all exercises per student if already existing
-        Path(ALL_EXER_PER_STUD + exam_date + '.csv').unlink()
     PATH_SHUTTLE = os.getcwd() + '/' + REL_PATH_SHUTTLE
-    all_exer_list = [] # to save all exercises assigned to each student
-    with open(FILE_STUDENTS_LIST) as csv_file: # it reads the students list csv and generates an exam for each one of them
-        csv_reader = csv.reader(csv_file, delimiter=',')
-        line_count = 0
-        for row in csv_reader:
-            matricola = row[0]
-            anchor = row[2]
-            student_ID = row[4]
-            name = row[5]
-            surname = row[6]
-            print('\nGenerating the exam for ' + name + ' ' + surname + ' (' + matricola + ')...')
-            e_list = matricola + ',' + name + ',' + surname + ','
-            chosen_exer = g.gen_exam(exam_date, anchor, student_ID, matricola, name, surname, args.with_uncompressed_folder)
-            for e in chosen_exer:
-                e_list += str(e) + ','
-            e_list += '\n'
-            line_count += 1
-            all_exer_list += [e_list]
-        print(f'\nGenerated {line_count} exams.')
-    exer_file = open(ALL_EXER_PER_STUD + exam_date + '.csv','w+') # writing the csv file with all exercises per student
-    for line in all_exer_list:
-        exer_file.write(str(line))
-    exer_file.close()
+    if os.path.exists(PATH_SHUTTLE):
+        answer = None # if the exam has been already created for given student and date, ask if re-write it or not
+        while answer not in ("y", "n"):
+            answer = input("Do you want to generate again the shuttle folder? Enter 'y' or 'n': ")
+            if answer == "y": # it empties the folder PATH_SHUTTLE
+                for root, dirs, files in os.walk(PATH_SHUTTLE, topdown=False):
+                    for name in files:
+                        os.remove(os.path.join(root, name))
+                    for name in dirs:
+                        os.rmdir(os.path.join(root, name))
+                os.rmdir(PATH_SHUTTLE)
+                os.mkdir(PATH_SHUTTLE)
+                keep_going = 1
+            elif answer == "n":
+                keep_going = 0
+            else:
+                print("Please enter 'yes' or 'no'")
+    else:
+        os.mkdir(PATH_SHUTTLE)
+        keep_going = 1
+        
+    if keep_going:
+        if os.path.isfile(ALL_EXER_PER_STUD + exam_date + '.csv'): # it deletes the csv file with all exercises per student if already existing
+            Path(ALL_EXER_PER_STUD + exam_date + '.csv').unlink()
+        all_exer_list = [] # to save all exercises assigned to each student
+        with open(FILE_STUDENTS_LIST) as csv_file: # it reads the students list csv and generates an exam for each one of them
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            line_count = 0
+            for row in csv_reader:
+                matricola = row[0]
+                anchor = row[2]
+                student_ID = row[4]
+                name = row[5]
+                surname = row[6]
+                print('\nGenerating the exam for ' + name + ' ' + surname + ' (' + matricola + ')...')
+                e_list = matricola + ',' + name + ',' + surname + ','
+                chosen_exer = g.gen_exam(exam_date, anchor, student_ID, matricola, name, surname, args.with_uncompressed_folder)
+                for e in chosen_exer:
+                    e_list += str(e) + ','
+                e_list += '\n'
+                line_count += 1
+                all_exer_list += [e_list]
+            print(f'\nGenerated {line_count} exams.')
+        exer_file = open(ALL_EXER_PER_STUD + exam_date + '.csv','w+') # writing the csv file with all exercises per student
+        for line in all_exer_list:
+            exer_file.write(str(line))
+        exer_file.close()
     print("--- %s seconds ---" % (time.time() - start_time))
