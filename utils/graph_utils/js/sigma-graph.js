@@ -62,28 +62,22 @@ $s = new sigma({
         arrowSizeRatio: 5,
         sideMargin: 15,
         autoRescale: false,
-        rescaleIgnoreSize: true,
+        rescaleIgnoreSize: false,
         enableHovering: true,
-        autoResize: true,
+        autoResize: false,
         defaultEdgeLabelSize: 12,
         defaultLabelSize: 12,
-        labelThreshold: 2,
-        //edgeHoverPrecision:10,
+        labelThreshold: 1,
         edgeHoverSizeRatio: 1,
         edgeHoverExtremities: false,
-        edgeLabelSize: 'proportional',
+        edgeLabelSize: 'fixed',
         labelSizeRatio: 3,
-        defaultLabelSize: 17
+        defaultLabelSize: 17,
     }
 });
-//window.alert($s.settings)
-$s.cameras[0].goTo({ x: $x, y: $y, angle:0, ratio: 0.8 });
-$s.cameras[0].bind('coordinatesUpdated', function(e) {
-   if ($s.cameras[0].x < $x) $s.cameras[0].x = $x;
-   if ($s.cameras[0].y < $y) $s.cameras[0].y = $y;
-   if ($s.cameras[0].x > $x) $s.cameras[0].x = $x;
-   if ($s.cameras[0].y > $y) $s.cameras[0].y = $y;
-});
+
+$s.cameras[0].goTo({ x: 1200,y: -100, angle:0, ratio: 0.9 });
+// Fully disable autoRescale
 //pezzi di arco
 var ef = $ef;
 var nf = $nf;
@@ -100,7 +94,7 @@ function sleep(milliseconds) {
 }
 
 if (not_editable[0] == "true") {
-    $s.settings('enableCamera', false)
+    
     $s.settings('enableHovering', false)
 }
 

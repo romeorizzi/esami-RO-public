@@ -109,6 +109,7 @@ def generate_nb(path_yaml):
     yaml_gen=OrderedDict()
     yaml_gen['name']=exer['name']
     yaml_gen['title']=exer['title']
+    yaml_gen['tags']=exer['tags']
     tasks_istanza_libera=[]
 
     # Heading and needed import

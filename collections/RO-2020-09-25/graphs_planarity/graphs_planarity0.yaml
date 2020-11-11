@@ -1,0 +1,18 @@
+---
+name: graphs_planarity
+title: Planarità di un grafo
+tags:
+- "grafi"
+- "buone caratterizzazioni"
+- "forbidden topological minors"
+- "embeddings"
+
+description1: Si consideri il grafo $G$ riportato nelle richieste sottostanti.
+tasks:
+- {
+    tot_points: 20,
+    ver_points: 0,
+    graphml: 'collections/graphml-2020-09-25/grafo_test_plan0_no_pesi.graphml',
+    description1: "Fornire un planar embedding di G"
+  }
+...
