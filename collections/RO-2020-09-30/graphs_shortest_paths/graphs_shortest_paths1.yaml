@@ -12,7 +12,7 @@ tasks:
 - {
     tot_points: 3,
     ver_points: 0,
-    graphml: 'collections/graphml-2020-09-30/grafo_plan2_pesi.graphml',
+    graphml: 'collections/RO-2020-09-30/graphml-2020-09-30/grafo_plan2_pesi.graphml',
     description1: "Calcolare e fornire la distanza del nodo $x$ dal nodo $s$"
   }
 - {
@@ -23,13 +23,13 @@ tasks:
 - {
     tot_points: 3,
     ver_points: 0,
-    graphml: 'collections/graphml-2020-09-30/grafo_plan2_pesi.graphml',
+    graphml: 'collections/RO-2020-09-30/graphml-2020-09-30/grafo_plan2_pesi.graphml',
     description1: "Fornire un cammino minimo da $s$ a $x$"
   }
 - {
     tot_points: 7,
     ver_points: 0,
-    graphml: 'collections/graphml-2020-09-30/grafo_plan2_pesi.graphml',
+    graphml: 'collections/RO-2020-09-30/graphml-2020-09-30/grafo_plan2_pesi.graphml',
     description1: "Fornire un albero dei cammini minimi dal nodo $s$ a tutti gli altri nodi del grafo"
   }
 - {

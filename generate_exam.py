@@ -82,7 +82,7 @@ def add_exercises(exam_date, path_exercises, ex_list):
     info_exer_map (list of str): for each exercise, its proper title to insert in the map"""
     global absolute_path_student
     info_exer_map = []
-    type_list = [x for x in sorted(os.listdir(path_exercises)) if '.DS_Store' not in x]
+    type_list = [x for x in sorted(os.listdir(path_exercises)) if '.DS_Store' not in x and 'graphml-'+exam_date not in x]
     for i in range(len(type_list)):
         path_type = path_exercises + '/' + type_list[i]
         print(path_type)

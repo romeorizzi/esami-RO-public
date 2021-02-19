@@ -31,7 +31,7 @@ def add_all_exercises(exam_date, path_all, path_collection):
     exam_date (str): YYYY-MM-DD
     path_all (str): path where to save all the generated exercises
     path_collection (str): path where to find all .yaml instances"""
-    type_list = [x for x in sorted(os.listdir(path_collection)) if '.DS_Store' not in x]
+    type_list = [x for x in sorted(os.listdir(path_collection)) if '.DS_Store' not in x and 'graphml-'+exam_date not in x]
     print(type_list)
     for i in range(len(type_list)):
         print('Type: ' + type_list[i])

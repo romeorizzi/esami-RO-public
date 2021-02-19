@@ -273,7 +273,7 @@ def create_exercise(exam_date, num, path_ex_folder, path_yaml):
     path_yaml (str): the path to the yaml instance to read"""
     global images_to_add
     global REL_PATH_IMAGES
-    REL_PATH_IMAGES = 'img_' + exam_date
+    REL_PATH_IMAGES = 'collections/RO-' + exam_date + '/img-' + exam_date
     images_to_add = []
     exer = read_exercise_yaml(path_yaml) # reading the given yaml
     if exer['name'] in ('graphs_flows_and_cuts', 'graphs_min_spanning_trees', 'graphs_shortest_paths', 'graphs_planarity'):
@@ -329,7 +329,7 @@ def create_exercise_given_yaml(exam_date, num, path_ex_folder, exer):
     path_yaml (str): the path to the yaml instance to read"""
     global images_to_add
     global REL_PATH_IMAGES
-    REL_PATH_IMAGES = 'img_' + exam_date
+    REL_PATH_IMAGES = 'collections/RO-' + exam_date + '/img-' + exam_date
     images_to_add = []
     if exer['name'] in ('graphs_flows_and_cuts', 'graphs_min_spanning_trees', 'graphs_shortest_paths', 'graphs_planarity'):
         mode_subpath = '/modo_applet/'

@@ -12,7 +12,7 @@ tasks:
 - {
     tot_points: 20,
     ver_points: 0,
-    graphml: 'collections/graphml-2020-09-25/grafo_test_plan0_no_pesi.graphml',
+    graphml: 'collections/RO-2020-09-25/graphml-2020-09-25/grafo_test_plan0_no_pesi.graphml',
     description1: "Fornire un planar embedding di G"
   }
 ...

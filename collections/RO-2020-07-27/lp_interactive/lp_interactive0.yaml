@@ -1,0 +1,43 @@
+---
+name: lp_interactive
+title: Programmazione lineare - Metodo del Simplesso e Dualità
+tags:
+- "programmazione lineare"
+- "utilizzo di software e solvers"
+- "competenze trasversali e saper fare"
+- "comprensione ed autonomia"
+
+description1: Si consideri il seguente problema di Programmazione Lineare:<br>max $2x_1 + x_2 + 3x_3$<br>tale che:<br>$x_1 + x_2 + x_3 \le 2$<br>$x_1 + 2x_2 + 3x_3 \le 5$<br>$2x_1 + 2x_2 + 3x_3 \le 7$<br>$x_1, x_2, x_3 \ge 0$
+
+tasks:
+- {
+    tot_points: 5,
+    ver_points: 0,
+    description1: "Sfruttando la libreria del simplesso interattivo, creare il primo tableau"
+  }
+- {
+    tot_points: 5,
+    ver_points: 0,
+    description1: "Scrivere il vettore dei coefficienti di costo ridotto dopo la prima iterazione"
+  }
+- {
+    tot_points: 10,
+    ver_points: 0,
+    description1: "Risolvere il problema sfruttando la libreria del simplesso interattivo, indicando la soluzione primale estesa ottima e il valore della funzione obiettivo"
+  }
+- {
+    tot_points: 5,
+    ver_points: 0,
+    description1: "Prendendo a riferimento la soluzione di base data dall'origine, fare la prova del 9 del tableau ottimo"
+  }
+- {
+    tot_points: 5,
+    ver_points: 0,
+    description1: "Formulare il problema duale"
+  }
+- {
+    tot_points: 10,
+    ver_points: 0,
+    description1: "Risolvere il problema duale utilizzando le condizioni di complementary slackness, indicando la soluzione duale estesa ottima e il valore della funzione obiettivo"
+  }
+...

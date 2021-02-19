@@ -1,0 +1,130 @@
+---
+name: dp_robot
+title: Cammini del robot Bimo in un campo minato
+description1: Conteggio di cammini in una griglia rettangolare con celle proibite.
+
+description2: "Il robot Bimo, inizialmente situato nella cella A1, deve portarsi nella sua home H situata nella cella G9.
+
+<table>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>1</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>2</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>3</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>4</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>5</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>6</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>7</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>8</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>9</b></td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>A</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>R</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><X></td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>B</td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\">X</td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\">X</td>
+        <td style=\"text-align: center; vertical-align: middle;\">X</td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>C</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\">X</td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>D</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\">X</td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\">X</td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>E</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\">X</td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>F</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\">X</td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\">X</td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>G</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\">X</td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>H</b></td>
+    </tr>
+</table>
+
+I movimenti base possibili sono il passo verso destra (ad esempio dalla cella A4 alla cella A5) ed il passo verso in basso (ad esempio dalla cella A4 alla cella B4). Tuttavia il robot non può visitare le celle occupate da un Pacman (indicate con la X)."
+
+tasks:
+- {
+    tot_points: 10,
+    ver_points: 10,
+    description1: "Quanti sono i percorsi possibili se la partenza è in A1?"
+  }
+- {
+    tot_points: 10,
+    ver_points: 10,
+    description1: "E se la partenza è in C3?"
+  }
+- {
+    tot_points: 10,
+    ver_points: 10,
+    description1: "E se con partenza in A1 il robot deve giungere in F6?"
+  }
+- {
+    tot_points: 10,
+    ver_points: 10,
+    description1: "E se con partenza in A1 e arrivo in G9 al robot viene richiesto di passare per la cella D5?"
+  }
+...

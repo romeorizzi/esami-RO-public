@@ -1,0 +1,42 @@
+---
+name: lp_interactive
+title: Programmazione lineare - Metodo del Simplesso e Dualità
+description1: Si consideri il seguente problema di Programmazione Lineare:<br>max $-2x_1 + x_2 -3x_3$<br>tale che:<br>$x_1 + 2x_2 - x_3 \le 2$<br>$2x_1 + x_2 - x_3 \le 3$<br>$x_1, x_2 \ge 0$<br>$x_3 \le 0$
+
+tasks:
+- {
+    tot_points: 10,
+    ver_points: 0,
+    description1: "Sfruttando la libreria del simplesso interattivo, creare il primo tableau"
+  }
+- {
+    tot_points: 10,
+    ver_points: 0,
+    description1: "Scrivere il vettore dei coefficienti di costo ridotto dopo la prima iterazione"
+  }
+- {
+    tot_points: 30,
+    ver_points: 0,
+    description1: "Risolvere il problema sfruttando la libreria del simplesso interattivo, indicando la soluzione primale estesa ottima e il valore della funzione obiettivo"
+  }
+- {
+    tot_points: 10,
+    ver_points: 0,
+    description1: "Prendendo a riferimento la soluzione di base data dall'origine, fare la prova del 9 del tableau ottimo"
+  }
+- {
+    tot_points: 10,
+    ver_points: 0,
+    description1: "Formulare il problema duale"
+  }
+- {
+    tot_points: 10,
+    ver_points: 0,
+    description1: "Risolvere il problema duale utilizzando le condizioni di complementary slackness, indicando la soluzione duale estesa ottima e il valore della funzione obiettivo"
+  }
+- {
+    tot_points: 20,
+    ver_points: 0,
+    description1: "Alla luce della teoria, motivare la risposta data al punto precedente e i valori delle soluzioni ottenute"
+  }
+...

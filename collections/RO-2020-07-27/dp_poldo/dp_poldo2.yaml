@@ -1,0 +1,28 @@
+name: dp_poldo
+title: Sottosequenze crescenti e decrescenti
+tags:
+- "programmazione dinamica"
+- "sottoproblemi e ricorrenze"
+- "algoritmi classici su sequenze"
+
+description1: Si consideri la seguente sequenza di numeri naturali:<br>\[72, 44, 47,
+  85, 63, 37, 54, 16, 50, 36, 29, 86, 14, 56, 48, 14, 55, 40, 10, 48, 13, 61, 11,
+  78, 29\]
+tasks:
+- tot_points: 5
+  ver_points: 5
+  description1: Trovare una sottosequenza strettamente crescente che sia la piu' lunga possibile
+- tot_points: 10
+  ver_points: 10
+  description1: Trovare quante sono le sottosequenze strettamente crescenti di lunghezza massima
+- tot_points: 10
+  ver_points: 10
+  description1: Una sequenza e' detta una _Z-sequenza_ , o sequenza strettamente crescente con
+    un possibile ripensamento, se esiste un indice _i_ tale che ciascuno degli elementi
+    della sequenza esclusi al piu' il primo e l'_i_-esimo sono strettamente maggiori
+    dell'elemento che immediatamente li precede nella sequenza. Trovare la piu' lunga
+    Z-sequenza che sia una sottosequenza della sequenza data
+- tot_points: 5
+  ver_points: 5
+  description1: Trovare la piu' lunga sottosequenza strettamente crescente che includa l'elemento
+    di valore 55

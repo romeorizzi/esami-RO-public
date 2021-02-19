@@ -1,0 +1,36 @@
+---
+name: lp_two_phases
+title: Programmazione lineare - Metodo delle due fasi
+description1: Si consideri il seguente problema di Programmazione Lineare:<br>max $4x_1 + 3x_2 + 4x_3$<br>tale che:<br>$3x_1 + 2x_2 + 3x_3 \le 3$<br>$3x_1 - 2x_2 - 2x3 \le -2$<br>$x_1 + x_2 + x_3 \le 2$<br>$x_1, x_2, x_3 \ge 0$
+tasks:
+- {
+    tot_points: 10,
+    ver_points: 0,
+    description1: "Impostare il problema ausiliario"
+  }
+- {
+    tot_points: 30,
+    ver_points: 0,
+    description1: "Risolvere il problema ausiliario all'ottimo"
+  }
+- {
+    tot_points: 10,
+    ver_points: 0,
+    description1: "Dalla soluzione ottima del problema ausiliario, ricavare un tableau che esprima una soluzione di base ammissibile per il problema originario"
+  }
+- {
+    tot_points: 30,
+    ver_points: 0,
+    description1: "Risolvere il problema originario all'ottimo"
+  }
+- {
+    tot_points: 10,
+    ver_points: 0,
+    description1: "Quanto si sarebbe disposti a pagare per ogni unità di incremento per l'availability nei tre vincoli per piccole variazioni?"
+  }
+- {
+    tot_points: 20,
+    ver_points: 0,
+    description1: "Fino a dove si sarebbe disposti a pagare tali prezzi ombra?"
+  }
+...
