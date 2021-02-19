@@ -22,32 +22,3 @@ Altri trovano dei meccanismi di generazione automatica diretti, per altri gli es
 Il processo di generazione verrà ad essere maggiormente integrato ed affinato appello dopo appello. Attualmente, per alcuni problemi, Alice ha disposto nella cartella script_instances/  alcuni script di generazione del problema inclusa l'istanza di riferimento. Questi script nella cartella script_instances/ sono attualmente rivolti alla generazione di un file yaml spendibile per la sola modalità di sottomissione libera strutturata.
 Ora Alessandro aggiungerà dei problemi dove viene ad essere generata la modalità entro foglio jupyter elementare ma con validatori a supporto.
 Ed andrà ricercato come meglio mettere gli elementi a fattore comune per ottenere la generazione di entrambe le modalità a partire dagli stessi sorgenti (non ancora chiaro se meglio partire da istanza, o qualcosa di più, o qualcosa di meno).
-
-
-
-# COME CREARE UN NUOVO TEMA D'ESAME DI RICERCA OPERATIVA PER L'APPELLO DEL YYYY-MM-DD
-
-## Cartelle necessarie
-1. __collection\_YYYY-MM-DD__: contenitore delle istanze possibili; contiene _n_ sottocartelle, una per ogni tipologia di esercizio che sarà inserita nel tema esame; ogni sottocartella deve contenere almeno un'istanza in formato .yaml; _n_ è anche il valore del parametro NB\_EXERCISES nello script _generate\_exam.py_;
-2. __students\_list\_YYYY-MM-DD__: contiene dei file .csv con la lista degli studenti iscritti all'appello e le loro chiavi;
-3. __img\_YYYY-MM-DD__: contiene le immagini necessarie ad alcune istanze di esercizi nella cartella _collection\_YYYY-MM-DD_;
-4. __utils__: indispensabile per ogni generazione, non dipende dalla data dell'esame.
-
-## Descrizione degli scripts:
-- __generate\_all\_exams\_given\_list.py__: a partire dalla lista di studenti iscritti all'appello in data YYYY-MM-DD, riempie la cartella _shuttle_ con i temi d'esame corrispondenti, invocando per ogni studente lo script _generate\_exam.py_;
-- __generate\_exam.py__: a partire dalla data d'esame e dalle informazioni anagrafiche di uno studente, genera la sua cartella contenente il tema d'esame compresso in due formati (.zip e .tgz); invoca _n_ volte gli script per generare gli esercizi come fogli Jupyter (2020-07-06: al momento chiama solo _create\_exercise\_free.py_ per aggiungere la modalità di sottomissione libera e strutturata);
-- __create\_exercise\_free.py__: a partire dalle informazioni di un dato studente e dall'istanza scelta di una certa tipologia di esercizio, genera il singolo esercizio in modalità libera e strutturata;
-- __create\_exercise\_verifier.py__: esercizi con verificatori (2020-07-06: non ancora implementato);
-- __create\_exercise\_applet.py__: esercizi con applet (2020-07-06: non ancora implementato);
-- __generate\_all\_instances\_given\_date.py__: script per generare, in un'unica cartella, tutti gli esercizi di una certa collezione relativa alla data passata come parametro.
-- ___map\_generator.py__: funzione per generare la mappa (utilizza  i template html contenuti in /template)
-
-## Per generare tutti i temi d'esame di una certa data:
-`python generate_all_exams_given_list.py YYYY-MM-DD path_to_students_list.csv`
-
-Check `python generate_all_exams_given_list.py -h` per informazioni più dettagliate sui parametri da passare (in tutti gli script è presente l'help).
-
-### Altre cartelle presenti:
-- __script\_instances__: contiene script per generare automaticamente nuove istanze (2020-07-06: al momento ci sono solo _dp\_poldo_ e _dp\_string_ (LCS)); ricevono come parametro la data dell'esame in formato YYYY-MM-DD, in modo da aggiungere i nuovi file alla cartella _collection\_YYYY-MM-DD_ corrispondente;
-- __other\_exercises__: istanze di esercizi da controllare e/o sistemare.
-- __map__: contiene i file necessari al funzionamento della mappa html che viene generata. Tali file verranno copiati in ogni esame.
