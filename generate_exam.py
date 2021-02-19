@@ -100,7 +100,7 @@ def add_exercises(exam_date, path_exercises, ex_list):
         else:
             path_ex = absolute_path_student + '/esercizio_0' + str(i+1)
         os.mkdir(path_ex)
-        if type_list[i] in ['dp_poldo', 'dp_lcs', 'dp_robot_no_gemme']: # mode_ver
+        if type_list[i] in ['dp_poldo', 'dp_lcs', 'dp_robot_no_gemme', 'dp_triangle', 'dp_knapsack']: # mode_ver
             info_exer_map += [mode_ver.create_exercise(exam_date, str(i+1), path_ex, type_list[i], path_full_yaml, path_almost_yaml)]
         else: # mode_free o mode_applet
             info_exer_map += [mode_free.create_exercise(exam_date, str(i+1), path_ex, path_full_yaml)] # it calls the script that actually creates the exercise folder and notebook

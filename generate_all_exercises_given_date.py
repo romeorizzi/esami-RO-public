@@ -49,7 +49,7 @@ def add_all_exercises(exam_date, path_all, path_collection):
                 path_ex = path_all + '/' + type_list[i] + '/istanza_0' + str(j+1)
             print(path_ex)
             os.mkdir(path_ex)
-            if type_list[i] in ['dp_poldo', 'dp_lcs', 'dp_robot_no_gemme']: # mode_ver
+            if type_list[i] in ['dp_poldo', 'dp_lcs', 'dp_robot_no_gemme', 'dp_triangle', 'dp_knapsack']: # mode_ver
                 mode_ver.create_exercise(exam_date, str(i+1), path_ex, type_list[i], path_full_yaml, path_almost_yaml)
             else: # mode_free o mode_applet
                 mode_free.create_exercise(exam_date, str(j+1), path_ex, path_full_yaml)
@@ -64,12 +64,16 @@ if __name__ == "__main__":
     epilog="""-------------------""")
     parser.add_argument('exam_date', type=str, default='2020-06-30', help='exam date in the format YYYY-MM-DD')
     args=parser.parse_args()
-
+    
+    eserciziario = False
     assert len(sys.argv) == 2
     exam_date = str(sys.argv[1])
+   
 
     global PATH_ALL_EXER
     PATH_ALL_EXER = os.getcwd() + '/' + ALL_EXER_PREFIX + exam_date + ALL_EXER_SUFFIX
+    PATH_COLLECTION = os.getcwd() + '/' + COLLECTION_FOLDER + "RO-" + exam_date
+    
     if os.path.exists(PATH_ALL_EXER):
         answer = None # if the exam has been already created for given student and date, ask if re-write it or not
         while answer not in ("y", "n"):
@@ -92,5 +96,4 @@ if __name__ == "__main__":
         keep_going = 1
 
     if keep_going:
-        PATH_COLLECTION = os.getcwd() + '/' + COLLECTION_FOLDER + "RO-" + exam_date
         add_all_exercises(exam_date, PATH_ALL_EXER, PATH_COLLECTION)

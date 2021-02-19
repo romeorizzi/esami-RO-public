@@ -241,11 +241,11 @@ def parser(path):
             "label": '',
             "x": hidden_nodes[key][0],
             "y": hidden_nodes[key][1],
-            "size": 1,
+            "size": size_node,
             "hidden": False,
             "color": default_color_edge,
             "enableHovering": False ,
-            "borderSize": 0,
+            #"borderSize": 0,
             "piece": True
         })
 

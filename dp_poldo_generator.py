@@ -45,7 +45,7 @@ def insert_import_mode_free(note):
     note (Jupyter nb.v4): the notebook"""
     txt_import = open(PATH_UTILS + 'import_mode_free.md', 'r', encoding='utf-8').read()
     note['cells'] += [nb.v4.new_code_cell(txt_import)]
-    note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags":['noexport']}
+    note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags":["noexport"]}
 
 def insert_heading(note, exer_title):
     """It inserts the header and the exercise title
@@ -56,39 +56,39 @@ def insert_heading(note, exer_title):
     note['cells'] += [nb.v4.new_markdown_cell(content_title)]
     note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": []}
     #note['cells'] += [nb.v4.new_markdown_cell('<b>NOTA</b>: qui sotto sono riportate alcune celle di codice con import necessari al funzionamento dei verificatori; ignorali pure. Clicca su "Avvio esercizio" e poi vai pure oltre la barra nera, per svolgere le richieste.')]
-    #note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": ['noexport']}
+    #note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": ["noexport"]}
 
 def insert_n_tasks(note, n_tasks):
     text_n_tasks = """\
     n_tasks = """ + str(n_tasks) + """;
     arr_point= [-1] * n_tasks;"""
     note['cells'] += [nb.v4.new_code_cell(text_n_tasks)]
-    note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "tags":['noexport']}
+    note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "tags":["noexport"]}
 
 # def insert_separator_bar(note):
 #     content = '<h1>_______________________________________________________________________________________ </h1>'
 #     note['cells'] += [nb.v4.new_markdown_cell(content)]
-#     note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": ['noexport']}
+#     note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": ["noexport"]}
 #     return
 
-# def insert_user_bar_lib(note):#, path_ex_folder):
-#     """It inserts the Python code to add the user bar needed to answer to each task
-#     Parameters:
-#     note (Jupyter nb.v4): the notebook
-#     path_ex_folder (str): the path of the current exercise where the mode has to be added"""
-#     user_bar_lib = open(PATH_UTILS + 'user_bar.py', 'r', encoding='utf-8').read()
-#     note['cells'] += [nb.v4.new_code_cell(user_bar_lib)]
-#     note.cells[-1].metadata = {"hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ['noexport']}
-#     return
+def insert_user_bar_lib(note):#, path_ex_folder):
+    """It inserts the Python code to add the user bar needed to answer to each task
+    Parameters:
+    note (Jupyter nb.v4): the notebook
+    path_ex_folder (str): the path of the current exercise where the mode has to be added"""
+    user_bar_lib = open(PATH_UTILS + 'user_bar.py', 'r', encoding='utf-8').read()
+    note['cells'] += [nb.v4.new_code_cell(user_bar_lib)]
+    note.cells[-1].metadata = {"hide_input": True, "trusted":True, "init_cell": True, "editable": False, "deletable": False, "tags": ['run_start',"noexport"]}
+    return
 
-# def insert_user_bar_cell(note):
-#     """It inserts the user bar as a code cell
-#     Parameters:
-#     note (Jupyter nb.v4): the notebook"""
-#     user_bar_call = open(PATH_UTILS + 'user_bar_call.md').read()
-#     note['cells'] += [nb.v4.new_code_cell(user_bar_call)]
-#     note.cells[-1].metadata = {"hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ['noexport']}
-#     return
+def insert_user_bar_cell(note):
+    """It inserts the user bar as a code cell
+    Parameters:
+    note (Jupyter nb.v4): the notebook"""
+    user_bar_call = open(PATH_UTILS + 'user_bar_call.md').read()
+    note['cells'] += [nb.v4.new_code_cell(user_bar_call)]
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ["noexport"]}
+    return
 
 def generate_nb(path_yaml):
     # Notebook creation
@@ -113,6 +113,7 @@ def generate_nb(path_yaml):
     tasks_istanza_libera=[]
 
     # Heading and needed import
+    insert_user_bar_lib(note)
     insert_heading(note, exer['title']) # heading with title
     insert_import_mode_free(note)
     insert_n_tasks(note, n_tasks)
@@ -126,7 +127,7 @@ def generate_nb(path_yaml):
           "V": "<b>una V-sequenza</b>, se cala fino ad un certo punto, e da lì in poi cresce sempre",
           "A": "<b>ad A</b> (prima sù e poi giù)</it>",
          "SV": "<b>a V stretto</b> <it>(prima strettamente giù e poi strettamente sù)</it>",
-         "SA": "<b>ad A stetto</b> <it>(prima strettamente sù e poi strettamente giù)</it>",
+         "SA": "<b>ad A stretta</b> <it>(prima strettamente sù e poi strettamente giù)</it>",
           "N": "<b>una N-sequenza</b> (non-decrescente con al più un ripensamento)</it>",
           "Z": "<b>una Z-sequenza</b> <it>(non-crescente con al più un ripensamento)</it>",
          "SN": "<b>una N-sequenza stretta</b> <it>(strettamente crescente con al più un ripensamento)</it>",
@@ -152,20 +153,22 @@ def generate_nb(path_yaml):
     def is_subseq(s, subs):
         found = 0
         pos_r = 0
-        while pos_r < len(s):
-            if s[pos_r] == subs[found]:
-                found += 1
-                if found >= len(subs):
-                    return True
-            pos_r += 1
+        if len(subs)==0:
+            return False
+        else:
+            while pos_r < len(s):
+                if s[pos_r] == subs[found]:
+                    found += 1
+                    if found >= len(subs):
+                        return True
+                pos_r += 1
         return False
 
     def evaluation_format(answ, pt_green,pt_red, index_pt):
         pt_blue=0
         if pt_green!=0:
-            if answ == "Si":
-                pt_blue=pt_red-pt_green
-                pt_red=0
+            pt_blue=pt_red-pt_green
+            pt_red=0
         arr_point[index_pt]=pt_green
         file = open("points.txt", "w")
         file.write(str(arr_point))
@@ -173,8 +176,8 @@ def generate_nb(path_yaml):
         return f"{answ}. Totalizzeresti <span style='color:green'>[{pt_green} safe pt]</span>, \
                                         <span style='color:blue'>[{pt_blue} possible pt]</span>, \
                                         <span style='color:red'>[{pt_red} out of reach pt]</span>.<br>"
-
-
+    
+    
     # Legend of the possible sequence types:
     dictionary_of_types = {
           "SC": ("implemented", "<b>strettamente crescente</b>"),
@@ -183,12 +186,12 @@ def generate_nb(path_yaml):
           "NC": ("implemented", "<b>non-crescente</it>"),
            "V": ("implemented", "<b>a V</b> <it>(prima giù e poi sù)</it>"),
            "A": ("implemented", "<b>ad A</b> (prima sù e poi giù)</it>"),
-          "SV": ("implemented", "<b>a V stretto</b> <it>(prima strettamente giù e poi strettamente sù)</it>"),
-          "SA": ("implemented", "<b>ad A stetto</b> <it>(prima strettamente sù e poi strettamente giù)</it>"),
+          "SV": ("implemented", "<b>a V stretta</b> <it>(prima strettamente giù e poi strettamente sù)</it>"),
+          "SA": ("implemented", "<b>ad A stretta</b> <it>(prima strettamente sù e poi strettamente giù)</it>"),
            "N": ("implemented", "<b>a N</b> (non-decrescente con al più un ripensamento)</it>"),
            "Z": ("implemented", "<b>a Z</b> <it>(non-crescente con al più un ripensamento)</it>"),
-          "SN": ("implemented", "<b>a N stetto</b> <it>(strettamente crescente con al più un ripensamento)</it>"),
-          "SZ": ("implemented", "<b>a Z stretto</b> <it>(strettamente decrescente con al più un ripensamento)</it>"),
+          "SN": ("implemented", "<b>a N stretta</b> <it>(strettamente crescente con al più un ripensamento)</it>"),
+          "SZ": ("implemented", "<b>a Z stretta</b> <it>(strettamente decrescente con al più un ripensamento)</it>"),
       "ZigZag": ("implemented", "<b>a Zig-Zag</b> <it>(primo passo a crescere e poi alterna ad ogni passo)</it>"),
       "ZagZig": ("implemented", "<b>a Zag-Zig</b> <it>(primo passo a calare e poi alterna ad ogni passo)</it>"),
     "ZigZagEQ": ("implemented", "<b>a Zig-Zag debole</b> <it>(primo passo a crescere e poi alterna ad ogni passo, con valori consecutivi che possono essere uguali)</it>"),
@@ -196,11 +199,11 @@ def generate_nb(path_yaml):
     "132-free": ("not yet done", "<b>dal mondo delle permutazioni pattern free per un infinità di problemi in FPT</b>"),
          "...": ("not thought of yet", "<b>???</b>")
     }
-
+    
     def Latex_type(seq_type):
         return dictionary_of_types[seq_type][1].replace("_", "\_")
-
-
+    
+    
     def is_seq_of_type(s, name_s, seq_type):
         first_down = first_up = first_flat = None
         for i in range(1,len(s)):
@@ -214,7 +217,7 @@ def generate_nb(path_yaml):
                 elif seq_type=="N":
                     return (0,f"La sequenza ${LaTexVarName(name_s)}$ non è di tipo {Latex_type(seq_type)} poichè ${LaTexVarName(name_s)}[${first_down}$] = {s[first_down-1]} $>$ {s[first_down]} $= {LaTexVarName(name_s)}[${first_down+1}$]$ e ${LaTexVarName(name_s)}[${i}$] =$ {s[i-1]} $>$ {s[i]} $= {LaTexVarName(name_s)}[${i+1}$]$.")
                 if seq_type=="SN" and first_flat != None:
-                    return (0,f"La sequenza ${LaTexVarName(name_s)}$ non è di tipo {Latex_type(seq_type)} poichè ${LaTexVarName(name_s)}[${first_flat}$] = {s[first_flat-1]} $=$ {s[first_flat]} $= {LaTexVarName(name_s)}[${first_flat+1}$]$ e ${LaTexVarName(name_s)}[${i}$] =$ {s[i-1]} $>$ {s[i]} $= {LaTexVarName(name_s)}[${i+1}$]$.")
+                    return (0,f"La sequenza ${LaTexVarName(name_s)}$ non è di tipo {Latex_type(seq_type)} poichè ${LaTexVarName(name_s)}[${first_flat}$] = {s[first_flat-1]} $=$ {s[first_flat]} $= {LaTexVarName(name_s)}[${first_flat+1}$]$ e ${LaTexVarName(name_s)}[${i}$] =$ {s[i-1]} $>$ {s[i]} $= {LaTexVarName(name_s)}[${i+1}$]$.")                
             if s[i] > s[i-1]:
                 if seq_type=="A" and first_down != None:
                     return (0,f"La sequenza ${LaTexVarName(name_s)}$ non è di tipo {Latex_type('A')} poichè ${LaTexVarName(name_s)}[${i-1}$] =$ {s[i-2]} $>$ {s[i-1]} $= {LaTexVarName(name_s)}[${i}$] < {LaTexVarName(name_s)}[${i+1}$] =$ {s[i]}.")
@@ -238,17 +241,15 @@ def generate_nb(path_yaml):
                 if seq_type=="SZ" and first_up != None:
                     return (0,f"La sequenza ${LaTexVarName(name_s)}$ non è di tipo {Latex_type(seq_type)} poichè ${LaTexVarName(name_s)}[${first_up}$] =$ {s[first_up-1]} $<$ {s[first_up]} $= {LaTexVarName(name_s)}[${first_up+1}$]$ e ${LaTexVarName(name_s)}[${i}$] =$ {s[i-1]} $=$ {s[i]} $= {LaTexVarName(name_s)}[${i+1}$]$.")
         return (1,None)
-
+    
     def LaTexVarName(var_name):
         return var_name.replace("_", "\_")
-
-
+    
+    
     def is_subseq_of_type(s, name_s, subs, name_subs, subs_type, pt_green, pt_red, index_pt, forced_ele_pos = None, start_banned_interval = None, end_banned_interval = None):
         submission_string = f"Hai inserito il certificato ${LaTexVarName(name_subs)}={subs}$."
         submission_string += f"<br>L'istanza era data da ${LaTexVarName(name_s)}={s}$.<br>"
-
-        if len(subs) == 0:
-            return submission_string + f"{evaluation_format('No', 0,pt_red, index_pt)}" + f"La sequenza ${LaTexVarName(name_subs)}$ proposta è vuota."
+    
         if not is_seq_of_type(subs, "subs", subs_type)[0]:
             return submission_string + evaluation_format("No", 0,pt_red, index_pt) + is_seq_of_type(subs, "subs", subs_type)[1]
         if start_banned_interval != None or end_banned_interval != None:
@@ -256,7 +257,7 @@ def generate_nb(path_yaml):
             if forced_ele_pos != None:
                 assert forced_ele_pos < start_banned_interval or forced_ele_pos > end_banned_interval
                 if forced_ele_pos > end_banned_interval:
-                    forced_ele_pos -= end_banned_interval
+                    forced_ele_pos -= end_banned_interval 
             aux = s[:start_banned_interval-1] +s[end_banned_interval:]
         if not is_subseq(s, subs):
             return submission_string + f"{evaluation_format('No', 0,pt_red,index_pt)}" + f"La sequenza ${LaTexVarName(name_subs)}$ proposta non è sottosequenza di ${LaTexVarName(name_s)}$."
@@ -269,23 +270,28 @@ def generate_nb(path_yaml):
                         found_magic_point = True#False
             if not found_magic_point:
                 return submission_string + f"{evaluation_format('No', 0,pt_red,index_pt)}" + f"La sequenza ${LaTexVarName(name_subs)}$ proposta non è sottosequenza di ${LaTexVarName(name_s)}$ che ne includa l'elemento in posizione ${forced_ele_pos}$."
-
-        return submission_string + f"{evaluation_format('Si', pt_green,pt_red, index_pt)}"
-
+    
+        return submission_string + f"{evaluation_format('Ammissibile', pt_green,pt_red, index_pt)}"
+    
     def eval_coloring(s, name_s, col, name_col, subs_type, pt_green, pt_red, index_pt):
         submission_string = f"Hai inserito il certificato ${LaTexVarName(name_col)}={col}$."
         submission_string += f"<br>L'istanza era data da ${LaTexVarName(name_s)}={s}$.<br>"
-
-        for c in col:
-            subs = [s[i] for i in range(len(s)) if col[i] == c]
-            if not is_seq_of_type(subs, "subs", subs_type)[0]:
-                return submission_string + f"{evaluation_format('No', 0,pt_red,index_pt)}" + f"Checking the subsequence of the elements colored with {c} within ${LaTexVarName(name_s)}$, that is {subs} ... " + is_seq_of_type(subs, "subs", subs_type)[1]
-        return submission_string + f"{evaluation_format('Si', pt_green ,pt_red, index_pt)}"
-
+        if len(col)!=len(s):
+            if len(col)>len(s):
+                return f"{evaluation_format('No', 0,pt_red,index_pt)}"+f"La sequenza da te data è più lunga dell'istanza di {len(col)-len(s)}, deve essere lunga come quella di input."
+            if len(col)<len(s):
+                return f"{evaluation_format('No', 0,pt_red,index_pt)}"+f"La sequenza da te data deve essere lunga come quella di input: mancano {len(s)-len(col)} elementi."
+        else:
+            for c in col:
+                subs = [s[i] for i in range(len(s)) if col[i] == c]
+                if not is_seq_of_type(subs, "subs", subs_type)[0]:
+                    return submission_string + f"{evaluation_format('No', 0,pt_red,index_pt)}" + f"Controllando la sottosequenza degli elementi colorati con il colore: {c} in ${LaTexVarName(name_s)}$, cioè: {subs} ... " + is_seq_of_type(subs, "subs", subs_type)[1]        
+        return submission_string + f"{evaluation_format('Ammissibile', pt_green ,pt_red, index_pt)}"
+    
     def min_subs_of_type(s, name_s, subs, name_subs, subs_type, pt_green, pt_red, index_pt):
         submission_string = f"Hai inserito il certificato ${LaTexVarName(name_subs)}={subs}$."
         submission_string += f"<br>L'istanza era data da ${LaTexVarName(name_s)}={s}$.<br>"
-
+    
         check={}
         for n in s:
             if n not in check.keys():
@@ -302,8 +308,7 @@ def generate_nb(path_yaml):
         for elem in subs:
             if not is_seq_of_type(elem, "subs", subs_type)[0]:
                 return submission_string + f"{evaluation_format('No', 0,pt_red,index_pt)}" + f"Attenzione la sottosequenza ${elem}$ non è del tipo richiesto."
-
-        return submission_string + f"{evaluation_format('Si', pt_green,pt_red,index_pt)}"
+        return submission_string + f"{evaluation_format('Ammissibile', pt_green,pt_red,index_pt)}"
     """
     cell_metadata={"init_cell": True, "hide_input": True, "editable": False,  "deletable": False, "tags": ["noexport"], "trusted": True}
     add_cell(note, cell_type,cell_string,cell_metadata)
@@ -317,25 +322,29 @@ def generate_nb(path_yaml):
 
     # Requests
     for i in range (0,len(tasks)):
-        if tasks[i]['request']=="R1":
-            request=f"__Richiesta {num_of_question} [{tasks[i]['tot_points']} punti]__: Trovare una sottosequenza $subs{num_of_question}$ {dictionary_of_types[tasks[i]['type']]} di $s$ che sia la più lunga possibile."
-            request_lib = f"Trovare una sottosequenza " + str(dictionary_of_types[tasks[i]['type']]) + " di s che sia la più lunga possibile"
+        if tasks[i]['request'] =="R0":
+            request=f"__Richiesta {i} [{tasks[i]['tot_points']} punti]__: Descrivere la sottostruttura ottima del problema."
+            request_lib = f"Descrivere la sottostruttura ottima del problema."
+            verif=f""
+        elif tasks[i]['request']=="R1":
+            request=f"__Richiesta {i} [{tasks[i]['tot_points']} punti]__: Fornire una sottosequenza $subs{num_of_question}$ {dictionary_of_types[tasks[i]['type']]} di $s$ che sia la più lunga possibile."
+            request_lib = f"Fornire una sottosequenza " + str(dictionary_of_types[tasks[i]['type']]) + " di s che sia la più lunga possibile"
             verif=f"display(Markdown(is_subseq_of_type(s, 's', subs{num_of_question}, 'subs{num_of_question}', '{tasks[i]['type']}', pt_green=1, pt_red={tasks[i]['tot_points']},index_pt={num_of_question - 1})))"
         elif tasks[i]['request'] =="R2":
-            request=f"__Richiesta {num_of_question} [{tasks[i]['tot_points']} punti]__: Trovare una sottosequenza $subs{num_of_question}$  {dictionary_of_types[tasks[i]['type']]} di $s$ che sia la più lunga possibile che escluda gli elementi dalla posizione {tasks[i]['start_banned_interval']} alla posizione {tasks[i]['end_banned_interval']}."
-            request_lib = f"Trovare una sottosequenza " + str(dictionary_of_types[tasks[i]['type']]) + " di s che sia la più lunga possibile che escluda gli elementi dalla posizione " + str(tasks[i]['start_banned_interval']) + " alla posizione " + str(tasks[i]['end_banned_interval'])
+            request=f"__Richiesta {i} [{tasks[i]['tot_points']} punti]__: Fornire una sottosequenza $subs{num_of_question}$ di $s$, la più lunga possibile, che sia {dictionary_of_types[tasks[i]['type']]} e non includa gli elementi di $s$ dalla posizione {tasks[i]['start_banned_interval']} alla posizione {tasks[i]['end_banned_interval']}."
+            request_lib = f"Fornire una sottosequenza di s, la più lunga possibile, che sia " + str(dictionary_of_types[tasks[i]['type']]) + " di s, e che non includa gli elementi di s dalla posizione " + str(tasks[i]['start_banned_interval']) + " alla posizione " + str(tasks[i]['end_banned_interval'])
             verif= f"display(Markdown(is_subseq_of_type(s, 's', subs{num_of_question}, 'subs{num_of_question}', '{tasks[i]['type']}', pt_green=1, pt_red={tasks[i]['tot_points']},index_pt={num_of_question - 1}, start_banned_interval={tasks[i]['start_banned_interval']}, end_banned_interval={tasks[i]['end_banned_interval']})))"
         elif tasks[i]['request'] == "R3":
-            request=f"__Richiesta {num_of_question} [{tasks[i]['tot_points']} punti]__: Trovare la più lunga sottosequenza {dictionary_of_types[tasks[i]['type']]} che includa l'elemento in posizione {tasks[i]['forced_ele_pos']}"
-            request_lib = f"Trovare la più lunga sottosequenza " + str(dictionary_of_types[tasks[i]['type']]) + " che includa l'elemento in posizione " + str(tasks[i]['forced_ele_pos'])
+            request=f"__Richiesta {i} [{tasks[i]['tot_points']} punti]__: Fornire una sottosequenza $subs{num_of_question}$ di $s$, la più lunga possibile, che sia {dictionary_of_types[tasks[i]['type']]} e che includa l'elemento di $s$ in posizione {tasks[i]['forced_ele_pos']}"
+            request_lib = f"Fornire una sottosequenza di s, la più lunga possibile, che sia " + str(dictionary_of_types[tasks[i]['type']]) + " e includa l'elemento di s in posizione " + str(tasks[i]['forced_ele_pos'])
             verif=f"display(Markdown(is_subseq_of_type(s, 's', subs{num_of_question}, 'subs{num_of_question}', '{tasks[i]['type']}', pt_green=1, pt_red={tasks[i]['tot_points']},index_pt={num_of_question - 1}, forced_ele_pos={tasks[i]['forced_ele_pos']})))"
         elif tasks[i]['request'] =="R4":
-            request=f"__Richiesta {num_of_question} [{tasks[i]['tot_points']} punti]__: Una sequenza è detta {dictionary_of_types[tasks[i]['type']]}. Trovare la più lunga sequenza di questo tipo che sia una sottosequenza della sequenza data."
-            request_lib=f"Una sequenza è detta " + str(dictionary_of_types[tasks[i]['type']]) + ". Trovare la più lunga sequenza di questo tipo che sia una sottosequenza della sequenza data"
+            request=f"__Richiesta {i} [{tasks[i]['tot_points']} punti]__: Una sequenza è detta {dictionary_of_types[tasks[i]['type']]}. Fornire una sottosequenza $subs{num_of_question}$ di $s$, la più lunga possibile, che sia di questo tipo."
+            request_lib=f"Una sequenza è detta " + str(dictionary_of_types[tasks[i]['type']]) + ". Fornire una sottosequenza di s, la più lunga possibile, che sia di questo tipo."
             verif=f"display(Markdown(is_subseq_of_type(s, 's', subs{num_of_question}, 'subs{num_of_question}', '{tasks[i]['type']}', pt_green=1, pt_red={tasks[i]['tot_points']},index_pt={num_of_question - 1})))"
         elif tasks[i]['request'] =="R5":
-            request=f"__Richiesta {num_of_question} [{tasks[i]['tot_points']} punti]__: Qual è il minor numero possibile di colori _C_ per colorare gli elementi della sequenza in input in modo che, per ogni colore, la sottosequenza degli elementi di quel colore sia monotona {dictionary_of_types[tasks[i]['type']]}? Specificare per ogni elemento il colore (come colori, usare i numeri da 1 a _C_)"
-            request_lib = f"Qual è il minor numero possibile di colori C per colorare gli elementi della sequenza in input in modo che, per ogni colore, la sottosequenza degli elementi di quel colore sia monotona " + str(dictionary_of_types[tasks[i]['type']]) + "? Specificare per ogni elemento il colore (come colori, usare i numeri da 1 a C)"
+            request=f"__Richiesta {i} [{tasks[i]['tot_points']} punti]__: Qual è il minor numero possibile di colori _C_ con cui si possa colorare gli elementi della sequenza $s$ in modo che, per ogni colore, la sottosequenza degli elementi di quel colore sia monotona {dictionary_of_types[tasks[i]['type']]}? Specificare il colore da assegnare a ogni elemento, usando come colori i numeri da 1 a _C_ (esempio: [1,2,3,4,2,1,3,1,1,...])"
+            request_lib = f"Qual è il minor numero possibile di colori C con cui si possa colorare gli elementi della sequenza s in modo che, per ogni colore, la sottosequenza degli elementi di quel colore sia monotona " + str(dictionary_of_types[tasks[i]['type']]) + "? Specificare il colore da assegnare a ogni elemento il colore, usando i numeri da 1 a C (esempio: [1,2,3,4,2,1,3,1,1,...])."
             verif=f"display(Markdown(eval_coloring(s, 's', subs{num_of_question}, 'subs{num_of_question}', '{tasks[i]['type']}', pt_green=2, pt_red={tasks[i]['tot_points']},index_pt={num_of_question - 1})))"
 
         # aggiungere altre possibili richieste e relativi verificatori
@@ -349,18 +358,22 @@ def generate_nb(path_yaml):
         add_cell(note, cell_type,cell_string,cell_metadata)
         tasks_istanza_libera+=[{'tot_points' : tasks[i]['tot_points'],'ver_points': tasks[i]['ver_points'], 'description1':request_lib.replace("<b>","").replace("</b>","")}]
 
-        # Single request answer
-        cell_type='Code'
-        cell_string=f'#Inserisci la risposta\nsubs{num_of_question}=[]'
-        cell_metadata={"init_cell": True, "trusted": True, "deletable": False}
-        add_cell(note,cell_type,cell_string,cell_metadata)
+        # Single request answer (except for R0)
+        if tasks[i]['request'] != "R0":
+            cell_type='Code'
+            cell_string=f'#Inserisci la risposta (per esempio, [1,2,3])\nsubs{num_of_question}=[]'
+            cell_metadata={"init_cell": True, "trusted": True, "deletable": False}
+            add_cell(note,cell_type,cell_string,cell_metadata)
 
-        # Single request verifier
-        cell_type='Code'
-        cell_string=verif
-        cell_metadata={"init_cell": True, "hide_input": True, "editable": False,  "deletable": False, "trusted": True}
-        add_cell(note,cell_type,cell_string,cell_metadata)
-        num_of_question += 1
+            # Single request verifier
+            cell_type='Code'
+            cell_string=verif
+            cell_metadata={"init_cell": True, "hide_input": True, "editable": False,  "deletable": False, "trusted": True}
+            add_cell(note,cell_type,cell_string,cell_metadata)
+            num_of_question += 1
+        
+        # Single request user bar cell
+        #insert_user_bar_cell(note)
 
     yaml_gen['tasks']=tasks_istanza_libera
     return note, yaml_gen

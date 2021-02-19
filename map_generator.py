@@ -1,7 +1,7 @@
 
 # -*- coding: utf-8 -*-
 """
-@authors: Adriano Tumminelli
+@authors: Adriano Tumminelli 
 """
 
 import html
@@ -47,14 +47,34 @@ def generate(exam_date, data):
                 ex_task_description = html.escape(task["description1"])
             ) + "\n"
             task_idx += 1
-
+        
+        #aggiunta delle varie modalità per ogni esercizio
+        modes_html = ""
+        i=0
+        for mode in exercise["mode"]:
+            if i == 0:
+                modes_html += '<option value="'+str(i)+' selected">'+mode+'</option>\n'
+            else:
+                modes_html += '<option value="'+str(i)+'">'+mode+'</option>\n'
+            i+=1
+        
+        #aggiunta di un campo nascosto per salvare i link delle pagine relative alle modalità
+        links_html = ""
+        i=0
+        #prova=""
+        for link in exercise["link"]:
+            links_html += '<input type="hidden" name='+str(i)+' value='+link+' />\n'
+            i+=1
+            #prova=link
+        
         outHTML += exercise_template.format(
             ex_title = html.escape(exercise["title"]),
             ex_tags = ex_tags,
             ex_tot_points = total_points_calculated,
-            ex_link = exercise["link"],
+            ex_link = exercise["link"][0],
+            ex_links = links_html, 
             ex_tasks = tasks_html,
-            ex_mode = exercise["mode"]
+            ex_mode = modes_html
         )
 
     #html footer

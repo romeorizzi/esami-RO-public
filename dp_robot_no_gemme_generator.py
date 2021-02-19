@@ -45,7 +45,7 @@ def insert_import_mode_free(note):
     note (Jupyter nb.v4): the notebook"""
     txt_import = open(PATH_UTILS + 'import_mode_free.md', 'r', encoding='utf-8').read()
     note['cells'] += [nb.v4.new_code_cell(txt_import)]
-    note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags":['run_start','noexport']}
+    note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags":['run_start',"noexport"]}
 
 def insert_heading(note, exer_title):
     """It inserts the header and the exercise title
@@ -56,7 +56,7 @@ def insert_heading(note, exer_title):
     note['cells'] += [nb.v4.new_markdown_cell(content_title)]
     note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": ['run_start']}
     #note['cells'] += [nb.v4.new_markdown_cell('<b>NOTA</b>: qui sotto sono riportate alcune celle di codice con import necessari al funzionamento dei verificatori; ignorali pure. Clicca su "Avvio esercizio" e poi vai pure oltre la barra nera, per svolgere le richieste.')]
-    #note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": ['run_start','noexport']}
+    #note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": ['run_start',"noexport"]}
     
 def insert_n_tasks(note, n_tasks):
     text_import = """\
@@ -65,12 +65,12 @@ def insert_n_tasks(note, n_tasks):
     n_tasks = """ + str(n_tasks) + """;
     arr_point = [-1] * n_tasks;"""
     note['cells'] += [nb.v4.new_code_cell(text_import)]
-    note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags":['run_start','noexport']}
+    note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags":['run_start',"noexport"]}
 
 # def insert_separator_bar(note):
 #     content = '<h1>_______________________________________________________________________________________ </h1>'
 #     note['cells'] += [nb.v4.new_markdown_cell(content)]
-#     note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": ['run_start','noexport']}
+#     note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": ['run_start',"noexport"]}
 #     return 
 
 # def insert_user_bar_lib(note):#, path_ex_folder):
@@ -80,7 +80,7 @@ def insert_n_tasks(note, n_tasks):
 #     path_ex_folder (str): the path of the current exercise where the mode has to be added"""
 #     user_bar_lib = open(PATH_UTILS + 'user_bar.py', 'r', encoding='utf-8').read()
 #     note['cells'] += [nb.v4.new_code_cell(user_bar_lib)]
-#     note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": ['run_start','noexport']}
+#     note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": ['run_start',"noexport"]}
 #     return
 
 # def insert_user_bar_cell(note):
@@ -89,7 +89,7 @@ def insert_n_tasks(note, n_tasks):
 #     note (Jupyter nb.v4): the notebook"""
 #     user_bar_call = open(PATH_UTILS + 'user_bar_call.md').read()
 #     note['cells'] += [nb.v4.new_code_cell(user_bar_call)]
-#     note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": ['run_start','noexport']}
+#     note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": ['run_start',"noexport"]}
 #     return
 
 def generate_nb(path_yaml):
