@@ -1,0 +1,32 @@
+#dictionary_of_request_string = {
+#   "R0": "Descrivere la sottostruttura ottima del problema."
+#   "R1":  "Calcolare la più grande somma di numeri ottenibile seguendo un percorso che parta dalla cima del triangolo e termini da qualche parte sulla sua base. Fornire, in qualità di certificato, il percorso sotto forma sequenza di numeri (array di interi) dalla cima alla base.",
+#   "R2": "Provare a risolvere il problema in maniera ricorsiva considerando un'istanza di dimensione generica. Scrivere esplicitamente la ricorsione utilizzata, spiegando come si è arrivati a tale formulazione e qual è stato il ragionamento condotto. Abbozzare l'algoritmo che sfrutta tale ricorsione per risolvere il problema.",
+#   "R3": "Altro...Da configurare",
+#}
+
+name: "dp_triangle"
+title: "Triangolo"
+tags:
+- "programmazione dinamica"
+- "sottoproblemi e ricorrenze"
+
+triangle: [[41, 0, 0, 0, 0],
+            [32, 58, 0, 0, 0],
+            [40, 33, 0, 0, 0],
+            [19, 47, 35, 24, 0],
+            [31, 62, 27, 54, 25]]
+
+#qui è possibile configurare i parametri dei possibili tasks
+tasks:
+- {
+    request: "R1",
+    tot_points: 10,
+    ver_points: 10,
+  }
+- {
+    request: "R2",
+    tot_points: 10,
+    ver_points: 10,
+  }
+...

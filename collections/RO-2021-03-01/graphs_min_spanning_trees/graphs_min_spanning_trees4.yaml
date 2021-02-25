@@ -1,0 +1,47 @@
+---
+name: graphs_min_spanning_trees
+title: Alberi in un grafo
+tags:
+- "grafi"
+- "buone caratterizzazioni"
+- "cicli e tagli"
+- "algoritmi classici su reti"
+
+description1: Le richieste seguenti fanno tutte riferimento a uno stesso grafo $G = (V,E,w)$ pesato sugli archi. Esso viene riportato più volte negli applet associati alle richieste. Scaricando il grafo in locale, puoi a tua volta sottomettere il numero di copie rieditate che preferisci, nei formati che ti sono più comodi tra quelli proposti.
+tasks:
+- {
+    tot_points: 5,
+    ver_points: 0,
+    graphml: 'collections/RO-2021-03-01/graphml-2021-03-01/grafo_plan5_pesi.graphml',
+    description1: "Fornire un albero ricoprente di peso minimo"
+  }
+- {
+    tot_points: 5,
+    ver_points: 0,
+    description1: "Specificare quanti siano gli alberi ricoprenti di peso minimo"
+  }
+- {
+    tot_points: 10,
+    ver_points: 0,
+    graphml: 'collections/RO-2021-03-01/graphml-2021-03-01/grafo_plan5_pesi.graphml',
+    description1: "Descrivere in modo chiaro e conciso la struttura della famiglia degli alberi ricoprenti di peso minimo"
+  }
+- {
+    tot_points: 5,
+    ver_points: 0,
+    graphml: 'collections/RO-2021-03-01/graphml-2021-03-01/grafo_plan5_pesi.graphml',
+    description1: "Dire, certificandolo, se l'arco $fg$ appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli alberi ricoprenti di peso minimo"
+  }
+- {
+    tot_points: 5,
+    ver_points: 0,
+    graphml: 'collections/RO-2021-03-01/graphml-2021-03-01/grafo_plan5_pesi.graphml',
+    description1: "Dire, certificandolo, se l'arco $mo$ appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli alberi ricoprenti di peso minimo"
+  }
+- {
+    tot_points: 5,
+    ver_points: 0,
+    graphml: 'collections/RO-2021-03-01/graphml-2021-03-01/grafo_plan5_pesi.graphml',
+    description1: "Dire, certificandolo, se l'arco $np$ appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli alberi ricoprenti di peso minimo"
+  }
+...

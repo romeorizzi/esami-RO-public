@@ -1,0 +1,42 @@
+---
+name: graphs_flows_and_cuts
+title: Flusso massimo in una rete
+tags:
+- "grafi"
+- "buone caratterizzazioni"
+- "flussi e tagli"
+- "algoritmi classici su reti"
+
+description1: Si consideri il grafo $G$, con pesi sugli archi, riportato nelle richieste sottostanti.
+tasks:
+- {
+    tot_points: 20,
+    ver_points: 0,
+    graphml: 'collections/RO-2021-03-01/graphml-2021-03-01/grafo_plan1_pesi.graphml',
+    description1: "Fornire un massimo flusso dal nodo $s$ al nodo $t$"
+  }
+- {
+    tot_points: 15,
+    ver_points: 0,
+    graphml: 'collections/RO-2021-03-01/graphml-2021-03-01/grafo_plan1_pesi.graphml',
+    description1: "Certificare l'ottimalità del flusso massimo dal nodo $s$ al nodo $t$"
+  }
+- {
+    tot_points: 5,
+    ver_points: 0,
+    graphml: 'collections/RO-2021-03-01/graphml-2021-03-01/grafo_plan1_pesi.graphml',
+    description1: "Dire, certificandolo, se l'arco $hi$ appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli $s,t$-tagli di capacità minima"
+  }
+- {
+    tot_points: 5,
+    ver_points: 0,
+    graphml: 'collections/RO-2021-03-01/graphml-2021-03-01/grafo_plan1_pesi.graphml',
+    description1: "Dire, certificandolo, se l'arco $mo$ appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli $s,t$-tagli di capacità minima"
+  }
+- {
+    tot_points: 5,
+    ver_points: 0,
+    graphml: 'collections/RO-2021-03-01/graphml-2021-03-01/grafo_plan1_pesi.graphml',
+    description1: "Dire, certificandolo, se l'arco $wx$ appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli $s,t$-tagli di capacità minima"
+  }
+...
