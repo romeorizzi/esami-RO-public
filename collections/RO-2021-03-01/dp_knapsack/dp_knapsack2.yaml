@@ -37,7 +37,7 @@ tasks:
     request: "R3",
     tot_points: 10,
     ver_points: 10,
-    edr: ["L"]
+    edr: ["A"]
 
   }
 - {
