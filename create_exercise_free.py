@@ -3,7 +3,12 @@
 """
 Created on Tue Jun 16 13:00:37 2020
 
-@authors: Alice Raffaele, Alessandro Busatto, Marco Emporio, Marco Fattorelli, Romeo Rizzi, Aurora Rossi, Francesco Trotti
+@authors:
+Verifiers: Alessandro Busatto, Paolo Graziani, Aurora Rossi, Davide Roznowicz;
+Applet: Giacomo Di Maggio, Marco Emporio, Marco Fattorelli, Sebastiano Gaiardelli, Francesco Trotti;
+Map: Rosario Di Matteo, Marco Emporio, Adriano Tumminelli;
+OneDrive: Marco Fattorelli, Davide Roznowicz;
+Integration: Alice Raffaele, Romeo Rizzi.
 
 """
 
@@ -20,7 +25,7 @@ import yaml
 
 PATH_UTILS = os.getcwd() + '/utils/'
 PATH_GRAPH_UTILS = os.getcwd() + '/utils/graph_utils/'
-global REL_PATH_IMAGES # img-YYYY-MM-DD
+global REL_PATH_IMAGES # img-YYYY-MM-DD (2021-03-05: not needed anymore, for now)
 global images_to_add # if there are images to add in the related folder, store here their filenames
 
 def insert_import_mode_free(note):
@@ -88,7 +93,7 @@ def insert_heading(note, exer_title):
     note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False}
     return
 
-def look_for_img(txt):
+def look_for_img(txt): # 2021-03-05: not needed anymore, for now
     """It looks for <img src='...'> in the field description1 and adds the name of the image found in the list images_to_add
     Parameters:
     txt (str): the field description1"""
@@ -127,10 +132,9 @@ def insert_description1(note, exer_descr1, exam_date, path_ex_folder):
         assert pos != None
         download_button_lib = download_button_lib.replace('@img_name@',images_to_add[-1]).replace('@path_ex_folder@',".../" + '/'.join(absolute_path_dirs_array[pos:]))
         img_check = True
-    #print(exer_descr1)
     note['cells'] += [nb.v4.new_markdown_cell(exer_descr1)]
     note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False}
-    if img_check: #adding download button
+    if img_check: # adding download button
         note['cells'] += [nb.v4.new_code_cell(download_button_lib)]
         note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False}
     return
@@ -144,7 +148,7 @@ def insert_description2(note, exer_descr2):
     note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False}
     return
 
-def insert_user_bar_lib(note):#, path_ex_folder):
+def insert_user_bar_lib(note):
     """It inserts the Python code to add the user bar needed to answer to each task
     Parameters:
     note (Jupyter nb.v4): the notebook
@@ -163,8 +167,8 @@ def insert_user_bar_cell(note):
     note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ["noexport"]}
     return
 
-def insert_single_task(note,task,i):
-    """It inserts single task in the notebook
+def insert_single_task(note, task, i):
+    """It inserts a single task in the notebook
     Parameters:
     note (Jupyter nb.v4): the notebook
     task (dict): the dictionary of task
@@ -176,8 +180,8 @@ def insert_single_task(note,task,i):
     insert_user_bar_cell(note)
     return
 
-def insert_single_graph_task(note,task,i):
-    """It inserts single graph task in the notebook
+def insert_single_graph_task(note, task, i):
+    """It inserts a single graph task in the notebook
     Parameters:
     note (Jupyter nb.v4): the notebook
     task (dict): the dictionary of task
@@ -200,7 +204,7 @@ def insert_single_graph_task(note,task,i):
     return
 
 def insert_tasks(note, exer_tasks):
-    """It inserts all tasks in the notebook
+    """It inserts all the tasks in the notebook
     Parameters:
     note (Jupyter nb.v4): the notebook
     exer_tasks (dict): the dictionary of tasks"""
@@ -212,7 +216,7 @@ def insert_tasks(note, exer_tasks):
     return
 
 def get_graph_data(graphml,i):
-    """It inserts graph dictionary (after calling the graphml parser) in the notebook
+    """It inserts a graph dictionary (after calling the graphml parser) in the notebook
     Parameters:
     graphml: path of graphml
     i: index of task"""
@@ -257,7 +261,7 @@ def insert_rendition(note, note_name):
     return
 
 def insert_no_scroll(note):
-    """It inserts javascript code to avoid scroll down of output div (for graph)
+    """It inserts a javascript code to avoid scroll down of output div (for graph)
     Parameters:
     note (Jupyter nb.v4): the notebook"""
     no_scroll = open(PATH_GRAPH_UTILS + 'no_scroll.py').read()
@@ -265,7 +269,7 @@ def insert_no_scroll(note):
     note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ["noexport"]}
 
 def create_exercise(exam_date, num, path_ex_folder, path_yaml):
-    """It creates the new folder with 'free mode' ('modo_libero')
+    """It creates a new folder with 'mode free' ('modo_libero')
     Parameters:
     exam_date (str): YYYY-MM-DD
     num (str): the progressive number of the exercise in the exam folder
@@ -321,7 +325,7 @@ def create_exercise(exam_date, num, path_ex_folder, path_yaml):
     return e_dict
 
 def create_exercise_given_yaml(exam_date, num, path_ex_folder, exer):
-    """It creates the new folder with 'free mode' ('modo_libero')
+    """It creates the new folder with 'mode free' ('modo_libero')
     Parameters:
     exam_date (str): YYYY-MM-DD
     num (str): the progressive number of the exercise in the exam folder

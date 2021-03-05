@@ -1,3 +1,9 @@
+"""
+@authors:
+Map: Rosario Di Matteo, Marco Emporio, Adriano Tumminelli;
+Integration: Alice Raffaele, Romeo Rizzi.
+
+"""
 
 import sys
 import os

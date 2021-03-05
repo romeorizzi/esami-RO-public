@@ -1,3 +1,10 @@
+"""
+@authors:
+Applet: Giacomo Di Maggio, Marco Emporio, Marco Fattorelli, Sebastiano Gaiardelli, Francesco Trotti;
+Integration: Alice Raffaele, Romeo Rizzi.
+
+"""
+
 import sys
 import re 
 import math

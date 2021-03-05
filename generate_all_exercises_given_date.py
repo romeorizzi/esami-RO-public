@@ -1,11 +1,15 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Created on Fri Jun 19 12:31:44 2020
 
-@authors: Alice Raffaele, Alessandro Busatto, Marco Emporio, Marco Fattorelli, Romeo Rizzi, Aurora Rossi, Francesco Trotti
+@authors:
+Verifiers: Alessandro Busatto, Paolo Graziani, Aurora Rossi, Davide Roznowicz;
+Applet: Giacomo Di Maggio, Marco Emporio, Marco Fattorelli, Sebastiano Gaiardelli, Francesco Trotti;
+Map: Rosario Di Matteo, Marco Emporio, Adriano Tumminelli;
+OneDrive: Marco Fattorelli, Davide Roznowicz;
+Integration: Alice Raffaele, Romeo Rizzi.
 
 """
+
 import argparse
 import create_exercise_free as mode_free
 import create_exercise_verifier as mode_ver
@@ -40,7 +44,6 @@ def add_all_exercises(exam_date, path_all, path_collection):
         nb_ex_type = len(glob.glob(os.path.join(path_type, '*'))) # there must be at least one exercise for each type
         assert nb_ex_type > 0
         for j in range(nb_ex_type):
-            #chosen_type_yaml = path_type + '/' + type_list[i] + str(j) + '.yaml'
             path_full_yaml = path_type + '/' + type_list[i] + str(j) + '.yaml'
             path_almost_yaml = path_type + '/' + type_list[i] + str(j) # (misses '.yaml')
             if j+1>=9:

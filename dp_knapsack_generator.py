@@ -1,3 +1,10 @@
+"""
+@authors:
+Verifiers: Alessandro Busatto, Paolo Graziani, Aurora Rossi, Davide Roznowicz;
+Integration: Alice Raffaele, Romeo Rizzi.
+
+"""
+
 from collections import OrderedDict
 import nbformat as nb
 import re
@@ -18,6 +25,8 @@ def setup_yaml():
 setup_yaml()
 
 def add_cell(note, cell_type,cell_string,cell_metadata):
+    """ It adds a new cell (with the given type, text and metadata) to the notebook note 
+    """
     if cell_type=="Code":
         note['cells'].append(nb.v4.new_code_cell(cell_string,metadata=cell_metadata));
     elif cell_type=="Markdown":
@@ -71,24 +80,24 @@ def insert_n_tasks(note, n_tasks):
 #     note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": ["noexport"]}
 #     return
 
-def insert_user_bar_lib(note):#, path_ex_folder):
-    """It inserts the Python code to add the user bar needed to answer to each task
-    Parameters:
-    note (Jupyter nb.v4): the notebook
-    path_ex_folder (str): the path of the current exercise where the mode has to be added"""
-    user_bar_lib = open(PATH_UTILS + 'user_bar.py', 'r', encoding='utf-8').read()
-    note['cells'] += [nb.v4.new_code_cell(user_bar_lib)]
-    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ["noexport"]}
-    return
+# def insert_user_bar_lib(note):#, path_ex_folder):
+#     """It inserts the Python code to add the user bar needed to answer to each task
+#     Parameters:
+#     note (Jupyter nb.v4): the notebook
+#     path_ex_folder (str): the path of the current exercise where the mode has to be added"""
+#     user_bar_lib = open(PATH_UTILS + 'user_bar.py', 'r', encoding='utf-8').read()
+#     note['cells'] += [nb.v4.new_code_cell(user_bar_lib)]
+#     note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ["noexport"]}
+#     return
 
-def insert_user_bar_cell(note):
-    """It inserts the user bar as a code cell
-    Parameters:
-    note (Jupyter nb.v4): the notebook"""
-    user_bar_call = open(PATH_UTILS + 'user_bar_call.md').read()
-    note['cells'] += [nb.v4.new_code_cell(user_bar_call)]
-    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ["noexport"]}
-    return
+# def insert_user_bar_cell(note):
+#     """It inserts the user bar as a code cell
+#     Parameters:
+#     note (Jupyter nb.v4): the notebook"""
+#     user_bar_call = open(PATH_UTILS + 'user_bar_call.md').read()
+#     note['cells'] += [nb.v4.new_code_cell(user_bar_call)]
+#     note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ["noexport"]}
+#     return
 
 def usage():
     print(f"""Usage: ./{os.path.basename(argv[0])} instance_file.yaml\n\n   dove il parametro obbligatorio <instance_file.yaml> è il nome del file coi dati di istanza specifica.""", file=stderr)

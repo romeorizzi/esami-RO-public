@@ -1,5 +1,9 @@
-#!/usr/bin/python3
+"""
+@authors:
+Verifiers: Alessandro Busatto, Paolo Graziani, Aurora Rossi, Davide Roznowicz;
+Integration: Alice Raffaele, Romeo Rizzi.
 
+"""
 from collections import OrderedDict
 import nbformat as nb
 import re
@@ -18,6 +22,8 @@ def setup_yaml():
 setup_yaml()
 
 def add_cell(note,cell_type,cell_string,cell_metadata):
+    """ It adds a new cell (with the given type, text and metadata) to the notebook note 
+    """
     if cell_type=="Code":
         note['cells'].append(nb.v4.new_code_cell(cell_string,metadata=cell_metadata));
     elif cell_type=="Markdown":

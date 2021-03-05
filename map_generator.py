@@ -1,7 +1,8 @@
-
-# -*- coding: utf-8 -*-
 """
-@authors: Adriano Tumminelli 
+@authors:
+Map: Rosario Di Matteo, Marco Emporio, Adriano Tumminelli;
+Integration: Alice Raffaele, Romeo Rizzi.
+
 """
 
 import html

@@ -3,7 +3,12 @@
 """
 Created on Tue Jun 16 10:45:29 2020
 
-@authors: Alice Raffaele, Alessandro Busatto, Marco Emporio, Marco Fattorelli, Romeo Rizzi, Aurora Rossi, Francesco Trotti
+@authors:
+Verifiers: Alessandro Busatto, Paolo Graziani, Aurora Rossi, Davide Roznowicz;
+Applet: Giacomo Di Maggio, Marco Emporio, Marco Fattorelli, Sebastiano Gaiardelli, Francesco Trotti;
+Map: Rosario Di Matteo, Marco Emporio, Adriano Tumminelli;
+OneDrive: Marco Fattorelli, Davide Roznowicz;
+Integration: Alice Raffaele, Romeo Rizzi.
 
 """
 
@@ -22,7 +27,7 @@ import sys
 import tarfile
 import zipfile
 
-NB_EXERCISES = 10
+NB_EXERCISES = 10 # default number of exercises in the exam
 RO_EXAM = 'esame_RO-'
 REL_SHUTTLE_FOLDER = '/shuttle/'
 REL_UTILS_FOLDER = '/utils/'
@@ -196,13 +201,10 @@ def gen_exam(exam_date, anchor, student_ID, matricola, name, surname, also_uncom
         print("\nNew generation of the exam (" + exam_date + ', ' + student_ID + ") started\nAdding exercises...")
         path_exercises = os.getcwd() + COLLECTION_FOLDER + "RO-" + exam_date
         info_exer_map = add_exercises(exam_date, path_exercises, ex_list)
-        add_graph_utils()
-        add_map(exam_date, matricola, info_exer_map, name, surname) # from the exercises created, it generates the map
-
         print("\nAdding the map...")
-        #add_info()
-        add_graph_utils()
+        add_map(exam_date, matricola, info_exer_map, name, surname) # from the exercises created, it generates the map
         print("\n Adding graph utils")
+        add_graph_utils()
         create_archives(student_anchored_folder, student_local_folder, also_uncompressed)
         print("\nGeneration of the exam (" + exam_date + ', ' + student_ID + ") completed")
     return ex_list[:NB_EXERCISES]

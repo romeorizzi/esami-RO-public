@@ -3,7 +3,12 @@
 """
 Created on Mon Jun 29 16:04:51 2020
 
-@authors: Alice Raffaele, Alessandro Busatto, Marco Emporio, Marco Fattorelli, Romeo Rizzi, Aurora Rossi, Francesco Trotti
+@authors:
+Verifiers: Alessandro Busatto, Paolo Graziani, Aurora Rossi, Davide Roznowicz;
+Applet: Giacomo Di Maggio, Marco Emporio, Marco Fattorelli, Sebastiano Gaiardelli, Francesco Trotti;
+Map: Rosario Di Matteo, Marco Emporio, Adriano Tumminelli;
+OneDrive: Marco Fattorelli, Davide Roznowicz;
+Integration: Alice Raffaele, Romeo Rizzi.
 
 """
 
@@ -35,6 +40,7 @@ if __name__ == "__main__":
     exam_date = str(sys.argv[1])
     FILE_STUDENTS_LIST = "students_lists/"+exam_date+"/lista_studenti_iscritti_con_chiavi.csv"
 
+    # Creation of shuttle
     start_time = time.time()
     PATH_SHUTTLE = os.getcwd() + '/' + REL_PATH_SHUTTLE
     if os.path.exists(PATH_SHUTTLE):
@@ -57,7 +63,8 @@ if __name__ == "__main__":
     else:
         os.mkdir(PATH_SHUTTLE)
         keep_going = 1
-        
+    
+    # Generation of the exams    
     if keep_going:
         if os.path.isfile(ALL_EXER_PER_STUD + exam_date + '.csv'): # it deletes the csv file with all exercises per student if already existing
             Path(ALL_EXER_PER_STUD + exam_date + '.csv').unlink()

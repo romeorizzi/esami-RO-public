@@ -3,7 +3,12 @@
 """
 Created on Tue Jun 16 13:00:55 2020
 
-@authors: Alice Raffaele, Alessandro Busatto, Marco Emporio, Marco Fattorelli, Romeo Rizzi, Aurora Rossi, Francesco Trotti
+@authors:
+Verifiers: Alessandro Busatto, Paolo Graziani, Aurora Rossi, Davide Roznowicz;
+Applet: Giacomo Di Maggio, Marco Emporio, Marco Fattorelli, Sebastiano Gaiardelli, Francesco Trotti;
+Map: Rosario Di Matteo, Marco Emporio, Adriano Tumminelli;
+OneDrive: Marco Fattorelli, Davide Roznowicz;
+Integration: Alice Raffaele, Romeo Rizzi.
 
 """
 
@@ -29,7 +34,7 @@ PATH_UTILS = os.getcwd() + '/utils/'
 PATH_VERIFIERS = os.getcwd() + '/utils/verifiers/'
 
 def insert_suppl_folders(path_mode):
-    """It inserts all supplementary folders, such as 'allegati' and 'img' if needed
+    """It inserts all supplementary folders, such as 'allegati'
     Parameters:
     path_mode (str): the path to the current folder where to add the needed subfolders"""
     os.mkdir(path_mode + '/allegati')
@@ -79,26 +84,24 @@ def create_exercise(exam_date, num, path_ex_folder, ex_type, path_yaml, path_alm
     else: # ex_type == 'dp_knapsack': (TO DO: add other dynamic programming exercises here)
         note, yaml_gen = dp_knapsack.generate_nb(path_yaml)
     
-    insert_suppl_folders(path_mode_ver)
-    insert_rendition(note, note_name)
-    nb.write(note, note_name)
-    os.rename(os.getcwd()+ '/' + note_name, path_mode_ver + '/' + note_name)
+    insert_suppl_folders(path_mode_ver) # inserting the "allegati" subfolder
+    insert_rendition(note, note_name) # inserting the button "Salva & Esporta" in the end of the notebook
+    nb.write(note, note_name) # saving the notebook as a .ipynb file
+    os.rename(os.getcwd()+ '/' + note_name, path_mode_ver + '/' + note_name) # assigning the proper name to the notebook
     os.system("jupyter trust " + path_mode_ver + note_name) # signing the notebook in order to make it trusted
     
-    #with open(instance_free, 'w') as file:
-    #    documents = yaml.dump(yaml_gen, file, default_flow_style=False)
-        
-    #exer = read_exercise_yaml(instance_free)
-    exer = yaml_gen
-    mode_free.create_exercise_given_yaml(exam_date, num, path_ex_folder, exer)
+    exer = yaml_gen # yaml instance for the mode free
+    mode_free.create_exercise_given_yaml(exam_date, num, path_ex_folder, exer) # mode free
     
+    # when selecting a mode in the map, the link has to change, in order to point to the correct notebook
     link_ver = 'http://127.0.0.1:8888/notebooks/'+prev_folder+'/modo_verif/' + note_name
     link_lib = 'http://127.0.0.1:8888/notebooks/'+prev_folder+'/modo_libero/' + note_name
+    # adding tags
     if 'tags' in exer:
         e_dict = {'title':exer['title'],'tags':exer['tags'],'tot_points':0,'link':[link_ver,link_lib], 'tasks':exer['tasks'], 'mode':['Verificatore','Libera']}
     else:
 	    e_dict = {'title':exer['title'],'tags':[],'tot_points':0,'link':[link_ver,link_lib], 'tasks':exer['tasks'], 'mode':['Verificatore','Libera']}
-    #os.remove(instance_free)
+
     return e_dict
 
 
