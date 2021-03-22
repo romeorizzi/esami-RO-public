@@ -45,7 +45,7 @@ def yes_clicked(b):
     now = datetime.now() # current date and time
     date_time = now.strftime("%Y-%m-%d-%H-%M-%S")
     hname = '?FILENAME?'[:-6] + '_' + date_time
-    ! jupyter nbconvert ?FILENAME? --to html_embed --output=$hname --output-dir=./preview_last/ --TagRemovePreprocessor.remove_cell_tags='["noexport"]'
+    ! jupyter nbconvert ?FILENAME? --to html_embed --output=$hname --output-dir=./preview_last/ --TagRemovePreprocessor.enabled=True --TagRemovePreprocessor.remove_cell_tags="['noexport']"
     display(Javascript('window.open("./preview_last/' + hname + '.html")'))
     hide_w(alert_buttons)
 def no_clicked(b):
@@ -61,7 +61,7 @@ def generate_preview_HTML(_):
         now = datetime.now() # current date and time
         date_time = now.strftime("%Y-%m-%d-%H-%M-%S")
         hname = '?FILENAME?'[:-6] + '_' + date_time
-        ! jupyter nbconvert ?FILENAME? --to html_embed --output=$hname --output-dir=./preview_last/ --TagRemovePreprocessor.remove_cell_tags='["noexport"]'
+        ! jupyter nbconvert ?FILENAME? --TagRemovePreprocessor.enabled=True --TagRemovePreprocessor.remove_cell_tags="['noexport']" --to html_embed --output=$hname --output-dir=./preview_last/
         display(Javascript('window.open("./preview_last/' + hname + '.html")'))
     else:
         are_you_sure()

@@ -34,7 +34,7 @@ def insert_import_mode_free(note):
     note (Jupyter nb.v4): the notebook"""
     txt_import = open(PATH_UTILS + 'import_mode_free.md', 'r', encoding='utf-8').read()
     note['cells'] += [nb.v4.new_code_cell(txt_import)]
-    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags":["noexport"]}
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags":['noexport']}
 
 def insert_task_buttons(note,i):
     """It inserts 'Avvia task', 'Carica ultima configurazione' e 'Reset task'
@@ -43,7 +43,7 @@ def insert_task_buttons(note,i):
     i: index of task"""
     txt_start_button = open(PATH_GRAPH_UTILS + 'init_buttons.py', 'r', encoding='utf-8').read()
     note['cells'] += [nb.v4.new_code_cell(txt_start_button.replace('$i$',i))]
-    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "tags":["noexport"]}
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "tags":['noexport']}
 
 def insert_needed_import(note, exer_name):
     """It inserts other necessaries modules and libraries needed for specific types of exercises
@@ -53,15 +53,15 @@ def insert_needed_import(note, exer_name):
     if exer_name in ('lp_duality', 'lp_interactive', 'lp_two_phases'):
         txt_interactive = open(PATH_UTILS + 'interactive_simplex_note.md', 'r', encoding='utf-8').read()
         note['cells'] += [nb.v4.new_markdown_cell(txt_interactive)]
-        note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags":["noexport"]}
+        note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags":['noexport']}
         txt_import = open(PATH_UTILS + 'interactive_simplex.py', 'r', encoding='utf-8').read()
     else:
         txt_pulp = open(PATH_UTILS + 'pulp_note.md', 'r', encoding='utf-8').read()
         note['cells'] += [nb.v4.new_markdown_cell(txt_pulp)]
-        note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags":["noexport"]}
+        note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags":['noexport']}
         txt_import = open(PATH_UTILS + 'import_pulp.md', 'r', encoding='utf-8').read()
     note['cells'] += [nb.v4.new_code_cell(txt_import)]
-    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags":["noexport"]}
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags":['noexport']}
 
 def insert_graph_import(note):
     """It inserts all necessaries modules and libraries needed for graph exercises
@@ -69,7 +69,7 @@ def insert_graph_import(note):
     note (Jupyter nb.v4): the notebook"""
     txt_import = open(PATH_GRAPH_UTILS + 'graph_applet_import.py', 'r', encoding='utf-8').read()
     note['cells'] += [nb.v4.new_code_cell(txt_import)]
-    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ["noexport"]}
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ['noexport']}
 
 def read_exercise_yaml(path_yaml):
     """It reads a yaml file and save its content in a dictionary
@@ -155,7 +155,7 @@ def insert_user_bar_lib(note):
     path_ex_folder (str): the path of the current exercise where the mode has to be added"""
     user_bar_lib = open(PATH_UTILS + 'user_bar.py', 'r', encoding='utf-8').read()
     note['cells'] += [nb.v4.new_code_cell(user_bar_lib)]
-    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ["noexport"]}
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ['noexport']}
     return
 
 def insert_user_bar_cell(note):
@@ -164,7 +164,7 @@ def insert_user_bar_cell(note):
     note (Jupyter nb.v4): the notebook"""
     user_bar_call = open(PATH_UTILS + 'user_bar_call.md').read()
     note['cells'] += [nb.v4.new_code_cell(user_bar_call)]
-    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ["noexport"]}
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ['noexport']}
     return
 
 def insert_single_task(note, task, i):
@@ -193,13 +193,13 @@ def insert_single_graph_task(note, task, i):
     insert_task_buttons(note,str(i+1))
     task_graph = get_graph_data(task['graphml'],str(i+1))
     note['cells'] += [nb.v4.new_code_cell(task_graph)]
-    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ["noexport"]}
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ['noexport']}
     config_check = open(PATH_GRAPH_UTILS + 'config_check.py').read()
     note['cells'] += [nb.v4.new_code_cell(config_check.replace('$i$',str(i+1)))]
-    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ["noexport"]}
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ['noexport']}
     display_graph = open(PATH_GRAPH_UTILS + 'display.py').read().replace('$i$',str(i+1))
     note['cells'] += [nb.v4.new_code_cell(display_graph)]
-    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ["noexport"]}
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ['noexport']}
     insert_user_bar_cell(note)
     return
 
@@ -257,7 +257,7 @@ def insert_rendition(note, note_name):
     note_name (str): the notebook name"""
     button_rend = open(PATH_UTILS + 'preview_HTML.py').read()
     note['cells'] += [nb.v4.new_code_cell(button_rend.replace('?FILENAME?', note_name))]
-    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ["noexport"]}
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ['noexport']}
     return
 
 def insert_no_scroll(note):
@@ -266,7 +266,7 @@ def insert_no_scroll(note):
     note (Jupyter nb.v4): the notebook"""
     no_scroll = open(PATH_GRAPH_UTILS + 'no_scroll.py').read()
     note['cells'] += [nb.v4.new_code_cell(no_scroll)]
-    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ["noexport"]}
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ['noexport']}
 
 def create_exercise(exam_date, num, path_ex_folder, path_yaml):
     """It creates a new folder with 'mode free' ('modo_libero')

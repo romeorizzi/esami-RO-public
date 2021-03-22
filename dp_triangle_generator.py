@@ -54,7 +54,7 @@ def insert_import_mode_free(note):
     note (Jupyter nb.v4): the notebook"""
     txt_import = open(PATH_UTILS + 'import_mode_free.md', 'r', encoding='utf-8').read()
     note['cells'] += [nb.v4.new_code_cell(txt_import)]
-    note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags":["noexport"]}
+    note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags":['noexport']}
 
 def insert_heading(note, exer_title):
     """It inserts the header and the exercise title
@@ -65,30 +65,30 @@ def insert_heading(note, exer_title):
     note['cells'] += [nb.v4.new_markdown_cell(content_title)]
     note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": []}
     #note['cells'] += [nb.v4.new_markdown_cell('<b>NOTA</b>: qui sotto sono riportate alcune celle di codice con import necessari al funzionamento dei verificatori; ignorali pure. Clicca su "Avvio esercizio" e poi vai pure oltre la barra nera, per svolgere le richieste.')]
-    #note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": ["noexport"]}
+    #note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": ['noexport']}
 
 def insert_n_tasks(note, n_tasks):
     text_n_tasks = """\
     n_tasks = """ + str(n_tasks) + """;
     arr_point= [-1] * n_tasks;"""
     note['cells'] += [nb.v4.new_code_cell(text_n_tasks)]
-    note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "tags":["noexport"]}
+    note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "tags":['noexport']}
 
 # def insert_separator_bar(note):
 #     content = '<h1>_______________________________________________________________________________________ </h1>'
 #     note['cells'] += [nb.v4.new_markdown_cell(content)]
-#     note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": ["noexport"]}
+#     note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": ['noexport']}
 #     return
 
-# def insert_user_bar_lib(note):#, path_ex_folder):
-#     """It inserts the Python code to add the user bar needed to answer to each task
-#     Parameters:
-#     note (Jupyter nb.v4): the notebook
-#     path_ex_folder (str): the path of the current exercise where the mode has to be added"""
-#     user_bar_lib = open(PATH_UTILS + 'user_bar.py', 'r', encoding='utf-8').read()
-#     note['cells'] += [nb.v4.new_code_cell(user_bar_lib)]
-#     note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ["noexport"]}
-#     return
+def insert_user_bar_lib(note):#, path_ex_folder):
+    """It inserts the Python code to add the user bar needed to answer to each task
+    Parameters:
+    note (Jupyter nb.v4): the notebook
+    path_ex_folder (str): the path of the current exercise where the mode has to be added"""
+    user_bar_lib = open(PATH_UTILS + 'user_bar.py', 'r', encoding='utf-8').read()
+    note['cells'] += [nb.v4.new_code_cell(user_bar_lib)]
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ['noexport']}
+    return
 
 # def insert_user_bar_cell(note):
 #     """It inserts the user bar as a code cell
@@ -96,7 +96,7 @@ def insert_n_tasks(note, n_tasks):
 #     note (Jupyter nb.v4): the notebook"""
 #     user_bar_call = open(PATH_UTILS + 'user_bar_call.md').read()
 #     note['cells'] += [nb.v4.new_code_cell(user_bar_call)]
-#     note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ["noexport"]}
+#     note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ['noexport']}
 #     return
 
 def usage():
@@ -169,7 +169,7 @@ def generate_nb(path_yaml):
     vertex_inf_sx={vertex_inf_sx}
     vertex_inf_dx={vertex_inf_dx}
     """  
-    cell_metadata = {"hide_input": True, "init_cell": True, "editable": False, "deletable": False, "tags": ["noexport"],
+    cell_metadata = {"hide_input": True, "init_cell": True, "editable": False, "deletable": False, "tags": ['noexport'],
                      "trusted": True}
     add_cell(note,cell_type,cell_string,cell_metadata)
     
@@ -250,7 +250,7 @@ def generate_nb(path_yaml):
     
     
     """
-    cell_metadata = {"hide_input": True, "init_cell": True, "editable": False, "deletable": False, "tags": ["noexport"],
+    cell_metadata = {"hide_input": True, "init_cell": True, "editable": False, "deletable": False, "tags": ['noexport'],
                      "trusted": True}
     add_cell(note, cell_type, cell_string, cell_metadata)
     
@@ -269,7 +269,7 @@ def generate_nb(path_yaml):
     {convert_to_LaTeX(triangle)}
     
     """
-    cell_metadata = {"hide_input": True, "init_cell": True, "editable": False, "deletable": False, "tags": ["noexport"],
+    cell_metadata = {"hide_input": True, "init_cell": True, "editable": False, "deletable": False, "tags": ['noexport'],
                      "trusted": True}
     add_cell(note,cell_type, cell_string, cell_metadata)
     
@@ -312,7 +312,7 @@ def generate_nb(path_yaml):
             # Single request verifier
             cell_type='Code'
             cell_string=verif
-            cell_metadata={"hide_input": False, "editable": False,  "deletable": False, "trusted": True, "tags": ["noexport"]}
+            cell_metadata={"hide_input": False, "editable": False,  "deletable": False, "trusted": True, "tags": ['noexport']}
             add_cell(note,cell_type,cell_string,cell_metadata)
             num_of_question += 1
         # for all requests

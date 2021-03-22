@@ -47,7 +47,7 @@ def insert_rendition(note, note_name):
     note_name (str): the notebook name"""
     button_rend = open(PATH_UTILS + 'preview_HTML.py').read()
     note['cells'] += [nb.v4.new_code_cell(button_rend.replace('?FILENAME?', note_name))]
-    note.cells[-1].metadata = {"init_cell": True, "trusted": True, "hide_input": True, "editable": False, "deletable": False, "tags": ['run_start', "noexport"]}
+    note.cells[-1].metadata = {"init_cell": True, "trusted": True, "hide_input": True, "editable": False, "deletable": False, "tags": ['run_start', 'noexport']}
     return
 
 def create_exercise(exam_date, num, path_ex_folder, ex_type, path_yaml, path_almost_yaml):
