@@ -22,7 +22,7 @@ def setup_yaml():
 setup_yaml()
 
 def add_cell(note,cell_type,cell_string,cell_metadata):
-    """ It adds a new cell (with the given type, text and metadata) to the notebook note 
+    """ It adds a new cell (with the given type, text and metadata) to the notebook note
     """
     if cell_type=="Code":
         note['cells'].append(nb.v4.new_code_cell(cell_string,metadata=cell_metadata));
@@ -63,7 +63,7 @@ def insert_heading(note, exer_title):
     note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": ['run_start']}
     #note['cells'] += [nb.v4.new_markdown_cell('<b>NOTA</b>: qui sotto sono riportate alcune celle di codice con import necessari al funzionamento dei verificatori; ignorali pure. Clicca su "Avvio esercizio" e poi vai pure oltre la barra nera, per svolgere le richieste.')]
     #note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": ['run_start','noexport']}
-    
+
 def insert_n_tasks(note, n_tasks):
     text_import = """\
     from tabulate import tabulate
@@ -77,7 +77,7 @@ def insert_n_tasks(note, n_tasks):
 #     content = '<h1>_______________________________________________________________________________________ </h1>'
 #     note['cells'] += [nb.v4.new_markdown_cell(content)]
 #     note.cells[-1].metadata = {"hide_input": True, "trusted": True, "init_cell": True, "editable": False, "deletable": False, "tags": ['run_start','noexport']}
-#     return 
+#     return
 
 def insert_user_bar_lib(note):#, path_ex_folder):
     """It inserts the Python code to add the user bar needed to answer to each task
@@ -102,7 +102,7 @@ def generate_nb(path_yaml):
     # Notebook creation
     note = nb.v4.new_notebook()
     note['cells'] = []
-    
+
     # Reading the instance
     exer = read_exercise_yaml(path_yaml)
     campo_minato=exer['campo_minato']
@@ -113,7 +113,7 @@ def generate_nb(path_yaml):
             total_point+=tasks[i]['tot_points']
             n_tasks += 1
     num_of_question=1
-    
+
     yaml_gen=OrderedDict()
     yaml_gen['name']=exer['name']
     yaml_gen['title']=exer['title']
@@ -122,8 +122,9 @@ def generate_nb(path_yaml):
 
     m=len(exer['campo_minato'])
     n=len(exer['campo_minato'][0])
-    
+
     # Heading and needed import
+    insert_user_bar_lib(note)
     insert_heading(note, exer['title']) # heading with title
     insert_import_mode_free(note)
     insert_n_tasks(note, n_tasks)
@@ -157,7 +158,7 @@ def generate_nb(path_yaml):
     """
     cell_metadata={"init_cell": True, "hide_input": True, "editable": False,  "deletable": False, "tags": ['noexport'], "trusted": True}
     add_cell(note,cell_type,cell_string,cell_metadata)
-   
+
     # Verifier
     cell_type="Code"
     cell_string= """\
@@ -300,7 +301,7 @@ def generate_nb(path_yaml):
     """
     cell_metadata={"init_cell": True, "hide_input": True, "editable": False,  "deletable": False, "tags": ['noexport'], "trusted": True}
     add_cell(note,cell_type,cell_string,cell_metadata)
-    
+
     # Useful note
     cell_type='Markdown'
     cell_string="""<b>Nota</b>: Saper programmare non è la competenza che intendiamo valutare con questo esercizio.
@@ -370,21 +371,21 @@ def generate_nb(path_yaml):
         elif tasks[i]['request'] =="R6":
             middle_point=eval(tasks[i]['middle_point'])
             request=f"__Richiesta {num_of_question} [{tasks[i]['tot_points']} punti]__: Quanti sono i percorsi che partono da $A1=(1,1)$, passano da ${chr(64+middle_point[0])}{middle_point[1]}={middle_point}$, e arrivano in ${chr(64+m)}{n}=({m},{n})$?"
-            request_lib = f"Quanti sono i percorsi che partono da A1=(1,1), passano da " + str(chr(64+middle_point[0])) + str(middle_point[1]) + "=" + str(middle_point) + " e arrivano in " + str(chr(64+m)) + str(n) + "=(" + str(m) + "," + str(n) + ")?" 
+            request_lib = f"Quanti sono i percorsi che partono da A1=(1,1), passano da " + str(chr(64+middle_point[0])) + str(middle_point[1]) + "=" + str(middle_point) + " e arrivano in " + str(chr(64+m)) + str(n) + "=(" + str(m) + "," + str(n) + ")?"
             answer_type = "Markdown"
             answer = "Inserisci la risposta"
 
         # aggiungere altre possibili richieste e relativi verificatori
         else:
             assert False
-        
+
         # Single request text
         cell_type='Markdown'
         cell_string= request
         cell_metadata ={"init_cell": True, "hide_input": True, "editable": False,  "deletable": False, "tags": ['noexport'], "trusted": True}
         add_cell(note,cell_type,cell_string,cell_metadata)
         tasks_istanza_libera+=[{'tot_points' : tasks[i]['tot_points'],'ver_points': tasks[i]['ver_points'], 'description1':request_lib}]
-        
+
         # Single request answer
         cell_type=answer_type
         cell_string=answer
@@ -397,8 +398,8 @@ def generate_nb(path_yaml):
             cell_string=verif
             cell_metadata={"init_cell": True, "hide_input": True, "editable": False,  "deletable": False, "trusted": True}
             add_cell(note,cell_type,cell_string,cell_metadata)
-    
+
         num_of_question += 1
-    
+
     yaml_gen['tasks']=tasks_istanza_libera
     return note, yaml_gen
