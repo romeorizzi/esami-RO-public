@@ -151,7 +151,7 @@ def generate_nb(path_yaml):
     # Verifier
     cell_type="Code"
     cell_string= """\
-    
+    import copy
     
     def evaluation_format(answ, pt_green,pt_red, index_pt):
         pt_blue=0
