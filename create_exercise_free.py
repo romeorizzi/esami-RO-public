@@ -192,6 +192,29 @@ def insert_single_graph_task(note, task, i):
     note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False}
     insert_task_buttons(note,str(i+1))
     task_graph = get_graph_data(task['graphml'],str(i+1))
+    # insert into task_graph the yaml for the states    
+    if 'states' in task:
+        states = task['states']
+        task_graph += "\nstates"+str(i+1)+"="+str(states)
+    else:
+        task_graph += """{"states": {
+          "state1": {
+              "select": "seleziona",
+              "unselect": "deseleziona"
+          },
+          "nome_stato2": {
+              "select": "seleziona2",
+              "unselect": "deseleziona2"
+          }
+        }
+      }"""
+    # insert into task_graph the yaml for the scope
+    if 'scope' in task:
+        scope = task['scope']
+        task_graph += "\nscope"+str(i+1)+"="+str(scope)
+    else:
+        #enable all button for retrocompatibility
+        task_graph += "\nscope"+str(i+1)+"=['color','drag','download','editweight']"
     note['cells'] += [nb.v4.new_code_cell(task_graph)]
     note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False, "tags": ['noexport']}
     config_check = open(PATH_GRAPH_UTILS + 'config_check.py').read()

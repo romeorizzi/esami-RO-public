@@ -27,4 +27,5 @@ HTML('''
 <script src="../../graph_utils/js/sigma.exporters.svg.js"></script>
 <script src="../../graph_utils/js/settings.js"></script>
 <script src="../../graph_utils/js/sigma.renders.snapshots.js"></script>
+<script src="../../graph_utils/js/sigma.utility.js"></script>
 ''')
