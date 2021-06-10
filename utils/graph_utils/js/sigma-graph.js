@@ -21,6 +21,7 @@ var default_color_node = "#000000";
 var default_color_edge = "#828282";
 var color_first_set = "#FF5722";
 var color_second_set = "#FFD600";
+var color_btn_active = "#0057e7";
 var size_edge = 1;
 var size_node = 2;
 var directed = false;
@@ -44,6 +45,13 @@ function sleep(milliseconds) {
     }
   }
 }
+var zoomMax_value = 1;
+var zoomMin_value = 1;
+
+if(states$n.includes('active_zoom')){
+    zoomMax_value = 0.01;
+    zoomMin_value = 5;
+}
 
 $s = new sigma({
     graph: g,
@@ -57,8 +65,8 @@ $s = new sigma({
         minEdgeSize: 6,
         maxEdgeSize: 6,
         minArrowSize: 1,
-        zoomMin: 0.01,
-        zoomMax: 5,
+        zoomMin: zoomMax_value,
+        zoomMax: zoomMin_value,
         zoomingRatio: 0.9,
         enableEdgeHovering: true,
         doubleClickEnabled: false,
@@ -84,6 +92,7 @@ $s = new sigma({
         defaultLabelSize: 17,
     },
 });
+
 
 
 $s.cameras[0].goTo({ x: 1200,y: -100, angle:0, ratio: 0.9 });
@@ -166,31 +175,9 @@ $s.bind('clickEdge', function(event){
     });
     changed_matrix$n = return_changedWeight$n[0]
     $s.states["changedW_adj"] = changed_matrix$n;
-    // var e_source = event.data.edge.source;
-    // var e_target = event.data.edge.target; 
-    // //the follow if structure checks if an already selected arrowed edge have to change
-    // // if(selected_edge$n[map$n[e_source]][map$n[e_target]] > 0 || selected_edge$n[map$n[e_target]][map$n[e_source]] > 0){
-    // //     if(selected_edge$n[map$n[e_source]][map$n[e_target]] > selected_edge$n[map$n[e_target]][map$n[e_source]]){
-    // //         selected_edge$n[map$n[e_source]][map$n[e_target]] = 0;
-    // //         selected_edge$n[map$n[e_target]][map$n[e_source]] = 1;
-    // //     }
-    // //     else if(selected_edge$n[map$n[e_source]][map$n[e_target]] < selected_edge$n[map$n[e_target]][map$n[e_source]]){
-    // //         selected_edge$n[map$n[e_source]][map$n[e_target]] = 1;
-    // //         selected_edge$n[map$n[e_target]][map$n[e_source]] = 0;
-    // //     }   
-    // //     else if(selected_edge$n[map$n[e_source]][map$n[e_target]] == selected_edge$n[map$n[e_target]][map$n[e_source]]){ 
-    // //         if(changedWeight_adj$n[map$n[e_source]][map$n[e_target]] > changedWeight_adj$n[map$n[e_target]][map$n[e_source]]){
-    // //             selected_edge$n[map$n[e_source]][map$n[e_target]] = 1;
-    // //             selected_edge$n[map$n[e_target]][map$n[e_source]] = 0;
-    // //         }
-    // //         else if(changedWeight_adj$n[map$n[e_source]][map$n[e_target]] < changedWeight_adj$n[map$n[e_target]][map$n[e_source]]){
-    // //             selected_edge$n[map$n[e_source]][map$n[e_target]] = 0;
-    // //             selected_edge$n[map$n[e_target]][map$n[e_source]] = 1;
-    // //         }
-    // //     }
-    // // }
-    // $s.states["selectedEdges"] = selected_edge$n;
     $s.refresh();
+    // changeW$n in this place block the function after the use
+    // changeW$n = false;
 });
 
 
@@ -270,7 +257,7 @@ $s.bind('clickNode', function(e) {
             remove_node = false;
             return;
         // SELECT NODE
-        } else if (set_one) {
+        } else if (set_one) { //set_one_nodes
             node.color = current_color;
             //set to one the position of the node that was selected
             if(selected_node$n[map$n[nodeId]][1] < 1){
@@ -278,9 +265,9 @@ $s.bind('clickNode', function(e) {
             }
             $s.states['selectedNodes'] = selected_node$n;
             $s.refresh();
-        // } else if (set_two) {
-        //     node.color = current_color;
-        //     $s.refresh()
+        } else if (set_two) {
+            node.color = current_color;
+            $s.refresh()
         // UNSELECT NODE
         } else if (unselect_set) {
             node.color = default_color_node;// current_color;
@@ -364,26 +351,26 @@ $s.bind('clickEdge', function(event) {
         $s.states["selectedEdges"] = selected_edge$n;
         $s.refresh()
     } 
-    // else if (set_two) {
-    //     for (key in dict_ef) {
-    //         if (key == edgeId) {
-    //             for (f of dict_ef[key]) {
-    //                 var e = $s.graph.edges(f)
-    //                 e.color = current_color
-    //                 var source = $s.graph.nodes(e.source)
-    //                 var target = $s.graph.nodes(e.target)
-    //                 if (source.piece) {
-    //                     source.color = current_color
-    //                 }
-    //                 if (target.piece) {
-    //                     target.color = current_color
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     edge.color = current_color;
-    //     $s.refresh()
-    // } 
+    else if (set_two) {
+        for (key in dict_ef) {
+            if (key == edgeId) {
+                for (f of dict_ef[key]) {
+                    var e = $s.graph.edges(f)
+                    e.color = current_color
+                    var source = $s.graph.nodes(e.source)
+                    var target = $s.graph.nodes(e.target)
+                    if (source.piece) {
+                        source.color = current_color
+                    }
+                    if (target.piece) {
+                        target.color = current_color
+                    }
+                }
+            }
+        }
+        edge.color = current_color;
+        $s.refresh()
+    } 
     else if (unselect_set) {
         for (key in dict_ef) {
             if (key == edgeId) {
@@ -418,10 +405,6 @@ $s.bind('clickEdge', function(event) {
         $s.states["selectedEdges"] = selected_edge$n;
         $s.refresh()
     } 
-    /*else if (set_weight) {
-        change_label(edge)
-        $s.refresh()
-    }*/
 });
 
 //add edge
@@ -527,10 +510,11 @@ try {
 //the buttons related to the selection_state
 if(states$n.includes('selection')){
     if(selection_state.includes('select')){
-        try {
+        try { //btn_set_one_nodes
             document.getElementById("btn_set_one" + $n).style.backgroundColor = color_first_set
             document.getElementById("btn_set_one" + $n).addEventListener("click", function() {
                 set_one = true;
+                //set_one_node
                 set_two = false;
                 changeW$n = false;
                 unselect_set = false
@@ -538,18 +522,18 @@ if(states$n.includes('selection')){
                 remove_node = false;
                 current_color = color_first_set
             });
-            // var for_bg = document.getElementById("btn_set_two" + $n);
-            // for_bg.style.backgroundColor = color_second_set;
-            // for_bg.style.color = "black";
-            // document.getElementById("btn_set_two" + $n).addEventListener("click", function() {
-            //     set_one = false
-            //     set_two = true
-            //     unselect_set = false
-            //     changeW$n = false
-            //     remove_edge = false;
-            //     remove_node = false;
-            //     current_color = color_second_set
-            // });
+            var for_bg = document.getElementById("btn_set_two" + $n);
+            for_bg.style.backgroundColor = color_second_set;
+            for_bg.style.color = "black";
+            document.getElementById("btn_set_two" + $n).addEventListener("click", function() {
+                set_one = false
+                set_two = true
+                unselect_set = false
+                changeW$n = false
+                remove_edge = false;
+                remove_node = false;
+                current_color = color_second_set
+            });
         } catch (e) {};
     }
     else{
@@ -557,8 +541,8 @@ if(states$n.includes('selection')){
             var btn = document.getElementById("btn_set_one" + $n);
             btn.parentNode.removeChild(btn);
 
-            // btn = document.getElementById("btn_set_two" + $n);
-            // btn.parentNode.removeChild(btn);
+            btn = document.getElementById("btn_set_two" + $n);
+            btn.parentNode.removeChild(btn);
         }catch(e){};
     }
     if(selection_state.includes('unselect')){
@@ -585,9 +569,10 @@ if(states$n.includes('selection')){
     }
 }
 //the buttons related to the all_download_state
-if(states$n.includes('all_download')){
+if(states$n.includes('all_download')||states$n.includes('download_svg')){
     if(all_download_state.includes('download_svg')){
         try {
+            document.getElementById("download_svg" + $n).style.backgroundColor = color_btn_active
             document.getElementById("download_svg" + $n).addEventListener("click",
                 function(){
                     $s.downloadSVG(
@@ -605,9 +590,12 @@ if(states$n.includes('all_download')){
             btn.parentNode.removeChild(btn);
         } catch(e){};
     }
+}
+if(states$n.includes('all_download')||states$n.includes('download_png')){
     if(all_download_state.includes('download_png')){
         //download png
         try {
+            document.getElementById("download_png" + $n).style.backgroundColor = color_btn_active
             document.getElementById("download_png" + $n).addEventListener("click", function() {
                 $s.renderers[0].snapshot({
                     format: 'png',
@@ -626,8 +614,11 @@ if(states$n.includes('all_download')){
             btn.parentNode.removeChild(btn);
         } catch(e){};
     }
+}
+if(states$n.includes('all_download')||states$n.includes('download_adj')){
     if(all_download_state.includes('download_adj')){
         try {
+            document.getElementById("download_adj" + $n).style.backgroundColor = color_btn_active
             document.getElementById("download_adj" + $n).addEventListener("click", function() {
 
 
@@ -690,7 +681,7 @@ if(states$n.includes('all_download')){
     }
     else{
         try{
-            var btn = document.getElementById("download_png" + $n);
+            var btn = document.getElementById("download_adj" + $n);
             btn.parentNode.removeChild(btn);
         } catch(e){};
     }
@@ -699,10 +690,9 @@ if(states$n.includes('all_download')){
 if(states$n.includes('editweight')){
     if(editweight_state.includes('editweight')){
         try{
-            var btn = document.getElementById("changeW"+$n);
-
+            document.getElementById("changeW" + $n).style.backgroundColor = color_btn_active
             // When the user clicks the button, open the modal
-            btn.onclick = function() {
+            document.getElementById("changeW"+$n).onclick = function() {
 
                 set_one = false
                 set_two = false
@@ -727,6 +717,7 @@ if(states$n.includes('editweight')){
 if(states$n.includes('multiple_drag')){
     if(multiple_drag_state.includes('drag')){
         try {
+            document.getElementById("btn_multiple_sel" + $n).style.backgroundColor = color_btn_active
             document.getElementById("btn_multiple_sel" + $n).addEventListener("click", function() {
                 multiple_sel = !multiple_sel;
             });
@@ -742,6 +733,7 @@ if(states$n.includes('multiple_drag')){
 //al momento del submit creo json relativi al dizionario contenente le modifiche (graphN) e quello relativo al dizionorario per il render
 // del grafo in sigma js
 try {
+    document.getElementById("save" + $n).style.backgroundColor = color_btn_active    
     document.getElementById("save" + $n).addEventListener("click", function() {
         document.getElementById("save" + $n).style.backgroundColor = "#66cc66"
         var ts= new Date()

@@ -15,7 +15,7 @@ tasks:
     graphml: 'collections/RO-2020-09-30/graphml-2020-09-30/grafo_plan3_pesi.graphml',
     description1: "Fornire un albero ricoprente di peso minimo",
     scope: ['color','drag','editweight'],
-    states: ['all_download', 'selection', 'editweight', 'multiple_drag']
+    states: ['selection','download_png','download_svg']
   }
 - {
     tot_points: 5,
@@ -38,6 +38,6 @@ tasks:
     graphml: 'collections/RO-2020-09-30/graphml-2020-09-30/grafo_plan3_pesi.graphml',
     description1: "Per ciascuno dei seguenti archi dire, certificandolo, se esso appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli alberi ricoprenti di peso minimo: $fg$, $mo$, $np$",
     scope: ['color'],
-    states: ['all_download', 'selection', 'editweight', 'multiple_drag']
+    states: ['download_adj','editweight','multiple_drag']
   }
 ...
