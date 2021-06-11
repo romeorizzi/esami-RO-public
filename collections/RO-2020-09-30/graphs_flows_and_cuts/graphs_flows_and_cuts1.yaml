@@ -13,24 +13,24 @@ tasks:
     tot_points: 20,
     ver_points: 0,
     graphml: 'collections/RO-2020-09-30/graphml-2020-09-30/grafo_plan2_pesi.graphml',
-    description1: "Fornire un massimo flusso dal nodo $s$ al nodo $t$",
+    description1: "Fornire un massimo flusso dal nodo $s$ al nodo $t$"
     scope: ['color','drag','download','editweight'],
-    states: ['selection','all_download','editweight','multiple_drag']
+    states: ['selection','all_download','editweight','multiple_drag','active_zoom']
   }
 - {
     tot_points: 15,
     ver_points: 0,
     graphml: 'collections/RO-2020-09-30/graphml-2020-09-30/grafo_plan2_pesi.graphml',
-    description1: "Certificare l'ottimalità del flusso massimo dal nodo $s$ al nodo $t$",
+    description1: "Certificare l'ottimalità del flusso massimo dal nodo $s$ al nodo $t$"
     scope: ['color','drag','download','editweight'],
-    states: ['selection','all_download','editweight','multiple_drag']
+    states: ['selection','all_download','editweight','multiple_drag','active_zoom']
   }
 - {
     tot_points: 15,
     ver_points: 0,
     graphml: 'collections/RO-2020-09-30/graphml-2020-09-30/grafo_plan2_pesi.graphml',
-    description1: "Per ciascuno dei seguenti tre archi dire, certificandolo, se esso appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli $s,t$-tagli di capacità minima: $hl$, $mo$, $wx$",
+    description1: "Per ciascuno dei seguenti tre archi dire, certificandolo, se esso appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli $s,t$-tagli di capacità minima: $hl$, $mo$, $wx$"
     scope: ['color','drag','download','editweight'],
-    states: ['selection','all_download','editweight','multiple_drag']
+    states: ['selection','all_download','editweight','multiple_drag','active_zoom']
   }
 ...

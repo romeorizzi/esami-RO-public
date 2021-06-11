@@ -14,5 +14,7 @@ tasks:
     ver_points: 0,
     graphml: 'collections/RO-2021-02-18/graphml-2021-02-18/grafo_test_plan0_no_pesi.graphml',
     description1: "Fornire un planar embedding di $G$"
+    scope: ['color','drag','download','editweight'],
+    states: ['selection','all_download','editweight','multiple_drag','active_zoom']
   }
 ...
