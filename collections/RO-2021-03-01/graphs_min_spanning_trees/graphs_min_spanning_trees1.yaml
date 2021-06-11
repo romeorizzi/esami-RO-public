@@ -13,14 +13,14 @@ tasks:
     tot_points: 5,
     ver_points: 0,
     graphml: 'collections/RO-2021-03-01/graphml-2021-03-01/grafo_plan2_pesi.graphml',
-    description1: "Fornire un albero ricoprente di peso minimo"
+    description1: "Fornire un albero ricoprente di peso minimo",
     scope: ['color','drag','download','editweight'],
     states: ['selection','all_download','editweight','multiple_drag','active_zoom']
   }
 - {
     tot_points: 5,
     ver_points: 0,
-    description1: "Specificare quanti siano gli alberi ricoprenti di peso minimo"
+    description1: "Specificare quanti siano gli alberi ricoprenti di peso minimo",
     scope: ['color','drag','download','editweight'],
     states: ['selection','all_download','editweight','multiple_drag','active_zoom']
   }
@@ -28,7 +28,7 @@ tasks:
     tot_points: 10,
     ver_points: 0,
     graphml: 'collections/RO-2021-03-01/graphml-2021-03-01/grafo_plan2_pesi.graphml',
-    description1: "Descrivere in modo chiaro e conciso la struttura della famiglia degli alberi ricoprenti di peso minimo"
+    description1: "Descrivere in modo chiaro e conciso la struttura della famiglia degli alberi ricoprenti di peso minimo",
     scope: ['color','drag','download','editweight'],
     states: ['selection','all_download','editweight','multiple_drag','active_zoom']
   }
@@ -36,7 +36,7 @@ tasks:
     tot_points: 5,
     ver_points: 0,
     graphml: 'collections/RO-2021-03-01/graphml-2021-03-01/grafo_plan2_pesi.graphml',
-    description1: "Dire, certificandolo, se l'arco $fg$ appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli alberi ricoprenti di peso minimo"
+    description1: "Dire, certificandolo, se l'arco $fg$ appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli alberi ricoprenti di peso minimo",
     scope: ['color','drag','download','editweight'],
     states: ['selection','all_download','editweight','multiple_drag','active_zoom']
   }
@@ -44,7 +44,7 @@ tasks:
     tot_points: 5,
     ver_points: 0,
     graphml: 'collections/RO-2021-03-01/graphml-2021-03-01/grafo_plan2_pesi.graphml',
-    description1: "Dire, certificandolo, se l'arco $mo$ appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli alberi ricoprenti di peso minimo"
+    description1: "Dire, certificandolo, se l'arco $mo$ appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli alberi ricoprenti di peso minimo",
     scope: ['color','drag','download','editweight'],
     states: ['selection','all_download','editweight','multiple_drag','active_zoom']
   }
@@ -52,7 +52,7 @@ tasks:
     tot_points: 5,
     ver_points: 0,
     graphml: 'collections/RO-2021-03-01/graphml-2021-03-01/grafo_plan2_pesi.graphml',
-    description1: "Dire, certificandolo, se l'arco $np$ appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli alberi ricoprenti di peso minimo"
+    description1: "Dire, certificandolo, se l'arco $np$ appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli alberi ricoprenti di peso minimo",
     scope: ['color','drag','download','editweight'],
     states: ['selection','all_download','editweight','multiple_drag','active_zoom']
   }

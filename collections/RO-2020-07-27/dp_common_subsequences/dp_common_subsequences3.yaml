@@ -22,4 +22,4 @@ tasks:
     _s3_ = AATCTGCCACTGCG di _s_
 - tot_points: 10
   ver_points: 1
-  description1: Fornire una sequenza di massima lunghezza che inizi per AA e che sia sottosequenza comune tra _s_ e _t_ 
+  description1: Fornire una sequenza di massima lunghezza che inizi per AA e che sia sottosequenza comune tra _s_ e _t_

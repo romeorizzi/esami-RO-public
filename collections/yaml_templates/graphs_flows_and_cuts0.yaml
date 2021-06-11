@@ -13,7 +13,7 @@ tasks:
     tot_points: 20,
     ver_points: 0,
     graphml: 'collections/RO-2021-03-01/graphml-2021-03-01/grafo_plan1_pesi.graphml',
-    description1: "Fornire un massimo flusso dal nodo $s$ al nodo $t$"
+    description1: "Fornire un massimo flusso dal nodo $s$ al nodo $t$",
     scope: ['color','drag','download','editweight'],
     states: ['selection','all_download','editweight','multiple_drag','active_zoom']
   }
@@ -21,7 +21,7 @@ tasks:
     tot_points: 15,
     ver_points: 0,
     graphml: 'collections/RO-2021-03-01/graphml-2021-03-01/grafo_plan1_pesi.graphml',
-    description1: "Certificare l'ottimalità del flusso massimo dal nodo $s$ al nodo $t$"
+    description1: "Certificare l'ottimalità del flusso massimo dal nodo $s$ al nodo $t$",
     scope: ['color','drag','download','editweight'],
     states: ['selection','all_download','editweight','multiple_drag','active_zoom']
   }
@@ -29,7 +29,7 @@ tasks:
     tot_points: 5,
     ver_points: 0,
     graphml: 'collections/RO-2021-03-01/graphml-2021-03-01/grafo_plan1_pesi.graphml',
-    description1: "Dire, certificandolo, se l'arco $hi$ appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli $s,t$-tagli di capacità minima"
+    description1: "Dire, certificandolo, se l'arco $hi$ appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli $s,t$-tagli di capacità minima",
     scope: ['color','drag','download','editweight'],
     states: ['selection','all_download','editweight','multiple_drag','active_zoom']
   }
@@ -37,7 +37,7 @@ tasks:
     tot_points: 5,
     ver_points: 0,
     graphml: 'collections/RO-2021-03-01/graphml-2021-03-01/grafo_plan1_pesi.graphml',
-    description1: "Dire, certificandolo, se l'arco $mo$ appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli $s,t$-tagli di capacità minima"
+    description1: "Dire, certificandolo, se l'arco $mo$ appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli $s,t$-tagli di capacità minima",
     scope: ['color','drag','download','editweight'],
     states: ['selection','all_download','editweight','multiple_drag','active_zoom']
   }
@@ -45,7 +45,7 @@ tasks:
     tot_points: 5,
     ver_points: 0,
     graphml: 'collections/RO-2021-03-01/graphml-2021-03-01/grafo_plan1_pesi.graphml',
-    description1: "Dire, certificandolo, se l'arco $wx$ appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli $s,t$-tagli di capacità minima"
+    description1: "Dire, certificandolo, se l'arco $wx$ appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli $s,t$-tagli di capacità minima",
     scope: ['color','drag','download','editweight'],
     states: ['selection','all_download','editweight','multiple_drag','active_zoom']
   }
