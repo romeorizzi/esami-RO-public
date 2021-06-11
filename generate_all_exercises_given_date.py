@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 Created on Fri Jun 19 12:31:44 2020
 
@@ -41,7 +43,7 @@ def add_all_exercises(exam_date, path_all, path_collection):
         print('Type: ' + type_list[i])
         os.mkdir(path_all + '/' + type_list[i])
         path_type = path_collection + '/' + type_list[i]
-        nb_ex_type = len(glob.glob(os.path.join(path_type, '*'))) # there must be at least one exercise for each type
+        nb_ex_type = len(glob.glob(os.path.join(path_type, '*.yaml'))) # there must be at least one exercise for each type
         assert nb_ex_type > 0
         for j in range(nb_ex_type):
             path_full_yaml = path_type + '/' + type_list[i] + str(j) + '.yaml'
@@ -78,25 +80,16 @@ if __name__ == "__main__":
     PATH_COLLECTION = os.getcwd() + '/' + COLLECTION_FOLDER + "RO-" + exam_date
     
     if os.path.exists(PATH_ALL_EXER):
-        answer = None # if the exam has been already created for given student and date, ask if re-write it or not
-        while answer not in ("y", "n"):
-            answer = input("Do you want to generate again the folder with all exercises? Enter 'y' or 'n': ")
-            if answer == "y": # it empties the folder PATH_ALL_EXER
-                for root, dirs, files in os.walk(PATH_ALL_EXER, topdown=False):
-                    for name in files:
-                        os.remove(os.path.join(root, name))
-                    for name in dirs:
-                        os.rmdir(os.path.join(root, name))
-                os.rmdir(PATH_ALL_EXER)
-                os.mkdir(PATH_ALL_EXER)
-                keep_going = 1
-            elif answer == "n":
-                keep_going = 0
-            else:
-                print("Please enter 'yes' or 'no'")
-    else:
-        os.mkdir(PATH_ALL_EXER)
-        keep_going = 1
-
-    if keep_going:
-        add_all_exercises(exam_date, PATH_ALL_EXER, PATH_COLLECTION)
+        answer = input(f"The target folder {PATH_ALL_EXER} already exists! Are you sure you want to erase it, and generate again the folder with all exercises? Enter 'y' or 'Y' if you want me to proceed: ")
+        if answer not in ("y", "Y"):
+            print("Operation aborted. This call has had no effect.")
+            exit(0)
+        for root, dirs, files in os.walk(PATH_ALL_EXER, topdown=False):
+            for name in files:
+                os.remove(os.path.join(root, name))
+            for name in dirs:
+                os.rmdir(os.path.join(root, name))
+        os.rmdir(PATH_ALL_EXER)
+        print(f"I have removed the old folder ({PATH_ALL_EXER}). Now building up the new one ...\n")
+    os.mkdir(PATH_ALL_EXER)
+    add_all_exercises(exam_date, PATH_ALL_EXER, PATH_COLLECTION)

@@ -57,23 +57,19 @@ def add_main_folder(archives_name):
     global absolute_path_student
     print("Creating the main folder " + absolute_path_student + "...")
     folder_student = os.getcwd() + REL_SHUTTLE_FOLDER + archives_name
-    if os.path.exists(folder_student):
-        answer = None # if the exam has been already created for given student and date, ask if re-write it or not
-        while answer not in ("y", "n"):
-            answer = input("Do you want to generate again the exam? Enter 'y' or 'n': ")
-            if answer == "y": # it empties the folder absolute_path_student
-                for root, dirs, files in os.walk(folder_student, topdown=False):
-                    for name in files:
-                        os.remove(os.path.join(root, name))
-                    for name in dirs:
-                        os.rmdir(os.path.join(root, name))
-                os.rmdir(folder_student)
-                os.mkdir(absolute_path_student)
-                return 1
-            elif answer == "n":
-                return 0
-            else:
-                print("Please enter 'yes' or 'no'")
+    if os.path.exists(folder_student): # there already exists a created exam for that given student and date
+        answer = input("Do you want to generate again the exam? Enter 'y' or 'n': ")
+        while answer not in ("y", "n", "Y", "N"):
+            print("Please enter 'y' (for 'yes') or 'n' (for 'no')")
+        if answer in ("n", "N"):
+            return 0
+        for root, dirs, files in os.walk(folder_student, topdown=False):
+            for name in files:
+                os.remove(os.path.join(root, name))
+            for name in dirs:
+                os.rmdir(os.path.join(root, name))
+        os.rmdir(folder_student)
+        print(f"I have removed the old folder ({folder_student}). Now building up the new one ({absolute_path_student})  ...\n")
     os.mkdir(absolute_path_student)
     return 1
 
@@ -91,7 +87,7 @@ def add_exercises(exam_date, path_exercises, ex_list):
     for i in range(len(type_list)):
         path_type = path_exercises + '/' + type_list[i]
         print(path_type)
-        nb_ex_type = len(glob.glob(os.path.join(path_type, '*'))) # there must be at least one exercise for each type
+        nb_ex_type = len(glob.glob(os.path.join(path_type, '*.yaml'))) # there must be at least one exercise for each type
         assert nb_ex_type > 0
         chosen = ex_list[i]
         if nb_ex_type == 1:
