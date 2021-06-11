@@ -8,8 +8,8 @@
 # SETTINGS
 ####################################
 subdir = "modo_verif" # sotto-cartella dove prende i punti dei verificatori
-gruppo_telegram = "https://t.me/RicercaOperativa2020"
-date = "2021-02-22" #data dell'esame
+gruppo_telegram = "https://t.me/RicercaOperativa2021"
+date = "2021-06-18" #data dell'esame
 
 
 import hashlib
@@ -95,7 +95,7 @@ al Gruppo Telegram del Corso:
 
 se non ti è pratico allora puoi mandare una mail a ENTRAMBI i seguenti indirizzi:
     romeo.rizzi@univr.it
-    alice.raffaele@univr.it
+    aurora.rossi@studenti.univr.it
 
 Se non hai o perdi la connessione internet puoi inviare la firma digitale tramite SMS al seguente numero:
 cel:+39.3518684000

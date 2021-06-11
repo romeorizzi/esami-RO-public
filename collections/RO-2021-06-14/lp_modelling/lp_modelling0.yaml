@@ -1,0 +1,41 @@
+---
+name: lp_modelling
+title: Programmazione lineare - Modellizzazione
+description1: "L'azienda Kuddly Pals S.p.A. produce due tipi di pupazzi (orsetti e gattini). La quantità di materia prima e il tempo necessario per realizzare ogni singolo pupazzo sono dati nella tabella sottostante.<br>
+<table>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Pupazzo</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Materiale (metri quadrati)</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Tempo (minuti)</b></td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Orsetto</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">0.05</td>
+        <td style=\"text-align: center; vertical-align: middle;\">12</td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Gattino</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">0.08</td>
+        <td style=\"text-align: center; vertical-align: middle;\">8</td>
+    </tr>
+</table>
+
+Ogni giorno l'azienda può processare fino a 20 metri quadrati di materia prima e sono presenti 48 lavoratori per assemblare i pupazzi, ognuno lavorante 4 ore. Ogni orsetto è venduto a 7.90 euro, mentre ogni gattino a 5.90 euro.<br>L'azienda vuole massimizzare i propri profitti, stabilendo quanti pupazzi di ogni tipologia produrre ogni giorno.<br>Considerare inoltre che il numero massimo di orsetti e gattini producibili ogni giorno è 300 e 250, rispettivamente."
+
+tasks:
+- {
+    tot_points: 30,
+    ver_points: 0,
+    description1: "Formulare il problema come problema di Programmazione Lineare, motivando le scelte compiute"
+  }
+- {
+    tot_points: 50,
+    ver_points: 0,
+    description1: "Risolvere il problema sfruttando la libreria Pulp"
+  }
+- {
+    tot_points: 10,
+    ver_points: 0,
+    description1: "E se l'azienda iniziasse a produrre un terzo pupazzo, per esempio delle tartarughe, vendendole a 6.90 euro al pezzo? Ogni tartaruga richiederebbe 0.07 metri quadrati e 9 minuti di tempo, e se ne potrebbero produrre al massimo 100 al giorno. Quale sarebbe la soluzione ottima?"
+  }
+...
