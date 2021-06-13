@@ -261,6 +261,7 @@ def generate_nb(path_yaml):
     cell_metadata = {"hide_input": True, "init_cell": True, "editable": False, "deletable": False,
                      "trusted": True}
     add_cell(note,cell_type, cell_string, cell_metadata)
+    yaml_gen['description1']=cell_string
     
     # Triangle in LaTeX
     cell_type='Code'
@@ -272,6 +273,7 @@ def generate_nb(path_yaml):
     cell_metadata = {"hide_input": True, "init_cell": True, "editable": False, "deletable": False, "tags": ['noexport'],
                      "trusted": True}
     add_cell(note,cell_type, cell_string, cell_metadata)
+    yaml_gen['description3']=cell_string
     
     # Description 2
     cell_type='Markdown'
