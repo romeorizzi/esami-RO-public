@@ -83,11 +83,11 @@ def add_exercises(exam_date, path_collection, ex_list):
     info_exer_map (list of str): for each exercise, its proper title to insert in the map"""
     global absolute_path_student
     if not os.path.isdir(path_collection):
-        print(f"Collection folder non found! Could not find {path_collection}")
+        print(f"\nATTENTION: Collection folder non found! Could not find {path_collection}")
         exit(1)
     info_exer_map = []
-    type_list = [x for x in sorted(os.listdir(path_collection))]
-    print(f"List of the exercises types available: {type_list}")
+    type_list = [x for x in sorted(os.listdir(path_collection)) if '.DS_Store' not in x and 'graphml-'+exam_date not in x]
+    print(f"\nTaking from collection folder {path_collection}\n   List of the exercise types included: {type_list}")
     for i in range(len(type_list)):
         path_type = path_collection + '/' + type_list[i]
         print(path_type)
