@@ -148,6 +148,15 @@ def insert_description2(note, exer_descr2):
     note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False}
     return
 
+def insert_description3(note, exer_descr3):
+    """It adds the description3 code cell to the notebook
+    Parameters:
+    note (Jupyter nb.v4): the notebook
+    exer_descr2 (str): the content to add"""
+    note['cells'] += [nb.v4.new_code_cell(exer_descr3)]
+    note.cells[-1].metadata = {"init_cell": True, "hide_input": True, "trusted": True, "editable": False, "deletable": False}
+    return
+
 def insert_user_bar_lib(note):
     """It inserts the Python code to add the user bar needed to answer to each task
     Parameters:
@@ -325,6 +334,8 @@ def create_exercise(exam_date, num, path_ex_folder, path_yaml):
         insert_description1(notebook, exer['description1'], exam_date, path_ex_folder) # description 1
     if 'description2' in exer:
         insert_description2(notebook, exer['description2']) # description 2
+    if 'description3' in exer:
+        insert_description3(notebook, exer['description3']) # description 3
     insert_tasks(notebook, exer['tasks']) # inserting the several tasks
     if exer['name'] in ('lp_duality', 'lp_interactive', 'lp_modelling', 'lp_two_phases'): # other libraries needed for some types of exercises
         insert_needed_import(notebook, exer['name'])
@@ -380,6 +391,8 @@ def create_exercise_given_yaml(exam_date, num, path_ex_folder, exer):
         insert_description1(notebook, exer['description1'], exam_date, path_ex_folder) # description 1
     if 'description2' in exer:
         insert_description2(notebook, exer['description2']) # description 2
+    if 'description3' in exer:
+        insert_description3(notebook, exer['description3']) # description 3
     insert_tasks(notebook, exer['tasks']) # inserting the several tasks
     if exer['name'] in ('lp_duality', 'lp_interactive', 'lp_modelling', 'lp_two_phases'): # other libraries needed for some types of exercises
         insert_needed_import(notebook, exer['name'])

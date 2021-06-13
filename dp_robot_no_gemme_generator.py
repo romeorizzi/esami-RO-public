@@ -10,8 +10,11 @@ import re
 import os
 from sys import argv, exit, stderr
 import yaml
-
+from tabulate import tabulate
 PATH_UTILS = os.getcwd() + '/utils/'
+
+
+
 
 def represent_dictionary_order(self, dict_data):
     return self.represent_mapping('tag:yaml.org,2002:map', dict_data.items())
@@ -122,6 +125,18 @@ def generate_nb(path_yaml):
 
     m=len(exer['campo_minato'])
     n=len(exer['campo_minato'][0])
+    mappa = [ ["*"]*(n+1) ] + [ (["*"] + r) for r in campo_minato]
+    if len(mappa)==m+1 and len(mappa[0])==n+1:
+        index=[chr(65+i) for i in range(m)]
+        aux=[r[1:] for r in mappa[1:]]
+
+
+    if len(mappa)==m+2 and len(mappa[0])==n+2:
+        index=[chr(65+i) for i in range(m)]
+        aux=[r[1:-1] for r in mappa[1:-1]]
+
+    columns=[str(i) for i in range(1,n+1)]
+    v_mappa=tabulate(aux, headers=columns, tablefmt='fancy_grid', showindex=index)
 
     # Heading and needed import
     insert_user_bar_lib(note)
@@ -326,12 +341,16 @@ def generate_nb(path_yaml):
            + f"Quanti sono i possibili percorsi che può fare il robot per andare dalla cella ${chr(65)}{1}={(1,1)}$ alla cella ${chr(64+m)}{n}=({m},{n})$?"
     cell_metadata = {"init_cell": True, "hide_input": True, "editable": False, "deletable": False, "tags": [], "trusted": True}
     add_cell(note,cell_type,cell_string,cell_metadata)
+    yaml_gen['description1'] = cell_string
 
-    # Description2
+    # Description3
     cell_type='Code'
-    cell_string="""visualizza(mappa)"""
+    cell_string=f"""
+    from tabulate import tabulate
+    print(tabulate({aux}, headers={columns}, tablefmt="fancy_grid", showindex={index}))"""
     cell_metadata={"init_cell": True, "hide_input": True, "editable": False,  "deletable": False, "tags": ['noexport'], "trusted": True}
     add_cell(note,cell_type,cell_string,cell_metadata)
+    yaml_gen['description3'] = cell_string
 
     # Requests
     for i in range (0,len(tasks)):
