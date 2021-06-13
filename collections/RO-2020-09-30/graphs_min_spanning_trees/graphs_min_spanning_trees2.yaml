@@ -12,7 +12,7 @@ tasks:
 - {
     tot_points: 5,
     ver_points: 0,
-    graphml: 'collections/RO-2020-09-30/graphml-2020-09-30/grafo_plan3_pesi.graphml',
+    graphml: 'collections/graphml_instances/graphs_min_spanning_trees/graph_eweights_undirected_plan_2020-09-30_3.graphml',
     description1: "Fornire un albero ricoprente di peso minimo",
     scope: ['color','drag','download','editweight'],
     states: ['selection','all_download','editweight','multiple_drag','active_zoom']
@@ -27,7 +27,7 @@ tasks:
 - {
     tot_points: 10,
     ver_points: 0,
-    graphml: 'collections/RO-2020-09-30/graphml-2020-09-30/grafo_plan3_pesi.graphml',
+    graphml: 'collections/graphml_instances/graphs_min_spanning_trees/graph_eweights_undirected_plan_2020-09-30_3.graphml',
     description1: "Descrivere in modo chiaro e conciso la struttura della famiglia degli alberi ricoprenti di peso minimo",
     scope: ['color','drag','download','editweight'],
     states: ['selection','all_download','editweight','multiple_drag','active_zoom']
@@ -35,7 +35,7 @@ tasks:
 - {
     tot_points: 20,
     ver_points: 0,
-    graphml: 'collections/RO-2020-09-30/graphml-2020-09-30/grafo_plan3_pesi.graphml',
+    graphml: 'collections/graphml_instances/graphs_min_spanning_trees/graph_eweights_undirected_plan_2020-09-30_3.graphml',
     description1: "Per ciascuno dei seguenti archi dire, certificandolo, se esso appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli alberi ricoprenti di peso minimo: $fg$, $mo$, $np$",
     scope: ['color','drag','download','editweight'],
     states: ['selection','all_download','editweight','multiple_drag','active_zoom']

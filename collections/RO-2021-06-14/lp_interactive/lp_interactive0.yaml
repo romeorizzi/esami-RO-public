@@ -1,42 +1,44 @@
 ---
 name: lp_interactive
 title: Programmazione lineare - Metodo del Simplesso e Dualità
-description1: Si consideri il seguente problema di Programmazione Lineare:<br>max $3x_1 + x_2 + 3x_3$<br>tale che:<br>$2x_1 + x_2 + x_3 \le 2$<br>$x_1 + 2x_2 + 3x_3 \le 5$<br>$2x_1 + 2x_2 + 1x_3 \le 6$<br>$x_1, x_2, x_3 \ge 0$
+description1: \*\*Nota\*\* Dai riquadri di questo foglio Jupyter, oltre al kernel python e ad ogni altra libreria che ti sarai installato o preparato, puoi convenientemente (se sai come fare, altrimenti il bugiardino in calce al presente documento potrebbe non bastarti al momento) richiamare funzionalità della libreria del simplesso interattivo. Questi supporti possono assisterti, riducendo i tuoi tempi, in quei passaggi dove potrebbero altrimenti infilarsi errori di calcolo.
+
+description2: Si consideri il seguente problema di Programmazione Lineare:<br>max $3x_1 + x_2 + 3x_3$<br>tale che:<br>$2x_1 + x_2 + x_3 \le 2$<br>$x_1 + 2x_2 + 3x_3 \le 5$<br>$2x_1 + 2x_2 + 1x_3 \le 6$<br>$x_1, x_2, x_3 \ge 0$
 
 tasks:
 - {
-    tot_points: 10,
+    tot_points: 3,
     ver_points: 0,
-    description1: "Sfruttando la libreria del simplesso interattivo, creare il primo tableau"
+    description1: "Scrivere il primo tableau"
+  }
+- {
+    tot_points: 5,
+    ver_points: 0,
+    description1: "Scrivere il tableau prodotto dopo il tuo primo passo di pivot"
   }
 - {
     tot_points: 10,
     ver_points: 0,
-    description1: "Scrivere il vettore dei coefficienti di costo ridotto dopo la prima iterazione"
+    description1: "Giungere ad un tableau ottimo e fermarsi lì"
   }
 - {
-    tot_points: 30,
+    tot_points: 3,
     ver_points: 0,
-    description1: "Risolvere il problema sfruttando la libreria del simplesso interattivo, indicando la soluzione primale estesa ottima e il valore della funzione obiettivo"
+    description1: "Indicare la soluzione primale estesa ottima e il valore della funzione obiettivo all'ottimo"
   }
 - {
-    tot_points: 10,
+    tot_points: 8,
     ver_points: 0,
     description1: "Prendendo a riferimento la soluzione di base data dall'origine, fare la prova del 9 del tableau ottimo"
   }
 - {
-    tot_points: 10,
+    tot_points: 3,
     ver_points: 0,
     description1: "Formulare il problema duale"
   }
 - {
-    tot_points: 10,
+    tot_points: 3,
     ver_points: 0,
-    description1: "Risolvere il problema duale utilizzando le condizioni di complementary slackness, indicando la soluzione duale estesa ottima e il valore della funzione obiettivo"
-  }
-- {
-    tot_points: 20,
-    ver_points: 0,
-    description1: "Alla luce della teoria, motivare la risposta data al punto precedente e i valori delle soluzioni ottenute"
+    description1: "Indicare la soluzione duale estesa ottima"
   }
 ...

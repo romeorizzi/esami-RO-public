@@ -29,9 +29,9 @@ tasks:
     description1: "Formulare il problema come problema di Programmazione Lineare, motivando le scelte compiute"
   }
 - {
-    tot_points: 50,
+    tot_points: 20,
     ver_points: 0,
-    description1: "Risolvere il problema sfruttando la libreria Pulp"
+    description1: "Risolvere il problema (al solito, puoi avvalerti di strumenti a supporto, quali ad esempio la libreria Pulp)"
   }
 - {
     tot_points: 10,

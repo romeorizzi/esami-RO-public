@@ -5,14 +5,14 @@ Integration: Alice Raffaele, Romeo Rizzi.
 
 """
 
+from sys import argv, exit, stderr
+import os
+import re
+import yaml
 from collections import OrderedDict
 import nbformat as nb
-import re
-import os
 import numpy as np
-import re, ast
-from sys import argv, exit, stderr
-import yaml
+import ast
 
 PATH_UTILS = os.getcwd() + '/utils/'
 
@@ -114,8 +114,8 @@ def generate_nb(path_yaml):
     elementi=exer['elementi']
     pesi=exer['pesi']
     valori=exer['valori']
-    
     tasks=exer['tasks']
+    
     total_point=0
     n_tasks = 0
     for i in range (0,len(tasks)):
@@ -139,7 +139,7 @@ def generate_nb(path_yaml):
     
     # Knapsack
     cell_type='Code'
-    cell_string=f"""\
+    cell_string=f"""
     B= {B}
     elementi= {elementi}
     pesi = {pesi}

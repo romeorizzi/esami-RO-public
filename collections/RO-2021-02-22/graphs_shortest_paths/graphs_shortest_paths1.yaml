@@ -12,7 +12,7 @@ tasks:
 - {
     tot_points: 3,
     ver_points: 0,
-    graphml: 'collections/RO-2021-02-22/graphml-2021-02-22/grafo_plan1_pesi.graphml',
+    graphml: 'collections/graphml_instances/graphs_shortest_paths/graph_eweights_mixed_plan_2021-02-22_2.graphml',
     description1: "Calcolare e fornire la distanza del nodo $x$ dal nodo $s$",
     scope: ['color','drag','download','editweight'],
     states: ['selection','all_download','editweight','multiple_drag','active_zoom']
@@ -25,7 +25,7 @@ tasks:
 - {
     tot_points: 3,
     ver_points: 0,
-    graphml: 'collections/RO-2021-02-22/graphml-2021-02-22/grafo_plan1_pesi.graphml',
+    graphml: 'collections/graphml_instances/graphs_shortest_paths/graph_eweights_mixed_plan_2021-02-22_2.graphml',
     description1: "Fornire un cammino minimo da $s$ a $x$",
     scope: ['color','drag','download','editweight'],
     states: ['selection','all_download','editweight','multiple_drag','active_zoom']
@@ -33,7 +33,7 @@ tasks:
 - {
     tot_points: 7,
     ver_points: 0,
-    graphml: 'collections/RO-2021-02-22/graphml-2021-02-22/grafo_plan1_pesi.graphml',
+    graphml: 'collections/graphml_instances/graphs_shortest_paths/graph_eweights_mixed_plan_2021-02-22_2.graphml',
     description1: "Fornire un albero dei cammini minimi dal nodo $s$ a tutti gli altri nodi del grafo",
     scope: ['color','drag','download','editweight'],
     states: ['selection','all_download','editweight','multiple_drag','active_zoom']
