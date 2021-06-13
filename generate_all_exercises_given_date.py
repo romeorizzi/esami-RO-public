@@ -37,8 +37,11 @@ def add_all_exercises(exam_date, path_all, path_collection):
     exam_date (str): YYYY-MM-DD
     path_all (str): path where to save all the generated exercises
     path_collection (str): path where to find all .yaml instances"""
-    type_list = [x for x in sorted(os.listdir(path_collection)) if '.DS_Store' not in x and 'graphml-'+exam_date not in x]
-    print(type_list)
+    if not os.path.isdir(path_collection):
+        print(f"Collection folder non found! Could not find {path_collection}")
+        exit(1)
+    type_list = [x for x in sorted(os.listdir(path_collection))]
+    print(f"List of the exercises types available: {type_list}")
     for i in range(len(type_list)):
         print('Type: ' + type_list[i])
         os.mkdir(path_all + '/' + type_list[i])

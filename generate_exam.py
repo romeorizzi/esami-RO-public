@@ -73,19 +73,23 @@ def add_main_folder(archives_name):
     os.mkdir(absolute_path_student)
     return 1
 
-def add_exercises(exam_date, path_exercises, ex_list):
+def add_exercises(exam_date, path_collection, ex_list):
     """It adds the exercises extracted to the student folder
     Parameters:
     exam_date (str): YYYY-MM-DD
-    path_exercises (str): where to find the collection of exercises
+    path_collection (str): where to find the collection of exercises
     ex_list (list of integers): extracted exercises
     Returns:
     info_exer_map (list of str): for each exercise, its proper title to insert in the map"""
     global absolute_path_student
+    if not os.path.isdir(path_collection):
+        print(f"Collection folder non found! Could not find {path_collection}")
+        exit(1)
     info_exer_map = []
-    type_list = [x for x in sorted(os.listdir(path_exercises)) if '.DS_Store' not in x and 'graphml-'+exam_date not in x]
+    type_list = [x for x in sorted(os.listdir(path_collection))]
+    print(f"List of the exercises types available: {type_list}")
     for i in range(len(type_list)):
-        path_type = path_exercises + '/' + type_list[i]
+        path_type = path_collection + '/' + type_list[i]
         print(path_type)
         nb_ex_type = len(glob.glob(os.path.join(path_type, '*.yaml'))) # there must be at least one exercise for each type
         assert nb_ex_type > 0
@@ -195,8 +199,8 @@ def gen_exam(exam_date, anchor, student_ID, matricola, name, surname, also_uncom
         print("The exam (" + exam_date + ', ' + student_ID + ") has been already generated")
     else:
         print("\nNew generation of the exam (" + exam_date + ', ' + student_ID + ") started\nAdding exercises...")
-        path_exercises = os.getcwd() + COLLECTION_FOLDER + "RO-" + exam_date
-        info_exer_map = add_exercises(exam_date, path_exercises, ex_list)
+        path_collection = os.getcwd() + COLLECTION_FOLDER + "RO-" + exam_date
+        info_exer_map = add_exercises(exam_date, path_collection, ex_list)
         print("\nAdding the map...")
         add_map(exam_date, matricola, info_exer_map, name, surname) # from the exercises created, it generates the map
         print("\n Adding graph utils")
