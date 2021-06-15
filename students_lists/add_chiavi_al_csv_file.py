@@ -19,39 +19,38 @@ if len(argv) > 1 and argv[1][:2] == "-h":
     usage()
     exit(1)
 
-numeric_pwd = False    
+numeric_pwd = 0    
 if len(argv) > 1 and argv[1][:2] == "-n":
-    numeric_pwd = True
-    argv = argv[1:]
+    numeric_pwd = 1
 
-if len(argv) > 5:
+if len(argv)-numeric_pwd > 5:
     print("ERROR: Hai fornito troppi parametri (più di 4)!", file=stderr)
     usage()
     exit(1)
 
-if len(argv) > 1:
+if len(argv)-numeric_pwd > 1:
   try:
-    length_pwd = int(argv[1])
+    length_pwd = int(argv[1+numeric_pwd])
   except ValueError:
-    print(f"ERROR: The first optional argument is present but it is not an int (ha valore {argv[1]})!", file=stderr)
+    print(f"ERROR: The first optional argument is present but it is not an int (ha valore {argv[1+numeric_pwd]})!", file=stderr)
     usage()
 else:
     length_pwd = 6
 
-if len(argv) > 4:
+if len(argv)-numeric_pwd > 4:
   try:
-    length_anchor = int(argv[4])
+    length_anchor = int(argv[4+numeric_pwd])
   except ValueError:
-    print(f"ERROR: The fourth optional argument is present but it is not an int (ha valore {argv[4]})!", file=stderr)
+    print(f"ERROR: The fourth optional argument is present but it is not an int (ha valore {argv[4+numeric_pwd]})!", file=stderr)
     usage()
 else:
     length_anchor = -1
 
 PWD_PREFIX = PWD_SUFFIX = ""
-if len(argv) > 2:
-    PWD_PREFIX = argv[2]
-if len(argv) > 3:
-    PWD_SUFFIX = argv[3]
+if len(argv)-numeric_pwd > 2:
+    PWD_PREFIX = argv[2+numeric_pwd]
+if len(argv)-numeric_pwd > 3:
+    PWD_SUFFIX = argv[3+numeric_pwd]
 
 def PWD_prefix(MATRICOLA,SURNAME,NAME,YEAR,ID_STUDENT):
     if PWD_PREFIX == "MATRICOLA":
@@ -103,28 +102,33 @@ with open(INPUT_FILE,"r") as fin:
        YEAR = re.sub('["]', '', YEAR).translate(trantab)
        MAILADR_ID = re.sub('["]', '', MAILADR_ID).translate(trantab)
        ID_STUDENT=MAILADR_ID[0:8]
-       #print(f"MATRICOLA={MATRICOLA}, SURNAME={SURNAME}, NAME={NAME}, YEAR={YEAR}, ID_STUDENT={ID_STUDENT}")
+       if ID_STUDENT=="id123456":
+           MAIL_ADR = "romeo.rizzi@univr.it"
+       else:
+           MAIL_ADR = MAILADR_ID           
+       #print(f"MATRICOLA={MATRICOLA}, YEAR={YEAR}, ID_STUDENT={ID_STUDENT}, NAME={NAME}, SURNAME={SURNAME}, MAIL_ADR={MAIL_ADR}")
        palette = string.ascii_letters + string.digits
-       if numeric_pwd:
+       if numeric_pwd == 1:
            palette = string.digits
        PASSWORD = PWD_prefix(MATRICOLA,SURNAME,NAME,YEAR,ID_STUDENT) + \
                   ''.join([random.choice(palette) for n in range(length_pwd)]) + \
                   PWD_suffix(MATRICOLA,SURNAME,NAME,YEAR,ID_STUDENT)
        # USERNAME = MATRICOLA
        if length_anchor < 0:
-           fout.write(MATRICOLA + "," + YEAR + "," + PASSWORD + "," + ID_STUDENT + "," + NAME + "," + SURNAME + "\n")
+           fout.write(MATRICOLA + "," + YEAR + "," + PASSWORD + "," + ID_STUDENT + "," + NAME + "," + SURNAME + "," + MAIL_ADR + "\n")
        else:
            ANCHOR = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(length_anchor)])
-           fout.write(MATRICOLA + "," + YEAR + "," + ANCHOR + "," + PASSWORD + "," + ID_STUDENT + "," + NAME + "," + SURNAME + "\n")
+           fout.write(MATRICOLA + "," + YEAR + "," + ANCHOR + "," + PASSWORD + "," + ID_STUDENT + "," + NAME + "," + SURNAME + "," + MAIL_ADR + "\n")
            
            
 print(f"Fatto! Il file {OUTPUT_FILE} è stato costruito e contiene {i} records (l'ultimo è lo studente fake MY TEST).")
+print(f"Per lo studente fake MY TEST, le mail saranno indirizzate all'indirizzo {MAIL_ADR} del docente.")
 
 """ LEGENDA DEL RECORD DROPPATO SU FILE lista_studenti_iscritti_con_chiavi.csv:
 
 Il singolo record (riga, dato studente) viene droppato sul file .csv in formazione col comando:
 
-fout.write(MATRICOLA + "," + YEAR + "," + ANCHOR + "," + PASSWORD + "," + ID_STUDENT + "," + NAME + "," + SURNAME + "\n")
+fout.write(MATRICOLA + "," + YEAR + "," + ANCHOR + "," + PASSWORD + "," + ID_STUDENT + "," + NAME + "," + SURNAME + "," + MAIL_ADR + "\n")
 
 dove:
 
@@ -135,5 +139,6 @@ PASSWORD: un codice numerico di 6 cifre
 ID_STUDENT: è l'id studente (a volte all'esame ti arrivano con delle tessere su cui è scritto solo quello, inoltre questo id mantiene validità quando passano dalla triennale alla magistrale mentre la matricola cambia). Il formato dell'id studente a UniVR è id???xxx dove ??? sono 3 cifre e xxx o sono o tutte e tre cifre o tutte e tre lettere minuscole.
 NAME è il nome dello studente
 SURNAME è il cognome dello studente
+MAIL_ADR è l'indirizzo mail dello studente 
 """
 
