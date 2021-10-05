@@ -1,0 +1,91 @@
+---
+name: lp_modelling1
+title: Programmazione lineare - Modellizzazione
+description1: "Un'industria produce due tipi di latte: intero e parzialmente scremato. L'azienda ha ricevuto una commessa per la quale dispone di un budget iniziale di 4000 euro, di 2000 ore di lavoro dedicabili alla lavorazione dei prodotti e di 1400 ore utili per l'imbottigliamento.
+    <br>
+    La seguente tabella indica le informazioni per tipo di latte:<br>
+<table>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Latte</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Intero</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Parzialmente scremato</td>
+
+
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Costi di produzione al litro</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">10</td>
+        <td style=\"text-align: center; vertical-align: middle;\">40</td>
+
+    </tr>
+        <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Prezzo di vendita al litro</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">30</td>
+        <td style=\"text-align: center; vertical-align: middle;\">70</td>
+
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Ore per la lavorazione</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">3</td>
+        <td style=\"text-align: center; vertical-align: middle;\">2</td>
+
+    </tr>
+   <tr>
+    <td style=\"text-align: center; vertical-align: middle;\"><b>Ore per l'imbottigliamento</b></td>
+    <td style=\"text-align: center; vertical-align: middle;\">2</td>
+    <td style=\"text-align: center; vertical-align: middle;\">3</td>
+
+   </tr>
+  
+</table>
+
+ Formula  il problema di programmazione lineare affinchè il profitto sia massimo."
+
+tasks:
+- 1:
+    tot_points: 10
+    ver_points: 0
+    description1: "Descrivere lo spazio delle scelte introducendo le opportune variabili"
+    AUX__guida_alla_formulazione: "Servono 2 variabili: x_1 (intero), x_2 (scremato) , che specificano i litri da produrre per ogni tipo di latte."
+
+- 2:
+    tot_points: 10
+    ver_points: 0
+    description1: "Comporre la funzione obiettivo che ricerchi la massimizzazione del profitto."
+    AUX__guida_alla_formulazione: "
+    max z= (prezzo di vendita * litri)-(costi di produzione * litri)
+    (30-10)x_1+(70-40)x2 = 20x_1 + 30x_2"
+    
+
+- 3:
+    tot_points: 20
+    ver_points: 0
+    description1: "Esprimere i vincoli del problema."
+    AUX__guida_alla_formulazione: "
+    (budget iniziale azienda): 10x1 + 40 x_2 <= 4000
+    (vincoli ore lavorazione): 3x_1 + 2x_2 <= 2000
+    (vincoli ore imbottigliamento): 2x_1 + 3x_2 <= 1400
+    (litri): x_1,x_2>=0
+    "
+
+- 4:
+    tot_points: 11
+    ver_points: 0
+    description1: "Per essere pronti ad affrontare commesse future, esprimere un modello astratto dove appaiano come parametri gli 11 valori numerici coinvolti (un punto per ogni parametro correttamente introdotto)."
+    AUX__guida_alla_formulazione: "
+        max z= (p_1-c_1)x_1 +(p_2-c_2)x2
+        soggetto ai vincoli: 
+    (budget iniziale azienda): p_1x1 + p_2x_2 <= B
+    (vincoli ore lavorazione): L_1x_1 + L_2x_2 <= O_1
+    (vincoli ore imbottigliamento): I_1x_1 + I_2x_2 <= O_2
+    (litri): x_1,x_2>=0
+    Dove i parametri:
+       p_i indicano i prezzi alla vendita del latte intero e parzialmente scremato (al litro)
+       c_i indicano i costi di produzione del latte intero e parzialmente scremato (al litro)
+       B indica il budget disponibile
+       O_i indicano le ore di lavorazione e di imbottigliamento, di cui si dispone 
+       L_i indicano le ore richieste per la lavorazione di un litro di latte i 
+       I_i indicano le ore richieste per l'imbottigliamento di un litro di latte i 
+    "
+
+...

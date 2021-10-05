@@ -1,0 +1,48 @@
+ROMEO:
+
+1. gestione dei bottoni:
+nel file yaml del singolo esercizio, si specifica ogni singolo bottone da aggiungere (togliere il discorso dei gruppi di bottoni, non è necessario) ed anche l'etichetta che dovrà essere stampata sul bottone. Il nome del (tipo di) bottone è univoco (con formato con dollari), stabilito da un set finito che trova implementazione in create_exercise_free.py e display.py prima, staticamente, e poi in sigma-graph.js e nel html del jupyther.
+Questo nome, è il prefisso del nome del file html che esprimerà la rendition per quel bottone. Il suffisso è dato dal numero di applet dentro il foglio jupyther.
+Dentro nello yaml cose di qusto genere quà:
+    states: [['color_edge_red', 'Seleziona degli archi'],['decolor_edge', 'Deseleziona degli archi',['download_svg', 'Download SVG'],['download_png', 'Download PNG']]
+
+    states: [['color_edge_yellow', 'Colora di giallo degli archi'],['decolor_edge_yellow', 'Ripristina colore di archi',['download_svg', 'Download SVG'],['download_png', 'Download PNG']]
+
+    states: [['color_node_red', 'Seleziona dei nodi'],['decolor_edge', 'Deseleziona dei nodi',['download_svg', 'Download SVG'],['download_png', 'Download PNG']]
+
+    states: [['color_node_yellow', 'Colora di giallo dei nodi'],['decolor_node_yellow', 'Ripristina colore di nodi',['download_svg', 'Download SVG'],['download_png', 'Download PNG']]
+
+Ossia abbiamo separato gestioni di nodi ed archi ed abbiamo dato la possibilità al problem maker di dare collocazione semantica personalizazata ad una stessa funzionalità. Nello yaml, per ogni quadro il problem maker può spcificare i bottoni ch devono esserci.
+
+
+Se vedi che si può fare:
+
+2. vedere se si può bloccare lo Zoom
+
+
+==========================
+
+GIACOMO:
+
+
+FILE DA MODIFICARE:
+    
+BUTTON.html:
+questo file contiene tutti bottoni (bottoni omologhi ma di quadri diversi troveranno nomi diversi per aggiunta di suffissi).
+servirà separare in file .html singoli ogni bottne il cui nome sarà sia univoco che identificativo del bottone 
+
+o in alternativa sarà generato su comando del file yaml (che contine anche l'etichetta del bottone)
+
+YAML:
+nel campo "states" di ogni campo "task" dovranno essere inseriti i nomi dei bottoni da attivare (il formato è quello illustrato sopra, stato sarà una lista di liste dove quelle interne conterranno il nome del bottone (quello univoco) come prima componente e l'etichetta da stampargli come seconda componente)
+
+Il nome del file sarà lo stesso del nome che appare nel file button che sarà lo stesso del bottone che vorrà essere attivato ma con aggiunta di suffisso
+(nel caso di generazione automatica il nome del bottone sarà quello da riconoscere nel file siga-graph.js per l'attivazione delle corrispondenti funzionallità)
+
+UTILIZZATO DA:
+create_exercise_free.py nella funzione get_data_graph() per poter riconoscere i bottoni di interesse per il singolo esercizio
+N.B. la funzione deve essere modificata per prendere in input i valori 
+N.B. nel caso di bottoni generati automaticamente "sospetto" questo sia il punto in cui generare il codice html
+sigma-graph.js: che implementa e attiva le funzionalità presenti bottoni trovati nell'html (e non sò se anche come da in altri file .html). 
+N.B. sigma-graph.js  ottiene il nome tramite l'attuale variabile "states$n" che riceverà i nomi dei bottoni.
+N.B. l'attivazione dei bottoni è gestita tutta nello stesso file da strutture if (ricercare parola chiava states$n.includes("nome_bottone"))

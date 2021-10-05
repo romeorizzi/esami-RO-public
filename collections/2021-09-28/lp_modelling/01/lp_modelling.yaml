@@ -1,0 +1,104 @@
+---
+name: lp_modelling
+title: Programmazione lineare - Modellizzazione
+description1: " Un'azienda produce snack per apertivi. La disponibilità di materie prime alla fine di gennaio è: 550 kg si arachidi, 150 kg di pistacchi, 90 kg di mandorle e 70 kg di nocciole. Ogni scatola contiene 500 grammi di prodotto.
+    <br>
+    La seguente tabella indica i 4 tipi di snack prodotti e le loro composizioni: <br>
+<table>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Prodotto</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>1</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>2</td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>3</td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>4</td>
+
+
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Profitto lire/scatola</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">260</td>
+        <td style=\"text-align: center; vertical-align: middle;\">400</td>
+        <td style=\"text-align: center; vertical-align: middle;\">510</td>
+        <td style=\"text-align: center; vertical-align: middle;\">520</td>
+
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Composizione</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">solo arachidi</td>
+        <td style=\"text-align: center; vertical-align: middle;\">non più del 50% di arachidi, almeno il 10% di mandorle e almeno il 15% di pistacchi</td>
+        <td style=\"text-align: center; vertical-align: middle;\">solo pistacchi</td>
+        <td style=\"text-align: center; vertical-align: middle;\">almeno il 30% di pistacchi, almeno il 20% di mandorle e almeno il 30% di nocciole</td>
+
+    </tr>
+
+</table>
+
+ Formula con la programmazione lineare il problema di massimizzare il ricavo supponendo che quanto prodotto venga interamente venduto."
+
+tasks:
+- 1:
+    tot_points: 10
+    ver_points: 0
+    description1: "Descrivere lo spazio delle scelte introducendo le opportune variabili."
+    AUX__guida_alla_formulazione: "Servono 4 variabili che indicano la quantità di mandorle(x_im), pistacchi(x_ip), nocciole(x_in) e arachidi (x_ia) per ogni tipo di snack (16 variabili alcune di queste sono zero) e 4 variabili y_i che indicano il numero di scatole per ogni snack."
+
+
+- 2:
+    tot_points: 10
+    ver_points: 0
+    description1: "Comporre la funzione obiettivo che ricerchi la massimizzazione del ricavo."
+    AUX__guida_alla_formulazione: "max z= 260y_1+400y_2+510y_3+520y_4 "
+    
+
+- 3:
+    tot_points: 20
+    ver_points: 0
+    description1: "Esprimere i vincoli del problema."
+    AUX__guida_alla_formulazione: "
+    (vincoli per esprimere che una scatola contiene 500 grammi di prodotto)
+    x_1a=0.5 y_1
+    x_2a+x_2m+x_2p+x_2n= 0.5 y_2
+    x_3p=0.5 y_3
+    x_4a+x_4m+x_4p+x_4n= 0.5 y_4
+    (vincoli sulle composizioni)
+    x_2a<=0.25 y_2
+    x_2n>=0.05 y_2
+    x_2p>=0.075 y_2
+    x_4m>=0.1 y_4
+    x_4n>=0.15 y_4
+    x_4p>=0.15 y_4
+    (vincoli sui kg totali posseduti dall'azienda)
+    x_1a+x2a+x4a<= 550
+    x_3p+x_2p+x_4p<=150
+    x_2m+x_x_4m<=90
+    x_2n+x_4n<=70
+    tutte le x e y >=0
+    
+    "
+
+- 4:
+    tot_points: 11
+    ver_points: 0
+    description1: "Per essere pronti ad affrontare lo stesso problema nei mesi successivi, esprimere un modello astratto dove appaiano come parametri i valori numerici coinvolti (un punto per ogni parametro correttamente introdotto)."
+    AUX__guida_alla_formulazione: "max z= p_1y_1 + p_2y_2+ p_3y_3+p_4y_4
+        soggetto ai vincoli: 
+    (vincoli su grammi scatola)
+    sum x_aj == 0.5 ya
+    (vincoli massima produzione):
+    sum x_ia<= tot kg arachidi
+    sum x_im<= tot kg mandorle
+    sum x_in<= tot kg nocciole
+    sum x_ip<= tot kg pistacchi
+    (vincoli per soddisfare composizioni snack)
+    x_ia<= percentuale/2 y_i ( NON PIU)
+    x_ia>= percentuale/2 y_i ( ALMENO )
+    Dove i parametri:
+       p_i indicano i profitti per tipo snack
+       x_ia kg arachidi per snack i
+       x_im kg mandorle per snack i
+       x_in kg nocciole per snack i
+       x_ip kg pistacchi per snack i
+       y_i numero scatole per snack i
+    "
+
+...

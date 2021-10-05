@@ -1,0 +1,103 @@
+OBIETTIVO: creare i file lista_studenti_iscritti.csv e lista_studenti_iscritti_con_chiavi.csv
+
+ Per fare cio',
+
+ 1.1. SCARICATI DA ESSE3 IL FILE <ListaStudentiEsameExportExcel.xls>  DEGLI ISCRITTI (QUELLO PRESELEZIONATO, "CON VOTI").
+    COLLOCALO NEL TUO FOLDER PER L'ESAME COME SEGUE:
+       # >>>per Algoritmi<<<:
+         mettilo/mettiti dentro la cartella:
+         ~/corsi/Algoritmi/esami-algo-private/yyyy-mm-dd
+         # OPPURE SALVA IN HOME E: mv ~/ListaStudentiEsameExportExcel.xls .
+         mv ~/ListaStudentiEsameExport.xls .
+         POI LANCIA lo script:
+         ../utils/start_from_esse3_xls_students_file.sh
+       # >>>per Ricerca Operativa<<<:
+        mettilo/mettiti dentro la cartella:
+         ~/corsi/RO/esami/esami-RO-private/students_lists/students_list_yyyy-mm-dd
+         # OPPURE SALVA IN HOME E: mv ~/ListaStudentiEsameExportExcel.xls .
+         mv ~/ListaStudentiEsameExport.xls .
+         POI LANCIA lo script:
+         ../start_from_esse3_xls_students_file.sh
+
+A questo punto avrai ottenuto i file:
+  lista_studenti_iscritti.csv
+  lista_studenti_iscritti_con_chiavi.csv
+  
+ 
+ 1.2. verificare lo stato dei due file con un test che viene molto utile (vedi ogni schifezza):
+   cat lista_studenti_iscritti_con_chiavi.csv | tr -d [:alnum:] | cat -n | less
+   cat lista_studenti_iscritti.csv | tr -d [:alnum:] | cat -n | less
+
+   E' importante verificare ora perchè il percorso di produzione di file per l'esame è lungo e questo è il momento delicato perchè abbiamo convertito quanto ci arriva da esse3 che tende a cambiare le cose nel tempo invece che fornire una solida API.
+
+
+ 1.3. aggiungi (ti conviene su entrambi i file, non costa nulla) tra gli studenti iscritti all'appello tutti quegli studenti che non avessero fatto in tempo ad iscriversi all'esame. Per Algoritmi avrai anche altre occasioni per farlo (agire sugli yaml) ma, se non ti incasina, fare le cose a monte è sempre meglio.
+
+   
+Nota 1: hai vari modi per configurare l'uso dello script ../utils/add_chiavi_al_csv_file.py  (chiamato da start_from_esse3_xls_students_file.sh) per ottenere credenziali della tipologia utile al tipo di appello che vai ad avere.
+
+Nota 2: Stiamo cercando di mantenere gli stessi script per più casi d'uso (i repo: esami-algo-private, esami-RO-private, esami-RO-public, download_upload) e pertanto, se ne modifichi in una repo cerca di propagare l'aggiornamento nelle altre. Avendone tempo converrebbe introdurre la lettura dei parametri di chiamata degli script interni (che sono identici) dentro un file di configurazione specifico al caso d'uso. Negli script esterni sono sostanzialmente questi parametri/argomenti a differire.
+
+Nota 3: Per Ricerca Operativa questo PASSO 1 esaurisce la fase di creazione dei file coi dati degli studenti che servono per predisporre l'esame. Per Algoritmi si prosegua coi PASSI più sotto. Inframmezziamo ora memoria di vecchie procedure alternative per ottenere quanto sopra in situazioni diverse che si sono avvicendate nel tempo (da ignorare se non quando devi rimetterci mano). 
+
+____________________________________________________________________
+IN ALTERNATIVA AD (1-old + 2-old + 3-old: MOLTO PIU' LUNGA MA SE IN FUTURO DOVRAI RIPARTIRE DALLA MAIL DI ESSE3):
+
+1-old:
+ 1.1. fai Ctrl-C Ctrl-V della lista degli iscritti da esse 3 (o, di poco piu` pratico, parti dalla mail che esse3 ti invia dopo chiuse le iscrizioni all'esame).
+      se parti dalla mail:
+      cat > lista_studenti_iscritti.csv
+ 1.2. Usa emacs per ripulirla (Alt-X rectangle-delete)
+      tenendo i 4 campi (MATRICOLA, SURNAME, NAME, YEAR)
+ 1.3. tale intestazione NON SERVE, ma separa i 4 campi con virgole per search e replace, ottenendo csv file.
+      Prima cosa ti conviene sostiture ogni tipo di spazi con virgole, poi pulire di search and replace, poi provvisoriamente (o definitivamente) usa underscores per incollare doppi nomi o cognomi, e rimuovi definitivamente gli accenti.
+ 1.4. Se temi ti siano rimasti caratteri accentati, ricorda che li vedi subito con less da terminale.
+ 1.5. aggiungi tra gli studenti iscritti all'appello tutti quegli studenti che non avessero fatto in tempo ad iscriversi all'esame.
+ 1.6. un test che viene molto utile (vedi ogni schifezza):
+   cat lista_studenti_iscritti.csv | tr -d [:alnum:] | cat -n | less
+
+2-old:
+2. ottenere il file: lista_studenti_iscritti_sorted.csv
+   per sortare il csv file sul campo matricola:
+   sort lista_studenti_iscritti.csv > lista_studenti_iscritti_sorted.csv
+   cancella eventuali linee iniziali vuote (erano finali nel file da ordinare) per non impassare gli script successivi.
+
+3-old:
+3. ottenere il file: lista_studenti_iscritti_con_chiavi.csv
+   utilizza il tuo apposito script (vedi che tipo di password vuoi):
+   addPasswordToCSVfile.py lista_studenti_iscritti_sorted.csv [codaDiPasswordPerQuestaSessioneEsame] > lista_studenti_iscritti_con_chiavi.csv
+  ESEMPI A PASSWORD LIBERA:
+  ../addPasswordToCSVfile.py lista_studenti_iscritti_sorted.csv FREE_PWD 8 > lista_studenti_iscritti_con_chiavi.csv
+  ESEMPI A PASSWORD SUFFISSO STANDARD:
+  ../addPasswordToCSVfile.py lista_studenti_iscritti_sorted.csv 123 > lista_studenti_iscritti_con_chiavi.csv
+  ../addPasswordToCSVfile.py lista_studenti_iscritti_sorted.csv "" > lista_studenti_iscritti_con_chiavi.csv
+
+________________________________________________________________________
+
+2. PRODUZIONE DEL FILE users.yaml:
+     
+  ../utils/makeUsersYAMLfileFromCSVfile.withNO.IP.restriction.py lista_studenti_iscritti_con_chiavi.csv  > users.yaml
+
+OPPURE (se ti servono le restrizioni sull'IP all'accesso):
+
+  ../utils/makeUsersYAMLfileFromCSVfile.for.aulaDELTA.py lista_studenti_iscritti_con_chiavi.csv  > users.yaml
+
+Una volta ottenuto il file users.yaml:
+
+Se l'esame sarà sulla VM esame:
+> scp users.yaml pisa:~/problems/esame/
+Se l'esame sarà su una VM multi-contest come algo-prove:
+> scp users.yaml pisa:~/rizzi/algo-prove/
+
+dove "pisa" è l'esteso di "ioi@cms.di.unipi.it"
+
+HAI FINITO!!!
+
+I seguenti 3 ulteriori passi solo se opti per password complesse da cedere ai ragazzi.
+Se opti per password semplici da inserire tu non serve.
+
+3. ../utils/makeCredenzialiLaTexFromCSVfile.py  lista_studenti_iscritti_sorted.csv > credenziali.tex
+
+4. pdflatex credenzialiStudenti.tex
+
+5. stampa credenzialiStudenti.pdf a pagina singola, e preritaglialo

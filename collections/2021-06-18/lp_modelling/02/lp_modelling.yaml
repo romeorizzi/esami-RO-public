@@ -1,0 +1,68 @@
+---
+name: lp_modelling
+title: Programmazione lineare - Modellizzazione
+description1: "(preso dal Cormen, ISBN-10 9780262033848) Supponete di dover candidarvi alle prossime elezioni politiche. La vostra circoscrizione ha tre tipi di aree: urbana, periferica e rurale. Queste aree hanno rispettivamente 100000, 200000 e 50000 elettori. Per poter governare efficacemente vorreste ottenere almeno la metà dei voti in ciascuna delle aree. I punti principali del vostro programma politico sono la costruzione di strade, il controllo delle armi, i contributi alle aziende agricole e una tassa sui carburanti. Per ognuno dei quattro punti del vostro programma, il vostro staff pubblicitario ha stimato quanti voti potete guadagnare o perdere nelle varie aree ogni 1000 euro spesi per pubblicizzare detto punto.
+    
+    Ecco la tabella di tali stime, ogni valore nella tabella indica le migliaia di voti per area ogni 1000 euro spesi su un certo punto del programma:<br>
+<table>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Area</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Costruzione strade</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Controllo armi</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Contributi alle aziende agricole</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Tassa sui carburanti</b></td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>urbana</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">-2</td>
+        <td style=\"text-align: center; vertical-align: middle;\">8</td>
+        <td style=\"text-align: center; vertical-align: middle;\">0</td>
+        <td style=\"text-align: center; vertical-align: middle;\">10</td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>periferica</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">5</td>
+        <td style=\"text-align: center; vertical-align: middle;\">2</td>
+        <td style=\"text-align: center; vertical-align: middle;\">0</td>
+        <td style=\"text-align: center; vertical-align: middle;\">0</td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>rurale</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">3</td>
+        <td style=\"text-align: center; vertical-align: middle;\">-5</td>
+        <td style=\"text-align: center; vertical-align: middle;\">10</td>
+        <td style=\"text-align: center; vertical-align: middle;\">-2</td>
+    </tr>
+</table>
+
+Il vostro compito consiste nel trovare la quantità minima di denaro da investire per ottenere 50000 voti urbani, 100000 voti periferici e 25000 voti rurali."
+
+tasks:
+- 1:
+    tot_points: 40
+    ver_points: 0
+    description1: "Formulare il problema come problema di Programmazione Lineare, motivando le scelte compiute"
+    AUX__guida_alla_formulazione: "Introduciamo 4 variabili, una per ogni voce di programma, così definite:\n
+x_s = migliaia di euro spesi in pubblicità nel settore strade\n
+x_r = migliaia di euro spesi in pubblicità nel settore armi\n
+x_a = migliaia di euro spesi in pubblicità nel settore agricoltura\n
+x_t = migliaia di euro spesi in pubblicità nel settore tasse sui carburanti\n
+
+Quindi:\n
+ min 1000x_s + 1000x_r + 1000x_a + 1000x_t\n
+
+con x_s, x_r, x_a, x_t >= 0\n
+
+Abbiamo poi un vincolo per ogni area circoscrizionale, dato che per ciascuna di esse intendiamo conquistare almeno la metà dell'elettorato:\n
+
+-2x_s + 8x_r +  0x_a + 10x_t >=  50  (vincolo dell'area urbana)\n
+ 5x_s + 2x_r +  0x_a +  0x_t >= 100  (vincolo dell'area periferica)\n
+ 3x_s - 5x_r + 10x_a -  2x_t >=  25  (vincolo dell'area rurale)"
+
+- 2:
+    tot_points: 20
+    ver_points: 0
+    description1: "Risolvere il problema (al solito, puoi avvalerti di strumenti a supporto, quali ad esempio la libreria Pulp)"
+
+
+...

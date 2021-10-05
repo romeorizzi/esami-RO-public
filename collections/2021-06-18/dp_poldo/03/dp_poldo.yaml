@@ -1,0 +1,94 @@
+---
+name: dp_poldo
+title: Sottosequenze crescenti e decrescenti
+tags:
+- programmazione dinamica
+- sottoproblemi e ricorrenze
+- algoritmi classici su sequenze
+
+
+instance:
+  s: [60, 20, 54, 82, 7, 9, 25, 13, 31, 47, 70, 83, 4, 32, 16, 61, 43, 20, 15, 54, 63, 99, 43, 13, 28]
+  forced_ele_pos: 15 # posizione dell'elemento che deve essere incluso nella sottosequenza (per le posizioni parti a contare da 1)
+  start_banned_interval: 5 # prima posizione bannata da intervallo proibito
+  end_banned_interval:   8 # ultima posizione bannata
+  monotonicity_type_subtask1: 'SC' # longest subsequence of s
+  monotonicity_type_subtask2: 'SC' # with banned interval
+  monotonicity_type_subtask3: 'SC' # with forced element
+  monotonicity_type_subtask4: 'Z'  # another type
+  monotonicity_type_subtask5: 'NC' # Dilworth theorem antichain cover
+
+tasks:
+- 1:
+    tot_points: 5
+    ver_points: 5
+    request: 'Fornire una sottosequenza $subs{num_of_question}$ {dictionary_of_types[monotonicity_type_subtask1]} di $s$ che sia la più lunga possibile.'
+    request_txt: 'Fornire una sottosequenza {dictionary_of_types[monotonicity_type_subtask1]} di s che sia la più lunga possibile'
+    answer_cell_type: "Code"
+    init_answ_cell_msg: '#Inserisci la tua risposta (per esempio, [1,2,3])\nsubs{num_of_question}=[]'
+    verif: 'display(Markdown(is_subseq_of_type(s, "s", subs{num_of_question}, "subs{num_of_question}", "{monotonicity_type_subtask1}", pt_green=1, pt_red={task["tot_points"]},index_pt={num_of_question - 1})))'
+    BOTH_valore_ottimo: 9
+
+    AUX__spiegazione: |
+     Definiamo i vettori `max_terminating_with_ele_at_pos` e `max_terminating_not_later_than_at_pos` entrambi di lunghezza |s| ed indicizzati dalle posizioni degli elementi in s. Quì `max_terminating_with_ele_at_pos`[i] = massima lunghezza di una sottosequenza strettamente crescente di s che termina proprio con l'i-esimo elemento di s. Invece `max_terminating_not_later_than_at_pos`[i] = massima lunghezza di una sottosequenza strettamente crescente che non prende da s elementi successivi all'i-esimo elemento. Una computazione ricorsiva prefissa produce facilmente `max_terminating_not_later_than_at_pos` poggiando su `max_terminating_with_ele_at_pos`, ma in realtà anche i valori in `max_terminating_not_later_than_at_pos` finiscono computati ricorsivamente (anche se con lavoro quadratico invece che lineare) e cadono come i birilli. Si ispezionino quindi i seguenti vettori, computati entrambi da sinista, e conteneti risposte a tutta una famiglia di domande di nostra pertinenza.
+     Stampa dei vettori `max_terminating_with_ele_at_pos` e `max_terminating_not_later_than_at_pos`:
+                                         s: 60 20 54 82  7  9 25 13 31 47 70 83  4 32 16 61 43 20 15 54 63 99 43 13 28 
+           max_terminating_with_ele_at_pos:  1  1  2  3  1  2  3  3  4  5  6  7  1  5  4  6  6  5  4  7  8  9  6  3  6 
+     max_terminating_not_later_than_at_pos:  1  1  2  3  3  3  3  3  4  5  6  7  7  7  7  7  7  7  7  7  8  9  9  9  9 
+
+- 2:
+    tot_points: 5
+    ver_points: 5
+    request: 'Fornire una sottosequenza $subs{num_of_question}$ di $s$, la più lunga possibile, che sia {dictionary_of_types[monotonicity_type_subtask2]} e non includa gli elementi di $s$ dalla posizione {start_banned_interval} alla posizione {end_banned_interval}.'
+    request_txt: 'Fornire una sottosequenza di s, la più lunga possibile, che sia {dictionary_of_types[monotonicity_type_subtask2]} di s, e che non includa gli elementi di s dalla posizione {str(start_banned_interval)} alla posizione {str(end_banned_interval)}'
+    answer_cell_type: "Code"
+    init_answ_cell_msg: '#Inserisci la tua risposta (per esempio, [1,2,3])\nsubs{num_of_question}=[]'
+    verif: 'display(Markdown(is_subseq_of_type(s, "s", subs{num_of_question}, "subs{num_of_question}", "{monotonicity_type_subtask2}", pt_green=1, pt_red={task["tot_points"]},index_pt={num_of_question - 1}, start_banned_interval={start_banned_interval}, end_banned_interval={end_banned_interval})))'
+    STUD_valore_ottimo: max=6
+    PRIV_valore_ottimo: max=6, ultimo elemento preso prima di intervallo interdetto=1, primo elemento preso dopo intervallo interdetto=13
+    AUXS_valore_ottimo: max=6, ultimo elemento preso prima di intervallo interdetto=1, primo elemento preso dopo intervallo interdetto=13
+    AUX__spiegazione: |
+     Definiamo i vettori `max_beginning_with_ele_at_pos` e `max_beginning_not_before_than_pos` entrambi di lunghezza |s| ed indicizzati dalle posizioni degli elementi in s. Quì `max_beginning_with_ele_at_pos`[i] = massima lunghezza di una sottosequenza strettamente crescente di s che cominci proprio con l'i-esimo elemento di s. Invece `max_beginning_not_before_than_pos`[i] = massima lunghezza di una sottosequenza strettamente crescente che non prende da s elementi precedenti l'i-esimo elemento. Una computazione ricorsiva, ora suffissa ma in tutto simmetrica alla precendente, produce facilmente i valori di `max_beginning_not_before_than_pos` e di `max_beginning_with_ele_at_pos` procedendo ordinatamente da destra verso sinistra. Esplorando tali vettori, congiuntamente ai prcednti, diviene possibile rispondere alle Richieste 2, 3 e 4.
+       Stampa dei vettori `max_beginning_with_ele_at_pos` e `max_beginning_not_before_than_pos`:
+                                       s: 60 20 54 82  7  9 25 13 31 47 70 83  4 32 16 61 43 20 15 54 63 99 43 13 28 
+           max_beginning_with_ele_at_pos:  4  8  4  3  9  8  7  7  6  4  3  2  6  5  5  3  4  4  4  3  2  1  1  2  1 
+       max_beginning_not_before_than_pos:  9  9  9  9  9  8  7  7  6  6  6  6  6  5  5  4  4  4  4  3  2  2  2  2  1 
+
+- 3:
+    tot_points: 10
+    ver_points: 1
+    request: 'Fornire una sottosequenza $subs{num_of_question}$ di $s$, la più lunga possibile, che sia {dictionary_of_types[monotonicity_type_subtask3]} e che includa l\''elemento di $s$ in posizione {forced_ele_pos}'
+    request_txt: 'Fornire una sottosequenza di s, la più lunga possibile, che sia {dictionary_of_types[monotonicity_type_subtask3]} e includa l\''elemento di s in posizione {str(forced_ele_pos)}'
+    answer_cell_type: "Code"
+    init_answ_cell_msg: '#Inserisci la tua risposta (per esempio, [1,2,3])\nsubs{num_of_question}=[]'
+    verif: 'display(Markdown(is_subseq_of_type(s, "s", subs{num_of_question}, "subs{num_of_question}", "{monotonicity_type_subtask3}", pt_green=1, pt_red={task["tot_points"]},index_pt={num_of_question - 1}, forced_ele_pos=forced_ele_pos")))'
+    STUD_valore_ottimo: 8
+
+    PRIV_valore_ottimo: 8 (dato da max_terminating_with_ele_at_pos[15] + max_beginning_with_ele_at_pos[15] -1)
+
+    AUXS_valore_ottimo: 8 (dato da max_terminating_with_ele_at_pos[15] + max_beginning_with_ele_at_pos[15] -1)
+
+- 4:
+    tot_points: 10
+    ver_points: 1
+    request: 'Una sequenza è detta {dictionary_of_types[monotonicity_type_subtask4]}. Fornire una sottosequenza $subs{num_of_question}$ di $s$, la più lunga possibile, che sia di questo tipo.'
+    request_txt: 'Una sequenza è detta {dictionary_of_types[monotonicity_type_subtask4]}. Fornire una sottosequenza di s, la più lunga possibile, che sia di questo tipo.'
+    answer_cell_type: "Code"
+    init_answ_cell_msg: '#Inserisci la tua risposta (per esempio, [1,2,3])\nsubs{num_of_question}=[]'
+    verif: 'display(Markdown(is_subseq_of_type(s, "s", subs{num_of_question}, "subs{num_of_question}", "{monotonicity_type_subtask4}", pt_green=1, pt_red={task["tot_points"]},index_pt={num_of_question - 1})))'
+    BOTH_valore_ottimo 4: 13, ultimo elemento di primo run = 11
+    AUX__spiegazione: |
+     La risposta è data da max_i max_terminating_not_later_than_at_pos[i] + max_beginning_not_before_than_pos[i+1]
+
+- 5:
+    tot_points: 20
+    ver_points: 20
+    request: 'Quale è il minor numero possibile di colori _C_ con cui si possa colorare gli elementi della sequenza $s$ in modo che, per ogni colore, la sottosequenza degli elementi di quel colore sia monotona {dictionary_of_types[monotonicity_type_subtask5]}? Specificare il colore da assegnare a ogni elemento, usando come colori i numeri da 1 a _C_ (esempio: [1,2,3,4,2,1,3,1,1,...]).'
+    request_txt: 'Quale è il minor numero possibile di colori C con cui si possa colorare gli elementi della sequenza s in modo che, per ogni colore, la sottosequenza degli elementi di quel colore sia monotona {dictionary_of_types[monotonicity_type_subtask5]}? Specificare il colore da assegnare a ogni elemento, usando i numeri da 1 a C (esempio: [1,2,3,4,2,1,3,1,1,...]).'
+    answer_cell_type: "Code"
+    init_answ_cell_msg: '#Inserisci la tua risposta (per esempio, [1,2,3])\nsubs{num_of_question}=[]'
+    verif: 'display(Markdown(eval_coloring(s, "s", subs{num_of_question}, "subs{num_of_question}", "{monotonicity_type_subtask5}", pt_green=2, pt_red={task["tot_points"]},index_pt={num_of_question - 1})))'
+    BOTH_valore_ottimo: 9, colorazione = [1, 1, 2, 3, 3, 3, 3, 3, 4, 5, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 8, 9, 9, 9, 9]
+
+
+...

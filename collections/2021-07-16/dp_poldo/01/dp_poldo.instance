@@ -1,0 +1,71 @@
+---
+name: dp_poldo
+title: Sottosequenze crescenti e decrescenti
+tags:
+- programmazione dinamica
+- sottoproblemi e ricorrenze
+- algoritmi classici su sequenze
+
+instance:
+  s: [60, 20, 54, 82, 7, 9, 25, 13, 31, 47, 70, 50, 4, 32, 16, 61, 43, 20, 15, 54, 63, 99, 43, 13, 28]
+  forced_ele_pos: 15 # posizione dell'elemento che deve essere incluso nella sottosequenza (per le posizioni parti a contare da 1)
+  start_banned_interval: 5 # prima posizione bannata da intervallo proibito
+  end_banned_interval:   8 # ultima posizione bannata
+  monotonicity_type_subtask1: 'NC' # longest subsequence of s
+  monotonicity_type_subtask2: 'NC' # with banned interval
+  monotonicity_type_subtask3: 'NC' # with forced element
+  monotonicity_type_subtask4: 'V'  # another type
+  monotonicity_type_subtask5: 'SD' # Dilworth theorem antichain cover
+
+tasks:
+- 1:
+    tot_points: 5
+    ver_points: 5
+    task_codename: NC_subseq_free
+    request: 'Fornire una sottosequenza $subs{num_of_question}$ {dictionary_of_types[monotonicity_type_subtask1]} di $s$ che sia la più lunga possibile.'
+    request_txt: 'Fornire una sottosequenza {dictionary_of_types[monotonicity_type_subtask1]} di s che sia la più lunga possibile'
+    answer_cell_type: "Code"
+    init_answ_cell_msg: '#Inserisci la tua risposta (per esempio, [1,2,3])\nsubs{num_of_question}=[]'
+    verif: 'display(Markdown(is_subseq_of_type(s, "s", subs{num_of_question}, "subs{num_of_question}", "{monotonicity_type_subtask1}", pt_green=1, pt_red={task["tot_points"]},index_pt={num_of_question - 1})))'
+
+- 2:
+    tot_points: 5
+    ver_points: 5
+    task_codename: NC_subseq_banned-interval
+    request: 'Fornire una sottosequenza $subs{num_of_question}$ di $s$, la più lunga possibile, che sia {dictionary_of_types[monotonicity_type_subtask2]} e non includa gli elementi di $s$ dalla posizione {start_banned_interval} alla posizione {end_banned_interval}.'
+    request_txt: 'Fornire una sottosequenza di s, la più lunga possibile, che sia {dictionary_of_types[monotonicity_type_subtask2]} di s, e che non includa gli elementi di s dalla posizione {str(start_banned_interval)} alla posizione {str(end_banned_interval)}'
+    answer_cell_type: "Code"
+    init_answ_cell_msg: '#Inserisci la tua risposta (per esempio, [1,2,3])\nsubs{num_of_question}=[]'
+    verif: 'display(Markdown(is_subseq_of_type(s, "s", subs{num_of_question}, "subs{num_of_question}", "{monotonicity_type_subtask2}", pt_green=1, pt_red={task["tot_points"]},index_pt={num_of_question - 1}, start_banned_interval={start_banned_interval}, end_banned_interval={end_banned_interval})))'
+
+- 3:
+    tot_points: 10
+    ver_points: 1
+    task_codename: NC_subseq_forced-element
+    request: 'Fornire una sottosequenza $subs{num_of_question}$ di $s$, la più lunga possibile, che sia {dictionary_of_types[monotonicity_type_subtask3]} e che includa l\''elemento di $s$ in posizione {forced_ele_pos}'
+    request_txt: 'Fornire una sottosequenza di s, la più lunga possibile, che sia {dictionary_of_types[monotonicity_type_subtask3]} e includa l\''elemento di s in posizione {str(forced_ele_pos)}'
+    answer_cell_type: "Code"
+    init_answ_cell_msg: '#Inserisci la tua risposta (per esempio, [1,2,3])\nsubs{num_of_question}=[]'
+    verif: 'display(Markdown(is_subseq_of_type(s, "s", subs{num_of_question}, "subs{num_of_question}", "{monotonicity_type_subtask3}", pt_green=1, pt_red={task["tot_points"]},index_pt={num_of_question - 1}, forced_ele_pos=forced_ele_pos")))'
+
+- 4:
+    tot_points: 10
+    ver_points: 1
+    task_codename: V_subseq_free
+    request: 'Una sequenza è detta {dictionary_of_types[monotonicity_type_subtask4]}. Fornire una sottosequenza $subs{num_of_question}$ di $s$, la più lunga possibile, che sia di questo tipo.'
+    request_txt: 'Una sequenza è detta {dictionary_of_types[monotonicity_type_subtask4]}. Fornire una sottosequenza di s, la più lunga possibile, che sia di questo tipo.'
+    answer_cell_type: "Code"
+    init_answ_cell_msg: '#Inserisci la tua risposta (per esempio, [1,2,3])\nsubs{num_of_question}=[]'
+    verif: 'display(Markdown(is_subseq_of_type(s, "s", subs{num_of_question}, "subs{num_of_question}", "{monotonicity_type_subtask4}", pt_green=1, pt_red={task["tot_points"]},index_pt={num_of_question - 1})))'
+
+- 5:
+    tot_points: 20
+    ver_points: 20
+    task_codename: SD_cover_dual
+    request: 'Quale è il minor numero possibile di colori _C_ con cui si possa colorare gli elementi della sequenza $s$ in modo che, per ogni colore, la sottosequenza degli elementi di quel colore sia monotona {dictionary_of_types[monotonicity_type_subtask5]}? Specificare il colore da assegnare a ogni elemento, usando come colori i numeri da 1 a _C_ (esempio: [1,2,3,4,2,1,3,1,1,...]).'
+    request_txt: 'Quale è il minor numero possibile di colori C con cui si possa colorare gli elementi della sequenza s in modo che, per ogni colore, la sottosequenza degli elementi di quel colore sia monotona {dictionary_of_types[monotonicity_type_subtask5]}? Specificare il colore da assegnare a ogni elemento, usando i numeri da 1 a C (esempio: [1,2,3,4,2,1,3,1,1,...]).'
+    answer_cell_type: "Code"
+    init_answ_cell_msg: '#Inserisci la tua risposta (per esempio, [1,2,3])\nsubs{num_of_question}=[]'
+    verif: 'display(Markdown(eval_coloring(s, "s", subs{num_of_question}, "subs{num_of_question}", "{monotonicity_type_subtask5}", pt_green=2, pt_red={task["tot_points"]},index_pt={num_of_question - 1})))'
+
+...

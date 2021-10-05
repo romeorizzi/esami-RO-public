@@ -1,0 +1,86 @@
+---
+name: robot_no_gemme
+title: Conteggio di cammini in una griglia rettangolare con celle proibite
+tags:
+- programmazione dinamica
+- sottoproblemi e ricorrenze
+
+instance:
+  campo_minato:
+    - [ " " , " " , " " , " " , " " , " " , " " , "*" , "*" ]
+    - [ " " , " " , " " , "*" , " " , "*" , " " , " " , " " ]
+    - [ " " , " " , " " , "*" , " " , " " , " " , " " , " " ]
+    - [ " " , " " , " " , " " , " " , "*" , " " , "*" , " " ]
+    - [ " " , " " , "*" , "*" , " " , " " , " " , " " , " " ]
+    - [ " " , " " , " " , " " , " " , " " , "*" , " " , " " ]
+    - [ "*" , " " , "*" , " " , "*" , " " , " " , " " , " " ]
+    - [ " " , " " , " " , " " , " " , " " , " " , " " , " " ]
+  start_point: (2,5)
+  target_point: (6,6)
+  middle_point: (4,5)
+
+tasks:
+- 1:
+    tot_points: 5
+    ver_points: 5
+    task_codename: compute_num_paths_to
+    request: 'A mano o tramite un programma componi la matrice $num\_paths\_to$ di dimensione $(m+1)\\times(n+1)$ e tale per cui in $num\_paths\_to[i][j]$ sia riposto il numero di cammini dalla cella $A1=(1,1)$ alla generica cella $(i,j)$, per ogni $i = 0,..., m$ e $j = 0,..., n$.'
+    request_txt: 'A mano o tramite un programma componi la matrice num_paths_to di dimensione (m+1) x (n+1) e tale per cui in num_paths_to[i][j] sia riposto il numero di cammini dalla cella A1=(1,1) alla generica cella (i,j), per ogni i = 0, ..., m e j = 0, ..., n'
+    answer_cell_type: "Code"
+    init_answ_cell_msg: 'num_paths_to'
+    verif: 'visualizza_e_valuta("num_paths_to",num_paths_to, pt_green={task["tot_points"]}, pt_red={task["tot_points"]},index_pt={num_of_question - 1})'    
+
+- 2:
+    tot_points: 5
+    ver_points: 5
+    task_codename: compute_num_paths_from
+    request: 'Componi la matrice $num\_paths\_from$ di dimensione $(m+2)\\times(n+2)$" \
+                        +f" e tale per cui in $num\_paths\_from[i][j]$, per ogni $i = 1,..., m+1$ e $j = 1,..., n+1$," \
+                        +f" sia riposto il numero di cammini dalla generica cella $(i,j)$ alla cella "\
+                        +f"$(m,n)$, per ogni i = 0, ..., m+1 e j = 0, ..., n+1.'
+    request_txt: 'Componi la matrice num_paths_from di dimensione {m+2} x {n+2} e tale per cui in num_paths_from[i][j] sia riposto il numero di cammini dalla generica cella (i,j) alla cella (m,n), per ogni i = 0, ..., m+1 e j = 0, ..., n+1'
+    answer_cell_type: "Code"
+    init_answ_cell_msg: 'num_paths_from'
+    verif: 'visualizza_e_valuta("num_paths_from",num_paths_from, pt_green={task["tot_points"]}, pt_red={task["tot_points"]},index_pt={num_of_question - 1})'
+
+- 3:
+    tot_points: 5
+    ver_points: 5
+    task_codename: num_paths_start_to_end
+    request: 'Quanti sono i percorsi con partenza in $A1=(1,1)$ e arrivo in $(m,n)$?'
+    request_txt: 'Quanti sono i percorsi con partenza in A1=(1,1) e arrivo in (m,n)?'
+    answer_cell_type: "Markdown"
+    init_answ_cell_msg: 'Inserisci quì la tua risposta'
+    verif: ''
+
+- 4:
+    tot_points: 10
+    ver_points: 1
+    task_codename: num_paths_cell_to_end
+    request: 'Quanti sono i percorsi con partenza in ${chr(64+start_point[0])}{start_point[1]}={start_point}$ e arrivo in ${chr(64+m)}{n}=({m},{n})$?'
+    request_txt: 'Quanti sono i percorsi con partenza in {chr(64+start_point[0])}{start_point[1]}={start_point} e arrivo in {chr(64+m)}{n}=({m},{n})?'
+    answer_cell_type: "Markdown"
+    init_answ_cell_msg: 'Inserisci quì la tua risposta'
+    verif: ''
+
+- 5:
+    tot_points: 10
+    ver_points: 1
+    task_codename: num_paths_start_to_cell
+    request: 'Quanti sono i percorsi con partenza in $A1=(1,1)$ e arrivo in ${chr(64+target_point[0])}{target_point[1]}={target_point}$?'
+    request_txt: 'Quanti sono i percorsi con partenza in A1=(1,1) e arrivo in {chr(64+target_point[0])}{target_point[1]}={target_point}?'
+    answer_cell_type: "Markdown"
+    init_answ_cell_msg: 'Inserisci quì la tua risposta'
+    verif: ''
+
+- 6:
+    tot_points: 10
+    ver_points: 1
+    task_codename: num_paths_through_cell
+    request: 'Quanti sono i percorsi che partono da $A1=(1,1)$, passano da ${chr(64+middle_point[0])}{middle_point[1]}={middle_point}$, e arrivano in ${chr(64+m)}{n}=({m},{n})$?'
+    request_txt: 'Quanti sono i percorsi che partono da A1=(1,1), passano da {chr(64+middle_point[0])}{middle_point[1]}={middle_point}, e arrivano in {chr(64+m)}{n}=({m},{n})?'
+    answer_cell_type: "Markdown"
+    init_answ_cell_msg: 'Inserisci quì la tua risposta'
+    verif: ''
+
+...

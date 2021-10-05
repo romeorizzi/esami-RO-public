@@ -1,0 +1,133 @@
+---
+name: lp_prova_del_nove
+title: Programmazione lineare - Prova del nove
+tags:
+- programmazione linare
+
+modes: ['free']
+
+instance: |
+ max 2x1 + 7x2 - 2x3
+      x1 + 2x2 +  x3 <= 1
+    -4x1 - 2x2 + 3x3 <= 2
+    x1, x2, x3 >= 0
+ con dizionario iniziale
+ z = 0 +2x1 +7x2 -2x3
+ x4 = 1 -x1 -2x2 -x3
+ x5 = 2 +4x1 +2x2 -3x3
+ e dizionario finale
+  z = 7/2 -3/2x1 -7/2x4 -11/2x3
+ x2 = 1/2 -1/2x1 -1/2x4 - 1/2x3
+ x5 =   3 +  3x1  -  x4 -   4x3
+ 
+description1: "Dato il problema di PL:<br><br>max $2x_1 + 7x_2 -2x_3$<blockquote>$x_1 + 2x_2 + x_3 \\leq 1$<br>$-4x_1 -2x_2 + 3x_3 \\leq 2$<br>$x_1, x_2, x_3 \\geq 0$</blockquote>Ecco il dizionario iniziale:<blockquote>$x_4 = 1 -x_1 -2x_2 -x_3$<br>$x_5 = 2 +4x_1 +2x_2 -3x_3$<br>$z = 0 +2x_1 +7x_2 -2x_3$</blockquote>Ed ecco il dizionario finale:<blockquote>$x_{2} = \\frac{1}{2} -\\frac{1}{2}x_1 -\\frac{1}{2}x_4 -\\frac{1}{2}x_3$<br>$x_5 = 3 +3x_1 -x_4 -4x_3$<br>$z = \\frac{7}{2} -\\frac{3}{2}x_1 -\\frac{7}{2}x_4 -\\frac{11}{2}x_3$</blockquote>Le consegne che ti proponiamo sono:"
+
+tasks:
+- 1:
+    tot_points: 1
+    ver_points: 0
+    description1: "Quali operazioni di pivot possono aver condotto dal dizionario/tableu iniziale a quello finale?"
+    BOTH_la_risposta_corretta: la x_2 è entrata in base al posto della x_4
+
+- 2:
+    tot_points: 1
+    ver_points: 0
+    description1: "Fornire la soluzione di base estesa $x^I$ associata al tableu iniziale"
+    BOTH_la_risposta_corretta: (x1,x2,x3,x4,x5,z)=(0,0,0,1,2,0)
+
+- 3:
+    tot_points: 1
+    ver_points: 0
+    description1: "Fornire la soluzione di base estesa $x^F$ associata al tableu finale"
+    BOTH_la_risposta_corretta: (x1,x2,x3,x4,x5,z)=(0,1/2,0,0,3,7/2)
+
+- 4:
+    tot_points: 1
+    ver_points: 0
+    description1: "Perchè possiamo dire che $x^F$ è ottima (assumendo la correttezza di tutti i coefficienti che appaiono nel tableau finale)?"
+    BOTH_risposta: nessun coefficiente di variabile nella riga che offre una scrittura valida di z è positivo
+
+- 5:
+    tot_points: 1
+    ver_points: 0
+    description1: "Verificare, esplicitando ogni verifica, che $x^F$ è soluzione ammissibile per il problema di partenza"
+
+- 6:
+    tot_points: 1
+    ver_points: 0
+    description1: "Per meglio verificare l'ottimalità della $x^F$, si fornisca innanzittutto la soluzione di base estesa duale $y^F$ associata al tableu finale"
+    BOTH_la_risposta_corretta: (y3,y4,y5,y1,y2,z)=(1/2,1/2,0,1/2,0,7/2)
+
+- 7:
+    tot_points: 1
+    ver_points: 0
+    description1: "Si scriva il problema duale"
+    AUX__la_risposta_corretta: |
+    
+     min  y1 + 2y2 
+          y1 - 4y2  >= 2
+         2y1 - 2y2  >= 7
+          y1 + 3x2  >= -2
+     y1, y2 >= 0
+
+- 8:
+    tot_points: 1
+    ver_points: 0
+    description1: "Verificare, esplicitando ogni verifica, che $y^F$ è soluzione ammissibile per il problema duale"
+
+- 9:
+    tot_points: 2
+    ver_points: 0
+    description1: "Verificare, esplicitando ogni verifica, il soddisfacimento delle condizioni degli scarti complementari tra la $x^F$ e la $y^F$"
+    AUX__risposta: |
+    
+       (x1,x2,x3,x4,x5)=( 0, 1/2,  0,  0,  3)
+                          *   *    *   *   *
+       (y3,y4,y5,y1,y2)=(1/2,1/2,0,1/2,0,7/2)
+                          0   0    0   0   0
+
+- 10:
+    tot_points: 2
+    ver_points: 0
+    description1: "Si fornisca una soluzione duale estesa di base $y^I$ che soddisfi le condizioni degli scarti complementari con la $x^I$."
+    BOTH_la_risposta_corretta: (y3,y4,y5,y1,y2,z)=(-2,-7,2,0,0,0)
+
+- 11:
+    tot_points: 2
+    ver_points: 0
+    description1: "Verificare, esplicitando ogni verifica, il soddisfacimento delle condizioni degli scarti complementari tra la $x^I$ e la $y^I$"
+    AUX__risposta: |
+    
+       (x1,x2,x3,x4,x5)=( 0,  0,  0,  1,  1 )
+                          *   *   *   *   *
+       (y3,y4,y5,y1,y2)=(-2, -7,  2,  0,  0 )
+                          0   0   0   0   0
+
+- 12:
+    tot_points: 3
+    ver_points: 0
+    description1: "Fornire un'altra coppia di soluzioni primale e duale estese di base che soddisfino mutualmente le condizioni degli scarti complementari"
+
+- 13:
+    tot_points: 3
+    ver_points: 0
+    description1: "Si verifichi la correttezza delle righe del secondo tableu tramite le prova del 9 applicata alla soluzione $x^I$. Si espliciti bene la verifica condotta su ciascuna riga [1pt per riga]"
+    AUX__risposta: |
+    
+      -                0      1       0
+      0    z = 7/2 -3/2x1 -7/2x4 -11/2x3
+      0   x2 = 1/2 -1/2x1 -1/2x4 - 1/2x3
+      2   x5 =   3 +  3x1 -   x4 -   4x3
+
+- 14:
+    tot_points: 4
+    ver_points: 0
+    description1: "Si verifichi la correttezza del secondo tableu tramite le prova del 9, questa volta effettuata per colonna. Si espliciti bene la verifica condotta su ciascuna colonna [1pt per colonna]"
+    AUX__risposta: |
+      invece della soluzione (x1,x2,x3,x4,x5,z)=(0,0,0,1,2,0) iniziale usiamo i valori della soluzione (y3,y4,y5,y1,y2,z)=(-2,-7,2,0,0,0) iniziale
+         -    0   -2   0      2
+         0  7/2 -3/2 -7/2 -11/2
+        -7  1/2 -1/2 -1/2 - 1/2
+         0    3 +  3 - 1  -   4
+
+...

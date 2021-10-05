@@ -1,0 +1,51 @@
+Tipologia 1:
+
+Dato il seguente problema di PL in forma standard di massimizzazione:
+
+max x1 + 2x2
+    x1      <= 4
+         x2 <= 4
+    x1 + x2 <= 5
+x1,x2 >= 0
+
+1. elencare le soluzioni di base (5pt) specificando (3pt), per ciascuna di esse, se sia ammissibile oppure non-ammissibile.
+2. scrivere il problema duale (3pt).
+3. elencare le soluzioni di base del problema duale (5pt) specificando (3pt), per ciascuna di esse, se sia ammissibile oppure non-ammissibile.
+4. fornire una soluzione primale x*=(x1*,x2*) ottima (2pt).
+5. fornire una soluzione duale y*=(y1*,y2*,y3*) ottima (2pt).
+6. verificare il soddisfacimento delle condizioni degli scarti complementari tra la x* e la y* (4pt).
+7. fornire ogni altra coppia (soluzione di base del primale, soluzione di base del duale) che soddisfi alle condizioni degli scarti complementari (8pt). 
+
+trasformazioni:
+
+1. invertire x1 ed x2
+2. permutare i vincoli
+3. moltiplicare tutti i coefficienti di una variabile per lo stesso valore positivo
+4. moltiplicare tutti i coefficienti di un vincolo per lo stesso valore positivo
+
+____________________________
+
+Tipologia 2 (duale di Tipologia 1):
+
+Dato il seguente problema di PL in forma standard di minimizzazione:
+
+min 4x1 + 4x2 + 5x3
+     x1       + x3 >= 1
+           x2 + x3 >= 2
+x1,x2,x3 >= 0
+
+1. elencare le soluzioni di base (5pt) specificando (5pt), per ciascuna di esse, se sia ammissibile oppure non-ammissibile.
+2. scrivere il problema duale (3pt).
+3. elencare le soluzioni di base del problema duale (5pt) specificando (5pt), per ciascuna di esse, se sia ammissibile oppure non-ammissibile.
+4. fornire una soluzione primale x*=(x1*,x2*,x3*) ottima (2pt).
+5. fornire una soluzione duale y*=(y1*,y2*) ottima (3pt).
+6. verificare il soddisfacimento delle condizioni degli scarti complementari tra la x* e la y* (4pt).
+7. fornire ogni altra coppia (soluzione di base del primale, soluzione di base del duale) che soddisfi alle condizioni degli scarti complementari tra la x* e la y* (10pt). 
+
+trasformazioni:
+
+1. permuare x1, x2 ed x3
+2. permutare i vincoli
+3. moltiplicare tutti i coefficienti di una variabile per lo stesso valore positivo
+4. moltiplicare tutti i coefficienti di un vincolo per lo stesso valore positivo
+

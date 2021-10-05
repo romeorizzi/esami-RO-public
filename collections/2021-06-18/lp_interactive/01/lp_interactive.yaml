@@ -1,0 +1,44 @@
+---
+name: lp_interactive
+title: Programmazione lineare - Metodo del Simplesso e Dualità
+description1: \*\*Nota\*\* Dai riquadri di questo foglio Jupyter, oltre al kernel python e ad ogni altra libreria che ti sarai installato o preparato, puoi convenientemente (se sai come fare, altrimenti il bugiardino in calce al presente documento potrebbe non bastarti al momento) richiamare funzionalità della libreria del simplesso interattivo. Questi supporti possono assisterti, riducendo i tuoi tempi, in quei passaggi dove potrebbero altrimenti infilarsi errori di calcolo.
+
+description2: Si consideri il seguente problema di Programmazione Lineare:<br>max $3x_1 + x_2 + 3x_3$<br>tale che:<br>$2x_1 + x_2 + x_3 \le 2$<br>$x_1 + 2x_2 + 3x_3 \le 5$<br>$2x_1 + 2x_2 + 1x_3 \le 6$<br>$x_1, x_2, x_3 \ge 0$
+
+tasks:
+- 1:
+    tot_points: 3
+    ver_points: 0
+    description1: "Scrivere il primo tableau"
+
+- 2:
+    tot_points: 5
+    ver_points: 0
+    description1: "Scrivere il tableau prodotto dopo il tuo primo passo di pivot"
+
+- 3:
+    tot_points: 10
+    ver_points: 0
+    description1: "Giungere ad un tableau ottimo e fermarsi lì"
+
+- 4:
+    tot_points: 3
+    ver_points: 0
+    description1: "Indicare la soluzione primale estesa ottima e il valore della funzione obiettivo all'ottimo"
+
+- 5:
+    tot_points: 8
+    ver_points: 0
+    description1: "Prendendo a riferimento la soluzione di base data dall'origine, fare la prova del 9 del tableau ottimo"
+
+- 6:
+    tot_points: 3
+    ver_points: 0
+    description1: "Formulare il problema duale"
+
+- 7:
+    tot_points: 3
+    ver_points: 0
+    description1: "Indicare la soluzione duale estesa ottima"
+
+...

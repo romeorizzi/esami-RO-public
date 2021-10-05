@@ -1,0 +1,102 @@
+---
+name: lp_dualize
+title: Programmazione lineare - ottenimento del problema duale
+tags:
+- programmazione linare
+
+modes: ['free']
+
+instance: |
+ max x_1 + 3x_2 + 4x_3
+    4x_1        + 5x_3 <= 10
+    2x_1 + 8x_2        >= 12
+           5x_2 + 6x_3  = 11
+    x_1 >= 0, x_2 <= 0
+
+description1: "Dato il seguente problema di PL:<br><br>max $x_1 + 2x_2 + 3x_3$<blockquote>$4x_1 + 5x_3\\leq 17$<br>$6x_1 + 8x_2 \\geq 18$<br>$7x_2 + 9x_3 = 19$<br>$x_1 \\geq 0$, $x_2 \\leq 0$</blockquote>Le consegne che ti proponiamo sono:"
+
+tasks:
+- 1:
+    tot_points: 7
+    ver_points: 0
+    description1: Offrire una formulazione duale in 3 sole variabili (un solo moltiplicatore per vincolo) e 3 soli vincoli (un solo vincolo per variabile) [5pt]. Meglio ([+1pt]) se tutti i vincoli di diseguaglianza sono nella forma $ax \\geq b$. Meglio ([+1pt]) se tutte le variabili non-libere sono non-negative.
+    AUX__la_risposta_corretta: |
+
+      min 17y_1 - 18y_2 + 19y_3
+           4y_1 -  6y_2         >=  1
+                   8y_2 -  7y_3 >= -2
+           5y_1         +  9y_3  =  3
+         y_1 >= 0, y_2 >= 0, y_3 libera
+    AUX__svolgimento: |
+
+      max x_1 + 2x_2 + 3x_3
+         4x_1        + 5x_3 <= 17
+         6x_1 + 8x_2        >= 18
+                7x_2 + 9x_3  = 19
+         x_1 >= 0, x_2 <= 0
+      diventa
+      max x_1 - 2x'_2 + 3x_3
+         4x_1         + 5x_3 <=  17
+        -6x_1 + 8x'_2        <= -18
+              - 7x'_2 + 9x_3  =  19
+         x_1 >= 0, x'_2 >= 0
+      con duale
+      min 17y_1 - 18y_2 + 19y_3
+           4y_1 -  6y_2         >=  1
+                   8y_2 -  7y_3 >= -2
+           5y_1         +  9y_3  =  3
+         y_1 >= 0, y_2 >= 0, y_3 libera
+
+- 2:
+    tot_points: 6
+    ver_points: 0
+    description1: Offrire una formulazione duale con sole variabili non-negative e soli 3 vincoli (un solo vincolo per variabile) [5pt]. Meglio ([+1pt]) se tutti i vincoli di diseguaglianza sono nella forma $ax \\geq b$.
+    AUX__la_risposta_corretta: |
+
+      min 17y_1 - 18y_2 + 19y^+_3 - 19y^-_3
+           4y_1 -  6y_2                     >=  1
+                   8y_2 -  7y^+_3 +  7y^-_3 >= -2
+           5y_1         +  9y^+_3 -  9y^-_3  =  3
+         y_1 >= 0, y_2 >= 0, y^+_3 >= 0, y^-_3 >= 0
+    AUX__svolgimento: |
+
+      min 17y_1 - 18y_2 + 19y_3
+           4y_1 -  6y_2         >=  1
+                   8y_2 -  7y_3 >= -2
+           5y_1         +  9y_3  =  3
+         y_1 >= 0, y_2 >= 0, y_3 libera
+      diventa
+      min 17y_1 - 18y_2 + 19y^+_3 - 19y^-_3
+           4y_1 -  6y_2                     >=  1
+                   8y_2 -  7y^+_3 +  7y^-_3 >= -2
+           5y_1         +  9y^+_3 -  9y^-_3  =  3
+         y_1 >= 0, y_2 >= 0, y^+_3 >= 0, y^-_3 >= 0
+      
+- 3:
+    tot_points: 6
+    ver_points: 0
+    description1: Offrire una formulazione duale in 3 sole variabili (un solo moltiplicatore per vincolo) e tutti i vincoli nella forma $ax \\geq b$ [5pt]. Meglio ([+1pt]) se tutte le variabili non-libere sono non-negative.
+    AUX__la_risposta_corretta: |
+
+      min 17y_1 - 18y_2 + 19y_3
+           4y_1 -  6y_2         >=  1
+                   8y_2 -  7y_3 >= -2
+           5y_1         +  9y_3 >=  3
+          -5y_1         -  9y_3 >= -3
+         y_1 >= 0, y_2 >= 0, y_3 libera
+    AUX__svolgimento: |
+
+      min 17y_1 - 18y_2 + 19y_3
+           4y_1 -  6y_2         >=  1
+                   8y_2 -  7y_3 >= -2
+           5y_1         +  9y_3  =  3
+         y_1 >= 0, y_2 >= 0, y_3 libera
+      diventa
+      min 17y_1 - 18y_2 + 19y_3
+           4y_1 -  6y_2         >=  1
+                   8y_2 -  7y_3 >= -2
+           5y_1         +  9y_3 >=  3
+          -5y_1         -  9y_3 >= -3
+         y_1 >= 0, y_2 >= 0, y_3 libera
+
+...

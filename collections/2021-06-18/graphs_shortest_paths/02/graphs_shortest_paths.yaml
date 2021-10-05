@@ -1,0 +1,66 @@
+---
+name: graphs_shortest_paths
+title: Cammini di lunghezza minima in un grafo
+tags:
+- "grafi"
+- "cammini minimi"
+- "alberi dei cammini minimi"
+- "algoritmi classici su reti"
+
+description1: Si consideri il grafo $G$, con pesi sugli archi, riportato nelle richieste sottostanti.
+tasks:
+- 1:
+    tot_points: 2
+    ver_points: 0
+    graphml: 'collections/graphml_instances/graphs_shortest_paths/graph_eweights_undirected_grid_2021-06-18_2.graphml'
+    description1: "Calcolare e fornire la distanza del nodo $h$ dal nodo $s$"
+    scope: ['color','drag','download','editweight']
+    states: ['selection','all_download']
+
+- 2:
+    tot_points: 8
+    ver_points: 0
+    description1: "Fornire le distanze di ciascun nodo da $s$"
+
+- 3:
+    tot_points: 2
+    ver_points: 0
+    graphml: 'collections/graphml_instances/graphs_shortest_paths/graph_eweights_undirected_grid_2021-06-18_2.graphml'
+    description1: "Fornire un cammino minimo da $s$ a $h$"
+    scope: ['color','drag','download','editweight']
+    states: ['selection','all_download']
+
+- 4:
+    tot_points: 8
+    ver_points: 0
+    graphml: 'collections/graphml_instances/graphs_shortest_paths/graph_eweights_undirected_grid_2021-06-18_2.graphml'
+    description1: "Fornire un albero dei cammini minimi dal nodo $s$ a tutti gli altri nodi del grafo"
+    scope: ['color','drag','download','editweight']
+    states: ['selection','all_download']
+
+- 5:
+    tot_points: 5
+    ver_points: 0
+    description1: "Specificare quanti siano i possibili alberi dei cammini minimi dal nodo $s$ a tutti gli altri nodi del grafo"
+
+- 6:
+    tot_points: 5
+    ver_points: 0
+    description1: "Descrivere in modo chiaro e conciso la struttura della famiglia degli alberi dei cammini minimi"
+
+- 7:
+    tot_points: 3
+    ver_points: 0
+    description1: "Quale è il più grande numero naturale $W<6$ tale che se il peso dell'arco $to$ viene cambiato in $W$ la famiglia degli alberi dei cammini minimi cambia?"
+
+- 8:
+    tot_points: 3
+    ver_points: 0
+    description1: "Come cambia la famiglia degli alberi dei cammini minimi se il peso dell'arco $to$ viene cambiato in $W$?"
+
+- 9:
+    tot_points: 4
+    ver_points: 0
+    description1: "Se il peso dell'arco $to$ viene cambiato in $W-1$, di quali nodi la distanza da $s$ risulta ridotta e di quanto?"
+
+...

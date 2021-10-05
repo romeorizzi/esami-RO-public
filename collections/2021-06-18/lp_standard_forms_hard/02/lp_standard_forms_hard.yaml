@@ -1,0 +1,54 @@
+---
+name: lp_standard_forms
+title: Programmazione lineare - Le forme standard e la forma canonica (versione completa)
+tags:
+- programmazione linare
+
+modes: ['free']
+
+instance: |
+ max 3x + 2y
+     4x + 3y >=  6
+     5x + 7y  = 12
+     7x - 8y <= 11
+    x >= 0, y free
+
+description1: Si consideri il seguente problema di Programmazione Lineare:<br><br>max $3x+2y$<blockquote>$4x + 3y \geq 6$<br>$5x + 7y = 12$<br>$7x - 8y \leq 11$<br>$x \geq 0, y$ free</blockquote>Le due consegne, da svolgere nell'ordine, sono:<ol><li>si metta il problema in forma standard di massimizzazione sulle variabili $x$, $y^+$ e $y^-$. [15pt in totale per Richieste 1-5]</li><li>si scriva ciascuno dei vincoli della forma standard in forma canonica, avendo cura di introdurre per ciascuno di essi la variabile di slack o di surplus $s_i$. [6pt in totale per Richiesta 6]</li></ol>
+
+tasks:
+- 1:
+    tot_points: 4
+    ver_points: 0
+    description1: Resa della funzione obiettivo nella forma standard richiesta
+    BOTH_la_risposta_corretta: "max 3x +2y  diventa  max 3x +2y^+ -2y^-"
+
+- 2:
+    tot_points: 3
+    ver_points: 0
+    description1: Resa del primo vincolo
+    BOTH_la_risposta_corretta: "4x +3y >= 6 diventa -4x -3y^+ +3y^- <= -6"
+
+- 3:
+    tot_points: 4
+    ver_points: 0
+    description1: Resa del secondo vincolo
+    BOTH_la_risposta_corretta: "5x +7y = 12 diventa 5x +7y^+ -7y^- <= 12  .and. -5x -7y^+ +7y^- <= -12"
+
+- 4:
+    tot_points: 2
+    ver_points: 0
+    description1: Resa del terzo vincolo
+    BOTH_la_risposta_corretta: "7x -8y <= 11 diventa 7x -8y^+ +8y^- <= 11"
+
+- 5:
+    tot_points: 2
+    ver_points: 0
+    description1: Vincoli di segno per le variabili $x$, $y^+$ e $y^-$
+    BOTH_la_risposta_corretta: "x >= 0, y^+ >= 0, y^- >= 0"
+
+- 6:
+    tot_points: 4
+    ver_points: 0
+    description1: Introduzione delle variabili $s_i$ e resa di ciascun vincolo nella forma canonica ([1pt per vincolo])
+    BOTH_la_risposta_corretta: "-4x -3y^+ +3y^- <= -6 diventa s1=-6 +4x +3y^+ -3y^-; 5x +7y^+ -7y^- <= 12 diventa s2=12 -5x -7y^+ +7y^-; -5x -7y^+ +7y^- <= -12 diventa s3=-12 +5x +7y^+ -7y^-; 7x -8y^+ +8y^- <= 11 diventa s4=11 -7x +8y^+ -8y^-"
+...

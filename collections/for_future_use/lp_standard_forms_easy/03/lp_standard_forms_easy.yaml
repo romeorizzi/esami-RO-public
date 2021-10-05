@@ -1,0 +1,37 @@
+---
+name: lp_standard_forms
+title: Programmazione lineare - Le forme standard e la forma canonica (versione semplificata)
+
+description1: Si consideri il seguente problema di Programmazione Lineare:<br><br>min $2x+3y$<blockquote>$3x + 4y \geq 6$<br>$7x + 5y = 12$<br>$-8x + 7y \leq 11$<br>$x, y \geq 0$</blockquote>Le due consegne, da svolgere nell'ordine, sono:<ol><li>si metta il problema in forma standard di massimizzazione sulle variabili $x$ e $y$. [13pt in totale (Richeste 1-5)]</li><li>si scriva ciascuno dei vincoli della forma standard in forma canonica, avendo cura di introdurre per ciascuno di essi la variabile di slack o di surplus $s_i$. [1pt per vincolo (Richiesta 6)]</li></ol>
+tasks:
+- {
+    tot_points: 3,
+    ver_points: 0,
+    description1: "Resa della funzione obiettivo nella forma standard richiesta"
+  }
+- {
+    tot_points: 3,
+    ver_points: 0,
+    description1: "Resa del primo vincolo"
+  }
+- {
+    tot_points: 4,
+    ver_points: 0,
+    description1: "Resa del secondo vincolo"
+  }
+- {
+    tot_points: 2,
+    ver_points: 0,
+    description1: "Resa del terzo vincolo"
+  }
+- {
+    tot_points: 1,
+    ver_points: 0,
+    description1: "Vincoli di segno per le variabili $x$ e $y$"
+  }
+- {
+    tot_points: 4,
+    ver_points: 0,
+    description1: "Introduzione delle variabili $s_i$ e resa di ciascun vincolo nella forma canonica"
+  }
+...

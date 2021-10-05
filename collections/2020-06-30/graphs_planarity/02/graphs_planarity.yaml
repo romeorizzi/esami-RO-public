@@ -1,0 +1,20 @@
+---
+name: graphs_planarity
+title: Planarità di un grafo
+description1: Si consideri il grafo $G$ riportato in figura:<br><img src='img-2020-06-30/grafo_plan4_no_pesi.png' width=800>
+tasks:
+- {
+    tot_points: 20,
+    ver_points: 0,
+    description1: "Dire, certificandolo, se il grafo è planare oppure no",
+    scope: ['color','drag','download','editweight'],
+    states: ['selection','all_download','editweight','multiple_drag','active_zoom']
+  }
+- {
+    tot_points: 20,
+    ver_points: 0,
+    description1: "Dire, certificandolo, se il grafo è bipartito oppure no",
+    scope: ['color','drag','download','editweight'],
+    states: ['selection','all_download','editweight','multiple_drag','active_zoom']
+  }
+...

@@ -1,0 +1,226 @@
+---
+name: knapsack
+title: Problema dello zaino
+description: problema dello zaino in versione classica
+tags:
+- programmazione dinamica
+- sottoproblemi e ricorrenze
+
+modes: ['free','with_checks']
+
+instance:
+  CapacityMax: 36
+  elementi: ['A','B','C','D','E','F','G','H','I']
+  pesi :    [ 14, 15, 17, 11, 13,  5,  7,  3,  2]
+  valori :  [ 50, 52, 54, 40, 45, 17, 18,  7,  8]
+
+tasks:
+- 1:
+    tot_points: 10
+    ver_points: 1
+    task_codename: max-val_CapacityMax
+    request: 'Fornire la massima somma dei valori per un sottoinsieme di elementi con somma dei pesi non eccedente $CapacityMax$= {CapacityMax}.'
+    init_answ_cell_msg: '#Inserisci la tua risposta (un numero)\nanswer{num_of_question}=-1'
+    verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,CapacityMax,answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="val")))'
+
+    BOTH_valore_ottimo_task_1: 127
+
+    AUX__spiegazione_task_1: |
+     Definiamo la matrice `max_val_for_genCap` che ha n+1 righe (la riga 1+i è labellata dall'inserimento di un i-esimo item nel set dei candidati tra cui pescare) e CapacityMax+1 colonne (labellate da un badget b con 0<=b<=CapacityMax) dove `max_val_for_genCap`[i,b] = massimo valore si un subset degli items 1 ... i  con somma dei pesi al più b.
+     Stampa della matrice `max_val_for_genCap`:
+      ╒════╤════════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╕
+
+      │    │   none │   + A │   + B │   + C │   + D │   + E │   + F │   + G │   + H │   + I │
+
+      ╞════╪════════╪═══════╪═══════╪═══════╪═══════╪═══════╪═══════╪═══════╪═══════╪═══════╡
+
+      │  0 │      0 │     0 │     0 │     0 │     0 │     0 │     0 │     0 │     0 │     0 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │  1 │      0 │     0 │     0 │     0 │     0 │     0 │     0 │     0 │     0 │     0 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │  2 │      0 │     0 │     0 │     0 │     0 │     0 │     0 │     0 │     0 │     8 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │  3 │      0 │     0 │     0 │     0 │     0 │     0 │     0 │     0 │     7 │     8 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │  4 │      0 │     0 │     0 │     0 │     0 │     0 │     0 │     0 │     7 │     8 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │  5 │      0 │     0 │     0 │     0 │     0 │     0 │    17 │    17 │    17 │    17 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │  6 │      0 │     0 │     0 │     0 │     0 │     0 │    17 │    17 │    17 │    17 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │  7 │      0 │     0 │     0 │     0 │     0 │     0 │    17 │    18 │    18 │    25 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │  8 │      0 │     0 │     0 │     0 │     0 │     0 │    17 │    18 │    24 │    25 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │  9 │      0 │     0 │     0 │     0 │     0 │     0 │    17 │    18 │    24 │    26 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 10 │      0 │     0 │     0 │     0 │     0 │     0 │    17 │    18 │    25 │    32 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 11 │      0 │     0 │     0 │     0 │    40 │    40 │    40 │    40 │    40 │    40 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 12 │      0 │     0 │     0 │     0 │    40 │    40 │    40 │    40 │    40 │    40 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 13 │      0 │     0 │     0 │     0 │    40 │    45 │    45 │    45 │    45 │    48 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 14 │      0 │    50 │    50 │    50 │    50 │    50 │    50 │    50 │    50 │    50 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 15 │      0 │    50 │    52 │    52 │    52 │    52 │    52 │    52 │    52 │    53 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 16 │      0 │    50 │    52 │    52 │    52 │    52 │    57 │    57 │    57 │    58 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 17 │      0 │    50 │    52 │    54 │    54 │    54 │    57 │    57 │    57 │    60 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 18 │      0 │    50 │    52 │    54 │    54 │    54 │    62 │    62 │    62 │    65 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 19 │      0 │    50 │    52 │    54 │    54 │    54 │    67 │    67 │    67 │    67 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 20 │      0 │    50 │    52 │    54 │    54 │    54 │    69 │    69 │    69 │    70 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 21 │      0 │    50 │    52 │    54 │    54 │    54 │    69 │    69 │    69 │    75 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 22 │      0 │    50 │    52 │    54 │    54 │    54 │    71 │    71 │    74 │    77 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 23 │      0 │    50 │    52 │    54 │    54 │    54 │    71 │    75 │    76 │    77 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 24 │      0 │    50 │    52 │    54 │    54 │    85 │    85 │    85 │    85 │    85 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 25 │      0 │    50 │    52 │    54 │    90 │    90 │    90 │    90 │    90 │    90 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 26 │      0 │    50 │    52 │    54 │    92 │    92 │    92 │    92 │    92 │    93 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 27 │      0 │    50 │    52 │    54 │    92 │    95 │    95 │    95 │    95 │    98 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 28 │      0 │    50 │    52 │    54 │    94 │    97 │    97 │    97 │    97 │   100 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 29 │      0 │    50 │   102 │   102 │   102 │   102 │   102 │   102 │   102 │   103 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 30 │      0 │    50 │   102 │   102 │   102 │   102 │   107 │   107 │   107 │   107 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 31 │      0 │    50 │   102 │   104 │   104 │   104 │   109 │   109 │   109 │   110 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 32 │      0 │    50 │   102 │   106 │   106 │   106 │   112 │   112 │   112 │   115 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 33 │      0 │    50 │   102 │   106 │   106 │   106 │   114 │   114 │   114 │   117 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 34 │      0 │    50 │   102 │   106 │   106 │   106 │   119 │   119 │   119 │   120 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 35 │      0 │    50 │   102 │   106 │   106 │   106 │   119 │   119 │   119 │   122 │
+
+      ├────┼────────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+
+      │ 36 │      0 │    50 │   102 │   106 │   106 │   106 │   121 │   121 │   121 │   127 │
+
+      ╘════╧════════╧═══════╧═══════╧═══════╧═══════╧═══════╧═══════╧═══════╧═══════╧═══════╛
+
+- 2:
+    tot_points: 10
+    ver_points: 1
+    task_codename: opt-sol_CapacityMax
+    request: 'Tra i sottoinsiemi di oggetti di peso complessivo non eccedente $CapacityMax$= {CapacityMax} fornirne uno in cui sia massima la somma dei valori.'
+    init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
+    verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,CapacityMax,answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="sol")))'
+
+    BOTH_soluzione_ottima_task_2: [['I', 2, 8], ['F', 5, 17], ['B', 15, 52], ['A', 14, 50]]
+
+    AUX__spiegazione_task_2: |
+     Le informazioni che mi servono sono contenute nella matrice `max_val_for_genCap`.
+
+- 3:
+    tot_points: 10
+    ver_points: 1
+    task_codename: max-val_CapacityMax_dopo-esclusioni
+    edrCapMax: ['I']
+    request: 'Fornire la massima somma dei valori per un sottoinsieme di elementi con somma dei pesi non eccedente {CapacityMax} quando non sia consentito di prendere nessuno dei seguenti elementi: {task["edrCapMax"]}</b>.'
+    init_answ_cell_msg: '#Inserisci la tua risposta (un numero)\nanswer{num_of_question}=-1'
+    verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,CapacityMax,answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="val",edr={task["edrCapMax"]})))'
+
+    BOTH_valore_ottimo_task_3: 121
+
+    AUX__spiegazione_task_3: |
+     Avendo avuto l'attenzione di considerare per ultimi quegli elementi che in questo task mi si chiede di non considerare, l'informazione richiesta è `max_val_for_genCap`[i=new_n=8][b=CapacityMax=36].
+
+- 4:
+    tot_points: 10
+    ver_points: 1
+    task_codename: max-val_CapacityGen
+    CapacityGen: 33
+    request: 'Fornire la massima somma dei valori per un sottoinsieme di elementi con somma dei pesi non eccedente <b>la capacità {task["CapacityGen"]}</b>.'
+    init_answ_cell_msg: '#Inserisci la tua risposta (un numero)\nanswer{num_of_question}=-1'
+    verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,{task["CapacityGen"]},answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="val")))'
+
+    BOTH_valore_ottimo_task_4: 117
+
+    AUX__spiegazione_task_4: |
+     L'informazione richiesta è `max_val_for_genCap`[n=9][b=CapacityGen=33].
+
+...

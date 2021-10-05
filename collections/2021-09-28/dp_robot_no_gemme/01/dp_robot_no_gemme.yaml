@@ -1,0 +1,217 @@
+---
+name: robot_no_gemme
+title: Conteggio di cammini in una griglia rettangolare con celle proibite
+tags:
+- programmazione dinamica
+- sottoproblemi e ricorrenze
+
+instance:
+  campo_minato:
+    - [ " " , " " , " " , " " , " " , " " , " " , " " , "*" ]
+    - [ " " , "*" , " " , "*" , " " , "*" , " " , " " , "*" ]
+    - [ " " , " " , " " , " " , " " , " " , " " , " " , " " ]
+    - [ " " , " " , " " , " " , "*" , " " , " " , "*" , " " ]
+    - [ " " , " " , "*" , " " , " " , " " , " " , " " , " " ]
+    - [ " " , " " , " " , " " , " " , " " , "*" , " " , " " ]
+    - [ " " , "*" , " " , "*" , " " , " " , " " , " " , " " ]
+    - [ " " , " " , " " , " " , " " , " " , " " , " " , " " ]
+
+tasks:
+- 1:
+    tot_points: 5
+    ver_points: 1
+    task_codename: compute_num_paths_to
+    request: 'A mano o tramite un programma componi la matrice $num\_paths\_to$ di dimensione $(m+1)\\times(n+1)$ e tale per cui in $num\_paths\_to[i][j]$ sia riposto il numero di cammini dalla cella $A1=(1,1)$ alla generica cella $(i,j)$, per ogni $i = 0,..., m$ e $j = 0,..., n$.'
+    request_txt: 'A mano o tramite un programma componi la matrice num_paths_to di dimensione (m+1) x (n+1) e tale per cui in num_paths_to[i][j] sia riposto il numero di cammini dalla cella A1=(1,1) alla generica cella (i,j), per ogni i = 0, ..., m e j = 0, ..., n'
+    answer_cell_type: "Code"
+    init_answ_cell_msg: 'num_paths_to'
+    verif: 'visualizza_e_valuta("num_paths_to",num_paths_to, pt_green={task["tot_points"]}, pt_red={task["tot_points"]},index_pt={num_of_question - 1})'    
+
+    AUX__la_matrice_num_paths_to: |
+     Stampa della matrice `num_paths_to` (e righe e le colonne sono indicizzate partendo da 0, dove la prima riga e colonna vengono utili come sentinelle):
+          -   1   2   3   4   5   6   7   8   9 
+      -   0   0   0   0   0   0   0   0   0   0 
+      1   0   1   1   1   1   1   1   1   1   0 
+      2   0   1   0   1   0   1   0   1   2   0 
+      3   0   1   1   2   2   3   3   4   6   6 
+      4   0   1   2   4   6   0   3   7   0   6 
+      5   0   1   3   0   6   6   9  16  16  22 
+      6   0   1   4   4  10  16  25   0  16  38 
+      7   0   1   0   4   0  16  41  41  57  95 
+      8   0   1   1   5   5  21  62 103 160 255 
+
+    AUX__codice_che_ha_prodotto_la_matrice_num_paths_to: |
+                 num_paths_to = [ [ 0 ] * (n+1) for i in range(m+1) ]
+                 num_paths_to[1][1] = 1
+                 for i in range(1,m+1):
+                 for j in range(1,n+1):
+                  if (i,j) != (1,1):
+                    num_paths_to[i][j] = 0 if campo_minato[i-1][j-1]=="*" else num_paths_to[i-1][j]+num_paths_to[i][j-1]
+            
+
+- 2:
+    tot_points: 5
+    ver_points: 1
+    task_codename: compute_num_paths_from
+    request: 'Componi la matrice $num\_paths\_from$ di dimensione $(m+2)\\times(n+2)$" \
+                        +f" e tale per cui in $num\_paths\_from[i][j]$, per ogni $i = 1,..., m+1$ e $j = 1,..., n+1$," \
+                        +f" sia riposto il numero di cammini dalla generica cella $(i,j)$ alla cella "\
+                        +f"$(m,n)$, per ogni i = 0, ..., m+1 e j = 0, ..., n+1.'
+    request_txt: 'Componi la matrice num_paths_from di dimensione {m+2} x {n+2} e tale per cui in num_paths_from[i][j] sia riposto il numero di cammini dalla generica cella (i,j) alla cella (m,n), per ogni i = 0, ..., m+1 e j = 0, ..., n+1'
+    answer_cell_type: "Code"
+    init_answ_cell_msg: 'num_paths_from'
+    verif: 'visualizza_e_valuta("num_paths_from",num_paths_from, pt_green={task["tot_points"]}, pt_red={task["tot_points"]},index_pt={num_of_question - 1})'
+
+    AUX__la_matrice_num_paths_from: |
+     Stampa della matrice `num_paths_from` (e righe e le colonne sono indicizzate partendo da 0, dove l'ultima riga e colonna vengono utili come sentinelle):
+          -   1   2   3   4   5   6   7   8   9  10 
+      -   0   0   0   0   0   0   0   0   0   0   0 
+      1   0 255  93  93  24  24   7   7   1   0   0 
+      2   0 162   0  69   0  17   0   6   1   0   0 
+      3   0 162 105  69  43  17  17   5   1   1   0 
+      4   0  57  36  26  26   0  12   4   0   1   0 
+      5   0  21  10   0  26  17   8   4   4   1   0 
+      6   0  11  10  10   9   9   4   0   3   1   0 
+      7   0   1   0   1   0   5   4   3   2   1   0 
+      8   0   1   1   1   1   1   1   1   1   1   0 
+      9   0   0   0   0   0   0   0   0   0   0   0 
+
+    AUX__codice_che_ha_prodotto_la_matrice_num_paths_from: |
+                 num_paths_from = [ [ 0 ] * (n+2) for i in range(m+2) ]
+                 num_paths_from[m][n] = 1
+                 for i in range(m,0,-1):
+                   for j in range(n,0,-1):
+                     if (i,j) != (m,n):
+                         num_paths_from[i][j] = 0 if campo_minato[i-1][j-1]=="*" else num_paths_from[i+1][j]+num_paths_from[i][j+1]
+            
+
+- 3:
+    tot_points: 5
+    ver_points: 1
+    task_codename: num_paths_start_to_end
+    request: 'Quanti sono i percorsi con partenza in $A1=(1,1)$ e arrivo in $(m,n)$?'
+    request_txt: 'Quanti sono i percorsi con partenza in A1=(1,1) e arrivo in (m,n)?'
+    answer_cell_type: "Markdown"
+    init_answ_cell_msg: 'Inserisci quì la tua risposta'
+    verif: ''
+
+    BOTH_la_risposta_corretta: 255  (ossia um_paths_to[8][9])
+
+- 4:
+    tot_points: 3
+    ver_points: 1
+    task_codename: num_paths_cell_to_end
+    start_point: (2,5)
+    request: 'Quanti sono i percorsi con partenza in ${chr(64+start_point[0])}{start_point[1]}={start_point}$ e arrivo in ${chr(64+m)}{n}=({m},{n})$?'
+    request_txt: 'Quanti sono i percorsi con partenza in {chr(64+start_point[0])}{start_point[1]}={start_point} e arrivo in {chr(64+m)}{n}=({m},{n})?'
+    answer_cell_type: "Markdown"
+    init_answ_cell_msg: 'Inserisci quì la tua risposta'
+    verif: ''
+
+    BOTH_la_risposta_corretta: 17  (ossia num_paths_from[2][5])
+
+- 5:
+    tot_points: 3
+    ver_points: 1
+    task_codename: num_paths_cell_to_end
+    start_point: (3,3)
+    request: 'Quanti sono i percorsi con partenza in ${chr(64+start_point[0])}{start_point[1]}={start_point}$ e arrivo in ${chr(64+m)}{n}=({m},{n})$?'
+    request_txt: 'Quanti sono i percorsi con partenza in {chr(64+start_point[0])}{start_point[1]}={start_point} e arrivo in {chr(64+m)}{n}=({m},{n})?'
+    answer_cell_type: "Markdown"
+    init_answ_cell_msg: 'Inserisci quì la tua risposta'
+    verif: ''
+
+    BOTH_la_risposta_corretta: 69  (ossia num_paths_from[3][3])
+
+- 6:
+    tot_points: 3
+    ver_points: 1
+    task_codename: num_paths_cell_to_end
+    start_point: (4,1)
+    request: 'Quanti sono i percorsi con partenza in ${chr(64+start_point[0])}{start_point[1]}={start_point}$ e arrivo in ${chr(64+m)}{n}=({m},{n})$?'
+    request_txt: 'Quanti sono i percorsi con partenza in {chr(64+start_point[0])}{start_point[1]}={start_point} e arrivo in {chr(64+m)}{n}=({m},{n})?'
+    answer_cell_type: "Markdown"
+    init_answ_cell_msg: 'Inserisci quì la tua risposta'
+    verif: ''
+
+    BOTH_la_risposta_corretta: 57  (ossia num_paths_from[4][1])
+
+- 7:
+    tot_points: 3
+    ver_points: 1
+    task_codename: num_paths_start_to_cell
+    target_point: (8,6)
+    request: 'Quanti sono i percorsi con partenza in $A1=(1,1)$ e arrivo in ${chr(64+target_point[0])}{target_point[1]}={target_point}$?'
+    request_txt: 'Quanti sono i percorsi con partenza in A1=(1,1) e arrivo in {chr(64+target_point[0])}{target_point[1]}={target_point}?'
+    answer_cell_type: "Markdown"
+    init_answ_cell_msg: 'Inserisci quì la tua risposta'
+    verif: ''
+
+    BOTH_la_risposta_corretta: 62  (ossia num_paths_to[8][6])
+
+- 8:
+    tot_points: 3
+    ver_points: 1
+    task_codename: num_paths_start_to_cell
+    target_point: (7,7)
+    request: 'Quanti sono i percorsi con partenza in $A1=(1,1)$ e arrivo in ${chr(64+target_point[0])}{target_point[1]}={target_point}$?'
+    request_txt: 'Quanti sono i percorsi con partenza in A1=(1,1) e arrivo in {chr(64+target_point[0])}{target_point[1]}={target_point}?'
+    answer_cell_type: "Markdown"
+    init_answ_cell_msg: 'Inserisci quì la tua risposta'
+    verif: ''
+
+    BOTH_la_risposta_corretta: 41  (ossia num_paths_to[7][7])
+
+- 9:
+    tot_points: 3
+    ver_points: 1
+    task_codename: num_paths_start_to_cell
+    target_point: (6,8)
+    request: 'Quanti sono i percorsi con partenza in $A1=(1,1)$ e arrivo in ${chr(64+target_point[0])}{target_point[1]}={target_point}$?'
+    request_txt: 'Quanti sono i percorsi con partenza in A1=(1,1) e arrivo in {chr(64+target_point[0])}{target_point[1]}={target_point}?'
+    answer_cell_type: "Markdown"
+    init_answ_cell_msg: 'Inserisci quì la tua risposta'
+    verif: ''
+
+    BOTH_la_risposta_corretta: 16  (ossia num_paths_to[6][8])
+
+- 10:
+    tot_points: 4
+    ver_points: 1
+    task_codename: num_paths_through_cell
+    middle_point: (3,3)
+    request: 'Quanti sono i percorsi che partono da $A1=(1,1)$, passano da ${chr(64+middle_point[0])}{middle_point[1]}={middle_point}$, e arrivano in ${chr(64+m)}{n}=({m},{n})$?'
+    request_txt: 'Quanti sono i percorsi che partono da A1=(1,1), passano da {chr(64+middle_point[0])}{middle_point[1]}={middle_point}, e arrivano in {chr(64+m)}{n}=({m},{n})?'
+    answer_cell_type: "Markdown"
+    init_answ_cell_msg: 'Inserisci quì la tua risposta'
+    verif: ''
+
+    BOTH_la_risposta_corretta: 138  (ossia num_paths_to[3][3]*num_paths_from[3][3])
+
+- 11:
+    tot_points: 4
+    ver_points: 1
+    task_codename: num_paths_through_cell
+    middle_point: (5,5)
+    request: 'Quanti sono i percorsi che partono da $A1=(1,1)$, passano da ${chr(64+middle_point[0])}{middle_point[1]}={middle_point}$, e arrivano in ${chr(64+m)}{n}=({m},{n})$?'
+    request_txt: 'Quanti sono i percorsi che partono da A1=(1,1), passano da {chr(64+middle_point[0])}{middle_point[1]}={middle_point}, e arrivano in {chr(64+m)}{n}=({m},{n})?'
+    answer_cell_type: "Markdown"
+    init_answ_cell_msg: 'Inserisci quì la tua risposta'
+    verif: ''
+
+    BOTH_la_risposta_corretta: 102  (ossia num_paths_to[5][5]*num_paths_from[5][5])
+
+- 12:
+    tot_points: 4
+    ver_points: 1
+    task_codename: num_paths_through_cell
+    middle_point: (6,6)
+    request: 'Quanti sono i percorsi che partono da $A1=(1,1)$, passano da ${chr(64+middle_point[0])}{middle_point[1]}={middle_point}$, e arrivano in ${chr(64+m)}{n}=({m},{n})$?'
+    request_txt: 'Quanti sono i percorsi che partono da A1=(1,1), passano da {chr(64+middle_point[0])}{middle_point[1]}={middle_point}, e arrivano in {chr(64+m)}{n}=({m},{n})?'
+    answer_cell_type: "Markdown"
+    init_answ_cell_msg: 'Inserisci quì la tua risposta'
+    verif: ''
+
+    BOTH_la_risposta_corretta: 100  (ossia num_paths_to[6][6]*num_paths_from[6][6])
+
+...

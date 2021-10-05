@@ -1,0 +1,70 @@
+---
+name: lp_standard_forms
+title: Programmazione lineare - Le forme standard e la forma canonica (versione completa)
+tags:
+- programmazione linare
+
+modes: ['free']
+
+instance: |
+ max -4x + 7y
+     2x + 6y >=  16
+     8x + 7y  = 33
+    4x + 5y <= 17
+    y >= 0, x free
+
+description1: Si consideri il seguente problema di Programmazione Lineare:<br><br>max $-4x+7y$<blockquote>$2x + 6y \geq 16$<br>$8x + 7y = 33$<br>$4x + 5y \leq 17$<br>$y \geq 0, x$ free</blockquote>Le due consegne, da svolgere nell'ordine, sono:<ol><li>si metta il problema in forma standard di minimizzazione sulle variabili $x$, $y^+$ e $y^-$. [15pt in totale per Richieste 1-5]</li><li>si scriva ciascuno dei vincoli della forma standard in forma canonica, avendo cura di introdurre per ciascuno di essi la variabile di slack o di surplus $s_i$. [4pt in totale per Richiesta 6]</li></ol>
+
+tasks:
+- 1:
+    tot_points: 4
+    ver_points: 0
+    description1: Resa della funzione obiettivo entro la forma standard richiesta
+    BOTH_la_risposta_corretta: "max -4x + 7y  diventa  -min +4x^+ -4x^- -7y"
+
+- 2:
+    tot_points: 3
+    ver_points: 0
+    description1: Resa del primo vincolo
+    BOTH_la_risposta_corretta: "2x + 6y >= 16 diventa  -2x^+ +2x^- -6y <= -16"
+
+- 3:
+    tot_points: 4
+    ver_points: 0
+    description1: Resa del secondo vincolo
+    BOTH_la_risposta_corretta: "8x + 7y = 33 diventa 8x^+ -8x^- + 7y <= 33  .and. -8x^+ +8x^- -7y <= -33"
+
+- 4:
+    tot_points: 2
+    ver_points: 0
+    description1: Resa del terzo vincolo
+    BOTH_la_risposta_corretta: "4x + 5y <= 17 diventa 4x^+ -4x^- +5y <= 17"
+
+- 5:
+    tot_points: 2
+    ver_points: 0
+    description1: Vincoli di segno per le variabili $y$, $x^+$ e $x^-$
+    BOTH_la_risposta_corretta: "y >= 0, x^+ >= 0, x^- >= 0"
+
+- 6:
+    tot_points: 4
+    ver_points: 0
+    description1: Introduzione delle variabili $s_i$ e resa di ciascun vincolo nella forma canonica ([1pt per vincolo])
+    BOTH_la_risposta_corretta: "-2x^+ +2x^- -6y <= -16 diventa s1=-16 +2x^+ -2x^- +6y; 8x^+ -8x^- +7y <= 33 diventa s2=33 -8x^+ +8x^- -7y; -8x^+ +8x^- -7y <= -33 diventa s3=-33 +8x^+ -8x^- +7y; 4x^+ -4x^- +5y <= 17 diventa s4=17 -4x^+ +4x^- -5y"
+
+- 7:
+    tot_points: 5
+    ver_points: 0
+    description1: Sfruttare il vincolo di uguaglianza per ridurre la dimensionalità del problema proiettando fuori la seconda variabile. Porre il problema ottenuto in forma di minimizzazione standard ([1pt per vincolo])
+
+- 8:
+    tot_points: 1
+    ver_points: 0
+    description1: Quali altri variabili avresti potuto proiettare fuori sfruttando quel vincolo?
+
+- 9:
+    tot_points: 1
+    ver_points: 0
+    description1: Quale criterio ti consente di distinguere quali singole variabili un singolo vincolo di eguaglianza ti consentirebbe di togliere dal campo?
+
+...

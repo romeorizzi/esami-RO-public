@@ -1,0 +1,46 @@
+---
+name: lp_modelling
+title: Programmazione lineare - Modellizzazione
+tags:
+- "programmazione lineare intera"
+- "modeling di un problema di ottimizzazione"
+- "gestione di risorse"
+- "utilizzo di software e solvers"
+description1: "I bestseller dell'azienda CandleLight sono due: le candele formato maxi (concorrenti alle Yankee Candle) e i cerini formato mini. La quantità di cera e il tempo necessario per realizzare ogni oggetto sono dati nella tabella sottostante.<br>
+<table>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Candela</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Cera (centimetri cubi)</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Tempo (minuti)</b></td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Maxi</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">150</td>
+        <td style=\"text-align: center; vertical-align: middle;\">3</td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Mini</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">2</td>
+        <td style=\"text-align: center; vertical-align: middle;\">0.25</td>
+    </tr>
+</table>
+
+Ogni giorno l'azienda può processare fino a 1 metro cubo (1000000 centimetri cubi) di materia prima e i tre macchinari presenti possono essere utilizzati ciascuno per quattro ore. Ogni candela maxi è venduta a 9.90 euro, mentre ogni cerino a 0.50 euro.<br>L'azienda vuole massimizzare i propri profitti, stabilendo quante candele maxi e mini di ogni tipologia produrre ogni giorno.<br>Considerare inoltre che il numero massimo di candele maxi e candele mini producibili ogni giorno è 200 e 5000, rispettivamente."
+
+tasks:
+- {
+    tot_points: 20,
+    ver_points: 0,
+    description1: "Formulare il problema come problema di Programmazione Lineare, motivando le scelte compiute"
+  }
+- {
+    tot_points: 20,
+    ver_points: 0,
+    description1: "Risolvere il problema sfruttando la libreria Pulp"
+  }
+- {
+    tot_points: 10,
+    ver_points: 0,
+    description1: "E se l'azienda iniziasse a produrre un terzo prodotto, per esempio delle candele alla citronella contro le zanzare, vendendole a 3.90 euro al pezzo? Ogni candela alla citronella richiederebbe 20 centimetri cubi di cera e 1.5 minuti di tempo, e se ne potrebbero produrre al massimo 500 al giorno. Quale sarebbe la soluzione ottima?"
+  }
+...

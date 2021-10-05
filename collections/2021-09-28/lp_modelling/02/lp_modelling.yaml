@@ -1,0 +1,107 @@
+---
+name: lp_modelling
+title: Programmazione lineare - Modellizzazione
+description1: "Un'azienda produce scarpe. Le risorse per produrre le scarpe sono 120.000 grammi di cuoio e 40.000 chiodi. Le ore disponibili per la lavorazione sono 7000. Per ciascun tipo di scarpa è stabilita una soglia minima, sotto la quale non vi è convenienza a produrre.
+    <br>
+    La seguente tabella fornisce le informazioni per tipo di scarpa:<br>
+<table>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Tipo</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Tacchi</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Scarpe da ginnastica</td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Scarpe da montagna</td>
+
+
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Ore-macchina</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">3</td>
+        <td style=\"text-align: center; vertical-align: middle;\">2</td>
+        <td style=\"text-align: center; vertical-align: middle;\">2.5</td>
+
+    </tr>
+        <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Chiodi</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">20</td>
+        <td style=\"text-align: center; vertical-align: middle;\">15</td>
+        <td style=\"text-align: center; vertical-align: middle;\">20</td>
+
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Soglia</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">100</td>
+        <td style=\"text-align: center; vertical-align: middle;\">200</td>
+        <td style=\"text-align: center; vertical-align: middle;\">150</td>
+
+    </tr>
+   <tr>
+    <td style=\"text-align: center; vertical-align: middle;\"><b>Prezzo euro/paio</b></td>
+    <td style=\"text-align: center; vertical-align: middle;\">150</td>
+    <td style=\"text-align: center; vertical-align: middle;\">120</td>
+        <td style=\"text-align: center; vertical-align: middle;\">130</td>
+
+   </tr>
+  
+</table>
+
+ Formula con la programmazione lineare il problema di massimizzare il ricavo."
+
+tasks:
+- 1:
+    tot_points: 10
+    ver_points: 0
+    description1: "Descrivere lo spazio delle scelte introducendo le opportune variabili."
+    AUX__guida_alla_formulazione: "Servono 3 variabili: x_1 (tacchi), x_2 (ginnastica) , x_3 (montagna ) che specificano il numero di unità da produrre per ogni tipo di scarpa. Altre 3 variabili booleano che esprimono se il tipo di scarpa viene prodotto y_i."
+
+- 2:
+    tot_points: 10
+    ver_points: 0
+    description1: "Comporre la funzione obiettivo che ricerchi la massimizzazione del ricavo."
+    AUX__guida_alla_formulazione: "
+    max z= (prezzo di vendita * unità) 150 x_1+120 x_2 + 130x_3"
+    
+
+- 3:
+    tot_points: 20
+    ver_points: 0
+    description1: "Esprimere i vincoli del problema."
+    AUX__guida_alla_formulazione: "
+    (vincolo sul cuoio): 850 x_1+600x_2+700x_3<=120000
+    (vincoli ore lavorazione): 3x_1 + 2x_2 +2.5x_3<= 7000
+    (vincoli numero chiodi): 20x_1+15x_2+20x_3<=40000
+    (soglia minima):
+    x_1>=100y1
+    x_2>=200y2
+    x3>=150y3
+    Una variabile xi non può essere maggiore di zero se quell’articolo non viene prodotto. Tale vincolo deve scomparire nel caso in cui invece l’articolo venga prodotto, per cui dobbiamo usare un numero M sufficientemente grande a secondo membro (ad es. M > 100000):
+        x_i<=M yi
+
+    
+    "
+
+- 4:
+    tot_points: 11
+    ver_points: 0
+    description1: "Per essere pronti ad affrontare commesse future, esprimere un modello astratto dove appaiano come parametri i valori numerici coinvolti (un punto per ogni parametro correttamente introdotto)."
+    AUX__guida_alla_formulazione: "
+        max z= p_1 x_1 +p_2 x2 +p_3 x_3
+        soggetto ai vincoli: 
+        (vincolo sul cuoio): c_1 x_1+c_2 x_2+ c_3x_3<=C
+        (vincoli ore lavorazione): L_1 x_1 + L_2 x_2 +L_3 x_3<= L
+        (vincoli numero chiodi): h_1 x_1+ h_2x_2+ h_3 x_3<= H
+        (soglia minima):    x_i>=s_i yi
+    Dove i parametri:
+       p_i indicano i prezzi alla vendita di una scarpa i
+       c_i indicano grammi di cuoio necessario per x_i
+       C cuoio
+       L indicano le ore di lavorazione di cui si dispone
+       L_i indicano le ore richieste per la produzione di una scarpa i
+       h_i indicano il numero di chiodi necessario per x_i
+       H numero chiodi disponibili
+       s_i soglia minima per scapa tipo i
+        Una variabile xi non può essere maggiore di zero se quell’articolo non viene prodotto. Tale vincolo deve scomparire nel caso in cui invece l’articolo venga prodotto, per cui dobbiamo usare un numero M sufficientemente grande a secondo membro (ad es. M > 100000):
+        x_i<=M yi
+       
+    "
+
+...

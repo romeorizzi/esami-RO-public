@@ -1,0 +1,153 @@
+---
+name: lp_bases
+title: Programmazione lineare - Le soluzioni di base
+tags:
+- programmazione linare
+
+modes: ['free']
+
+instance: |
+ max 2x1 + x2
+      x1      <= 8
+           x2 <= 8
+      x1 + x2 <= 10
+     x1, x2 >= 0
+     
+description1: "Dato il problema di PL in forma standard di massimizzazione:<br><br>max $2x_1 + x_2$<blockquote>$x_1 \\leq 8$<br>$x_2 \\leq 8$<br>$x_1 + x_2 \\leq 10$<br>$x_1, x_2 \\geq 0$</blockquote>Le consegne che ti proponiamo sono:"
+
+tasks:
+- 1:
+    tot_points: 8
+    ver_points: 0
+    description1: Elencare le soluzioni di base (5pt) specificando (3pt), per ciascuna di esse, se sia ammissibile oppure non-ammissibile
+    AUX__la_risposta_corretta: |
+      sono di base le seguenti soluzioni estese del problema primale
+        (x1,x2,w1,w2,w3) 
+        ( 0, 0, 8, 8,10) ammissibile
+        ( 8, 0, 0, 8, 2) ammissibile
+        ( 0, 8, 8, 0, 2) ammissibile
+        (10, 0,-2, 8, 0) non ammissibile
+        ( 0,10, 8,-2, 0) non ammissibile
+        ( 8, 8, 0, 0,-6) non ammissibile
+        ( 8, 2, 0, 8, 0) ammissibile
+        ( 2, 8, 8, 0, 0) ammissibile
+      
+    AUX__svolgimento: |
+      provo tutti i modi possibili di mettere a 0 due variabili della soluzione estesa (x1,x2,w1,w2,w3)
+      tra le 10 coppie su 10 variabili 2 sono incompatibili
+      la coppia (x1=0,w1=0) contraddice il vincolo di definizione di s1
+      la coppia (x2=0,w2=0) contraddice il vincolo di definizione di s2
+      per queste due coppie non esistono pertanto dizionari che mettano fuori base entrambe le variabili della copia
+      è facile verificare che le altre 8 coppie sono invece tutte in grado di individuare univocamente il generico punto (x1,x2) e quindi anche il generico punto (x1,x2,w1,w2,w3)
+      di queste sono ammissibili quelle non-negative
+
+- 2:
+    tot_points: 3
+    ver_points: 0
+    description1: Scrivere il problema duale
+    AUX__la_risposta_corretta: |
+      min 8y1 + 8y2 + 10y3
+           y1       +   y3 >= 2
+                 y2 +   y3 >= 1
+          y1, y2, y3 >= 0
+    AUX__svolgimento: |
+      max 2x1 + x2
+           x1      <= 8
+                x2 <= 8
+           x1 + x2 <= 10
+          x1, x2 >= 0
+      è in forma standard e ha duale
+      min 8y1 + 8y2 + 10y3
+           y1       +   y3 >= 2
+                 y2 +   y3 >= 1
+           y1, y2, y3 >= 0
+
+- 3:
+    tot_points: 8
+    ver_points: 0
+    description1: Elencare le soluzioni di base del problema duale (5pt) specificando (3pt), per ciascuna di esse, se sia ammissibile oppure non-ammissibile
+    AUX__la_risposta_corretta: |
+      sono di base le seguenti soluzioni estese del problema duale
+        (s1,s2,y1,y2,y3)
+        (-2,-1, 0, 0, 0)    non ammissibile
+        ( 0,-1, 2, 0, 0)    non ammissibile
+        (-2, 0, 0, 1, 0)    non ammissibile
+        ( 0, 1, 0, 0, 2)    ammissibile
+        (-1, 0, 0, 0, 1)    non ammissibile
+        ( 0, 0, 2, 1, 0)    ammissibile
+        ( 0, 0, 1, 0, 1)    ammissibile
+        ( 0, 0, 0,-1, 2)    non ammissibile
+
+    AUX__svolgimento: |
+      ribalto (per scarti complementari) le partizioni degli 8 tableau consistenti individuati al punto precedente
+         part. primale    part. duale
+         ( 0, 0, ?, ?, ?) ( ?, ?, 0, 0, 0)
+         ( ?, 0, 0, ?, ?) ( 0, ?, ?, 0, 0)
+         ( 0, ?, ?, 0, ?) ( ?, 0, 0, ?, 0)
+         ( ?, 0, ?, ?, 0) ( 0, ?, 0, 0, ?)
+         ( 0, ?, ?, ?, 0) ( ?, 0, 0, 0, ?)
+         ( ?, ?, 0, 0, ?) ( 0, 0, ?, ?, 0)
+         ( ?, ?, 0, ?, 0) ( 0, 0, ?, 0, ?)
+         ( ?, ?, ?, 0, 0) ( 0, 0, 0, ?, ?)
+         (x1,x2,w1,w2,w3) (s1,s2,y1,y2,y3)
+      utilizzo quindi la forma canonica del problema duale per completare le 8 tuple ottenute a soluzioni di base
+         (s1,s2,y1,y2,y3)
+         (-2,-1, 0, 0, 0)
+         ( 0,-1, 2, 0, 0)
+         (-2, 0, 0, 1, 0)
+         ( 0, 1, 0, 0, 2)
+         (-1, 0, 0, 0, 1)
+         ( 0, 0, 2, 1, 0)
+         ( 0, 0, 1, 0, 1)
+         ( 0, 0, 0,-1, 2)
+      di queste sono ammissibili quelle non-negative
+
+- 4:
+    tot_points: 2
+    ver_points: 0
+    description1: Fornire una soluzione primale $x^*=(x_1^*,x_2^*)$ ottima
+    BOTH_la_risposta_corretta: (x1,x2,w1,w2,w3)=( 8, 2, 0, 8, 0) è l'unica soluzione primale (estesa) ottima e ha valore c'x=(2,1,0,0,0)*(8,2,0,8,0)=18
+    AUX__svolgimento: |
+      sia il politopo primale che quello duale sono non-degeneri e le soluzioni di base (vertici) si corrispondono nella relazione biunivoca dettata dagli scarti complementari
+      (x1,x2,w1,w2,w3)         (s1,s2,y1,y2,y3)
+      ( 0, 0, 8, 8,10) ammiss   (-2,-1, 0, 0, 0) non am   
+      ( 8, 0, 0, 8, 2) ammiss   ( 0,-1, 2, 0, 0) non am
+      ( 0, 8, 8, 0, 2) ammiss   (-2, 0, 0, 1, 0) non am
+      (10, 0,-2, 8, 0) non am   ( 0, 1, 0, 0, 2) non am
+      ( 0,10, 8,-2, 0) non am   (-1, 0, 0, 0, 1) ammiss
+      ( 8, 8, 0, 0,-6) non am   ( 0, 0, 2, 1, 0) ammiss
+      ( 8, 2, 0, 8, 0) ammiss   ( 0, 0, 1, 0, 1) ammiss
+      ( 2, 8, 8, 0, 0) ammiss   ( 0, 0, 0,-1, 2) non am
+      l'ottimalità di un vertice è l'ammissibilità del compagno, sono pertanto soluzioni ottime entrambi i membri di quelle coppie che hanno entrambi i membri ammissibili
+      ( 8, 2, 0, 8, 0) ammiss   ( 0, 0, 1, 0, 1) ammiss
+
+- 5:
+    tot_points: 2
+    ver_points: 0
+    description1: Fornire una soluzione duale $y^*=(y_1^*,y_2^*,y_3^*)$ ottima
+    BOTH_la_risposta_corretta: (s1,s2,y1,y2,y3)=(0, 0, 1, 0, 1) è l'unica soluzione duale (estesa) ottima e ha valore (0,0,8,8,10)*(0, 0, 1, 0, 1)=18
+    AUX__svolgimento: si veda quello al punto precedente che ha chiuso entramb le richieste. Ma si poteva anche valutare la soluzion obiettivo per ciascuna delle 8 soluzioni di base ammissibili 
+
+
+- 6:
+    tot_points: 4
+    ver_points: 0
+    description1: Verificare il soddisfacimento delle condizioni degli scarti complementari tra la $x^*$ e la $y^*$
+    AUX__la_risposta_corretta: ( 8, 2, 0, 8, 0) >= 0, ( 0, 0, 1, 0, 1) >= 0, ( 8, 2, 0, 8, 0) * ( 0, 0, 1, 0, 1) = 0+0+0+0+0
+
+- 7:
+    tot_points: 8
+    ver_points: 0
+    description1: Fornire ogni altra coppia (soluzione di base del primale, soluzione di base del duale) che soddisfi alle condizioni degli scarti complementari
+    AUX__la_risposta_corretta: |
+      (x1,x2,w1,w2,w3)      (s1,s2,y1,y2,y3)
+      ( 0, 0, 8, 8,10) <--> (-2,-1, 0, 0, 0)   
+      ( 8, 0, 0, 8, 2) <--> ( 0,-1, 2, 0, 0)
+      ( 0, 8, 8, 0, 2) <--> (-2, 0, 0, 1, 0)
+      (10, 0,-2, 8, 0) <--> ( 0, 1, 0, 0, 2)
+      ( 0,10, 8,-2, 0) <--> (-1, 0, 0, 0, 1)
+      ( 8, 8, 0, 0,-6) <--> ( 0, 0, 2, 1, 0)
+      ( 8, 2, 0, 8, 0) <--> ( 0, 0, 1, 0, 1)   (quella ottima)
+      ( 2, 8, 8, 0, 0) <--> ( 0, 0, 0,-1, 2)
+    AUX__svolgimento: condotto nei punti precedenti
+...

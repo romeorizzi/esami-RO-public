@@ -1,0 +1,117 @@
+---
+name: lp_modelling_integer
+title: Programmazione lineare intera - Modellizzazione
+description1: "Dato un grafo, due vertici si dicono adiacenti se sono gli estremi di uno stesso arco. Un insieme indipendente è un insieme di vertici che non contiene alcuna coppia di vertici adiacenti. Vogliamo avvalerci della programmazione lineare intera per trovare un insieme indipendente di cardinalità massima."
+
+tasks:
+- 1:
+    tot_points: 10
+    ver_points: 0
+    description1: "Formula il problema per il grafo con la seguente matrice di adiacenza (spiegare le variabili che introduci, la funzione obiettivo, e i vincoli): <br>
+    &ensp;
+       A B C D E <br>
+    A  0 1 1 0 0 <br>
+    B  1 0 1 1 1 <br>
+    C  1 1 0 0 1 <br>
+    D  0 1 0 0 1 <br>
+    E  0 1 1 1 0 <br>."
+
+- 2:
+    tot_points: 10
+    ver_points: 0
+    description1: "Ora sfruttiamo gli strumenti informatici. Risolvilo con la libreria Pulp. Questa istanza ha 3 soluzioni ottime (B,C,E oppure B,C,D oppure B,A,E). Vedi se riesci a far produrre a Pulp una qualsiasi  di queste."
+    
+
+- 3:
+    tot_points: 20
+    ver_points: 0
+    description1: "Torniamo tra umani, spiega come organizzeresti il tuo modello di cui al primo punto perchè affronti l'istanza generica (cosa che ti verrà utile implementare per affrontare i punti successivi)."
+
+- 4:
+    tot_points: 6
+    ver_points: 0
+    description1: "Risolvi il problema per la seguente istanza: <br>
+    &ensp;   
+       A B C D E F G H I L <br>
+    A  0 1 0 0 1 1 0 0 0 0 <br>
+    B  1 0 1 0 0 0 1 0 0 0 <br>
+    C  0 1 0 1 0 0 0 1 0 0 <br>
+    D  0 0 1 0 1 0 0 0 1 0 <br>
+    E  1 0 0 1 0 0 0 0 0 1 <br>
+    F  1 0 0 0 0 0 0 1 1 0 <br>
+    G  0 1 0 0 0 0 0 0 1 1 <br>
+    H  0 0 1 0 0 1 0 0 0 1 <br>
+    I  0 0 0 1 0 1 1 0 0 0 <br>
+    L  0 0 0 0 1 0 1 1 0 0 <br>"
+
+- 5:
+    tot_points: 6
+    ver_points: 0
+    description1: "Risolvi il problema per la seguente istanza: <br>
+    &ensp;   
+       A B C D E F G H I L M N O P Q R <br>
+    A  0 1 1 0 1 0 0 0 1 0 0 0 0 0 0 0 <br>
+    B  1 0 0 1 0 1 0 0 0 1 0 0 0 0 0 0 <br>
+    C  1 0 0 1 0 0 1 0 0 0 1 0 0 0 0 0 <br>
+    D  0 1 1 0 0 0 0 1 0 0 0 1 0 0 0 0 <br>
+    E  1 0 0 0 0 1 1 0 0 0 0 0 1 0 0 0 <br>
+    F  0 1 0 0 1 0 0 1 0 0 0 0 0 1 0 0 <br>
+    G  0 0 1 0 1 0 0 1 0 0 0 0 0 0 1 0 <br>
+    H  0 0 0 1 0 1 1 0 0 0 0 0 0 0 0 1 <br>
+    I  1 0 0 0 0 0 0 0 0 1 1 0 1 0 0 0 <br>
+    L  0 1 0 0 0 0 0 0 1 0 0 1 0 1 0 0 <br>
+    M  0 0 1 0 0 0 0 0 1 0 0 1 0 0 1 0 <br>
+    N  0 0 0 1 0 0 0 0 0 1 1 0 0 0 1 0 <br>
+    O  0 0 0 0 1 0 0 0 1 0 0 0 0 1 1 0 <br>
+    P  0 0 0 0 0 1 0 0 0 1 0 0 1 0 0 1 <br>
+    Q  0 0 0 0 0 0 1 0 0 0 1 0 1 0 0 1 <br>
+    R  0 0 0 0 0 0 0 1 0 0 0 1 0 1 1 0 <br>"
+
+- 6:
+    tot_points: 6
+    ver_points: 0
+    description1: "Risolvi il problema per la seguente istanza: <br>
+    &ensp;   
+       A B C D E F G H I L M N O P Q R <br>
+    A  0 1 1 0 1 0 0 0 1 0 0 0 0 0 0 0 <br>
+    B  1 0 0 1 0 1 0 0 0 1 0 0 0 1 0 0 <br>
+    C  1 0 0 1 0 0 1 0 0 0 1 0 0 0 0 0 <br>
+    D  0 1 1 0 0 0 0 1 0 0 0 1 0 0 0 0 <br>
+    E  1 0 0 0 0 1 1 0 0 0 0 0 1 0 0 0 <br>
+    F  0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 <br>
+    G  0 0 1 0 1 0 0 1 0 0 0 0 0 0 1 0 <br>
+    H  0 0 0 1 0 1 1 0 0 0 0 0 0 0 0 1 <br>
+    I  1 0 0 0 0 0 0 0 0 1 1 0 1 0 0 0 <br>
+    L  0 1 0 0 0 1 0 0 1 0 0 1 0 1 0 0 <br>
+    M  0 0 1 0 0 0 0 0 1 0 0 1 0 0 1 0 <br>
+    N  0 0 0 1 0 0 0 0 0 1 1 0 0 0 1 0 <br>
+    O  0 0 0 0 1 0 0 0 1 0 0 1 0 1 1 0 <br>
+    P  0 0 0 0 0 1 0 0 0 1 0 0 1 0 0 1 <br>
+    Q  0 0 1 0 0 0 1 0 0 0 1 0 1 0 0 1 <br>
+    R  0 0 0 0 0 0 0 1 0 0 0 1 0 1 1 0 <br>"
+
+- 7:
+    tot_points: 6
+    ver_points: 0
+    description1: "Risolvi il problema per la seguente istanza: <br>
+    &ensp;   
+       A B C D E F G H I L M N O P Q R <br>
+    A  0 1 1 0 1 0 0 0 1 0 0 0 0 0 0 0 <br>
+    B  1 0 0 1 0 1 0 0 0 1 0 0 1 0 1 0 <br>
+    C  1 0 0 1 0 0 1 0 0 0 1 0 0 1 0 0 <br>
+    D  0 1 1 0 0 0 0 1 0 0 0 1 0 0 0 0 <br>
+    E  1 0 0 0 0 1 1 0 0 0 0 0 1 0 0 0 <br>
+    F  0 1 0 0 1 0 0 1 0 0 0 0 0 1 0 0 <br>
+    G  0 0 1 0 1 0 0 1 0 0 0 0 0 0 1 0 <br>
+    H  0 0 0 1 0 1 1 0 0 0 0 0 0 0 0 1 <br>
+    I  1 0 0 0 0 0 0 0 0 1 1 0 1 0 0 0 <br>
+    L  0 1 1 0 0 0 0 0 1 0 0 1 0 1 0 0 <br>
+    M  0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 <br>
+    N  0 1 0 1 0 0 0 0 0 1 1 0 0 0 1 0 <br>
+    O  0 1 0 0 1 0 0 0 1 0 0 0 0 1 1 0 <br>
+    P  0 1 0 0 0 1 0 0 0 1 0 0 1 0 0 1 <br>
+    Q  0 0 0 0 0 0 1 0 0 0 1 0 1 0 0 1 <br>
+    R  0 0 0 0 0 0 0 1 0 0 0 1 0 1 1 0 <br>"
+
+
+...

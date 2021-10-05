@@ -1,0 +1,63 @@
+---
+name: lcs
+title: Massima sottosequenza comune
+tags:
+- programmazione dinamica
+- sottoproblemi e ricorrenze
+- algoritmi classici su stringhe
+
+instance:
+  s: "CTGATGGGAATCGCACTA"
+  t: "GTACCGAATGCAGCTTAT"
+
+tasks:
+- 1:    #esercizio sottostringa comune s e t
+    tot_points: 8
+    ver_points: 1
+    task_codename: opt_lcs_s_t
+    request: 'Fornire una massima sottosequenza comune tra le due stringhe:<br/>$s$ = {s}<br/>$t$ = {t}.'
+    request_txt: 'Fornire una massima sottosequenza comune tra le due stringhe s = {s}  e t = {t}.'
+    init_answ_cell_msg: '#Inserisci la tua risposta (una stringa, per esempio "TATATA")\nanswer{num_of_question}=""'
+    verif: PLACEHOLDER_early_standard
+     
+- 2:    #esercizio prefisso su t
+    tot_points: 8
+    ver_points: 1
+    task_codename: opt_lcs_t_prefix
+    len_t_prefix: 10
+    request: 'Fornire una massima sottosequenza comune tra: <br/><b>il prefisso</b>  $t\''$ = {t[:task["len_t_prefix"]]} di $t$ e <br/>$s$ = {s}.'
+    request_txt: 'Fornire una massima sottosequenza comune tra il prefisso t\'' = {t[:task["len_t_prefix"]]} di t  e s = {s}'
+    init_answ_cell_msg: '#Inserisci la tua risposta (una stringa, per esempio "TATATA")\nanswer{num_of_question}=""'
+    verif: PLACEHOLDER_early_standard
+
+- 3:    #esercizio suffisso su s
+    tot_points: 8
+    ver_points: 1
+    task_codename: opt_lcs_s_suffix
+    len_s_suffix:  9
+    request: 'Fornire una massima sottosequenza comune tra:<br/><b>il suffisso </b> $s\''$ = {s[len(s)-task["len_s_suffix"]:]} di $s$ e <br/>$t$ = {t}.'
+    request_txt: 'Fornire una massima sottosequenza comune tra il suffisso $s\''$ = {s[len(s)-task["len_s_suffix"]:]} di s  e t = {t}'
+    init_answ_cell_msg: '#Inserisci la tua risposta (una stringa, per esempio "TATATA")\nanswer{num_of_question}=""'
+    verif: PLACEHOLDER_early_standard
+
+- 4:    #esercizio inizia con...
+    tot_points: 8
+    ver_points: 1
+    task_codename: opt_lcs_beginning
+    beginning: G
+    request: 'Fornire una stringa di lunghezza massima che <b>inizi con la lettera </b> __{task["beginning"]}__ e sia sottosequenza comune tra: <br/>$s$ = {s}<br/>$t$ = {t}.'
+    request_txt: 'Fornire una stringa di lunghezza massima che inizi con la lettera __{task["beginning"]}__ e sia sottosequenza comune tra s = {s}  e t = {t}'
+    init_answ_cell_msg: '#Inserisci la tua risposta (una stringa, per esempio "TATATA")\nanswer{num_of_question}=""'
+    verif: PLACEHOLDER_early_standard
+
+- 5:    #esercizio termina con
+    tot_points: 8
+    ver_points: 1
+    task_codename: opt_lcs_ending
+    ending: C
+    request: 'Fornire una stringa di lunghezza massima che <b>finisca con la lettera </b> __{task["ending"]}__ e sia sottosequenza comune tra:<br/>$s$ = {s} <br/>$t$ = {t}.'
+    request_txt: 'Fornire una stringa di lunghezza massima che finisca con la lettera __{task["ending"]}__ e sia sottosequenza comune tra $s$ = {s}  e $t$ = {t}'
+    init_answ_cell_msg: '#Inserisci la tua risposta (una stringa, per esempio "TATATA")\nanswer{num_of_question}=""'
+    verif: PLACEHOLDER_early_standard
+
+...

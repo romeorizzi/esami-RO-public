@@ -1,0 +1,77 @@
+---
+name: lp_modelling
+title: Programmazione lineare - Modellizzazione
+description1: "Il sito web Informati.it spedisce via e-mail varie newsletter ai suoi utenti. Nato da pochissimo, per ora sono iscritte solo cinque persone alle newsletter seguenti.
+<table>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Alba</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Barbara</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Carlo</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Dario</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Emma</b></td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Cronaca</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\">x</td>
+        <td style=\"text-align: center; vertical-align: middle;\">x</td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Gossip</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">x</td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\">x</td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Salute</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\">x</td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\">x</td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Ambiente</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\">x</td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\">x</td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Libri</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\">x</td>
+        <td style=\"text-align: center; vertical-align: middle;\">x</td>
+        <td style=\"text-align: center; vertical-align: middle;\">x</td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Film e telefilm</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">x</td>
+        <td style=\"text-align: center; vertical-align: middle;\">x</td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\"></td>
+        <td style=\"text-align: center; vertical-align: middle;\">x</td>
+    </tr>
+</table>"
+
+description2: Informati.it deve mandare una notizia straordinaria a tutti gli iscritti. Qual è il sottoinsieme più piccolo di newsletter a cui mandare l'email, in modo da raggiungere tutti?
+
+tasks:
+- {
+    tot_points: 40,
+    ver_points: 0,
+    description1: "Formulare il problema come problema di Programmazione Lineare Intera, motivando le scelte compiute"
+  }
+- {
+    tot_points: 50,
+    ver_points: 0,
+    description1: "Risolvere il problema sfruttando la libreria Pulp"
+  }
+...

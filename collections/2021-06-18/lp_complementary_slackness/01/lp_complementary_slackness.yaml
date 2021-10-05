@@ -1,0 +1,91 @@
+---
+name: lp_complementary_slackness
+title: Programmazione lineare - Scarti Complementari
+comment: problema assegnato 2018-02-14
+correzione: "https://www.dropbox.com/sh/vl4tag9uvhvvi0l/AABskAauHiUtG0_w0A1PsAuoa?dl=0&preview=2018-02-14-ro-corr.pdf"
+tags:
+- programmazione linare
+
+modes: ['free']
+
+
+
+description1: "Dato il problema di programmazione lineare $P(t)$ nel vettore di parametri $t=(t_1,t_2,t_3,t_4,t_5)$:
+$$
+  \\begin{array}{l}
+     \\max \\ C_1x_1 +C_2x_2 +C_3x_3 +C_4x_4 +C_5x_5 +C_6x_6\\\\
+      \\left\\{
+      \\begin{array}{l}
+      \\begin{array}{rrrrrrcr}
+           x_1    \\;+& x_2 \\;\\;\\;&           &           &           &           &\\leq & 12 + t_1\\\\
+                     &           & x_3    \\;+& 5x_4 \\;\\;\\;&           &           &\\leq & 10 + t_2 \\\\
+                     &           &           &           & 2x_5    \\;+& x_6 \\;\\;\\;&\\leq & 14 + t_3 \\\\
+           x_1 \\;\\;\\;&          +& x_3 \\;\\;\\;&          +& 2x_5 \\;\\;\\;&           &\\leq & 20 + t_4 \\\\
+                     & x_2 \\;\\;\\;&          +& 5x_4 \\;\\;\\;&          +& x_6 \\;\\;\\;&\\leq & 15 + t_5 \\\\
+      \\end{array} \\\\
+      x_1, x_2, x_3, x_4, x_5, x_6 \\geq 0
+      \\end{array}
+      \\right.
+  \\end{array}
+$$"
+
+description2: "<br>E con riferimento alla soluzione $\\overline{x}=(\\overline{x}_1,\\overline{x}_2,\\overline{x}_3,\\overline{x}_4,\\overline{x}_5,\\overline{x}_6)
+=(6,5,0,2,7,0)$"
+
+tasks:
+- 1:
+    tot_points: 5
+    ver_points: 0
+    description1: "Verificare esplicitamente che $\\overline{x}$ è soluzione ammissibile per $P(\\mathbf{0})$"
+
+- 2:
+    tot_points: 5
+    ver_points: 0
+    description1: "Scrivere il problema duale $D(t)$ di $P(t)$"
+
+- 3:
+    tot_points: 6
+    ver_points: 0
+    description1: "Impostare il sistema per la ricerca di una soluzione di base $\\overline{y}$ di $D(\\mathbf{0})$ soggetta alle condizioni agli scarti complementari rispetto a $\\overline{x}$"
+
+- 4:
+    tot_points: 3
+    ver_points: 0
+    description1: "Spiegare perchè ci si attende che il sistema impostato abbia qui una ed una sola soluzione"
+
+- 5:
+    tot_points: 5
+    ver_points: 0
+    description1: "Risolvere il sistema per trovare la soluzione duale $\\overline{y}$ complementare alla soluzione primale fornita $\\overline{x}$"
+
+- 6:
+    tot_points: 10
+    ver_points: 0
+    description1: "Per quali valori dei parametri $C_1,\\ldots ,C_6$ la soluzione $\\overline{x}$ assegnata è ottima per $P(\\mathbf{0})$?"
+
+- 7:
+    tot_points: 5
+    ver_points: 0
+    description1: "Si combinino i vincoli di $P(t)$ secondo il vettore di moltiplicatori $\\overline{y}$ per esprimere il valore ottimo $z(t)$ della funzione obiettivo avendo cura di esplicitare i 5 prezzi ombra come moltiplicatori dei parametri $t_1$, $t_2$, $t_3$, $t_4$ e $t_5$."
+
+- 8:
+    tot_points: 2
+    ver_points: 0
+    description1: "Puoi dire che l'espressione che hai dato per $z(t)$ sarà sempre un upper bound valido per il valore dell'ottimo di $P(t)$ e non solo per un qualche intorno di $t=\\mathbf{0}$?"
+
+- 9:
+    tot_points: 8
+    ver_points: 0
+    description1: "Produrre una soluzione primale parametrica $\\overline{x}(t)$ che certifichi che la tua espressione per $z(t)$ sia anche un lower bound per il valore dell'ottimo di $P(t)$, valido quantomeno per un qualche intorno di $t=\\mathbf{0}$"
+
+- 10:
+    tot_points: 2
+    ver_points: 0
+    description1: "In base a cosa puoi dire che l'intorno di $t=\\mathbf{0}$ per il quale $z(t)$ coincide esattamente col valore dell'ottimo di $P(t)$ non si riduce al sol punto $t=\\mathbf{0}$?"
+
+- 11:
+    tot_points: 10
+    ver_points: 0
+    description1: "Fornire descrizione dell'intorno di validità di $z(t)$ come valore dell'ottimo per $P(t)$. Per ogni $i=1,2,3,4,5$, fornire i più generosi limiti $a_i$ e $b_i$ tali che il prezzo ombra di $t_i$ sopra espresso ritenga validità purchè $a_i \\leq t_i \\leq b_i$ (e con $t_j=0 \\; \\forall j \\neq i$). Riporta ordinatamente quei conteggi che sei stato chiamato a compiere e che suffragano le tue conclusioni."
+
+...

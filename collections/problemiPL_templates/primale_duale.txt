@@ -1,0 +1,21 @@
+Dato il seguente problema di PL in forma standard a origine ammissibile:
+
+3 variabili e 3 vincoli
+
+1. scrivi il problema duale
+2. fornisci il primo tableau per il problema primale, quello la cui soluzione di base associata è l'origine dello spazio delle sole variabili di decisione (2pt)
+3. non diminuendo mai il valore della funzione obiettivo, e senza mai perdere l'ammissibilità della soluzione di base associata, ci si porti pivot dopo pivot verso un tableu la cui soluzione di base associata sia ottima.
+Per ogni tableu prodotto lungo il tuo cammino riceverai i seguenti punti:
+(1pt) se saprai indicare giustificandola una scelta corretta per le variabili entrante ed uscente che conducono a tale tableau
+(2pt) per l'esecuzione corretta del pivot che conduce al tableu
+(1pt) se saprai leggere la soluzione primale estesa associata al tableu ottenuto
+(1pt) se saprai leggere la soluzione duale estesa associata
+(1pt) se saprai commentare puntualmente in merito all'ottimalità ed ammissibilità delle soluzioni primale e duale.
+(2pt) se saprai visualizzare efficacemente i tuoi conteggi per una prova del nove, spesa prendendo a riferimento la soluzione di base data dall'origine.
+4. (1pt) Indicare il valore ottimo della funzione obiettivo e fornire una soluzione estesa ottima.
+5. (1pt) Specificare se la soluzione primale ottima è unica e perchè. 
+6. (1pt) Specificare se la soluzione duale ottima è unica e perchè. 
+
+Invece le richieste 5,6 e 7 come nella versione attuale andrebbero meglio in un'esercizio separato perchè chiedono di trovare la soluzione ottima duale tramite gli scati complementari ma essa si può già vedere dal tablau ottimo.  Conviene fare più esrcizi piccoli piuttosto che introdurre aspetti che poi vanno in conflitto tra loro.
+
+Piuttosto ci sarebbe quì l'opportunità per proseguire con delle domande sull'interpretazione economica ed analisi di sensitività.

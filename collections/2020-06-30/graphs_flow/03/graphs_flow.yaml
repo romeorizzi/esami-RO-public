@@ -1,0 +1,21 @@
+---
+name: graphs_flow
+title: Flusso massimo in una rete
+description1: Si consideri il grafo $G$, con pesi sugli archi, riportato in figura:<br><img src='img-2020-06-30/grafo_plan6_pesi.png' width=800>
+tasks:
+- {
+    tot_points: 50,
+    ver_points: 0,
+    description1: "Fornire un massimo flusso dal nodo $s$ al nodo $t$"
+  }
+- {
+    tot_points: 30,
+    ver_points: 0,
+    description1: "Certificare l'ottimalità del flusso massimo dal nodo $s$ al nodo $t$"
+  }
+- {
+    tot_points: 30,
+    ver_points: 0,
+    description1: "Per ciascuno dei seguenti tre archi dire, certificandolo, se esso appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli $s,t$-tagli di capacità minima: $cd$, $sg$, $vw$"
+  }
+...

@@ -1,0 +1,30 @@
+<button class="accordion main_exercise">
+    <div class="arrow-container">
+    <i class="fas fa-chevron-down"></i></div>
+    <div class="inline">
+        <div>
+            <h3 class="exname_inline">{ex_title}</h3>
+            <a class="link" target="_blank" href="{ex_link}">Apri in Jupyter <i class="fas fa-link"></i></a>
+            {ex_links}
+        </div>
+        {ex_tags}
+    </div>
+    <div class="score">
+        <div class="box">
+            <h3 class="section">Modalità di sottoposizione: </h3>
+                <select name="submit_mode" class="submit_mode">
+                    {ex_mode}
+                </select>
+        </div>
+        <div class="box">
+            <label class="confirm-mode">Conferma Modalità</label> <input type="checkbox"  class="confirm-checkbox" />
+        </div>
+        <div class="box"> <h3 class="section">Certi</h3><span class="certpoints">0</span> </div>
+        <div class="box"> <h3 class="section">Autostimati</h3> <span class="maxpoints">0</span> </div>
+        <div class="box"> <h3 class="section">Totali</h3><span class="maxpoints">{ex_tot_points}pts</span></div>
+    </div>
+
+</button>
+<div class="panel">
+{ex_tasks}
+</div>

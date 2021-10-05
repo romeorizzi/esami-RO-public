@@ -1,0 +1,71 @@
+---
+name: lp_standard_forms
+title: Programmazione lineare - Le forme standard e la forma canonica (versione completa)
+tags:
+- programmazione linare
+
+modes: ['free']
+
+instance: |
+ min -5x + 3y
+     2x + 2y >=  10
+     8x + 3y  = 13
+     4x + 5y <= 17
+    x >= 0, y free
+
+description1: Si consideri il seguente problema di Programmazione Lineare:<br><br>min $-5x+3y$<blockquote>$2x + 2y \geq 10$<br>$8x + 3y = 13$<br>$4x + 5y \leq 17$<br>$x \geq 0, y$ free</blockquote>Le due consegne, da svolgere nell'ordine, sono:<ol><li>si metta il problema in forma standard di massimizzazione sulle variabili $x$, $y^+$ e $y^-$. [15pt in totale per Richieste 1-5]</li><li>si scriva ciascuno dei vincoli della forma standard in forma canonica, avendo cura di introdurre per ciascuno di essi la variabile di slack o di surplus $s_i$. [4pt in totale per Richiesta 6]</li></ol>
+
+tasks:
+- 1:
+    tot_points: 4
+    ver_points: 0
+    description1: Resa della funzione obiettivo entro la forma standard richiesta
+    BOTH_la_risposta_corretta: "min -5x +3y  diventa  -max +5x -3y^+ +3y^-"
+
+- 2:
+    tot_points: 3
+    ver_points: 0
+    description1: Resa del primo vincolo
+    BOTH_la_risposta_corretta: "2x +2y >= 10 diventa -2x -2y^+ +2y^- <= -10"
+
+- 3:
+    tot_points: 4
+    ver_points: 0
+    description1: Resa del secondo vincolo
+    BOTH_la_risposta_corretta: "8x +3y = 13 diventa 8x +3y^+ -3y^- <= 13  .and. -8x -3y^+ +3y^- <= -13"
+
+- 4:
+    tot_points: 2
+    ver_points: 0
+    description1: Resa del terzo vincolo
+    BOTH_la_risposta_corretta: "4x +5y <= 17 diventa 4x +5y^+ -5y^- <= 17"
+
+- 5:
+    tot_points: 2
+    ver_points: 0
+    description1: Vincoli di segno per le variabili $x$, $y^+$ e $y^-$
+    BOTH_la_risposta_corretta: "x >= 0, y^+ >= 0, y^- >= 0"
+
+- 6:
+    tot_points: 4
+    ver_points: 0
+    description1: Introduzione delle variabili $s_i$ e resa di ciascun vincolo nella forma canonica ([1pt per vincolo])
+    BOTH_la_risposta_corretta: "-2x -2y^+ +2y^- <= -10 diventa s1=-10 +2x +2y^+ -2y^-; 8x +3y^+ -3y^- <= 13 diventa s2=13 -8x -3y^+ +3y^-; -8x -3y^+ +3y^- <= -13 diventa s3=-13 +8x +3y^+ -3y^-; 4x +5y^+ -5y^- <= 17 diventa s4=17 -4x -5y^+ +5y^-"
+
+- 7:
+    tot_points: 5
+    ver_points: 0
+    description1: Sfruttare il vincolo di uguaglianza per ridurre la dimensionalità del problema proiettando fuori la seconda variabile. Porre il problema ottenuto in forma di massimizzazione standard ([1pt per vincolo])
+
+- 8:
+    tot_points: 1
+    ver_points: 0
+    description1: Quali altri variabili avresti potuto proiettare fuori sfruttando quel vincolo?
+
+- 9:
+    tot_points: 1
+    ver_points: 0
+    description1: Quale criterio ti consente di distinguere quali singole variabili un singolo vincolo di eguaglianza ti consentirebbe di togliere dal campo?
+
+
+...

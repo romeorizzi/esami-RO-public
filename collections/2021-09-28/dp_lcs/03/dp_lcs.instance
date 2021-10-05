@@ -1,0 +1,94 @@
+---
+name: lcs
+title: Massima sottosequenza comune
+tags:
+- programmazione dinamica
+- sottoproblemi e ricorrenze
+- algoritmi classici su stringhe
+
+instance:
+  s: "GTACGGATGCCAGGGGA"
+  t: "GGTGTAGGGAGGGTATG"
+
+tasks:
+- 1:    #esercizio sottostringa comune s e t
+    tot_points: 5
+    ver_points: 1
+    task_codename: opt_lcs_s_t
+    request: 'Fornire una massima sottosequenza comune tra le due stringhe:<br/>$s$ = {s}<br/>$t$ = {t}.'
+    request_txt: 'Fornire una massima sottosequenza comune tra le due stringhe s = {s}  e t = {t}.'
+    init_answ_cell_msg: '#Inserisci la tua risposta (una stringa, per esempio "TATATA")\nanswer{num_of_question}=""'
+    verif: PLACEHOLDER_early_standard
+     
+- 2:    #esercizio inizia con...
+    tot_points: 5
+    ver_points: 1
+    task_codename: opt_lcs_beginning
+    beginning: TG
+    request: 'Fornire una stringa di lunghezza massima che inizi col prefisso __{task["beginning"]}__ e sia sottosequenza comune tra: <br/>$s$ = {s}<br/>$t$ = {t}.'
+    request_txt: 'Fornire una stringa di lunghezza massima che inizi col prefisso __{task["beginning"]}__ e sia sottosequenza comune tra s = {s}  e t = {t}'
+    init_answ_cell_msg: '#Inserisci la tua risposta (una stringa, per esempio "TATATA")\nanswer{num_of_question}=""'
+    verif: PLACEHOLDER_early_standard
+
+- 3:    #esercizio suffisso su s
+    tot_points: 5
+    ver_points: 1
+    task_codename: opt_lcs_s_suffix
+    len_s_suffix: 15
+    request: 'Fornire una massima sottosequenza comune tra:<br/><b>il suffisso </b> $s\''$ = {s[len(s)-task["len_s_suffix"]:]} di $s$ e <br/>$t$ = {t}.'
+    request_txt: 'Fornire una massima sottosequenza comune tra il suffisso $s\''$ = {s[len(s)-task["len_s_suffix"]:]} di s  e t = {t}'
+    init_answ_cell_msg: '#Inserisci la tua risposta (una stringa, per esempio "TATATA")\nanswer{num_of_question}=""'
+    verif: PLACEHOLDER_early_standard
+
+- 4:    #esercizio suffisso su s
+    tot_points: 5
+    ver_points: 1
+    task_codename: opt_lcs_s_suffix
+    len_s_suffix: 11
+    request: 'Fornire una massima sottosequenza comune tra:<br/><b>il suffisso </b> $s\''$ = {s[len(s)-task["len_s_suffix"]:]} di $s$ e <br/>$t$ = {t}.'
+    request_txt: 'Fornire una massima sottosequenza comune tra il suffisso $s\''$ = {s[len(s)-task["len_s_suffix"]:]} di s  e t = {t}'
+    init_answ_cell_msg: '#Inserisci la tua risposta (una stringa, per esempio "TATATA")\nanswer{num_of_question}=""'
+    verif: PLACEHOLDER_early_standard
+
+- 5:    #esercizio suffisso su s
+    tot_points: 5
+    ver_points: 1
+    task_codename: opt_lcs_s_suffix
+    len_s_suffix: 9
+    request: 'Fornire una massima sottosequenza comune tra:<br/><b>il suffisso </b> $s\''$ = {s[len(s)-task["len_s_suffix"]:]} di $s$ e <br/>$t$ = {t}.'
+    request_txt: 'Fornire una massima sottosequenza comune tra il suffisso $s\''$ = {s[len(s)-task["len_s_suffix"]:]} di s  e t = {t}'
+    init_answ_cell_msg: '#Inserisci la tua risposta (una stringa, per esempio "TATATA")\nanswer{num_of_question}=""'
+    verif: PLACEHOLDER_early_standard
+    
+- 6:    #esercizio suffisso su t
+    tot_points: 5
+    ver_points: 1
+    task_codename: opt_lcs_t_suffix
+    len_t_suffix: 13
+    request: 'Fornire una massima sottosequenza comune tra: <br/><b>il suffisso</b>  $t\''$ = {t[len(t)-task["len_t_suffix"]:]} di $t$ e <br/>$s$ = {s}.'
+    request_txt: 'Fornire una massima sottosequenza comune tra il suffisso t\'' = {t[len(t)-task["len_t_suffix"]:]} di t  e s = {s}'
+    init_answ_cell_msg: '#Inserisci la tua risposta (una stringa, per esempio "TATATA")\nanswer{num_of_question}=""'
+    verif: PLACEHOLDER_early_standard
+
+- 7:    #esercizio suffisso su t
+    tot_points: 5
+    ver_points: 1
+    task_codename: opt_lcs_t_suffix
+    len_t_suffix: 11
+    request: 'Fornire una massima sottosequenza comune tra: <br/><b>il suffisso</b>  $t\''$ = {t[len(t)-task["len_t_suffix"]:]} di $t$ e <br/>$s$ = {s}.'
+    request_txt: 'Fornire una massima sottosequenza comune tra il suffisso t\'' = {t[len(t)-task["len_t_suffix"]:]} di t  e s = {s}'
+    init_answ_cell_msg: '#Inserisci la tua risposta (una stringa, per esempio "TATATA")\nanswer{num_of_question}=""'
+    verif: PLACEHOLDER_early_standard
+
+
+- 8:    #esercizio suffisso su t
+    tot_points: 5
+    ver_points: 1
+    task_codename: opt_lcs_t_suffix
+    len_t_suffix: 9
+    request: 'Fornire una massima sottosequenza comune tra: <br/><b>il suffisso</b>  $t\''$ = {t[len(t)-task["len_t_suffix"]:]} di $t$ e <br/>$s$ = {s}.'
+    request_txt: 'Fornire una massima sottosequenza comune tra il suffisso t\'' = {t[len(t)-task["len_t_suffix"]:]} di t  e s = {s}'
+    init_answ_cell_msg: '#Inserisci la tua risposta (una stringa, per esempio "TATATA")\nanswer{num_of_question}=""'
+    verif: PLACEHOLDER_early_standard
+
+...

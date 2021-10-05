@@ -1,0 +1,38 @@
+---
+name: lp_modelling
+title: Programmazione lineare - Modellizzazione
+tags:
+- "programmazione lineare intera"
+- "modeling di un problema di ottimizzazione"
+- "gestione di risorse"
+- "utilizzo di software e solvers"
+
+description1: "Geronimo, appassionato di numismatica, nella sera gestisce una taverna con una vasta proposta in giochi di ruolo e società. Diversi clienti affezionati si fermano a giocare fino all'ora di chiusura, e vino e birra corrono a fiumi.
+Ogni sera dopo la chiusura, Geronimo controlla tutte le monete da 1 euro rimaste in cassa alla ricerca di quelle rare o particolari che mancano alla sua collezione. Non gradisce fare questo controllo ad attività aperta, ma piuttosto si è organizzato in modo da cercare di massimizzare il numero di monete da 1 euro rimaste in cassa a valle della chiusura.
+Per fare questo, tiene aggiornato il conto ad ogni consumazione e, al momento della chiusura, raccoglie prima dai vari clienti i tagli con cui intendono pagare per poi procedere ad ogni saldo.
+Questa sera si sono fermati fino a chiusura solo quattro clienti paganti, il cui conto è, rispettivamente: 47,50 euro; 27,80 euro; 18,50 euro; 33,60 euro. I tagli che mettono sul tavolo per saldare i propri conti sono, rispettivamente: una banconota da 50 euro; una banconota da 20 e una da 10 euro; una banconota da 20 euro; due banconote da 20 euro.
+Il fondo cassa è attualmente formato da 22 banconote da 5 euro, 38 monete da 2 euro, 15 da 1 euro, 39 da 50 centesimi, e 34 da 20 centesimi.
+Il problema di Geronimo è comporre i resti da distribuire agli ultimi quattro clienti cercando di usare il minor numero possibile le monete da 1 euro. Come potrà Geronimo comporre i resti in modo da massimizzare il numero di monete da 1 euro rimanenti?"
+
+tasks:
+- {
+    tot_points: 15,
+    ver_points: 0,
+    description1: "Formulare il problema come problema di Programmazione Lineare Intera, motivando le scelte compiute"
+  }
+- {
+    tot_points: 15,
+    ver_points: 0,
+    description1: "Risolvere il problema sfruttando la libreria Pulp"
+  }
+- {
+    tot_points: 5,
+    ver_points: 0,
+    description1: "E se il quarto cliente pagasse con il Bancomat?"
+  }
+- {
+    tot_points: 15,
+    ver_points: 0,
+    description1: "Dimostrare che il problema è NP-completo offrendo una riduzione dalla generica istanza di Knapsack ad esso. Nel Knapsack sono forniti $n$ numeri naturali $x_1, ..., x_n$ e un budget $B$ e si deve individuare un sottoinsieme $S$ di ${1, ..., n}$ la cui somma degli $x_i$ corrispondenti sia la massima possibile e non ecceda $B$."
+  }
+...

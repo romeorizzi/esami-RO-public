@@ -1,0 +1,38 @@
+---
+name: lp_two_phases
+title: Programmazione lineare - Metodo delle due fasi
+description1: \*\*Nota\*\* Dai riquadri di questo foglio Jupyter, oltre al kernel python e ad ogni altra libreria che ti sarai installato o preparato, puoi convenientemente (se sai come fare, altrimenti il bugiardino in calce al presente documento potrebbe non bastarti al momento) richiamare funzionalità della libreria del simplesso interattivo. Questi supporti possono assisterti, riducendo i tuoi tempi, in quei passaggi dove potrebbero altrimenti infilarsi errori di calcolo.
+
+description2: Si consideri il seguente problema di Programmazione Lineare:<br>max $2x_1 + 3x_2 + x_3$<br>tale che:<br>$x_1 + x_2 + x_3 \le 40$<br>$2x_1 +x_2 - x_3 \ge 10$<br>$ - x_2 + x_3 \ge 10$<br>$x_1, x_2, x_3 \ge 0$
+tasks:
+- 1:
+    tot_points: 5
+    ver_points: 0
+    description1: "Impostare il problema ausiliario"
+
+- 2:
+    tot_points: 10
+    ver_points: 0
+    description1: "Risolvere il problema ausiliario all'ottimo"
+
+- 3:
+    tot_points: 5
+    ver_points: 0
+    description1: "Dalla soluzione ottima del problema ausiliario, ricavare un tableau che esprima una soluzione di base ammissibile per il problema originario"
+
+- 4:
+    tot_points: 20
+    ver_points: 0
+    description1: "Risolvere il problema originario all'ottimo"
+
+- 5:
+    tot_points: 7
+    ver_points: 0
+    description1: "Quanto si sarebbe disposti a pagare per ogni unità di incremento per l'availability nei tre vincoli per piccole variazioni?"
+
+- 6:
+    tot_points: 12
+    ver_points: 0
+    description1: "Fino a dove si sarebbe disposti a pagare tali prezzi ombra?"
+
+...

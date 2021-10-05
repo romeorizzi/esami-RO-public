@@ -1,0 +1,68 @@
+---
+name: lp_modelling
+title: Programmazione lineare - Modellizzazione
+description1: "Un'azienda produce fibra di vetro al metro cubo e vorrebbe pianificare la produzione per le prossime sei settimane. I livelli di produzione variano tuttavia in base alla settimana considerata. La domanda settimanale è già nota per l'intero periodo. Anche i costi di produzione e di magazzino variano in base alla settimana. Tutti i dati sono indicati nella tabella seguente.
+<table>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Settimana</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Capacità</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Domanda</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Costi Produzione</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Costi Magazzino</b></td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>1</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">140</td>
+        <td style=\"text-align: center; vertical-align: middle;\">100</td>
+        <td style=\"text-align: center; vertical-align: middle;\">5</td>
+        <td style=\"text-align: center; vertical-align: middle;\">0.20</td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>2</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">100</td>
+        <td style=\"text-align: center; vertical-align: middle;\">120</td>
+        <td style=\"text-align: center; vertical-align: middle;\">8</td>
+        <td style=\"text-align: center; vertical-align: middle;\">0.30</td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>3</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">110</td>
+        <td style=\"text-align: center; vertical-align: middle;\">100</td>
+        <td style=\"text-align: center; vertical-align: middle;\">6</td>
+        <td style=\"text-align: center; vertical-align: middle;\">0.20</td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>4</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">100</td>
+        <td style=\"text-align: center; vertical-align: middle;\">90</td>
+        <td style=\"text-align: center; vertical-align: middle;\">6</td>
+        <td style=\"text-align: center; vertical-align: middle;\">0.25</td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>5</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">120</td>
+        <td style=\"text-align: center; vertical-align: middle;\">120</td>
+        <td style=\"text-align: center; vertical-align: middle;\">7</td>
+        <td style=\"text-align: center; vertical-align: middle;\">0.30</td>
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>6</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">100</td>
+        <td style=\"text-align: center; vertical-align: middle;\">110</td>
+        <td style=\"text-align: center; vertical-align: middle;\">6</td>
+        <td style=\"text-align: center; vertical-align: middle;\">0.40</td>
+    </tr>
+</table>"
+
+tasks:
+- {
+    tot_points: 40,
+    ver_points: 0,
+    description1: "Pianificare la produzione minimizzando i costi, formulando il problema come problema di Programmazione Lineare, motivando le scelte compiute"
+  }
+- {
+    tot_points: 50,
+    ver_points: 0,
+    description1: "Risolvere il problema sfruttando la libreria Pulp"
+  }
+...

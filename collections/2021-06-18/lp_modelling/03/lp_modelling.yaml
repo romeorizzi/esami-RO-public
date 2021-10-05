@@ -1,0 +1,49 @@
+---
+name: lp_modelling
+title: Programmazione lineare - Modellizzazione
+description1: "Un'azienda produce due tipi di oggetti X e Y. Entrambi richiedono sia della lavorazione artigianale che tramite un processo automatico. La seguente tabella indica i minuti per la lavorazione degli oggetti come ripartiti su queste due principali categorie di riferimento:<br>
+<table>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b></b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>X</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Y</td>
+
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Processo automatico</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">13</td>
+        <td style=\"text-align: center; vertical-align: middle;\">19</td>
+
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Lavorazione artigianale</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">20</td>
+        <td style=\"text-align: center; vertical-align: middle;\">29</td>
+
+    </tr>
+
+</table>
+
+Allo stato attuale, l'azienda dispone di 40 ore per processi automatici e 35 ore per lavorazione artigianale. Il costo per i processi automatici è di 10 euro per ora mentre per il lavoro artigianale è di 2 euro a ora. Il ricavo per ogni oggetto X è di 20 euro, per Y è di 30 euro. L'azienda deve inoltre produrre più di 10 unità dell'oggetto X. Formula il problema affinchè il profitto sia massimo."
+
+tasks:
+- 1:
+    tot_points: 40
+    ver_points: 0
+    description1: "Formulare il problema come problema di Programmazione Lineare, motivando le scelte compiute"
+    AUX__guida_alla_formulazione: "Servono due variabili, X ed Y, che specificano i livelli di produzione sui due prodotti. Poichè il guadagno è dato dal ricavo ridotto dei costi, la funzione obiettivo sarà:\n
+ max 20X +30Y -10(13X+19Y)/60 -2(20X+29Y)/60=(20-17/6)X + (30-148/60)Y\n
+
+con X >= 10, Y >= 0\n
+
+Abbiamo poi due vincoli sulla capacità produttiva attuale dell'azienda:\n
+   processi automatici: 13X + 19Y <= 2400 (abbiamo 40*60 minuti disponibili)=\n
+   lavorazione artigianale: 20X + 29Y <= 2100 (abbiamo 35*60 minuti disponibili)."
+   
+- 2:
+    tot_points: 20
+    ver_points: 0
+    description1: "Risolvere il problema (al solito, puoi avvalerti di strumenti a supporto, quali ad esempio la libreria Pulp)"
+
+
+...

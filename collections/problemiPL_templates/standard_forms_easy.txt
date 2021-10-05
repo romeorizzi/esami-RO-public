@@ -1,0 +1,124 @@
+Tipologia 1:
+
+Porre il seguente problema di PL in forma standard di massimizzazione sulle stesse variabili:
+
+min 3x+2y
+   4x + 3y >= 6
+   5x + 7y = 12
+   7x - 8y <= 11
+x,y >= 0
+
+risposta:
+
+-max -3x-2y
+  -4x - 3y <= -6
+   5x + 7y <= 12
+  -5x - 7y <= -12
+   7x - 8y <= 11
+x,y >= 0
+
+nota: è ammissibile dato che (x,y)=(1,1) è soluzione
+
+trasformazioni:
+
+1. invertire x ed y
+2. permutare i vincoli
+3. modificare arbitrariamente i coefficienti della funzione obiettivo
+4. moltiplicare tutti i coefficienti di una variabile per lo stesso valore
+5. moltiplicare tutti i coefficienti di un vincolo di eguaglianza per lo stesso valore
+6. moltiplicare i coefficienti dei due vincoli di diseguaglianza per due valori discordi
+
+____________________________
+
+Tipologia 2:
+
+Porre il seguente problema di PL in forma standard di minimizzazione sulle stesse variabili:
+
+max 3x+2y
+   4x + 3y >= 6
+   5x + 7y = 12
+   7x - 8y <= 11
+x,y >= 0
+
+risposta:
+
+-min -3x-2y
+   4x + 3y >= 6
+   5x + 7y >= 12
+  -5x - 7y >= -12
+  -7x + 8y >= 11
+x,y >= 0
+
+nota: è ammissibile dato che (x,y)=(1,1) è soluzione
+
+trasformazioni:
+
+1. invertire x ed y
+2. modificare arbitrariamente i coefficienti della funzione obiettivo
+3. moltiplicare tutti i coefficienti di una variabile per lo stesso valore
+4. moltiplicare tutti i coefficienti di un vincolo di eguaglianza per lo stesso valore
+5. moltiplicare i coefficienti dei due vincoli di diseguaglianza per due valori discordi
+
+____________________________
+
+Tipologia 3:
+
+Porre il seguente problema di PL in forma standard di massimizzazione sulle variabili x, y1, y2:
+
+min 3x+2y
+   4x + 3y >= 6
+   5x + 7y = 12
+   7x - 8y <= 11
+x >= 0, y free
+
+risposta:
+
+-max -3x-2y1 +2y2
+  -4x - 3y1 + 3y2 <= -6
+   5x + 7y1 - 7y2 <= 12
+  -5x - 7y1 + 7y2 <= -12
+   7x - 8y1 + 8y2 <= 11
+x,y1,y2 >= 0
+
+nota: è ammissibile dato che (x,y)=(1,1) è soluzione
+
+trasformazioni:
+
+1. invertire x ed y
+2. permutare i vincoli
+3. modificare arbitrariamente i coefficienti della funzione obiettivo
+4. moltiplicare tutti i coefficienti di una variabile per lo stesso valore
+5. moltiplicare tutti i coefficienti di un vincolo di eguaglianza per lo stesso valore
+6. moltiplicare i coefficienti dei due vincoli di diseguaglianza per due valori discordi
+
+____________________________
+
+Tipologia 4:
+
+Porre il seguente problema di PL in forma standard di minimizzazione sulle variabili x,y1,y2:
+
+max 3x+2y
+   4x + 3y >= 6
+   5x + 7y = 12
+   7x - 8y <= 11
+x,y >= 0
+
+risposta:
+
+-min -3x-2y1 +2y2 
+   4x + 3y1 - 3y2 >= 6
+   5x + 7y1 - 7y2 >= 12
+  -5x - 7y1 + 7y2 >= -12
+  -7x + 8y1 - 8y2 >= 11
+x,y1,y2 >= 0
+
+nota: è ammissibile dato che (x,y)=(1,1) è soluzione
+
+trasformazioni:
+
+1. invertire x ed y
+2. modificare arbitrariamente i coefficienti della funzione obiettivo
+3. moltiplicare tutti i coefficienti di una variabile per lo stesso valore
+4. moltiplicare tutti i coefficienti di un vincolo di eguaglianza per lo stesso valore
+5. moltiplicare i coefficienti dei due vincoli di diseguaglianza per due valori discordi
+

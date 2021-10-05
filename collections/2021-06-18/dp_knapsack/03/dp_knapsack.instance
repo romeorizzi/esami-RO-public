@@ -1,0 +1,52 @@
+---
+name: knapsack
+title: Problema dello zaino
+description: problema dello zaino in versione classica
+tags:
+- programmazione dinamica
+- sottoproblemi e ricorrenze
+
+modes: ['free','with_checks']
+
+instance:
+  CapacityMax: 36
+  elementi: ['A','B','C','D','E','F','G','H','I']
+  pesi :    [ 15, 16, 18, 11, 13,  5,  7,  3,  1]
+  valori :  [ 61, 63, 65, 52, 56, 29, 30, 10, 11]
+
+tasks:
+- 1:
+    tot_points: 10
+    ver_points: 1
+    task_codename: max-val_CapacityMax
+    request: 'Fornire la massima somma dei valori per un sottoinsieme di elementi con somma dei pesi non eccedente $CapacityMax$= {CapacityMax}.'
+    init_answ_cell_msg: '#Inserisci la tua risposta (un numero)\nanswer{num_of_question}=-1'
+    verif: PLACEHOLDER_early_standard
+
+- 2:
+    tot_points: 10
+    ver_points: 1
+    task_codename: opt-sol_CapacityMax
+    request: 'Tra i sottoinsiemi di oggetti di peso complessivo non eccedente $CapacityMax$= {CapacityMax} fornirne uno in cui sia massima la somma dei valori.'
+    init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
+    verif: PLACEHOLDER_early_standard
+
+- 3:
+    tot_points: 10
+    ver_points: 1
+    task_codename: max-val_CapacityMax_dopo-esclusioni
+    edrCapMax: ['I']
+    request: 'Fornire la massima somma dei valori per un sottoinsieme di elementi con somma dei pesi non eccedente {CapacityMax} quando non sia consentito di prendere nessuno dei seguenti elementi: {task["edrCapMax"]}</b>.'
+    init_answ_cell_msg: '#Inserisci la tua risposta (un numero)\nanswer{num_of_question}=-1'
+    verif: PLACEHOLDER_early_standard
+
+- 4:
+    tot_points: 10
+    ver_points: 1
+    task_codename: max-val_CapacityGen
+    CapacityGen: 33
+    request: 'Fornire la massima somma dei valori per un sottoinsieme di elementi con somma dei pesi non eccedente <b>la capacità {task["CapacityGen"]}</b>.'
+    init_answ_cell_msg: '#Inserisci la tua risposta (un numero)\nanswer{num_of_question}=-1'
+    verif: PLACEHOLDER_early_standard
+
+...

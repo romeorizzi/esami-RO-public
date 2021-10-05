@@ -1,0 +1,26 @@
+---
+name: graphs_trees
+title: Alberi in un grafo
+description1: Si consideri il grafo $G$, con pesi sugli archi, riportato in figura:<br><img src='img-2020-06-30/grafo_plan4_pesi.png' width=800>
+tasks:
+- {
+    tot_points: 10,
+    ver_points: 0,
+    description1: "Fornire un albero ricoprente di peso minimo"
+  }
+- {
+    tot_points: 10,
+    ver_points: 0,
+    description1: "Specificare quanti siano gli alberi ricoprenti di peso minimo"
+  }
+- {
+    tot_points: 30,
+    ver_points: 0,
+    description1: "Descrivere in modo chiaro e conciso la struttura della famiglia degli alberi ricoprenti di peso minimo"
+  }
+- {
+    tot_points: 50,
+    ver_points: 0,
+    description1: "Per ciascuno dei seguenti archi dire, certificandolo, se esso appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli alberi ricoprenti di peso minimo: $fg$, $iq$, $mo$"
+  }
+...

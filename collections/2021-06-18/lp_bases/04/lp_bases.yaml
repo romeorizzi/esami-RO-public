@@ -1,0 +1,144 @@
+---
+name: lp_bases
+title: Programmazione lineare - Le soluzioni di base
+tags:
+- programmazione linare
+
+modes: ['free']
+
+instance: |
+ min   x1 + x2
+     -2x1 - x2 >= -14
+       x1 + x2 >=   6
+     x1, x2 >= 0
+
+description1: "Dato il problema di PL in forma standard di minimizzazione:<br><br>min $2x_1 + x_2$<blockquote>$x_1 + x2\\geq 6$<br>$-2x_1 - x_2 \\geq -14$<br>$x_1, x_2 \\geq 0$</blockquote>Le consegne che ti proponiamo sono:"
+
+tasks:
+- 1:
+    tot_points: 8
+    ver_points: 0
+    description1: Elencare le soluzioni di base (5pt) specificando (3pt), per ciascuna di esse, se sia ammissibile oppure non-ammissibile
+    AUX__la_risposta_corretta: |
+      sono di base le seguenti soluzioni estese (x1,x2,w1,w2) del problema primale
+         ( 0,  0, 14, 6) ammissibile
+         ( 0,  6, 20, 0) ammissibile
+         ( 0, 14,  0, 8) ammissibile
+         ( 6,  0,  2, 0) ammissibile
+         ( 7,  0,  0, 1) ammissibile
+         ( 8, -2,  0, 0) non ammissibile
+      
+    AUX__svolgimento: |
+      provo tutti i 6 modi possibili di mettere a 0 due variabili delle 4 variabili della soluzione estesa (x1,x2,w1,w2)
+         (0, 0, ?, ?) 
+         (0, ?, 0, ?) 
+         (0, ?, ?, 0) 
+         (?, 0, 0, ?) 
+         (?, 0, ?, 0) 
+         (?, ?, 0, 0) 
+      e risolvo i ? facendo appello alle equazioni della forma canonica (quelle che definiscono le variabili di slack) ottenendo 
+         ( 0,  0, 14, 6)
+         ( 0,  6, 20, 0)
+         ( 0, 14,  0, 8)
+         ( 6,  0,  2, 0)
+         ( 7,  0,  0, 1)
+         ( 8, -2,  0, 0)
+
+- 2:
+    tot_points: 3
+    ver_points: 0
+    description1: Scrivere il problema duale
+    AUX__la_risposta_corretta: |
+      max -14y1 + 6y2
+          - 2y1 +  y2 >= 1
+          -  y1 +  y2 >= 1
+          y1, y2 >= 0
+    AUX__svolgimento: |
+      min   x1 + x2
+          -2x1 - x2 >= -14
+            x1 + x2 >=   6
+          x1, x2 >= 0
+      è in forma standard e ha duale
+      max -14y1 + 6y2
+          - 2y1 +  y2 >= 1
+          -  y1 +  y2 >= 1
+          y1, y2 >= 0
+
+- 3:
+    tot_points: 8
+    ver_points: 0
+    description1: Elencare le soluzioni di base del problema duale (5pt) specificando (3pt), per ciascuna di esse, se sia ammissibile oppure non-ammissibile
+    AUX__la_risposta_corretta: |
+         sono di base le seguenti soluzioni estese del problema duale
+         ( s1,  s2,  y1,  y2)
+         ( -1,  -1,   0,   0)    non ammissibile
+         (  0,   0,   0,   1)    ammissibile e degenere
+         (  1,   0,  -1,   0)    non ammissibile
+         (  0,  -1,-1/2,   0)    non ammissibile
+      
+    AUX__svolgimento: |
+      ribalto (per scarti complementari) le partizioni dei 6 tableau consistenti individuati al punto precedente
+         part. primale part. duale
+         ( 0, 0, ?, ?) ( ?, ?, 0, 0)
+         ( 0, ?, ?, 0) ( ?, 0, 0, ?)
+         ( 0, ?, 0, ?) ( ?, 0, ?, 0)
+         ( ?, 0, ?, 0) ( 0, ?, 0, ?) 
+         ( ?, 0, 0, ?) ( 0, ?, ?, 0)
+         ( ?, ?, 0, 0) ( 0, 0, ?, ?)
+         (x1,x2,w1,w2) (s1,s2,y1,y2) 
+      utilizzo quindi la forma canonica del problema duale per completare le 6 tuple ottenute a soluzioni di base
+         ( s1,  s2,  y1,  y2)
+         ( -1,  -1,   0,   0)  
+         (  0,   0,   0,   1)  degenere
+         (  1,   0,  -1,   0)  
+         (  0,   0,   0,   1)  degenere
+         (  0,  -1,-1/2,   0)  
+         (  0,   0,   0,   1)  degenere
+      di queste sono ammissibili quelle non-negative
+
+- 4:
+    tot_points: 2
+    ver_points: 0
+    description1: Fornire una soluzione primale $x^*=(x_1^*,x_2^*)$ ottima
+    le_risposte_corrette: (x1,x2,w1,w2)=(0,6,20,0) e (x1,x2,w1,w2)=(6,0,2,0) sono soluzioni primali (estese) ottime di valore (1,1,0,0)*(0,6,20,0)=6=(1,1,0,0)*(6,0,2,0)
+    AUX__svolgimento: |
+      solo il politopo primale è simpliciale
+      le soluzioni di base (vertici) dei politopi primale e duale si corrispondono nella relazione biunivoca dettata dagli scarti complementari
+      ( x1,x2, w1,w2)          ( s1,  s2,  y1,  y2)
+      ( 0,  0, 14, 6) ammiss   ( -1,  -1,   0,   0)    non am
+      ( 0,  6, 20, 0) ammiss   (  0,   0,   0,   1)    ammiss
+      ( 0, 14,  0, 8) ammiss   (  1,   0,  -1,   0)    non am
+      ( 6,  0,  2, 0) ammiss   (  0,   0,   0,   1)    ammiss
+      ( 6,  0,  0, 1) ammiss   (  0,  -1,-1/2,   0)    non am
+      ( 8, -2,  0, 0) non am   (  0,   0,   0,   1)    ammiss
+      l'ottimalità di un vertice è l'ammissibilità del compagno, sono pertanto soluzioni ottime dei rispettivi problemi entrambi i membri di quelle coppie che hanno entrambi i membri ammissibili
+      ( 0,  6, 20, 0) ammiss   (  0,   0,   0,   1)    ammiss
+      ( 6,  0,  2, 0) ammiss   (  0,   0,   0,   1)    ammiss
+
+- 5:
+    tot_points: 2
+    ver_points: 0
+    description1: Fornire una soluzione duale $y^*=(y_1^*,y_2^*)$ ottima
+    BOTH_la_risposta_corretta: (s1,s2,y1,y2)=(0,0,0,1) è l'unica soluzione duale (estesa) ottima e ha valore (0,0,-14,6)*(0,0,0,1)=6
+    AUX__svolgimento: si veda quello al punto precedente che ha chiuso entramb le richieste. Ma si poteva anche valutare la soluzion obiettivo per ciascuna delle 8 soluzioni di base ammissibili 
+
+
+- 6:
+    tot_points: 4
+    ver_points: 0
+    description1: Verificare il soddisfacimento delle condizioni degli scarti complementari tra la $x^*$ e la $y^*$
+    BOTH_la_risposta_corretta: (0,3,0,10) >= 0, ( 1, 0, 2, 0) >= 0, (0,3,0,10) * ( 1, 0, 2, 0) = 0+0+0+0+0
+
+- 7:
+    tot_points: 8
+    ver_points: 0
+    description1: Fornire ogni altra coppia (soluzione di base del primale, soluzione di base del duale) che soddisfi alle condizioni degli scarti complementari
+    AUX__la_risposta_corretta: |
+      ( x1,x2, w1,w2)      ( s1,  s2,  y1,  y2)
+      ( 0,  0, 14, 6) <--> ( -1,  -1,   0,   0)
+      ( 0,  6, 20, 0) <--> (  0,   0,   0,   1)
+      ( 0, 14,  0, 8) <--> (  1,   0,  -1,   0)
+      ( 6,  0,  2, 0) <--> (  0,   0,   0,   1)
+      ( 6,  0,  0, 1) <--> (  0,  -1,-1/2,   0)
+      ( 8, -2,  0, 0) <--> (  0,   0,   0,   1)
+...

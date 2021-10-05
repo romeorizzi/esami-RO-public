@@ -1,6 +1,24 @@
+# repo-specific:
+folder_guesting_single_compiled_exercises/
+shuttle*/
+esame-RO_*/
+
 # backups
 *~
 *.bak
+
+# temporary
+tmp/
+
+# MacOS X
+.DS_Store
+
+# Byte-compiled / optimized / DLL files
+a.out
+__pycache__/
+*.py[cod]
+*$py.class
+__.ipynb_checkpoints__/
 
 # LaTex
 *.aux
@@ -13,16 +31,6 @@
 *.synctex.gz
 *.vtc
 *.blg
-# MacOS X
-.DS_Store
-
-# Byte-compiled / optimized / DLL files
-a.out
-shuttle/
-__pycache__/
-*.py[cod]
-*$py.class
-__.ipynb_checkpoints__/
 
 #IDE file
 .idea

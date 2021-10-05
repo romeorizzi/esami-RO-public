@@ -1,0 +1,52 @@
+---
+name: graphs_flows_and_cuts
+title: Flusso massimo in una rete
+tags:
+- "grafi"
+- "buone caratterizzazioni"
+- "flussi e tagli"
+- "algoritmi classici su reti"
+
+description1: Si consideri il grafo $G$, con pesi sugli archi, riportato nelle richieste sottostanti.
+tasks:
+- 1:
+    tot_points: 20
+    ver_points: 0
+    graphml: 'collections/graphml_instances/graphs_flows_and_cuts/graph_eweights_mixed_plan_2021-03-01_3.graphml'
+    description1: "Fornire un massimo flusso dal nodo $s$ al nodo $t$"
+    scope: ['color','drag','download','editweight']
+    states: ['selection','all_download','editweight','multiple_drag','active_zoom']
+
+- 2:
+    tot_points: 15
+    ver_points: 0
+    graphml: 'collections/graphml_instances/graphs_flows_and_cuts/graph_eweights_mixed_plan_2021-03-01_3.graphml'
+    description1: "Certificare l'ottimalità del flusso massimo dal nodo $s$ al nodo $t$"
+    scope: ['color','drag','download','editweight']
+    states: ['selection','all_download','editweight','multiple_drag','active_zoom']
+
+- 3:
+    tot_points: 5
+    ver_points: 0
+    graphml: 'collections/graphml_instances/graphs_flows_and_cuts/graph_eweights_mixed_plan_2021-03-01_3.graphml'
+    description1: "Dire, certificandolo, se l'arco $cd$ appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli $s,t$-tagli di capacità minima"
+    scope: ['color','drag','download','editweight']
+    states: ['selection','all_download','editweight','multiple_drag','active_zoom']
+
+- 4:
+    tot_points: 5
+    ver_points: 0
+    graphml: 'collections/graphml_instances/graphs_flows_and_cuts/graph_eweights_mixed_plan_2021-03-01_3.graphml'
+    description1: "Dire, certificandolo, se l'arco $sg$ appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli $s,t$-tagli di capacità minima"
+    scope: ['color','drag','download','editweight']
+    states: ['selection','all_download','editweight','multiple_drag','active_zoom']
+
+- 5:
+    tot_points: 5
+    ver_points: 0
+    graphml: 'collections/graphml_instances/graphs_flows_and_cuts/graph_eweights_mixed_plan_2021-03-01_3.graphml'
+    description1: "Dire, certificandolo, se l'arco $vw$ appartenga a tutti, oppure a nessuno, oppure a qualcuno ma non tutti gli $s,t$-tagli di capacità minima"
+    scope: ['color','drag','download','editweight']
+    states: ['selection','all_download','editweight','multiple_drag','active_zoom']
+
+...

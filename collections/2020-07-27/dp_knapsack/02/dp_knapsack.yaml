@@ -1,0 +1,74 @@
+---
+name: knapsack
+title: Problema dello zaino
+description: problema dello zaino in versione classica
+tags:
+- programmazione dinamica
+- sottoproblemi e ricorrenze
+
+modes: ['free','with_checks']
+
+instance:
+  CapacityMax: 30
+  elementi: ['A','B','C','D','E','F','G','H','I','L','M','N']
+  pesi:     [ 16,  3, 30, 18, 19, 29, 23,  1,  5, 21, 24, 20]
+  valori:   [  5, 11,  5,  6, 10, 17, 13,  3, 19, 15,  7,  5]
+
+tasks:
+- 1:
+    tot_points: 10
+    ver_points: 1
+    task_codename: opt-sol_CapacityMax
+    request: 'Tra i sottoinsiemi di oggetti di peso complessivo non eccedente $CapacityMax$= {CapacityMax} fornirne uno in cui sia massima la somma dei valori.'
+    init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
+    verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,CapacityMax,answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="sol")))'
+
+    BOTH_soluzione_ottima_task_1: [['B', 3, 11], ['I', 5, 19], ['L', 21, 15], ['H', 1, 3]]
+
+    AUX__spiegazione_task_1: |
+     Le informazioni che mi servono sono contenute nella matrice `max_val_for_genCap`.
+
+- 2:
+    tot_points: 10
+    ver_points: 1
+    task_codename: opt-sol_CapacityGen
+    CapacityGen: 25
+    request: 'Tra i sottoinsiemi di oggetti di peso complessivo non eccedente <b>la capacità {task["CapacityGen"]}</b> fornirne uno in cui sia massima la somma dei valori.'
+    init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
+    verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,{task["CapacityGen"]},answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="sol")))'
+
+    BOTH_soluzione_ottima_task_2: [['B', 3, 11], ['I', 5, 19], ['H', 1, 3], ['A', 16, 5]]
+
+    AUX__spiegazione_task_2: |
+     Le informazioni che mi servono sono contenute nella matrice `max_val_for_genCap`.
+
+- 3:
+    tot_points: 10
+    ver_points: 1
+    task_codename: opt-sol_CapacityMax_dopo-esclusioni
+    edrCapMax: ['B','I']
+    request: 'Fornire una soluzione ottima se {CapacityMax} è la capienza dello zaino da non superarsi ma assumendo di non poter prendere nessuno dei seguenti elementi: {task["edrCapMax"]}.'
+    init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
+    verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,CapacityMax,answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="sol",edr={task["edrCapMax"]})))'
+
+    BOTH_soluzione_ottima_task_3: [['H', 1, 3], ['F', 29, 17]]
+
+    AUX__spiegazione_task_3: |
+     Avendo avuto l'attenzione di considerare per ultimi quegli elementi che in questo task mi si chiede di non considerare, l'informazione richiesta è `max_val_for_genCap`[i=new_n=10][b=CapacityMax=30].
+
+- 4:
+    tot_points: 10
+    ver_points: 1
+    task_codename: opt-sol_CapacityGen_dopo-esclusioni
+    CapacityGen: 25
+    edrCapGen: ['B']
+    request: 'Fornire una soluzione ottima se {task["CapacityGen"]} è la capienza dello zaino da non superarsi ma assumendo di non poter prendere nessuno dei seguenti elementi: {task["edrCapGen"]}.'
+    init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
+    verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,{task["CapacityGen"]},answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="sol",edr={task["edrCapGen"]})))'
+
+    BOTH_soluzione_ottima_task_4: [['I', 5, 19], ['H', 1, 3], ['E', 19, 10]]
+
+    AUX__spiegazione_task_4: |
+     Avendo avuto l'attenzione di considerare per ultimi quegli elementi che in questo task mi si chiede di non considerare, l'informazione richiesta è `max_val_for_genCap`[i=new_n=11][b=CapacityGen=25].
+
+...

@@ -1,0 +1,41 @@
+---
+name: triangle
+title: Triangolo
+description: problema triangolo delle iOi e poi discesa delle OII fase territoriale
+tags:
+- programmazione dinamica
+- sottoproblemi e ricorrenze
+
+modes: ['free','with_checks']
+
+instance:
+  triangle: [ [12,  0,  0,  0,  0, 0, 0],
+              [11, 17,  0,  0,  0, 0, 0],
+              [27, 20, 10,  0,  0, 0, 0],
+              [19, 47, 35, 24,  0, 0, 0],
+              [21, 52, 17, 44, 15, 0, 0],
+              [50, 12, 20, 55, 52, 70, 0],
+              [34, 31, 36, 32, 30, 34, 33]]
+
+tasks:
+- 1:
+    tot_points: 6
+    ver_points: 1
+    task_codename: max_val_path
+    request: 'Calcolare il massimo valore di un percorso che parta dalla cima del triangolo e termini da qualche parte sulla sua base. Fornire, in qualità di certificato, il percorso sotto forma sequenza di numeri (array di interi) dalla cima alla base.'
+#    init_answ_cell_msg: 
+    verif: 'display(Markdown(verif_triangolo(somma, percorso, triangle, pt_green=1, pt_red={task["tot_points"]},index_pt={num_of_question-1})))'
+
+- 2:
+    tot_points: 6
+    ver_points: 0
+    task_codename: subproblems_family_and_recurrence
+    request: 'Individuare e definire una famiglia di sottoproblemi che consenta di affrontare un\''istanza generica, di dimensione anche grande. Scrivere esplicitamente la ricorrenza che consegna la soluzione di un problema della famiglia avvalendosi delle soluzioni di problemi più piccoli della stessa famiglia. Specificare quali sottoproblemi intendi riguardare invece come casi base.'
+
+- 3:
+    tot_points: 6
+    ver_points: 0
+    task_codename: what_if_with_obliged_cell
+    request: 'Come potresti fare per calcolare il massimo valore di un percorso che passi per una data posizione del triangolo?'
+
+...

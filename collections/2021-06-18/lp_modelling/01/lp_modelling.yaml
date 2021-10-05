@@ -1,0 +1,32 @@
+---
+name: lp_modelling
+title: Programmazione lineare - Modellizzazione
+description1: "Un'industria alimentare produce tre tipi di merendine. Ogni merendina del primo tipo contiene 4 grammi di cacao, ogni merendina del secondo tipo contiene 3 grammi di crema e ogni merendina del terzo tipo contiene 5 grammi di marmellata. La prima merendina richiede 80 grammi di impasto base, la seconda 110 grammi e la terza 70 grammi.
+
+    Giornalmente si vogliono produrre al massimo 500 merendine, disponendo di 1,6 chili di cacao, 1,5 chili di crema, 2 chili di marmellata e 51 chili di impasto base.
+    Il prezzo di vendita del primo tipo di merendina è 0,50 euro, 0,45 euro per il secondo e 0,40 euro per il terzo. Stabilisci quante merendine delle tre tipologie produrre per massimizzare il ricavo. "
+
+tasks:
+- 1:
+    tot_points: 40
+    ver_points: 0
+    description1: "Formulare il problema come problema di Programmazione Lineare, motivando le scelte compiute"
+    AUX__guida_alla_formulazione: "Il problema è un problema di programmazione lineare intera. Servono tre variabili, x_1, x_2 ed x_3, che specificano i tre tipi di merendina (rispettivamente cacao,crema e marmellata) . La funzione obiettivo che chiede di massimizzare i ricavi sarà:\n
+ max 0.5x_1+0.45x_2+0.4x_3\n
+
+con x_1,x_2,x_3 >= 0 \n
+
+Abbiamo poi i seguenti vincoli:\n
+   limite massima produzione: x_1+x_2+x_3 <= 500 \n
+   disponibilità cacao: 4x_1<=1600 (attenzione grammi kg)\n
+   disponibilità crema: 3x_2<=1500 (attenzione grammi kg)\n
+   disponibilità marmellata: 5x_3<=2000 (attenzione grammi kg)\n
+   vincolo per impasto base: 80x_1+110x_2+70x_3<=51000."
+
+- 2:
+    tot_points: 20
+    ver_points: 0
+    description1: "Risolvere il problema (al solito, puoi avvalerti di strumenti a supporto, quali ad esempio la libreria Pulp)"
+
+
+...

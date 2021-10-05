@@ -1,0 +1,81 @@
+---
+name: lp_modelling1
+title: Programmazione lineare - Modellizzazione
+description1: "Un'azienda agricola produce tre tipi di cereali: riso, grano e farro. Un cliente importante ha richiesto almeno 20 kg di riso, e un totale di almeno 15 kg tra grano e farro. L'azienda sà di non poter produrre più di 50 kg di riso, 25 kg di grano e 30 kg di farro e può riservare al massimo 100 ore di lavorazione su questa commessa.
+    <br>
+    La seguente tabella indica le ore necessarie per la lavorazione e il profitto di ciascun cereale per kg:<br>
+<table>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Cereale</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Riso</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Grano</td>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Farro</td>
+
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Profitto al kg</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">12</td>
+        <td style=\"text-align: center; vertical-align: middle;\">20</td>
+        <td style=\"text-align: center; vertical-align: middle;\">45</td>
+
+    </tr>
+    <tr>
+        <td style=\"text-align: center; vertical-align: middle;\"><b>Ore per la lavorazione</b></td>
+        <td style=\"text-align: center; vertical-align: middle;\">0.8</td>
+        <td style=\"text-align: center; vertical-align: middle;\">1.7</td>
+        <td style=\"text-align: center; vertical-align: middle;\">2.5</td>
+
+    </tr>
+
+</table>
+
+ Formula  il problema di programmazione lineare affinchè il profitto sia massimo."
+
+tasks:
+- 1:
+    tot_points: 10
+    ver_points: 0
+    description1: "Descrivere lo spazio delle scelte introducendo le opportune variabili"
+    AUX__guida_alla_formulazione: "Servono 3 variabili: x_1 (kg riso), x_2 (kg grano) e x_3(kg farro), che specificano i kg da produrre per ogni tipo di cereale."
+
+
+- 2:
+    tot_points: 10
+    ver_points: 0
+    description1: "Comporre la funzione obiettivo che ricerchi la massimizzazione del profitto."
+    AUX__guida_alla_formulazione: "max z= 12x_1 + 20x_2+ 45x_3 "
+    
+
+- 3:
+    tot_points: 20
+    ver_points: 0
+    description1: "Esprimere i vincoli del problema."
+    AUX__guida_alla_formulazione: "
+    (vincolo per ore di lavoro): 0.8x_1 + 1.7x_2 + 2.5x_3 <= 100
+    (vincoli massima produzione): x_1<=50, x_2<=25 ,x_3<=30
+    (vincolo soddisfare il cliente): x_1>=20, x2+x3>=15
+    (kg): x_1,x_2,x_3>=0
+    "
+
+- 4:
+    tot_points: 11
+    ver_points: 0
+    description1: "Per essere pronti ad affrontare commesse future, esprimere un modello astratto dove appaiano come parametri gli 11 valori numerici coinvolti (un punto per ogni parametro correttamente introdotto)."
+    AUX__guida_alla_formulazione: "max z= p_1x_1 + p_2x_2+ p_3x_3
+        soggetto ai vincoli: 
+    (vincolo per ore di lavoro): o_1x_1 + o_2x_2 + o_3x_3 <= O
+    (vincoli massima produzione): x_1<=M_1, x_2<=M_2 ,x_3<=M_3
+    (vincolo soddisfare il cliente): x_1>=20, x2+x3>=15
+    (kg): x_1,x_2,x_3>=0
+    Dove i parametri:
+       p_i indicano i profitti per riso, grano e farro
+       o_i indicano le ore di lavorazione richieste da riso, grano e farro
+       O indica le ore di lavoro di cui si dispone 
+       M_i indicano i tetti massimi sulla produzione di riso, grano e farro
+    Fino a quì ho realizzato 10 punti (ho introdotto 10 parametri tutti utilizzati). 
+    Entrare sui vincoli di soddisfazione del cliente diventa subito farraginoso e discutibile, ma potrei introdurre i 3 parametri 
+       m_i indicano delle soglie minime da garantire sulla produzione di riso, grano e farro
+    dei quali troverebbe impiego m_1 consegnandomi l'undicesimo ed ultimo punto messo a disposizione su questa ultima richiesta per l'esercizio.
+    "
+
+...

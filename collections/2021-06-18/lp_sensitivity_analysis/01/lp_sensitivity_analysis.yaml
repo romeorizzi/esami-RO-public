@@ -1,0 +1,87 @@
+---
+name: lp_sensitivity_analysis
+title: Programmazione lineare - Prezzi ombra e loro analisi
+
+description1: "Un'azienda può produrre 3 tipologie di beni, nelle quantità $x_1$, $x_2$ ed $x_3$. Il guadagno netto per ogni unità del prodotto $i$ è dato da $C_i$, e tiene conto dei vari costi inclusi quelli delle materie prime coinvolte. Il seguente problema di programmazione lineare intende modellare la massimizzazione del profitto:
+$$
+  \\begin{array}{l}
+     \\max \\ C_1x_1 +C_2x_2 +C_3x_3 \\\\
+      \\left\\{
+      \\begin{array}{l}
+      \\begin{array}{rrrcr}
+           2x_1    \\;+& 3x_2 \\;+& x_3  &\\leq & 5\\\\
+           4x_1    \\;+& x_2 \\;+& 2x_3  &\\leq & 11 \\\\
+           3x_1    \\;+& 4x_2 \\;+& 2x_3  &\\leq & 8
+      \\end{array}\\\\
+      x_1, x_2, x_3 \\geq 0    
+      \\end{array}
+      \\right.
+  \\end{array}
+$$
+I 3 vincoli sono dovuti alle quantità attualmente disponibili in magazzino per le 3 materie prime. Attualmente disponiamo di $5$ e di $11$ unità della prima e seconda materia prima, e di $8$ unità per la terza.
+Si consideri la soluzione di base associata al seguente dizionario:
+$$
+      \\left\\{
+      \\begin{array}{llll}
+           x_1 =  2 & -2s_1 & -2x_2 & +s_3  \\\\
+           s_2 =  1 & +2s_1 & +5x_2 &  \\\\
+           x_3 =  1 & +3s_1 & +x_2 & +2s_3 
+      \\end{array}
+      \\right.
+$$
+<!---
+|   | - | ($s_1$)|($x_2$)|($s_3$)|
+|---|---|---|---|---|
+|($x_1$)|  $2$ | $-2$| $-2$|  $1$|
+|($s_2$)|  $1$ |  $2$|  $5$|  $0$|
+|($x_3$)|  $1$ |  $3$|  $1$| $-2$|
+-->
+Le consegne che ti proponiamo sono:"
+
+tasks:
+- 1:
+    tot_points: 6
+    ver_points: 0
+    description1: "Al dizionario fornito manca la riga della funzione obiettivo. Fornirla espressa in termini dei parametri $C_1$, $C_2$ e $C_3$."
+
+- 2:
+    tot_points: 2
+    ver_points: 0
+    description1: "Scrivere la soluzione primale estesa $\\overline{x}=(\\overline{x}_1,\\overline{x}_2,\\overline{x}_3)$ associata a questo dizionario."
+
+- 3:
+    tot_points: 2
+    ver_points: 0
+    description1: "Scrivere la soluzione duale estesa $\\overline{y}=(\\overline{y}_1,\\overline{y}_2,\\overline{y}_3)$ associata a questo dizionario. Fornirla espressa in termini dei parametri $C_1$, $C_2$ e $C_3$."
+
+- 4:
+    tot_points: 1
+    ver_points: 0
+    description1: "Commentare per quali valori dei parametri $C_1$, $C_2$ e $C_3$ la soluzione primale $\\overline{x}$ possa essere ammissibile."
+
+- 5:
+    tot_points: 2
+    ver_points: 0
+    description1: "Per quali valori dei parametri $C_1$, $C_2$ e $C_3$ la soluzione primale $\\overline{x}$ è ottima."
+
+- 6:
+    tot_points: 2
+    ver_points: 0
+    description1: "Per quali valori dei parametri parametri $C_1$, $C_2$ e $C_3$ la soluzione duale $\\overline{y}$ è ammissibile."
+
+- 7:
+    tot_points: 1
+    ver_points: 0
+    description1: "Commentare per quali valori dei parametri parametri $C_1$, $C_2$ e $C_3$ la soluzione primale $\\overline{y}$ possa essere ottima."
+
+- 8:
+    tot_points: 3
+    ver_points: 0
+    description1: "Specificare il prezzo ombra per ciascuna delle 3 risorse (dovresti essere interessato ad acquistarne almeno un pò per un prezzo appena più basso ed a venderne almeno un pò per un prezzo appena più alto) [1pt per ciascuno dei prezzi ombra]"
+
+- 9:
+    tot_points: 7
+    ver_points: 0
+    description1: "Specificare l'intervallo di validità di ciascuno dei 3 prezzi ombra."
+
+...
