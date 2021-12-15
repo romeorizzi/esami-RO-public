@@ -23,10 +23,12 @@ tasks:
     init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
     verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,CapacityMax,answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="sol")))'
 
-    BOTH_soluzione_ottima_task_1: [['E', 13, 45], ['L', 12, 39], ['I', 1, 8], ['D', 11, 37]]
+    BOTH_una_soluzione_ottima_task_1: [['E', 13, 45], ['L', 12, 39], ['I', 1, 8], ['D', 11, 37]]
+
+    BOTH_valore_ottimo_task_1: 129
 
     AUX__spiegazione_task_1: |
-     Le informazioni che mi servono sono contenute nella matrice `max_val_for_genCap`.
+     Le informazioni che ti servono sono tutte contenute nella matrice `max_val_for_genCap`.
 
 - 2:
     tot_points: 5
@@ -37,10 +39,12 @@ tasks:
     init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
     verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,{task["CapacityGen"]},answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="sol")))'
 
-    BOTH_soluzione_ottima_task_2: [['E', 13, 45], ['I', 1, 8], ['G', 7, 19], ['A', 15, 50]]
+    BOTH_una_soluzione_ottima_task_2: [['E', 13, 45], ['I', 1, 8], ['G', 7, 19], ['A', 15, 50]]
+
+    BOTH_valore_ottimo_task_2: 122
 
     AUX__spiegazione_task_2: |
-     Le informazioni che mi servono sono contenute nella matrice `max_val_for_genCap`.
+     Le informazioni che ti servono sono tutte contenute nella matrice `max_val_for_genCap`.
 
 - 3:
     tot_points: 5
@@ -51,10 +55,12 @@ tasks:
     init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
     verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,{task["CapacityGen"]},answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="sol")))'
 
-    BOTH_soluzione_ottima_task_3: [['E', 13, 45], ['I', 1, 8], ['F', 6, 17], ['A', 15, 50]]
+    BOTH_una_soluzione_ottima_task_3: [['E', 13, 45], ['I', 1, 8], ['F', 6, 17], ['A', 15, 50]]
+
+    BOTH_valore_ottimo_task_3: 120
 
     AUX__spiegazione_task_3: |
-     Le informazioni che mi servono sono contenute nella matrice `max_val_for_genCap`.
+     Le informazioni che ti servono sono tutte contenute nella matrice `max_val_for_genCap`.
 
 - 4:
     tot_points: 5
@@ -65,10 +71,12 @@ tasks:
     init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
     verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,{task["CapacityGen"]},answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="sol")))'
 
-    BOTH_soluzione_ottima_task_4: [['I', 1, 8], ['G', 7, 19], ['D', 11, 37], ['A', 15, 50]]
+    BOTH_una_soluzione_ottima_task_4: [['I', 1, 8], ['G', 7, 19], ['D', 11, 37], ['A', 15, 50]]
+
+    BOTH_valore_ottimo_task_4: 114
 
     AUX__spiegazione_task_4: |
-     Le informazioni che mi servono sono contenute nella matrice `max_val_for_genCap`.
+     Le informazioni che ti servono sono tutte contenute nella matrice `max_val_for_genCap`.
 
 - 5:
     tot_points: 5
@@ -79,10 +87,12 @@ tasks:
     init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
     verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,{task["CapacityGen"]},answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="sol")))'
 
-    BOTH_soluzione_ottima_task_5: [['I', 1, 8], ['F', 6, 17], ['D', 11, 37], ['A', 15, 50]]
+    BOTH_una_soluzione_ottima_task_5: [['I', 1, 8], ['F', 6, 17], ['D', 11, 37], ['A', 15, 50]]
+
+    BOTH_valore_ottimo_task_5: 112
 
     AUX__spiegazione_task_5: |
-     Le informazioni che mi servono sono contenute nella matrice `max_val_for_genCap`.
+     Le informazioni che ti servono sono tutte contenute nella matrice `max_val_for_genCap`.
 
 - 6:
     tot_points: 5
@@ -93,7 +103,9 @@ tasks:
     init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
     verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,CapacityMax,answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="sol",edr={task["edrCapMax"]})))'
 
-    BOTH_soluzione_ottima_task_6: [['M', 10, 30], ['I', 1, 8], ['D', 11, 37], ['A', 15, 50]]
+    BOTH_una_soluzione_ottima_task_6: [['M', 10, 30], ['I', 1, 8], ['D', 11, 37], ['A', 15, 50]]
+
+    BOTH_valore_ottimo_task_6: 125
 
     AUX__spiegazione_task_6: |
      Avendo avuto l'attenzione di considerare per ultimi quegli elementi che in questo task mi si chiede di non considerare, l'informazione richiesta è `max_val_for_genCap`[i=new_n=11][b=CapacityMax=37].
@@ -108,7 +120,9 @@ tasks:
     init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
     verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,{task["CapacityGen"]},answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="sol",edr={task["edrCapGen"]})))'
 
-    BOTH_soluzione_ottima_task_7: [['M', 10, 30], ['I', 1, 8], ['D', 11, 37], ['A', 15, 50]]
+    BOTH_una_soluzione_ottima_task_7: [['M', 10, 30], ['I', 1, 8], ['D', 11, 37], ['A', 15, 50]]
+
+    BOTH_valore_ottimo_task_7: 125
 
     AUX__spiegazione_task_7: |
      Avendo avuto l'attenzione di considerare per ultimi quegli elementi che in questo task mi si chiede di non considerare, l'informazione richiesta è `max_val_for_genCap`[i=new_n=10][b=CapacityGen=37].
@@ -123,7 +137,9 @@ tasks:
     init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
     verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,{task["CapacityGen"]},answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="sol",edr={task["edrCapGen"]})))'
 
-    BOTH_soluzione_ottima_task_8: [['I', 1, 8], ['H', 3, 7], ['F', 6, 17], ['D', 11, 37], ['A', 15, 50]]
+    BOTH_una_soluzione_ottima_task_8: [['I', 1, 8], ['H', 3, 7], ['F', 6, 17], ['D', 11, 37], ['A', 15, 50]]
+
+    BOTH_valore_ottimo_task_8: 119
 
     AUX__spiegazione_task_8: |
      Avendo avuto l'attenzione di considerare per ultimi quegli elementi che in questo task mi si chiede di non considerare, l'informazione richiesta è `max_val_for_genCap`[i=new_n=10][b=CapacityGen=36].
@@ -138,7 +154,9 @@ tasks:
     init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
     verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,{task["CapacityGen"]},answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="sol",edr={task["edrCapGen"]})))'
 
-    BOTH_soluzione_ottima_task_9: [['N', 8, 22], ['I', 1, 8], ['D', 11, 37], ['A', 15, 50]]
+    BOTH_una_soluzione_ottima_task_9: [['N', 8, 22], ['I', 1, 8], ['D', 11, 37], ['A', 15, 50]]
+
+    BOTH_valore_ottimo_task_9: 117
 
     AUX__spiegazione_task_9: |
      Avendo avuto l'attenzione di considerare per ultimi quegli elementi che in questo task mi si chiede di non considerare, l'informazione richiesta è `max_val_for_genCap`[i=new_n=10][b=CapacityGen=35].
@@ -153,7 +171,9 @@ tasks:
     init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
     verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,{task["CapacityGen"]},answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="sol",edr={task["edrCapGen"]})))'
 
-    BOTH_soluzione_ottima_task_10: [['I', 1, 8], ['G', 7, 19], ['D', 11, 37], ['A', 15, 50]]
+    BOTH_una_soluzione_ottima_task_10: [['I', 1, 8], ['G', 7, 19], ['D', 11, 37], ['A', 15, 50]]
+
+    BOTH_valore_ottimo_task_10: 114
 
     AUX__spiegazione_task_10: |
      Avendo avuto l'attenzione di considerare per ultimi quegli elementi che in questo task mi si chiede di non considerare, l'informazione richiesta è `max_val_for_genCap`[i=new_n=10][b=CapacityGen=34].

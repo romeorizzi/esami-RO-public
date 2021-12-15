@@ -96,7 +96,7 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
 
             lcs = []
             reconstruct_opt_lcs_pref_of_len(len(s),len(t), lcs)
-            print(f"\n    BOTH_soluzione_ottima_task_{task_number}: {list(reversed(lcs))}", file=fout)
+            print(f"\n    BOTH_una_soluzione_ottima_task_{task_number}: {list(reversed(lcs))}", file=fout)
 
         if 'explanations' in addenda:
             print(f"\n    AUX__spiegazione_task_{task_number}: |", file=fout)
@@ -135,7 +135,7 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
 
             lcs = []
             reconstruct_opt_lcs_pref_of_len(len_s_prefix,len(t), lcs)
-            print(f"\n    BOTH_soluzione_ottima_task_{task_number}: {list(reversed(lcs))}", file=fout)
+            print(f"\n    BOTH_una_soluzione_ottima_task_{task_number}: {list(reversed(lcs))}", file=fout)
         return
     
     if task_codename == 'opt_lcs_t_prefix':
@@ -145,7 +145,7 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
 
             lcs = []
             reconstruct_opt_lcs_pref_of_len(len(s),len_t_prefix, lcs)
-            print(f"\n    BOTH_soluzione_ottima_task_{task_number}: {list(reversed(lcs))}", file=fout)
+            print(f"\n    BOTH_una_soluzione_ottima_task_{task_number}: {list(reversed(lcs))}", file=fout)
         return
 
               
@@ -155,7 +155,7 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
             print(f"    BOTH_valore_ottimo_task_{task_number}: {suff_from_pos[len(s)-len_s_suffix][0]}", file=fout)
             lcs = []
             reconstruct_opt_lcs_suff_from_pos(len(s)-len_s_suffix,0, lcs)
-            print(f"\n    BOTH_soluzione_ottima_task_{task_number}: {lcs}", file=fout)
+            print(f"\n    BOTH_una_soluzione_ottima_task_{task_number}: {lcs}", file=fout)
         return
 
     if task_codename == 'opt_lcs_t_suffix':
@@ -164,7 +164,7 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
             print(f"    BOTH_valore_ottimo_task_{task_number}: {suff_from_pos[0][len(t)-len_t_suffix]}", file=fout)
             lcs = []
             reconstruct_opt_lcs_suff_from_pos(0,len(t)-len_t_suffix, lcs)
-            print(f"\n    BOTH_soluzione_ottima_task_{task_number}: {lcs}", file=fout)
+            print(f"\n    BOTH_una_soluzione_ottima_task_{task_number}: {lcs}", file=fout)
         return
 
     
@@ -176,7 +176,7 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
 
             lcs = []
             reconstruct_opt_lcs_pref_of_len(len_s_prefix,len_t_prefix, lcs)
-            print(f"\n    BOTH_soluzione_ottima_task_{task_number}: {list(reversed(lcs))}", file=fout)
+            print(f"\n    BOTH_una_soluzione_ottima_task_{task_number}: {list(reversed(lcs))}", file=fout)
         return
           
     if task_codename == 'opt_lcs_suffixes':
@@ -186,7 +186,7 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
             print(f"    BOTH_valore_ottimo_task_{task_number}: {suff_from_pos[len(s)-len_s_suffix][len(t)-len_t_suffix]}", file=fout)
             lcs = []
             reconstruct_opt_lcs_suff_from_pos(len(s)-len_s_suffix,len(t)-len_t_suffix, lcs)
-            print(f"\n    BOTH_soluzione_ottima_task_{task_number}: {lcs}", file=fout)
+            print(f"\n    BOTH_una_soluzione_ottima_task_{task_number}: {lcs}", file=fout)
         return
     
 
@@ -207,7 +207,7 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
             print(f"    BOTH_valore_ottimo_task_{task_number}: {len(beginning)+suff_from_pos[i_s][i_t]}", file=fout)
             lcs = []
             reconstruct_opt_lcs_suff_from_pos(i_s,i_t, lcs)
-            print(f"\n    BOTH_soluzione_ottima_task_{task_number}: {[char for char in beginning]+lcs}", file=fout)
+            print(f"\n    BOTH_una_soluzione_ottima_task_{task_number}: {[char for char in beginning]+lcs}", file=fout)
         return
     
     if task_codename == 'opt_lcs_ending':  #Fornire una massima sottosequenza comune tra  s  e  t che finisca con un dato suffisso (ending)
@@ -227,7 +227,7 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
             print(f"    BOTH_valore_ottimo_task_{task_number}: {len(ending) + pref_of_len[len_s][len_t]}", file=fout)
             lcs = []
             reconstruct_opt_lcs_pref_of_len(len_s,len_t, lcs)
-            print(f"\n    BOTH_soluzione_ottima_task_{task_number}: {list(reversed(lcs)) + [char for char in ending]}", file=fout)
+            print(f"\n    BOTH_una_soluzione_ottima_task_{task_number}: {list(reversed(lcs)) + [char for char in ending]}", file=fout)
         return
         
     print(f"ERROR: codename {task_codename} is an unknown codename for tasks!", sys.stderr)

@@ -86,6 +86,7 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
         if 'instance_design' in addenda or 'eval_support' in addenda or 'feedback' in addenda:
             max_val, opt_sol = reconstruct_opt(CapacityMax, n)
             print(f"\n    BOTH_valore_ottimo_task_{task_number}: {max_val}", file=fout)
+            print(f"\n    BOTH_una_soluzione_ottima_task_{task_number}: {opt_sol}", file=fout)
         if 'explanations' in addenda:
             print(f"\n    AUX__spiegazione_task_{task_number}: |", file=fout)
             print("     Definiamo la matrice `max_val_for_genCap` che ha n+1 righe (la riga 1+i è labellata dall'inserimento di un i-esimo item nel set dei candidati tra cui pescare) e CapacityMax+1 colonne (labellate da un badget b con 0<=b<=CapacityMax) dove `max_val_for_genCap`[i,b] = massimo valore si un subset degli items 1 ... i  con somma dei pesi al più b.", file=fout)
@@ -102,9 +103,10 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
     if task_codename == 'opt-sol_CapacityMax':
         if 'instance_design' in addenda or 'eval_support' in addenda or 'feedback' in addenda:
             max_val, opt_sol = reconstruct_opt(CapacityMax, n)
-            print(f"\n    BOTH_soluzione_ottima_task_{task_number}: {opt_sol}", file=fout)
+            print(f"\n    BOTH_una_soluzione_ottima_task_{task_number}: {opt_sol}", file=fout)
+            print(f"\n    BOTH_valore_ottimo_task_{task_number}: {max_val}", file=fout)
             print(f"\n    AUX__spiegazione_task_{task_number}: |", file=fout)
-            print("     Le informazioni che mi servono sono contenute nella matrice `max_val_for_genCap`.", file=fout)
+            print("     Le informazioni che ti servono sono tutte contenute nella matrice `max_val_for_genCap`.", file=fout)
         return
 
     if task_codename == 'max-val_CapacityMax_dopo-esclusioni':
@@ -112,6 +114,7 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
         if 'instance_design' in addenda or 'eval_support' in addenda or 'feedback' in addenda:
             max_val, opt_sol = reconstruct_opt(CapacityMax, n-len(edrCapMax))
             print(f"\n    BOTH_valore_ottimo_task_{task_number}: {max_val}", file=fout)
+            print(f"\n    BOTH_una_soluzione_ottima_task_{task_number}: {opt_sol}", file=fout)
             print(f"\n    AUX__spiegazione_task_{task_number}: |", file=fout)
             print(f"     Avendo avuto l'attenzione di considerare per ultimi quegli elementi che in questo task mi si chiede di non considerare, l'informazione richiesta è `max_val_for_genCap`[i=new_n={n-len(edrCapMax)}][b=CapacityMax={CapacityMax}].", file=fout)
         return
@@ -120,7 +123,8 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
         edrCapMax= task['edrCapMax']
         if 'instance_design' in addenda or 'eval_support' in addenda or 'feedback' in addenda:
             max_val, opt_sol = reconstruct_opt(CapacityMax, n-len(edrCapMax))
-            print(f"\n    BOTH_soluzione_ottima_task_{task_number}: {opt_sol}", file=fout)
+            print(f"\n    BOTH_una_soluzione_ottima_task_{task_number}: {opt_sol}", file=fout)
+            print(f"\n    BOTH_valore_ottimo_task_{task_number}: {max_val}", file=fout)
             print(f"\n    AUX__spiegazione_task_{task_number}: |", file=fout)
             print(f"     Avendo avuto l'attenzione di considerare per ultimi quegli elementi che in questo task mi si chiede di non considerare, l'informazione richiesta è `max_val_for_genCap`[i=new_n={n-len(edrCapMax)}][b=CapacityMax={CapacityMax}].", file=fout)
         return
@@ -130,6 +134,7 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
         if 'instance_design' in addenda or 'eval_support' in addenda or 'feedback' in addenda:
             max_val, opt_sol = reconstruct_opt(CapacityGen, n)
             print(f"\n    BOTH_valore_ottimo_task_{task_number}: {max_val}", file=fout)
+            print(f"\n    BOTH_una_soluzione_ottima_task_{task_number}: {opt_sol}", file=fout)
             print(f"\n    AUX__spiegazione_task_{task_number}: |", file=fout)
             print(f"     L'informazione richiesta è `max_val_for_genCap`[n={n}][b=CapacityGen={CapacityGen}].", file=fout)
         return
@@ -138,9 +143,10 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
         CapacityGen= task['CapacityGen']
         if 'instance_design' in addenda or 'eval_support' in addenda or 'feedback' in addenda:
             max_val, opt_sol = reconstruct_opt(CapacityGen, n)
-            print(f"\n    BOTH_soluzione_ottima_task_{task_number}: {opt_sol}", file=fout)
+            print(f"\n    BOTH_una_soluzione_ottima_task_{task_number}: {opt_sol}", file=fout)
+            print(f"\n    BOTH_valore_ottimo_task_{task_number}: {max_val}", file=fout)
             print(f"\n    AUX__spiegazione_task_{task_number}: |", file=fout)
-            print("     Le informazioni che mi servono sono contenute nella matrice `max_val_for_genCap`.", file=fout)
+            print("     Le informazioni che ti servono sono tutte contenute nella matrice `max_val_for_genCap`.", file=fout)
         return
 
     if task_codename == 'max-val_CapacityGen_dopo-esclusioni':
@@ -149,6 +155,7 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
         if 'instance_design' in addenda or 'eval_support' in addenda or 'feedback' in addenda:
             max_val, opt_sol = reconstruct_opt(CapacityGen, n-len(edrCapGen))
             print(f"\n    BOTH_valore_ottimo_task_{task_number}: {max_val}", file=fout)
+            print(f"\n    BOTH_una_soluzione_ottima_task_{task_number}: {opt_sol}", file=fout)
             print(f"\n    AUX__spiegazione_task_{task_number}: |", file=fout)
             print(f"     Avendo avuto l'attenzione di considerare per ultimi quegli elementi che in questo task mi si chiede di non considerare, l'informazione richiesta è `max_val_for_genCap`[i=new_n={n-len(edrCapGen)}][b=CapacityGen={CapacityGen}].", file=fout)
         return
@@ -158,7 +165,8 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
         edrCapGen= task['edrCapGen']
         if 'instance_design' in addenda or 'eval_support' in addenda or 'feedback' in addenda:
             max_val, opt_sol = reconstruct_opt(CapacityGen, n-len(edrCapGen))
-            print(f"\n    BOTH_soluzione_ottima_task_{task_number}: {opt_sol}", file=fout)
+            print(f"\n    BOTH_una_soluzione_ottima_task_{task_number}: {opt_sol}", file=fout)
+            print(f"\n    BOTH_valore_ottimo_task_{task_number}: {max_val}", file=fout)
             print(f"\n    AUX__spiegazione_task_{task_number}: |", file=fout)
             print(f"     Avendo avuto l'attenzione di considerare per ultimi quegli elementi che in questo task mi si chiede di non considerare, l'informazione richiesta è `max_val_for_genCap`[i=new_n={n-len(edrCapGen)}][b=CapacityGen={CapacityGen}].", file=fout)
         return
