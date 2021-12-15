@@ -64,9 +64,6 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
 
     m = len(campo_minato)
     n = len(campo_minato[0])
-    def read_str_as_pair_of_ints(pair_str):
-        x,y=pair_str[1:-1].split(',')
-        return (int(x),int(y))
 
     num_paths_to = [ [ 0 ] * (n+1) for i in range(m+1) ]
     num_paths_to[1][1] = 1
@@ -142,19 +139,16 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
             print(f"\n    BOTH_la_risposta_corretta: {num_paths_to[m][n]}  (ossia um_paths_to[{m}][{n}])", file=fout)
     elif task_codename == 'num_paths_cell_to_end':
         start_point= (task['start_point_row'],task['start_point_col'])
-        assert start_point==read_str_as_pair_of_ints(task['start_point'])
         assert campo_minato[start_point[0] -1][start_point[1] -1] == " "
         if 'instance_design' in addenda or 'eval_support' in addenda or 'feedback' in addenda:
             print(f"\n    BOTH_la_risposta_corretta: {num_paths_from[start_point[0]][start_point[1]]}  (ossia num_paths_from[{start_point[0]}][{start_point[1]}])", file=fout)
     elif task_codename == 'num_paths_start_to_cell':
         target_point= (task['target_point_row'],task['target_point_col'])
-        assert target_point==read_str_as_pair_of_ints(task['target_point'])
         assert campo_minato[target_point[0] -1][target_point[1] -1] == " "
         if 'instance_design' in addenda or 'eval_support' in addenda or 'feedback' in addenda:
             print(f"\n    BOTH_la_risposta_corretta: {num_paths_to[target_point[0]][target_point[1]]}  (ossia num_paths_to[{target_point[0]}][{target_point[1]}])", file=fout)              
     elif task_codename == 'num_paths_through_cell':
         middle_point= (task['middle_point_row'],task['middle_point_col'])
-        assert middle_point==read_str_as_pair_of_ints(task['middle_point'])
         assert campo_minato[middle_point[0] -1][middle_point[1] -1] == " "
         if 'instance_design' in addenda or 'eval_support' in addenda or 'feedback' in addenda:
             print(f"\n    BOTH_la_risposta_corretta: {num_paths_to[middle_point[0]][middle_point[1]]*num_paths_from[middle_point[0]][middle_point[1]]}  (ossia num_paths_to[{middle_point[0]}][{middle_point[1]}]*num_paths_from[{middle_point[0]}][{middle_point[1]}])", file=fout)

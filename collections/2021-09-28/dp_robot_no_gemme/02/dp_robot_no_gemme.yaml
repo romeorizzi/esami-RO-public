@@ -101,7 +101,6 @@ tasks:
     tot_points: 3
     ver_points: 1
     task_codename: num_paths_cell_to_end
-    start_point: (2,5)
     start_point_row: 2
     start_point_col: 5
     request: 'Quanti sono i percorsi con partenza in ${chr(64+task["start_point_row"])}{task["start_point_col"]}=({task["start_point_row"]},{task["start_point_col"]})$ e arrivo in ${chr(64+m)}{n}=({m},{n})$?'
@@ -116,7 +115,6 @@ tasks:
     tot_points: 3
     ver_points: 1
     task_codename: num_paths_cell_to_end
-    start_point: (3,3)
     start_point_row: 3
     start_point_col: 3
     request: 'Quanti sono i percorsi con partenza in ${chr(64+task["start_point_row"])}{task["start_point_col"]}=({task["start_point_row"]},{task["start_point_col"]})$ e arrivo in ${chr(64+m)}{n}=({m},{n})$?'
@@ -131,7 +129,6 @@ tasks:
     tot_points: 3
     ver_points: 1
     task_codename: num_paths_cell_to_end
-    start_point: (4,1)
     start_point_row: 4
     start_point_col: 1
     request: 'Quanti sono i percorsi con partenza in ${chr(64+task["start_point_row"])}{task["start_point_col"]}=({task["start_point_row"]},{task["start_point_col"]})$ e arrivo in ${chr(64+m)}{n}=({m},{n})$?'

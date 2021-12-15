@@ -19,10 +19,6 @@ import problems_common_lib as plib
 
 PATH_UTILS = os.getcwd() + '/utils/'
 
-def read_str_as_pair_of_ints(pair_str):
-    x,y=pair_str[1:-1].split(',')
-    return (int(x),int(y))
-
 def generate_nb(fullpath_yaml):
     # Notebook creation
     notebook = nb.v4.new_notebook()
@@ -31,9 +27,6 @@ def generate_nb(fullpath_yaml):
     # Reading the instance
     exer = plib.read_exercise_yaml(fullpath_yaml)
     campo_minato=exer['instance']['campo_minato']
-#    start_point=read_str_as_pair_of_ints(exer['instance']['start_point'])
-#    target_point=read_str_as_pair_of_ints(exer['instance']['target_point'])
-#    middle_point=read_str_as_pair_of_ints(exer['instance']['middle_point'])
     
     tasks=exer['tasks']
     total_point=0
@@ -283,12 +276,12 @@ def generate_nb(fullpath_yaml):
     # Requests
     for i in range(len(tasks)):
         task=tasks[i][i+1]
-        if 'start_point' in task.keys():
-            start_point=read_str_as_pair_of_ints(task['start_point'])
-        if 'target_point' in task.keys():
-            target_point=read_str_as_pair_of_ints(task['target_point'])
-        if 'middle_point' in task.keys():
-            middle_point=read_str_as_pair_of_ints(task['middle_point'])
+#        if 'start_point_row' in task.keys():
+#            start_point= (task['start_point_row'],task['start_point_col'])
+#        if 'target_point_row' in task.keys():
+#            target_point= (task['target_point_row'],task['target_point_col'])
+#        if 'middle_point_row' in task.keys():
+#            middle_point= (task['middle_point_row'],task['middle_point_col'])
         if 'request_txt' in task.keys():
             fstring= task['request_txt']
             request_txt= eval(f"f'{fstring}'")
