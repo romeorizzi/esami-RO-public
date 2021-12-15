@@ -55,7 +55,7 @@ tasks:
     ver_points: 1
     task_codename: opt-sol_CapacityMax_dopo-esclusioni
     edrCapMax: ['E']
-    request: 'Fornire una soluzione ottima se {CapacityMax} è la capienza dello zaino da non superarsi ma assumendo di non poter prendere nessuno dei seguenti elementi: {task["edrCapMax"]}.'
+    request: 'Fornire una soluzione ottima se {CapacityMax} è la capienza dello zaino da non superarsi ma assumendo di non poter prendere nessuno degli elementi in {task["edrCapMax"]}.'
     init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
     verif: PLACEHOLDER_early_standard
 
@@ -65,7 +65,7 @@ tasks:
     task_codename: opt-sol_CapacityGen_dopo-esclusioni
     CapacityGen: 37
     edrCapGen: ['B','E']
-    request: 'Fornire una soluzione ottima se {task["CapacityGen"]} è la capienza dello zaino da non superarsi ma assumendo di non poter prendere nessuno dei seguenti elementi: {task["edrCapGen"]}.'
+    request: 'Fornire una soluzione ottima se {task["CapacityGen"]} è la capienza dello zaino da non superarsi ma assumendo di non poter prendere nessuno degli elementi in {task["edrCapGen"]}.'
     init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
     verif: PLACEHOLDER_early_standard
 
@@ -75,7 +75,7 @@ tasks:
     task_codename: opt-sol_CapacityGen_dopo-esclusioni
     CapacityGen: 36
     edrCapGen: ['B','E','D']
-    request: 'Fornire una soluzione ottima se {task["CapacityGen"]} è la capienza dello zaino da non superarsi ma assumendo di non poter prendere nessuno dei seguenti elementi: {task["edrCapGen"]}.'
+    request: 'Fornire una soluzione ottima se {task["CapacityGen"]} è la capienza dello zaino da non superarsi ma assumendo di non poter prendere nessuno degli elementi in {task["edrCapGen"]}.'
     init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
     verif: PLACEHOLDER_early_standard
 
@@ -85,7 +85,7 @@ tasks:
     task_codename: opt-sol_CapacityGen_dopo-esclusioni
     CapacityGen: 35
     edrCapGen: ['B','E','D','I']
-    request: 'Fornire una soluzione ottima se {task["CapacityGen"]} è la capienza dello zaino da non superarsi ma assumendo di non poter prendere nessuno dei seguenti elementi: {task["edrCapGen"]}.'
+    request: 'Fornire una soluzione ottima se {task["CapacityGen"]} è la capienza dello zaino da non superarsi ma assumendo di non poter prendere nessuno degli elementi in {task["edrCapGen"]}.'
     init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
     verif: PLACEHOLDER_early_standard
 

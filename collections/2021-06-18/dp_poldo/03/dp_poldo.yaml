@@ -83,8 +83,8 @@ tasks:
 - 5:
     tot_points: 20
     ver_points: 20
-    request: 'Quale è il minor numero possibile di colori _C_ con cui si possa colorare gli elementi della sequenza $s$ in modo che, per ogni colore, la sottosequenza degli elementi di quel colore sia monotona {dictionary_of_types[monotonicity_type_subtask5]}? Specificare il colore da assegnare a ogni elemento, usando come colori i numeri da 1 a _C_ (esempio: [1,2,3,4,2,1,3,1,1,...]).'
-    request_txt: 'Quale è il minor numero possibile di colori C con cui si possa colorare gli elementi della sequenza s in modo che, per ogni colore, la sottosequenza degli elementi di quel colore sia monotona {dictionary_of_types[monotonicity_type_subtask5]}? Specificare il colore da assegnare a ogni elemento, usando i numeri da 1 a C (esempio: [1,2,3,4,2,1,3,1,1,...]).'
+    request: 'Quale è il minor numero possibile di colori _C_ con cui si possa colorare gli elementi della sequenza $s$ in modo che, per ogni colore, la sottosequenza degli elementi di quel colore sia monotona {dictionary_of_types[monotonicity_type_subtask5]}? Specificare il colore da assegnare a ogni elemento, usando come colori i numeri da 1 a _C_ (per esempio, [1,2,3,4,2,1,3,1,1,...]).'
+    request_txt: 'Quale è il minor numero possibile di colori C con cui si possa colorare gli elementi della sequenza s in modo che, per ogni colore, la sottosequenza degli elementi di quel colore sia monotona {dictionary_of_types[monotonicity_type_subtask5]}? Specificare il colore da assegnare a ogni elemento, usando i numeri da 1 a C (per esempio, [1,2,3,4,2,1,3,1,1,...]).'
     answer_cell_type: "Code"
     init_answ_cell_msg: '#Inserisci la tua risposta (per esempio, [1,2,3])\nsubs{num_of_question}=[]'
     verif: 'display(Markdown(eval_coloring(s, "s", subs{num_of_question}, "subs{num_of_question}", "{monotonicity_type_subtask5}", pt_green=2, pt_red={task["tot_points"]},index_pt={num_of_question - 1})))'

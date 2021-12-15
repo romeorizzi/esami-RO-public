@@ -75,7 +75,7 @@ tasks:
     ver_points: 1
     task_codename: opt-sol_CapacityMax_dopo-esclusioni
     edrCapMax: ['E']
-    request: 'Fornire una soluzione ottima se {CapacityMax} è la capienza dello zaino da non superarsi ma assumendo di non poter prendere nessuno dei seguenti elementi: {task["edrCapMax"]}.'
+    request: 'Fornire una soluzione ottima se {CapacityMax} è la capienza dello zaino da non superarsi ma assumendo di non poter prendere nessuno degli elementi in {task["edrCapMax"]}.'
     init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
     verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,CapacityMax,answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="sol",edr={task["edrCapMax"]})))'
 
@@ -90,7 +90,7 @@ tasks:
     task_codename: opt-sol_CapacityGen_dopo-esclusioni
     CapacityGen: 37
     edrCapGen: ['B','E']
-    request: 'Fornire una soluzione ottima se {task["CapacityGen"]} è la capienza dello zaino da non superarsi ma assumendo di non poter prendere nessuno dei seguenti elementi: {task["edrCapGen"]}.'
+    request: 'Fornire una soluzione ottima se {task["CapacityGen"]} è la capienza dello zaino da non superarsi ma assumendo di non poter prendere nessuno degli elementi in {task["edrCapGen"]}.'
     init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
     verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,{task["CapacityGen"]},answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="sol",edr={task["edrCapGen"]})))'
 
@@ -105,7 +105,7 @@ tasks:
     task_codename: opt-sol_CapacityGen_dopo-esclusioni
     CapacityGen: 36
     edrCapGen: ['B','E','F']
-    request: 'Fornire una soluzione ottima se {task["CapacityGen"]} è la capienza dello zaino da non superarsi ma assumendo di non poter prendere nessuno dei seguenti elementi: {task["edrCapGen"]}.'
+    request: 'Fornire una soluzione ottima se {task["CapacityGen"]} è la capienza dello zaino da non superarsi ma assumendo di non poter prendere nessuno degli elementi in {task["edrCapGen"]}.'
     init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
     verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,{task["CapacityGen"]},answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="sol",edr={task["edrCapGen"]})))'
 
@@ -120,7 +120,7 @@ tasks:
     task_codename: opt-sol_CapacityGen_dopo-esclusioni
     CapacityGen: 36
     edrCapGen: ['B','E','F','I']
-    request: 'Fornire una soluzione ottima se {task["CapacityGen"]} è la capienza dello zaino da non superarsi ma assumendo di non poter prendere nessuno dei seguenti elementi: {task["edrCapGen"]}.'
+    request: 'Fornire una soluzione ottima se {task["CapacityGen"]} è la capienza dello zaino da non superarsi ma assumendo di non poter prendere nessuno degli elementi in {task["edrCapGen"]}.'
     init_answ_cell_msg: '#Inserisci la tua risposta (in forma di lista)\nanswer{num_of_question}=[]'
     verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,{task["CapacityGen"]},answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="sol",edr={task["edrCapGen"]})))'
 

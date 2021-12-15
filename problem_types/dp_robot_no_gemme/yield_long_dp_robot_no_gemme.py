@@ -141,23 +141,20 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
         if 'instance_design' in addenda or 'eval_support' in addenda or 'feedback' in addenda:
             print(f"\n    BOTH_la_risposta_corretta: {num_paths_to[m][n]}  (ossia um_paths_to[{m}][{n}])", file=fout)
     elif task_codename == 'num_paths_cell_to_end':
-        start_point= task['start_point']
-        start_point=read_str_as_pair_of_ints(start_point)
-        print(f"start_point[0]={start_point[0]}\nstart_point[1]={start_point[1]}")
+        start_point= (task['start_point_row'],task['start_point_col'])
+        assert start_point==read_str_as_pair_of_ints(task['start_point'])
         assert campo_minato[start_point[0] -1][start_point[1] -1] == " "
         if 'instance_design' in addenda or 'eval_support' in addenda or 'feedback' in addenda:
             print(f"\n    BOTH_la_risposta_corretta: {num_paths_from[start_point[0]][start_point[1]]}  (ossia num_paths_from[{start_point[0]}][{start_point[1]}])", file=fout)
     elif task_codename == 'num_paths_start_to_cell':
-        target_point= task['target_point']
-        target_point=read_str_as_pair_of_ints(target_point)
-        print(f"target_point[0]={target_point[0]}\ntarget_point[1]={target_point[1]}")
+        target_point= (task['target_point_row'],task['target_point_col'])
+        assert target_point==read_str_as_pair_of_ints(task['target_point'])
         assert campo_minato[target_point[0] -1][target_point[1] -1] == " "
         if 'instance_design' in addenda or 'eval_support' in addenda or 'feedback' in addenda:
             print(f"\n    BOTH_la_risposta_corretta: {num_paths_to[target_point[0]][target_point[1]]}  (ossia num_paths_to[{target_point[0]}][{target_point[1]}])", file=fout)              
     elif task_codename == 'num_paths_through_cell':
-        middle_point= task['middle_point']
-        middle_point=read_str_as_pair_of_ints(middle_point)
-        print(f"middle_point[0]={middle_point[0]}\nmiddle_point[1]={middle_point[1]}")
+        middle_point= (task['middle_point_row'],task['middle_point_col'])
+        assert middle_point==read_str_as_pair_of_ints(task['middle_point'])
         assert campo_minato[middle_point[0] -1][middle_point[1] -1] == " "
         if 'instance_design' in addenda or 'eval_support' in addenda or 'feedback' in addenda:
             print(f"\n    BOTH_la_risposta_corretta: {num_paths_to[middle_point[0]][middle_point[1]]*num_paths_from[middle_point[0]][middle_point[1]]}  (ossia num_paths_to[{middle_point[0]}][{middle_point[1]}]*num_paths_from[{middle_point[0]}][{middle_point[1]}])", file=fout)

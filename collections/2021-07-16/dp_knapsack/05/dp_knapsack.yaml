@@ -212,7 +212,7 @@ tasks:
     ver_points: 1
     task_codename: max-val_CapacityMax_dopo-esclusioni
     edrCapMax: ['I']
-    request: 'Fornire la massima somma dei valori per un sottoinsieme di elementi con somma dei pesi non eccedente {CapacityMax} quando non sia consentito di prendere nessuno dei seguenti elementi: {task["edrCapMax"]}</b>.'
+    request: 'Fornire la massima somma dei valori per un sottoinsieme di elementi con somma dei pesi non eccedente {CapacityMax} quando non sia consentito di prendere nessuno degli elementi in {task["edrCapMax"]}</b>.'
     init_answ_cell_msg: '#Inserisci la tua risposta (un numero)\nanswer{num_of_question}=-1'
     verif: 'display(Markdown(verif_knapsack(elementi,pesi,valori,CapacityMax,answer{num_of_question}, pt_green=1, pt_red={task["tot_points"]}, index_pt={num_of_question-1}, val_or_sol="val",edr={task["edrCapMax"]})))'
 
