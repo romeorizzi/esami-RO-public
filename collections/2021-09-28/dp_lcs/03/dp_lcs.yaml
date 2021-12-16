@@ -22,10 +22,10 @@ tasks:
 
     BOTH_valore_ottimo_task_1: 11
 
-    BOTH_soluzione_ottima_task_1: ['G', 'T', 'A', 'G', 'G', 'G', 'A', 'G', 'G', 'G', 'G']
+    BOTH_una_soluzione_ottima_task_1: ['G', 'T', 'A', 'G', 'G', 'G', 'A', 'G', 'G', 'G', 'G']
 
     AUX__spiegazione_task_1: |
-     Definiamo la matrice `pref_of_len` che ha |s|+1 righe (labellate coi caratteri di s) e |t|+1 colonne (labellate coi caratteri di t)  dove `pref_of_len`[i,j] = massima lunghezza di una sottosequenza comune tra il prefisso s_i di s di lunghezza i e il suffisso t_j di t di lunghezza j. Le righe e le colonne sono indicizzate partendo da 0.
+     Definiamo la matrice `pref_of_len` che ha |s|+1 righe (labellate coi caratteri di s) e |t|+1 colonne (labellate coi caratteri di t)  dove `pref_of_len`[i,j] = massima lunghezza di una sottosequenza comune tra il prefisso s_i di s di lunghezza i e il prefisso t_j di t di lunghezza j. Le righe e le colonne sono indicizzate partendo da 0.
      Stampa della matrice `pref_of_len`:
          -  G  G  T  G  T  A  G  G  G  A  G  G  G  T  A  T  G  
       -  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 
@@ -78,9 +78,9 @@ tasks:
     request_txt: 'Fornire una stringa di lunghezza massima che inizi col prefisso __{task["beginning"]}__ e sia sottosequenza comune tra s = {s}  e t = {t}'
     init_answ_cell_msg: '#Inserisci la tua risposta (una stringa, per esempio "TATATA")\nanswer{num_of_question}=""'
     verif: 'display(Markdown(verif_LCS(s, t, answer{num_of_question}, pt_green={task["ver_points"]}, pt_red={task["tot_points"]}, index_pt={num_of_question - 1}, val_or_sol="sol", start="{task["beginning"]}")))'
-    BOTH_valore_ottimo_task_2: 10
+    BOTH_valore_ottimo_task_2: 9
 
-    BOTH_soluzione_ottima_task_2: ['T', 'G', 'G', 'T', 'A', 'G', 'G', 'G', 'G', 'A']
+    BOTH_una_soluzione_ottima_task_2: ['T', 'G', 'T', 'A', 'G', 'G', 'G', 'G', 'A']
 
 - 3:    #esercizio suffisso su s
     tot_points: 5
@@ -93,7 +93,7 @@ tasks:
     verif: 'display(Markdown(verif_LCS("{s[len(s)-task["len_s_suffix"]:]}", "{t}", answer{num_of_question}, pt_green={task["ver_points"]}, pt_red={task["tot_points"]}, index_pt={num_of_question - 1}, val_or_sol="sol")))'
     BOTH_valore_ottimo_task_3: 10
 
-    BOTH_soluzione_ottima_task_3: ['G', 'G', 'T', 'G', 'A', 'G', 'G', 'G', 'G', 'A']
+    BOTH_una_soluzione_ottima_task_3: ['G', 'G', 'T', 'G', 'A', 'G', 'G', 'G', 'G', 'A']
 
 - 4:    #esercizio suffisso su s
     tot_points: 5
@@ -106,7 +106,7 @@ tasks:
     verif: 'display(Markdown(verif_LCS("{s[len(s)-task["len_s_suffix"]:]}", "{t}", answer{num_of_question}, pt_green={task["ver_points"]}, pt_red={task["tot_points"]}, index_pt={num_of_question - 1}, val_or_sol="sol")))'
     BOTH_valore_ottimo_task_4: 8
 
-    BOTH_soluzione_ottima_task_4: ['T', 'G', 'A', 'G', 'G', 'G', 'G', 'A']
+    BOTH_una_soluzione_ottima_task_4: ['T', 'G', 'A', 'G', 'G', 'G', 'G', 'A']
 
 - 5:    #esercizio suffisso su s
     tot_points: 5
@@ -119,7 +119,7 @@ tasks:
     verif: 'display(Markdown(verif_LCS("{s[len(s)-task["len_s_suffix"]:]}", "{t}", answer{num_of_question}, pt_green={task["ver_points"]}, pt_red={task["tot_points"]}, index_pt={num_of_question - 1}, val_or_sol="sol")))'
     BOTH_valore_ottimo_task_5: 7
 
-    BOTH_soluzione_ottima_task_5: ['G', 'A', 'G', 'G', 'G', 'G', 'A']
+    BOTH_una_soluzione_ottima_task_5: ['G', 'A', 'G', 'G', 'G', 'G', 'A']
     
 - 6:    #esercizio suffisso su t
     tot_points: 5
@@ -132,7 +132,7 @@ tasks:
     verif: 'display(Markdown(verif_LCS("{s}", "{t[len(t)-task["len_t_suffix"]:]}", answer{num_of_question}, pt_green={task["ver_points"]}, pt_red={task["tot_points"]}, index_pt={num_of_question - 1}, val_or_sol="sol")))'
     BOTH_valore_ottimo_task_6: 10
 
-    BOTH_soluzione_ottima_task_6: ['T', 'A', 'G', 'G', 'G', 'A', 'G', 'G', 'G', 'A']
+    BOTH_una_soluzione_ottima_task_6: ['T', 'A', 'G', 'G', 'G', 'A', 'G', 'G', 'G', 'A']
 
 - 7:    #esercizio suffisso su t
     tot_points: 5
@@ -145,7 +145,7 @@ tasks:
     verif: 'display(Markdown(verif_LCS("{s}", "{t[len(t)-task["len_t_suffix"]:]}", answer{num_of_question}, pt_green={task["ver_points"]}, pt_red={task["tot_points"]}, index_pt={num_of_question - 1}, val_or_sol="sol")))'
     BOTH_valore_ottimo_task_7: 8
 
-    BOTH_soluzione_ottima_task_7: ['G', 'G', 'G', 'A', 'G', 'G', 'G', 'A']
+    BOTH_una_soluzione_ottima_task_7: ['G', 'G', 'G', 'A', 'G', 'G', 'G', 'A']
 
 
 - 8:    #esercizio suffisso su t
@@ -159,6 +159,6 @@ tasks:
     verif: 'display(Markdown(verif_LCS("{s}", "{t[len(t)-task["len_t_suffix"]:]}", answer{num_of_question}, pt_green={task["ver_points"]}, pt_red={task["tot_points"]}, index_pt={num_of_question - 1}, val_or_sol="sol")))'
     BOTH_valore_ottimo_task_8: 7
 
-    BOTH_soluzione_ottima_task_8: ['G', 'A', 'G', 'G', 'G', 'A', 'G']
+    BOTH_una_soluzione_ottima_task_8: ['G', 'A', 'G', 'G', 'G', 'A', 'G']
 
 ...

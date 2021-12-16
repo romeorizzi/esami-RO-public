@@ -7,7 +7,7 @@ tasks:
 - 1:
     tot_points: 10
     ver_points: 0
-    description1: "Formula il problema per il grafo con la seguente matrice di adiacenza (spiegare le variabili che introduci, la funzione obiettivo, e i vincoli): <br>
+    description1: "Formula il problema per il grafo con la seguente matrice di adiacenza (spiegare le variabili che introduci, la funzione obiettivo, e i vincoli) <br>
     &ensp;
        A B C D E <br>
     A  0 1 1 0 0 <br>

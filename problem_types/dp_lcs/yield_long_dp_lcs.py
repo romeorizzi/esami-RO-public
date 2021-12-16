@@ -100,7 +100,7 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
 
         if 'explanations' in addenda:
             print(f"\n    AUX__spiegazione_task_{task_number}: |", file=fout)
-            print("     Definiamo la matrice `pref_of_len` che ha |s|+1 righe (labellate coi caratteri di s) e |t|+1 colonne (labellate coi caratteri di t)  dove `pref_of_len`[i,j] = massima lunghezza di una sottosequenza comune tra il prefisso s_i di s di lunghezza i e il suffisso t_j di t di lunghezza j. Le righe e le colonne sono indicizzate partendo da 0.", file=fout)
+            print("     Definiamo la matrice `pref_of_len` che ha |s|+1 righe (labellate coi caratteri di s) e |t|+1 colonne (labellate coi caratteri di t)  dove `pref_of_len`[i,j] = massima lunghezza di una sottosequenza comune tra il prefisso s_i di s di lunghezza i e il prefisso t_j di t di lunghezza j. Le righe e le colonne sono indicizzate partendo da 0.", file=fout)
             print("     Stampa della matrice `pref_of_len`:", file=fout)
             print("         -",end="  ", file=fout)
             for j in range(len(t)):
@@ -192,17 +192,17 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
 
     if task_codename == 'opt_lcs_beginning':  #Fornire una massima sottosequenza comune tra  s  e  t che inizi con lettera o stringa prefisso dati
         beginning= task["beginning"]            
-        i_s = -1
-        i_t = -1
+        i_s = 0
+        i_t = 0
         for char in beginning:
-            i_s += 1
-            i_t += 1
             while s[i_s] != char:
                 i_s += 1
-                assert i_s < len(s)
+            i_s += 1
+            assert i_s < len(s)
             while t[i_t] != char:
                 i_t += 1
-                assert i_t < len(t)
+            i_t += 1
+            assert i_t < len(t)
         if 'instance_design' in addenda or 'eval_support' in addenda or 'feedback' in addenda:
             print(f"    BOTH_valore_ottimo_task_{task_number}: {len(beginning)+suff_from_pos[i_s][i_t]}", file=fout)
             lcs = []
