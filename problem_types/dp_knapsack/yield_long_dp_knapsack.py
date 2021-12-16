@@ -50,14 +50,17 @@ def yield_info_addenda(source_instance_dict, task_codename, task_number, turned_
     CapacityMax= instance['CapacityMax']
     task=source_instance_dict['tasks'][task_number-1][task_number]
 
-    edrCapMax=[]
-    edrCapGen=[]
+    edrCount = { ele : 0 for ele in elementi }
     for tsk in range(1,1+len(source_instance_dict['tasks'])):
         if 'edrCapMax' in source_instance_dict['tasks'][tsk-1][tsk].keys():
-            edrCapMax = source_instance_dict['tasks'][tsk-1][tsk]['edrCapMax']
+            for ele in source_instance_dict['tasks'][tsk-1][tsk]['edrCapMax']:
+                edrCount[ele] += 1
         if 'edrCapGen' in source_instance_dict['tasks'][tsk-1][tsk].keys():
-            edrCapGen = source_instance_dict['tasks'][tsk-1][tsk]['edrCapGen']
-    items = [ [label, peso, val] for label, peso, val in  zip(elementi,pesi,valori) if label not in edrCapMax and label not in edrCapGen ] + [ [label, peso, val] for label, peso, val in  zip(elementi,pesi,valori) if label in edrCapMax and label not in edrCapGen ] + [ [label, peso, val] for label, peso, val in  zip(elementi,pesi,valori) if label in edrCapGen and label not in edrCapMax ] + [ [label, peso, val] for label, peso, val in  zip(elementi,pesi,valori) if label in edrCapMax and label in edrCapGen ]
+            for ele in source_instance_dict['tasks'][tsk-1][tsk]['edrCapGen']:
+                edrCount[ele] += 1
+    items = []
+    for count in range(1+len(source_instance_dict['tasks'])):
+        items += [ [label, peso, val] for label, peso, val in  zip(elementi,pesi,valori) if edrCount[label] == count ]
     n = len(items)
     max_val_for_genCap = { i : [0]*(1+CapacityMax) for i in range(n+1) }
     for item, i in zip(items,range(1,1+n)):
