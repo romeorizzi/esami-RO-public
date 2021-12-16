@@ -68,4 +68,4 @@ if __name__ == "__main__":
     insert_rendition(notebook, notebook_fullname) # inserting the button "Salva & Esporta" in the end of the notebook
     nb.write(notebook, notebook_fullname) # saving the notebook as a .ipynb file
     if 0 != os.system("jupyter trust " + notebook_fullname): # signing the notebook in order to make it trusted
-        print("\n\nGot an error when launching the jupyter command! Note: you should start these scripts from an environment where anaconda, or at least jupyther, is included.\n\n")    
+        print("\n\nGot an error when launching the jupyter command! Note: you should start these scripts from an environment where anaconda, or at least jupyter, is included.\n\n")    

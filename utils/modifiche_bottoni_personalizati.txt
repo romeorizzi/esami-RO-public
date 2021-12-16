@@ -1,8 +1,8 @@
 ROMEO:
 
 1. gestione dei bottoni:
-nel file yaml del singolo esercizio, si specifica ogni singolo bottone da aggiungere (togliere il discorso dei gruppi di bottoni, non è necessario) ed anche l'etichetta che dovrà essere stampata sul bottone. Il nome del (tipo di) bottone è univoco (con formato con dollari), stabilito da un set finito che trova implementazione in create_exercise_free.py e display.py prima, staticamente, e poi in sigma-graph.js e nel html del jupyther.
-Questo nome, è il prefisso del nome del file html che esprimerà la rendition per quel bottone. Il suffisso è dato dal numero di applet dentro il foglio jupyther.
+nel file yaml del singolo esercizio, si specifica ogni singolo bottone da aggiungere (togliere il discorso dei gruppi di bottoni, non è necessario) ed anche l'etichetta che dovrà essere stampata sul bottone. Il nome del (tipo di) bottone è univoco (con formato con dollari), stabilito da un set finito che trova implementazione in create_exercise_free.py e display.py prima, staticamente, e poi in sigma-graph.js e nel html del jupyter.
+Questo nome, è il prefisso del nome del file html che esprimerà la rendition per quel bottone. Il suffisso è dato dal numero di applet dentro il foglio jupyter.
 Dentro nello yaml cose di qusto genere quà:
     states: [['color_edge_red', 'Seleziona degli archi'],['decolor_edge', 'Deseleziona degli archi',['download_svg', 'Download SVG'],['download_png', 'Download PNG']]
 

@@ -65,7 +65,7 @@ def create_exercise(exam_date, num_exercise, path_ex_folder, exer_type, fullpath
     nb.write(notebook, notebook_name) # saving the notebook as a .ipynb file
     os.rename(os.getcwd()+ '/' + notebook_name, path_mode_ver + '/' + notebook_name) # assigning the proper name to the notebook
     if 0 != os.system("jupyter trust " + path_mode_ver + notebook_name): # signing the notebook in order to make it trusted
-        print("\n\nGot an error when launching the jupyter command! Note: you should start these scripts from an environment where anaconda, or at least jupyther, is included.\n\n")    
+        print("\n\nGot an error when launching the jupyter command! Note: you should start these scripts from an environment where anaconda, or at least jupyter, is included.\n\n")    
     exer_yaml = yaml_generated # yaml instance for the mode free
     mode_free.create_exercise_given_yaml(exam_date, num_exercise, path_ex_folder, exer_yaml) # mode free
     
