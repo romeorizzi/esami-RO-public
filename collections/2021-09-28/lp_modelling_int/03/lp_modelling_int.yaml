@@ -30,7 +30,7 @@ tasks:
 - 4:
     tot_points: 6
     ver_points: 0
-    description1: "Risolvi il problema per la seguente istanza: <br>
+    description1: "Risolvi il problema per la seguente istanza <br>
     &ensp;   
        A B C D E F G H I L <br>
     A  0 1 0 0 1 1 0 0 0 0 <br>
@@ -47,7 +47,7 @@ tasks:
 - 5:
     tot_points: 6
     ver_points: 0
-    description1: "Risolvi il problema per la seguente istanza: <br>
+    description1: "Risolvi il problema per la seguente istanza <br>
     &ensp;   
        A B C D E F G H I L M N O P Q R <br>
     A  0 1 1 0 1 0 0 0 1 0 0 0 0 0 0 0 <br>
@@ -70,7 +70,7 @@ tasks:
 - 6:
     tot_points: 6
     ver_points: 0
-    description1: "Risolvi il problema per la seguente istanza: <br>
+    description1: "Risolvi il problema per la seguente istanza <br>
     &ensp;   
        A B C D E F G H I L M N O P Q R <br>
     A  0 1 1 0 1 0 0 0 1 0 0 0 0 0 0 0 <br>
@@ -93,7 +93,7 @@ tasks:
 - 7:
     tot_points: 6
     ver_points: 0
-    description1: "Risolvi il problema per la seguente istanza: <br>
+    description1: "Risolvi il problema per la seguente istanza <br>
     &ensp;   
        A B C D E F G H I L M N O P Q R <br>
     A  0 1 1 0 1 0 0 0 1 0 0 0 0 0 0 0 <br>
